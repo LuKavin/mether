@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Context>
+	<Resource auth="Container"
+		driverClassName="com.mysql.cj.jdbc.Driver" maxIdle="10" maxTotal="20"
+		maxWaitMillis="-1" name="jdbc/DBmether" password="password"
+		type="javax.sql.DataSource"
+		url="jdbc:mysql://localhost:3306/dbmether?serverTimezone=Asia/Taipei"
+		username="root" />
+</Context>
