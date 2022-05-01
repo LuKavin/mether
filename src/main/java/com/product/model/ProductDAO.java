@@ -29,10 +29,12 @@ public class ProductDAO implements ProductDAO_interface{
 		"SELECT product_num, product_typenum, product_name, product_introduce, product_link, product_budget, product_count, product_contract, product_deadline, product_date, product_state, test_pic, com_idnum  FROM PRODUCT";
 	private static final String GET_ONE_STMT = 
 		"SELECT product_num, product_typenum, product_name, product_introduce, product_link, product_budget, product_count, product_contract, product_deadline, product_date, product_state, test_pic, com_idnum  FROM PRODUCT where product_num = ?";
-	private static final String DELETE = 
-		"DELETE FROM JOB_TYPE where job_typenum = ?";
+//	private static final String DELETE = 
+//		"DELETE FROM JOB_TYPE where job_typenum = ?";
 	private static final String UPDATE = 
-		"UPDATE JOB_TYPE SET job_typename = ? where job_typenum = ?";
+			"update `PRODUCT` set `PRODUCT_TYPENUM` = ?, `PRODUCT_NAME` = ?, `PRODUCT_INTRODUCE` = ?, `PRODUCT_LINK` = ?, `PRODUCT_BUDGET` = ?, `PRODUCT_COUNT` = ?, `PRODUCT_CONTRACT` = ?, `PRODUCT_DEADLINE` = ?, `TEST_PIC` = ? where product_num = ?;"; 
+	private static final String UPDATE2 = 
+			"update `PRODUCT` set `PRODUCT_TYPENUM` = ?, `PRODUCT_NAME` = ?, `PRODUCT_INTRODUCE` = ?, `PRODUCT_LINK` = ?, `PRODUCT_BUDGET` = ?, `PRODUCT_COUNT` = ?, `PRODUCT_CONTRACT` = ?, `PRODUCT_DEADLINE` = ? where product_num = ?;"; 
 	private static final String UPDATESTATE = 
 			"UPDATE PRODUCT SET product_state = ? where product_num = ?";
 	private static final String AllSTATE = 
@@ -65,9 +67,9 @@ public class ProductDAO implements ProductDAO_interface{
 			pstmt.setBytes(11, productVO.getTest_pic());
 
 			pstmt.executeUpdate();
-			ResultSet rs = pstmt.getGeneratedKeys();//°ˆ§@ºÀ•ŒResultSet
+			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
-			product_num = rs.getInt(1);//®˙±o¶€∞ Ωs∏π°A•H´K§ß´·∑sºW¶≥FK™∫®‰•LTABLE
+			product_num = rs.getInt(1);
 			}
 			
 
@@ -186,51 +188,69 @@ public class ProductDAO implements ProductDAO_interface{
 	
 	
 	
-//	@Override
-//	public void update(ProductVO jobtypeVO) {
-//
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//
-//		try {
-//
-//			Class.forName(driver);
-//			con = DriverManager.getConnection(url, userid, passwd);
-//			pstmt = con.prepareStatement(UPDATE);
-//
-//			pstmt.setString(1, jobtypeVO.getJob_typename());
-//			pstmt.setInt(2, jobtypeVO.getJob_typenum());
-//
-//			pstmt.executeUpdate();
-//
-//			// Handle any driver errors
-//		} catch (ClassNotFoundException e) {
-//			throw new RuntimeException("Couldn't load database driver. "
-//					+ e.getMessage());
-//			// Handle any SQL errors
-//		} catch (SQLException se) {
-//			throw new RuntimeException("A database error occured. "
-//					+ se.getMessage());
-//			// Clean up JDBC resources
-//		} finally {
-//			if (pstmt != null) {
-//				try {
-//					pstmt.close();
-//				} catch (SQLException se) {
-//					se.printStackTrace(System.err);
-//				}
-//			}
-//			if (con != null) {
-//				try {
-//					con.close();
-//				} catch (Exception e) {
-//					e.printStackTrace(System.err);
-//				}
-//			}
-//		}
-//
-//	}
-//
+	@Override
+	public void update(ProductVO productVO) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			
+			con = ds.getConnection();
+			//Âà§Êñ∑updateProduct.jspÊòØÂê¶ÊúâË¶ÅupdateÁÖßÁâá
+			if(productVO.getTest_pic()!=null) {
+			pstmt = con.prepareStatement(UPDATE);//ÈÅ∏ÊìáÊ≤íÊúâupdateÁÖßÁâáÁöÑSQL
+			pstmt.setInt(1, productVO.getProduct_typenum());
+			pstmt.setString(2, productVO.getProduct_name());
+			pstmt.setString(3, productVO.getProduct_introduce());
+			pstmt.setString(4, productVO.getProduct_link());
+			pstmt.setInt(5, productVO.getProduct_budget());
+			pstmt.setInt(6, productVO.getProduct_count());
+			pstmt.setString(7, productVO.getProduct_contract());
+			pstmt.setDate(8, productVO.getProduct_deadline());
+			pstmt.setBytes(9, productVO.getTest_pic());
+			pstmt.setInt(10, productVO.getProduct_num());
+			
+			
+			}else if(productVO.getTest_pic()==null){
+			pstmt = con.prepareStatement(UPDATE2);//Êúâ‰øÆÊîπÁÖßÁâáÁöÑSQL
+			pstmt.setInt(1, productVO.getProduct_typenum());
+			pstmt.setString(2, productVO.getProduct_name());
+			pstmt.setString(3, productVO.getProduct_introduce());
+			pstmt.setString(4, productVO.getProduct_link());
+			pstmt.setInt(5, productVO.getProduct_budget());
+			pstmt.setInt(6, productVO.getProduct_count());
+			pstmt.setString(7, productVO.getProduct_contract());
+			pstmt.setDate(8, productVO.getProduct_deadline());
+			pstmt.setInt(9, productVO.getProduct_num());
+			}
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+
+	
 //	@Override
 //	public void delete(Integer jobTypeNum) {
 //
@@ -355,7 +375,6 @@ public class ProductDAO implements ProductDAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-//				System.out.println("¶≥∂]®Ï");
 				productVO = new ProductVO();
 				productVO.setProduct_name(rs.getString("product_name"));
 				productVO.setProduct_introduce(rs.getString("product_introduce"));

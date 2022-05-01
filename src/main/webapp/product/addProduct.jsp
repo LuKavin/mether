@@ -48,7 +48,7 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO"); //EmpServle
     padding: 1px;
   }
   .preview_img{
-	  max-width: 250px;
+	  max-width: 280px;
 	  max-height: 300px;
   }
   .sizeholder{
@@ -117,12 +117,12 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO"); //EmpServle
 						<tr>
 							<td>預估預算:</td>
 									<td><input type="TEXT" name="product_budget" size="35"
-								 value="" /></td>
+								 value="<%=(productVO == null) ? "" : productVO.getProduct_budget()%>" /></td>
 						</tr>
 						<tr>
 							<td>商品數量:</td>
 							<td><input type="TEXT" name="product_count" size="35"
-								 value="" /></td>
+								 value="<%=(productVO == null) ? "" : productVO.getProduct_count()%>" /></td>
 								 
 						</tr>
 						<tr>
@@ -190,6 +190,15 @@ String mintime = df.format(new java.util.Date());
 			</div>
 		</div>
 		<div class="col-sm-2"></div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4">
+			<div class="row  justify-content-center">
+				<a class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/product/product.jsp">回首頁</a>
+			</div>
+		</div>
+		<div class="col-sm-4"></div>
 	</div>
 </div>
 
