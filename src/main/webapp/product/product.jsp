@@ -62,7 +62,7 @@ pageContext.setAttribute("list", list);
 					<div class="col-sm-3">
 
 						<a class="btn btn-warning"
-							href="<%=request.getContextPath()%>/product/addProduct.jsp">新增商品</a>
+							href="<%=request.getContextPath()%>/product/addProduct.jsp"><i class="fa fa-cube" aria-hidden="true"></i>新增商品+</a>
 					</div>
 				</div>
 			</div>
@@ -81,18 +81,25 @@ pageContext.setAttribute("list", list);
 										<th>商品期限</th>
 										<th>商品狀態</th>
 										<td>
-											<div class="btn-group">
-												<a
-													href="<%=request.getContextPath()%>/product/product.do?action=allState&state=up&com_idnum=1"
-													class="btn btn-outline-info"> <i
-													class="fa fa-thumbs-up fa-fw" aria-hidden="true"></i><i>_全部上架</i>
-												</a> <a
-													href="<%=request.getContextPath()%>/product/product.do?action=allState&state=down&com_idnum=1"
-													class="btn btn-outline-danger"> <i
-													class="fa fa-thumbs-down fa-fw" aria-hidden="true"></i><i>_全部下架</i>
-												</a>
-
-											</div>
+											<FORM METHOD="post"
+													ACTION="<%=request.getContextPath()%>/product/product.do"
+													style="width: 150px; display: inline">
+													<input type="hidden" name="action" value="allState">
+													<input type="hidden" name="state" value="up">
+													<input type="hidden" name="com_idnum" value="1">
+												<button	class="btn btn-outline-info"> <i class="fa fa-thumbs-up fa-fw" aria-hidden="true"></i><i>_全部上架</i>
+												</button>
+											</FORM>
+											
+																						<FORM METHOD="post"
+													ACTION="<%=request.getContextPath()%>/product/product.do"
+													style="width: 150px; display: inline">
+													<input type="hidden" name="action" value="allState">
+													<input type="hidden" name="state" value="down">
+													<input type="hidden" name="com_idnum" value="1">
+												<button	class="btn btn-outline-danger"> <i class="fa fa-thumbs-down fa-fw" aria-hidden="true"></i><i>_全部下架</i>
+												</button>
+											</FORM>
 										</td>
 									</tr>
 								</thead>
@@ -103,7 +110,7 @@ pageContext.setAttribute("list", list);
 											<td>${productVO.product_name}</td>
 											<td>${productVO.product_count}</td>
 											<td>${productVO.product_deadline}</td>
-											<td>${productVO.product_state}</td>
+											<td>${(productVO.product_state=="上架")?'<p>上架</p>':'<p style="color:red">下架</p>'}</td>
 											<td>
 												<FORM METHOD="post"
 													ACTION="<%=request.getContextPath()%>/product/product.do"

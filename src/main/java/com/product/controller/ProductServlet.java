@@ -19,6 +19,7 @@ import com.product.model.*;
 
 
 @MultipartConfig()
+@WebServlet("/product/product.do")
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,234 +34,297 @@ public class ProductServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-		if ("changeProStUp".equals(action)) { // ¨Ó¦ÛaddEmp.jspªº½Ğ¨D  
+		if ("changeProStUp".equals(action)) { // ä¾†è‡ªaddEmp.jspçš„è«‹æ±‚  
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-				/***********************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z*************************/
+				/***********************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†*************************/
 				Integer product_num = new Integer(req.getParameter("product_num"));
-				/***************************2.¶}©l·s¼W¸ê®Æ***************************************/
+				/***************************2.é–‹å§‹æ–°å¢è³‡æ–™***************************************/
 				ProductService productService = new ProductService();
-				productService.updateProductState("¤W¬[", product_num);
-				/***************************3.·s¼W§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/
-				String url = "/index.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ·s¼W¦¨¥\«áÂà¥ælistAllEmp.jsp
+				productService.updateProductState("ä¸Šæ¶", product_num);
+				/***************************3.æ–°å¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/
+				String url = "/product/product.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);				
 				
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/index.jsp");
+						.getRequestDispatcher("/product/product.jsp");
 				failureView.forward(req, res);
 			}
 		}
 			
-			if ("changeProStDown".equals(action)) { // ¨Ó¦ÛaddEmp.jspªº½Ğ¨D  
+			if ("changeProStDown".equals(action)) { // ä¾†è‡ªaddEmp.jspçš„è«‹æ±‚  
 				
 				List<String> errorMsgs = new LinkedList<String>();
 				req.setAttribute("errorMsgs", errorMsgs);
 
 				try {
-					/***********************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z*************************/
+					/***********************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†*************************/
 					Integer product_num = new Integer(req.getParameter("product_num"));
-					/***************************2.¶}©l·s¼W¸ê®Æ***************************************/
+					/***************************2.é–‹å§‹æ–°å¢è³‡æ–™***************************************/
 					ProductService productService = new ProductService();
-					productService.updateProductState("¤U¬[", product_num);
-					/***************************3.·s¼W§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/
-					String url = "/index.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ·s¼W¦¨¥\«áÂà¥ælistAllEmp.jsp
+					productService.updateProductState("ä¸‹æ¶", product_num);
+					/***************************3.æ–°å¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/
+					String url = "/product/product.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æ–°å¢æˆåŠŸå¾Œè½‰äº¤listAllEmp.jsp
 					successView.forward(req, res);				
 					
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
 					errorMsgs.add(e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/index.jsp");
+							.getRequestDispatcher("/product/product.jsp");
 					failureView.forward(req, res);
 				}
 			}
 			
 			
-			if ("allState".equals(action)) { // ¨Ó¦ÛaddEmp.jspªº½Ğ¨D  
+			if ("allState".equals(action)) { // ä¾†è‡ªaddEmp.jspçš„è«‹æ±‚  
 				
 				List<String> errorMsgs = new LinkedList<String>();
 				req.setAttribute("errorMsgs", errorMsgs);
 
 				try {
-					/***********************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z*************************/
+					/***********************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†*************************/
 					String product_state = req.getParameter("state");
 					Integer com_idnum = new Integer(req.getParameter("com_idnum"));
 					String state = null;
 					if("up".equals(product_state)) {
-						state="¤W¬[";
+						state="ä¸Šæ¶";
 					}else if("down".equals(product_state)) {
-						state="¤U¬[";
+						state="ä¸‹æ¶";
 					}else {
-						errorMsgs.add("¾Ş§@¿ù»~¡I");
+						errorMsgs.add("æ“ä½œéŒ¯èª¤ï¼");
 					}
-					/***************************2.¶}©l·s¼W¸ê®Æ***************************************/
+					/***************************2.é–‹å§‹æ–°å¢è³‡æ–™***************************************/
 					ProductService productService = new ProductService();
 					productService.allProductState(state, com_idnum);
-					/***************************3.·s¼W§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/
-					String url = "/index.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ·s¼W¦¨¥\«áÂà¥ælistAllEmp.jsp
+					/***************************3.æ–°å¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/
+					String url = "/product/product.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æ–°å¢æˆåŠŸå¾Œè½‰äº¤listAllEmp.jsp
 					successView.forward(req, res);				
 					
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
 					errorMsgs.add(e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/index.jsp");
+							.getRequestDispatcher("/product/product.jsp");
 					failureView.forward(req, res);
 				}
 			}
 		
 		
-		if ("getOne_For_Update".equals(action)) { // ¨Ó¦ÛlistAllEmp.jspªº½Ğ¨D
+		if ("getOne_For_Update".equals(action)) { // ä¾†è‡ªlistAllEmp.jspçš„è«‹æ±‚
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			try {
-				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ****************************************/
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸****************************************/
 				Integer product_num = new Integer(req.getParameter("product_num"));
 				
-				/***************************2.¶}©l¬d¸ß¸ê®Æ****************************************/
+				/***************************2.é–‹å§‹æŸ¥è©¢è³‡æ–™****************************************/
 				ProductService productService = new ProductService();
 				ProductVO productVO = productService.getOneProduct(product_num);
 								
-				/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)************/
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)************/
 				req.setAttribute("productVO", productVO);
-				String url = "/update_jobType_input.jsp";
+				String url = "/product/updateProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o­n­×§ïªº¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è¦ä¿®æ”¹çš„è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/listAllEmp.jsp");
+						.getRequestDispatcher("/product/product.jsp");
 				failureView.forward(req, res);
 			}
 		}
 		
 		
-//		if ("update".equals(action)) { 
-//			
-//			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
-//		
-//			try {
-//				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
-//				Integer job_typenum = new Integer(req.getParameter("job_typenum").trim());
-//				String job_typename = req.getParameter("job_typename");
-//				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-//				
-//				if (job_typename == null || job_typename.trim().length() == 0) {
-//					errorMsgs.add("¤u§@Ãş«¬: ½Ğ¤ÅªÅ¥Õ");
-//				} else if(!job_typename.trim().matches(enameReg)) { //¥H¤U½m²ß¥¿«h(³W)ªí¥Ü¦¡(regular-expression)
-//					errorMsgs.add("¤u§@Ãş«¬: ¥u¯à¬O¤¤¡B­^¤å¦r¥À¡B¼Æ¦r©M_ , ¥Bªø«×¥²»İ¦b2¨ì10¤§¶¡");
-//	            }
-//				
-////				Integer deptno = new Integer(req.getParameter("deptno").trim());
-//				JobTypeVO jobTypeVO = new JobTypeVO();
-//				jobTypeVO.setJob_typenum(job_typenum);
-//				jobTypeVO.setJob_typename(job_typename);
-//
-//				// Send the use back to the form, if there were errors
-//				if (!errorMsgs.isEmpty()) {
-//					req.setAttribute("jobTypeVO", jobTypeVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºempVOª«¥ó,¤]¦s¤Jreq
-//					RequestDispatcher failureView = req
-//							.getRequestDispatcher("/update_jobType_input");
-//					failureView.forward(req, res);
-//					return; //µ{¦¡¤¤Â_
-//				}
-//				
-//				/***************************2.¶}©l­×§ï¸ê®Æ*****************************************/
-//				JobService jobTypeSvc = new JobService();
-//				jobTypeVO = jobTypeSvc.updateJobType(job_typenum, job_typename);
-//				
-//				/***************************3.­×§ï§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-////				req.setAttribute("jobTypeVO", jobTypeVO); // ¸ê®Æ®wupdate¦¨¥\«á,¥¿½TªºªºempVOª«¥ó,¦s¤Jreq
-////				String url = "/emp/listOneEmp.jsp";
-////				RequestDispatcher successView = req.getRequestDispatcher(url); // ­×§ï¦¨¥\«á,Âà¥ælistOneEmp.jsp
-////				successView.forward(req, res);
-//				
-////				req.setAttribute("jobTypeVO", jobTypeVO); // ¸ê®Æ®wupdate¦¨¥\«á,¥¿½TªºªºempVOª«¥ó,¦s¤Jreq
-//				String url = "/listAllEmp.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url); // ·s¼W¦¨¥\«áÂà¥ælistAllEmp.jsp
-//				successView.forward(req, res);	
-//
-//				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z*************************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("­×§ï¸ê®Æ¥¢±Ñ:"+e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/listAllEmp.jsp");
-//				failureView.forward(req, res);
-//			}
-//		}
-
-        if ("insert".equals(action)) { // ¨Ó¦ÛaddEmp.jspªº½Ğ¨D  
+		if ("update".equals(action)) { 
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			InputStream fileContent = null;
 
 			try {
-				/***********************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z*************************/
+				/***********************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†*************************/
 				String product_name = req.getParameter("product_name");
-				String job_typenameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				String product_typenameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (product_name == null || product_name.trim().length() == 0) {
-					errorMsgs.add("°Ó«~¦WºÙ: ½Ğ¤ÅªÅ¥Õ");
-				} else if(!product_name.trim().matches(job_typenameReg)) { //¥H¤U½m²ß¥¿«h(³W)ªí¥Ü¦¡(regular-expression)
-					errorMsgs.add("°Ó«~¦WºÙ: ¥u¯à¬O¤¤¡B­^¤å¦r¥À¡B¼Æ¦r©M_ , ¥Bªø«×¥²»İ¦b2¨ì10¤§¶¡");
+					errorMsgs.add("å•†å“åç¨±: è«‹å‹¿ç©ºç™½");
+				} else if(!product_name.trim().matches(product_typenameReg)) { //ä»¥ä¸‹ç·´ç¿’æ­£å‰‡(è¦)è¡¨ç¤ºå¼(regular-expression)
+					errorMsgs.add("å•†å“åç¨±: åªèƒ½æ˜¯ä¸­ã€è‹±æ–‡å­—æ¯ã€æ•¸å­—å’Œ_ , ä¸”é•·åº¦å¿…éœ€åœ¨2åˆ°10ä¹‹é–“");
 	            }
 				String product_introduce = req.getParameter("product_introduce");
 				if (product_introduce == null || product_introduce.trim().length() == 0) {
-					errorMsgs.add("°Ó«~¤¶²Ğ: ½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("å•†å“ä»‹ç´¹: è«‹å‹¿ç©ºç™½");
 				}
-				String product_link = req.getParameter("product_link");
+				String product_link = req.getParameter("product_link").trim();
+				String product_linkReg = "((http://|ftp://|https://|www))(([a-zA-Z0-9\\._-]+\\.[a-zA-Z]{2,6})|([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}))(:[0-9]{1,4})*(/[a-zA-Z0-9\\&%_\\./-~-]*)?";
+				if (!product_link.trim().matches(product_linkReg)) {
+					errorMsgs.add("ç¶²å€æ ¼å¼éŒ¯èª¤");
+	            }
 				String numberReg = "^[(0-9)]{2,10}$";
 				Integer product_budget = null;
 				try {
 					product_budget = new Integer(req.getParameter("product_budget").trim());
 				} catch (Exception e) {
-					errorMsgs.add("¹w¦ô¹wºâ®æ¦¡¤£¥¿½T");
+					errorMsgs.add("é ä¼°é ç®—æ ¼å¼ä¸æ­£ç¢º");
 				}
 				if (product_budget == null) {
-					errorMsgs.add("¹w¦ô¹wºâ: ½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("é ä¼°é ç®—: è«‹å‹¿ç©ºç™½");
 				}
 				Integer product_count = null;
 				try {
 					product_count = new Integer(req.getParameter("product_count").trim());
 				} catch (Exception e) {
-					errorMsgs.add("°Ó«~¼Æ¶q®æ¦¡¤£¥¿½T");
+					errorMsgs.add("å•†å“æ•¸é‡æ ¼å¼ä¸æ­£ç¢º");
 				}
 				if (product_count == null) {
-					errorMsgs.add("°Ó«~¼Æ¶q: ½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("å•†å“æ•¸é‡: è«‹å‹¿ç©ºç™½");
 				}
 				String product_contract = req.getParameter("product_contract");
 				if (product_contract == null || product_contract.trim().length() == 0) {
-					errorMsgs.add("¦X¬ù¤º®e: ½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("åˆç´„å…§å®¹: è«‹å‹¿ç©ºç™½");
 				}
 				java.sql.Date product_deadline = null;
 				try {
 					product_deadline = java.sql.Date.valueOf(req.getParameter("product_deadline").trim());
 				} catch (IllegalArgumentException e) {
 					product_deadline=new java.sql.Date(System.currentTimeMillis());
-					errorMsgs.add("½Ğ¶ñ¤J¤é´Á!");
+					errorMsgs.add("è«‹å¡«å…¥æ—¥æœŸ!");
+				}
+				String product_state = req.getParameter("product_state");
+				Integer product_typenum = new Integer(req.getParameter("product_typenum"));
+				Integer product_num = new Integer(req.getParameter("product_num"));
+				
+//				æ¸¬è©¦ä¸Šå‚³åœ–ç‰‡
+			    Part filePart = req.getPart("p_file"); // Retrieves <input type="file" name="p_file">
+			    String partName = filePart.getSubmittedFileName();
+			    fileContent = filePart.getInputStream();
+			    byte[] buffer =new byte[fileContent.available()];
+			    fileContent.read(buffer);//æŠŠåœ–å‚³é€²bufferé™£åˆ—
+
+			    
+				
+			    ProductVO productVO =new ProductVO();
+				productVO.setProduct_name(product_name);
+				productVO.setProduct_introduce(product_introduce);
+				productVO.setProduct_link(product_link);
+				productVO.setProduct_budget(product_budget);
+				productVO.setProduct_count(product_count);
+				productVO.setProduct_contract(product_contract);
+				productVO.setProduct_deadline(product_deadline);
+				productVO.setProduct_state(product_state);
+				productVO.setProduct_typenum(product_typenum);
+				productVO.setProduct_num(product_num);
+
+			    if(partName == "") {
+			    	productVO.setTest_pic(null);
+			    }else{
+			    	productVO.setTest_pic(buffer);
+			    }
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("productVO", productVO);
+					fileContent.close();
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/product/updateProduct.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+				
+				/***************************2.é–‹å§‹æ–°å¢è³‡æ–™***************************************/
+				ProductService productService = new ProductService();
+				productVO = productService.updateProduct(productVO);
+				
+				/***************************3.æ–°å¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/
+				fileContent.close();
+				req.setAttribute("productVO", productVO);
+				String url = "/product/successView.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æ–°å¢æˆåŠŸå¾Œè½‰äº¤listAllEmp.jsp
+				successView.forward(req, res);				
+				
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				fileContent.close();
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/product/updateProduct.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
+        if ("insert".equals(action)) { // ä¾†è‡ªaddEmp.jspçš„è«‹æ±‚  
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			InputStream fileContent = null;
+
+			try {
+				/***********************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†*************************/
+				String product_name = req.getParameter("product_name");
+				String product_typenameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				if (product_name == null || product_name.trim().length() == 0) {
+					errorMsgs.add("å•†å“åç¨±: è«‹å‹¿ç©ºç™½");
+				} else if(!product_name.trim().matches(product_typenameReg)) { //ä»¥ä¸‹ç·´ç¿’æ­£å‰‡(è¦)è¡¨ç¤ºå¼(regular-expression)
+					errorMsgs.add("å•†å“åç¨±: åªèƒ½æ˜¯ä¸­ã€è‹±æ–‡å­—æ¯ã€æ•¸å­—å’Œ_ , ä¸”é•·åº¦å¿…éœ€åœ¨2åˆ°10ä¹‹é–“");
+	            }
+				String product_introduce = req.getParameter("product_introduce");
+				if (product_introduce == null || product_introduce.trim().length() == 0) {
+					errorMsgs.add("å•†å“ä»‹ç´¹: è«‹å‹¿ç©ºç™½");
+				}
+				String product_link = req.getParameter("product_link");
+				String product_linkReg = "((http://|ftp://|https://|www))(([a-zA-Z0-9\\._-]+\\.[a-zA-Z]{2,6})|([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}))(:[0-9]{1,4})*(/[a-zA-Z0-9\\&%_\\./-~-]*)?";
+				if (!product_link.trim().matches(product_linkReg)) {
+					errorMsgs.add("ç¶²å€æ ¼å¼éŒ¯èª¤");
+	            }
+				String numberReg = "^[(0-9)]{2,10}$";
+				Integer product_budget = null;
+				try {
+					product_budget = new Integer(req.getParameter("product_budget").trim());
+				} catch (Exception e) {
+					errorMsgs.add("é ä¼°é ç®—æ ¼å¼ä¸æ­£ç¢º");
+				}
+				if (product_budget == null) {
+					errorMsgs.add("é ä¼°é ç®—: è«‹å‹¿ç©ºç™½");
+				}
+				Integer product_count = null;
+				try {
+					product_count = new Integer(req.getParameter("product_count").trim());
+				} catch (Exception e) {
+					errorMsgs.add("å•†å“æ•¸é‡æ ¼å¼ä¸æ­£ç¢º");
+				}
+				if (product_count == null) {
+					errorMsgs.add("å•†å“æ•¸é‡: è«‹å‹¿ç©ºç™½");
+				}
+				String product_contract = req.getParameter("product_contract");
+				if (product_contract == null || product_contract.trim().length() == 0) {
+					errorMsgs.add("åˆç´„å…§å®¹: è«‹å‹¿ç©ºç™½");
+				}
+				java.sql.Date product_deadline = null;
+				try {
+					product_deadline = java.sql.Date.valueOf(req.getParameter("product_deadline").trim());
+				} catch (IllegalArgumentException e) {
+					product_deadline=new java.sql.Date(System.currentTimeMillis());
+					errorMsgs.add("è«‹å¡«å…¥æ—¥æœŸ!");
 				}
 				String product_state = req.getParameter("product_state");
 				Integer product_typenum = new Integer(req.getParameter("product_typenum"));
 				
-//				´ú¸Õ¤W¶Ç¹Ï¤ù
+//				æ¸¬è©¦ä¸Šå‚³åœ–ç‰‡
 			    Part filePart = req.getPart("p_file"); // Retrieves <input type="file" name="file">
 			    fileContent = filePart.getInputStream();
 			    byte[] buffer =new byte[fileContent.available()];
-			    fileContent.read(buffer);//§â¹Ï¶Ç¶ibuffer°}¦C
+			    fileContent.read(buffer);//æŠŠåœ–å‚³é€²bufferé™£åˆ—
 
 			    
 				
@@ -288,19 +352,19 @@ public class ProductServlet extends HttpServlet {
 					return;
 				}
 				
-				/***************************2.¶}©l·s¼W¸ê®Æ***************************************/
+				/***************************2.é–‹å§‹æ–°å¢è³‡æ–™***************************************/
 				ProductService productService = new ProductService();
 				int product_num = productService.addProduct(productVO);
 				productVO.setProduct_num(product_num);
-				/***************************3.·s¼W§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/
+				/***************************3.æ–°å¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/
 				fileContent.close();
 				
 				req.setAttribute("productVO", productVO);
 				String url = "/product/successView.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ·s¼W¦¨¥\«áÂà¥ælistAllEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æ–°å¢æˆåŠŸå¾Œè½‰äº¤listAllEmp.jsp
 				successView.forward(req, res);				
 				
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				fileContent.close();
@@ -311,27 +375,27 @@ public class ProductServlet extends HttpServlet {
 		}
 		
 		
-//		if ("delete".equals(action)) { // ¨Ó¦ÛlistAllEmp.jsp
+//		if ("delete".equals(action)) { // ä¾†è‡ªlistAllEmp.jsp
 //
 //			List<String> errorMsgs = new LinkedList<String>();
 //			req.setAttribute("errorMsgs", errorMsgs);
 //	
 //			try {
-//				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ***************************************/
+//				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸***************************************/
 //				Integer job_typenum = new Integer(req.getParameter("job_typenum"));
 //				
-//				/***************************2.¶}©l§R°£¸ê®Æ***************************************/
+//				/***************************2.é–‹å§‹åˆªé™¤è³‡æ–™***************************************/
 //				JobService jobTypeSvc = new JobService();
 //				jobTypeSvc.deleteJobType(job_typenum);
 //				
-//				/***************************3.§R°£§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/								
+//				/***************************3.åˆªé™¤å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/								
 //				String url = "/listAllEmp.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url);// §R°£¦¨¥\«á,Âà¥æ¦^°e¥X§R°£ªº¨Ó·½ºô­¶
+//				RequestDispatcher successView = req.getRequestDispatcher(url);// åˆªé™¤æˆåŠŸå¾Œ,è½‰äº¤å›é€å‡ºåˆªé™¤çš„ä¾†æºç¶²é 
 //				successView.forward(req, res);
 //				
-//				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+//				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 //			} catch (Exception e) {
-//				errorMsgs.add("§R°£¸ê®Æ¥¢±Ñ:"+e.getMessage());
+//				errorMsgs.add("åˆªé™¤è³‡æ–™å¤±æ•—:"+e.getMessage());
 //				RequestDispatcher failureView = req
 //						.getRequestDispatcher("/listAllEmp.jsp");
 //				failureView.forward(req, res);

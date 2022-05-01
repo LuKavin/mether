@@ -22,7 +22,7 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO"); %>
 		border-bottom: 1px solid rgb(250, 240, 240);
 	}
 	img{
-	  max-width: 250px;
+	  max-width: 280px;
 	  max-height: 300px;
 	}
 
@@ -37,7 +37,7 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO"); %>
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
 			<div class="container h2" style="text-align: center;">
-				新增商品成功！！！
+				商品明細
 			</div>
 		</div>
 		<div class="col-sm-2"></div>
@@ -59,7 +59,7 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO"); %>
 			</div>
 			<div class="row underli">
 				<div class="col-sm-4 cce">商品連結：</div>
-				<div class="col-sm-8 cce">${productVO.product_link}</div>
+				<div class="col-sm-8 cce"><a href="${productVO.product_link}">${productVO.product_link}</a></div>
 			</div>
 			<div class="row underli">
 				<div class="col-sm-4 cce">預估預算：</div>
@@ -92,11 +92,16 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO"); %>
 		</c:if>
 		</div>
 		<div class="col-sm-2"></div>
-
-
-
-
-
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4">
+			<div class="row  justify-content-center">
+				<a class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/product/product.jsp">回首頁</a>
+			</div>
+		</div>
+		<div class="col-sm-4"></div>
 	</div>
 </div>
 

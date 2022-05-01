@@ -18,16 +18,11 @@ public class ProductService {
 
 	}
 
-//	public ProductVO updateJobType(Integer job_typenum, String job_typename) {
-//
-//		ProductVO jobTypeVO = new ProductVO();
-//
-//		jobTypeVO.setJob_typenum(job_typenum);
-//		jobTypeVO.setJob_typename(job_typename);
-//		
-//		dao.update(jobTypeVO);
-//		return jobTypeVO;
-//	}
+	public ProductVO updateProduct(ProductVO productVO) {
+
+		dao.update(productVO);
+		return productVO;
+	}
 //
 //	public void deleteJobType(Integer job_typenum) {
 //		dao.delete(job_typenum);
