@@ -32,9 +32,9 @@ public class ProductDAO implements ProductDAO_interface{
 //	private static final String DELETE = 
 //		"DELETE FROM JOB_TYPE where job_typenum = ?";
 	private static final String UPDATE = 
-			"update `PRODUCT` set `PRODUCT_TYPENUM` = ?, `PRODUCT_NAME` = ?, `PRODUCT_INTRODUCE` = ?, `PRODUCT_LINK` = ?, `PRODUCT_BUDGET` = ?, `PRODUCT_COUNT` = ?, `PRODUCT_CONTRACT` = ?, `PRODUCT_DEADLINE` = ?, `TEST_PIC` = ? where product_num = ?;"; 
+			"update `PRODUCT` set `PRODUCT_TYPENUM` = ?, `PRODUCT_NAME` = ?, `PRODUCT_INTRODUCE` = ?, `PRODUCT_LINK` = ?, `PRODUCT_BUDGET` = ?, `PRODUCT_COUNT` = ?, `PRODUCT_CONTRACT` = ?, `PRODUCT_DEADLINE` = ?, `TEST_PIC` = ?, `PRODUCT_STATE` = ? where product_num = ?;"; 
 	private static final String UPDATE2 = 
-			"update `PRODUCT` set `PRODUCT_TYPENUM` = ?, `PRODUCT_NAME` = ?, `PRODUCT_INTRODUCE` = ?, `PRODUCT_LINK` = ?, `PRODUCT_BUDGET` = ?, `PRODUCT_COUNT` = ?, `PRODUCT_CONTRACT` = ?, `PRODUCT_DEADLINE` = ? where product_num = ?;"; 
+			"update `PRODUCT` set `PRODUCT_TYPENUM` = ?, `PRODUCT_NAME` = ?, `PRODUCT_INTRODUCE` = ?, `PRODUCT_LINK` = ?, `PRODUCT_BUDGET` = ?, `PRODUCT_COUNT` = ?, `PRODUCT_CONTRACT` = ?, `PRODUCT_DEADLINE` = ?, `PRODUCT_STATE` = ? where product_num = ?;"; 
 	private static final String UPDATESTATE = 
 			"UPDATE PRODUCT SET product_state = ? where product_num = ?";
 	private static final String AllSTATE = 
@@ -210,7 +210,8 @@ public class ProductDAO implements ProductDAO_interface{
 			pstmt.setString(7, productVO.getProduct_contract());
 			pstmt.setDate(8, productVO.getProduct_deadline());
 			pstmt.setBytes(9, productVO.getTest_pic());
-			pstmt.setInt(10, productVO.getProduct_num());
+			pstmt.setString(10, productVO.getProduct_state());
+			pstmt.setInt(11, productVO.getProduct_num());
 			
 			
 			}else if(productVO.getTest_pic()==null){
@@ -223,7 +224,8 @@ public class ProductDAO implements ProductDAO_interface{
 			pstmt.setInt(6, productVO.getProduct_count());
 			pstmt.setString(7, productVO.getProduct_contract());
 			pstmt.setDate(8, productVO.getProduct_deadline());
-			pstmt.setInt(9, productVO.getProduct_num());
+			pstmt.setString(9, productVO.getProduct_state());
+			pstmt.setInt(10, productVO.getProduct_num());
 			}
 
 			pstmt.executeUpdate();
