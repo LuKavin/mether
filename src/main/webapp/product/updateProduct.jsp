@@ -172,31 +172,19 @@ String mintime = df.format(new java.util.Date());
 											${(productVO.product_state=="下架"
 															)?'selected':''}>下架</option>
 								</select></td>
+							</tr>	
+							<jsp:useBean id="productTypeService" scope="page"
+								class="com.productType.model.ProductTypeService" />
 							<tr>
-								<td>商品種類：</td>
-								<td><select name="product_typenum">
-										<option value="1" selected>1</option>
+								<td>商品種類:</td>
+								<td><select size="1" name="product_typenum">
+										<c:forEach var="productTypeVO"
+											items="${productTypeService.all}">
+											<option value="${productTypeVO.product_typenum}"
+												${(productVO.product_typenum==productTypeVO.product_typenum)? 'selected':'' }>${productTypeVO.product_typename}
+										</c:forEach>
 								</select></td>
-								<!-- 		<input type="TEXT" name="job" size="60" -->
-								<%--
-													value="<%= (productVO==null)? "" : productVO.getProduct_state()%>" />
-												--%>
 							</tr>
-
-
-							<%-- <jsp:useBean id="deptSvc" scope="page"
-												class="com.dept.model.DeptService" /> --%>
-							<!-- 	<tr> -->
-							<!-- 		<td>部門:<font color=red><b>*</b></font></td> -->
-							<!-- 		<td><select size="1" name="deptno"> -->
-							<%-- <c:forEach var="deptVO" items="${deptSvc.all}"> --%>
-							<%-- <option value="${deptVO.deptno}"
-													${(empVO.deptno==deptVO.deptno)? 'selected' :'' }>${deptVO.dname}
-													--%>
-							<%-- </c:forEach> --%>
-							<!-- 		</select></td> -->
-							<!-- 	</tr> -->
-
 						</table>
 
 					</div>

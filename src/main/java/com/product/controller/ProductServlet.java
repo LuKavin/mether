@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.product.model.*;
+import com.productType.model.ProductTypeService;
 
 
 @MultipartConfig()
@@ -244,11 +245,15 @@ public class ProductServlet extends HttpServlet {
 				
 				/***************************2.開始新增資料***************************************/
 				ProductService productService = new ProductService();
+				ProductTypeService productTypeService = new ProductTypeService();
 				productVO = productService.updateProduct(productVO);
+				String product_typename = productTypeService.getOneProductType(product_typenum).getProduct_typename();
+				System.out.println(product_typename);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				fileContent.close();
 				req.setAttribute("productVO", productVO);
+				req.setAttribute("product_typename", product_typename);
 				String url = "/product/successView.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
@@ -294,18 +299,18 @@ public class ProductServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("預估預算格式不正確");
 				}
-				if (product_budget == null) {
-					errorMsgs.add("預估預算: 請勿空白");
-				}
+//				if (product_budget == null) {
+//					errorMsgs.add("預估預算: 請勿空白");
+//				}
 				Integer product_count = null;
 				try {
 					product_count = new Integer(req.getParameter("product_count").trim());
 				} catch (Exception e) {
 					errorMsgs.add("商品數量格式不正確");
 				}
-				if (product_count == null) {
-					errorMsgs.add("商品數量: 請勿空白");
-				}
+//				if (product_count == null) {
+//					errorMsgs.add("商品數量: 請勿空白");
+//				}
 				String product_contract = req.getParameter("product_contract");
 				if (product_contract == null || product_contract.trim().length() == 0) {
 					errorMsgs.add("合約內容: 請勿空白");
