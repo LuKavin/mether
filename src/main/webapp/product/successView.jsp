@@ -3,7 +3,9 @@
 <%@ page import="com.product.model.*"%>
 
 <%
-ProductVO productVO = (ProductVO) request.getAttribute("productVO"); %>
+ProductVO productVO = (ProductVO) request.getAttribute("productVO"); 
+String product_typename = (String) request.getAttribute("product_typename"); 
+%>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -81,9 +83,10 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO"); %>
 				<div class="col-sm-4 cce">預設上下架：</div>
 				<div class="col-sm-8 cce">${productVO.product_state}</div>
 			</div>
+			
 			<div class="row underli">
 				<div class="col-sm-4 cce">商品種類：</div>
-				<div class="col-sm-8 cce">${productVO.product_typenum}</div>
+				<div class="col-sm-8 cce">${product_typename}</div>
 			</div>
 		</div>
 		<div class="col-sm-4">
