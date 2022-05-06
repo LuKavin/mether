@@ -1,5 +1,5 @@
 $(function () {
-    
+
     //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＴＡＢＬＥ,ＳＯＲＴ區======================================================================================================
 
     //全部選取的ＣｈｅｃｋＢｏｘ
@@ -57,53 +57,53 @@ $(function () {
         $('.send-to').val('');
         $('.send-subject').val('');
     });
-});
-//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＳＵＭＭＥＲＮＯＴＥ區======================================================================================================
-let p_num = 0;
-$('.prg-btn').on("click", function () {
-    p_num = p_num + 25;
-    let barMax = '500px';
-    if ($('.progress-bar').css("width") != barMax) {
-        $('.progress-bar').css("width", p_num + "%");
-        if (p_num == 25) {
-            $('div.one').find('div.text-box').css('color', '#E0E0E0');
 
-            $('div.two').addClass('active');
+    //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＳＵＭＭＥＲＮＯＴＥ區======================================================================================================
+    let p_num = 0;
+    $('.prg-btn').on("click", function () {
+        p_num = p_num + 25;
+        let barMax = '500px';
+        if ($('.progress-bar').css("width") != barMax) {
+            $('.progress-bar').css("width", p_num + "%");
+            if (p_num == 25) {
+                $('div.one').find('div.text-box').css('color', '#E0E0E0');
+
+                $('div.two').addClass('active');
+            }
+            if (p_num == 50) {
+                $('div.two').find('div.text-box').css('color', '#E0E0E0');
+                $('div.three').addClass('active');
+            }
+            if (p_num == 75) {
+                $('div.three').find('div.text-box').css('color', '#E0E0E0');
+                $('div.four').addClass('active');
+            }
+            if (p_num == 100) {
+                $('div.four').find('div.text-box').css('color', '#E0E0E0');
+                $('div.five').addClass('active');
+            }
+        } else {
+            $('.text-box').css('color', '');
+            $('.progress-bar').css("width", "0%");
+            $('div.two').removeClass('active');
+            $('div.three').removeClass('active');
+            $('div.four').removeClass('active');
+            $('div.five').removeClass('active');
+            p_num = 0;
         }
-        if (p_num == 50) {
-            $('div.two').find('div.text-box').css('color', '#E0E0E0');
-            $('div.three').addClass('active');
-        }
-        if (p_num == 75) {
-            $('div.three').find('div.text-box').css('color', '#E0E0E0');
-            $('div.four').addClass('active');
-        }
-        if (p_num == 100) {
-            $('div.four').find('div.text-box').css('color', '#E0E0E0');
-            $('div.five').addClass('active');
-        }
-    } else {
-        $('.text-box').css('color', '');
-        $('.progress-bar').css("width", "0%");
-        $('div.two').removeClass('active');
-        $('div.three').removeClass('active');
-        $('div.four').removeClass('active');
-        $('div.five').removeClass('active');
-        p_num = 0;
-    }
-})
+    })
 
 
 
-//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＦＯＲＭＰＲＯＧＲＥＳＳ區======================================================================================================
+    //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＦＯＲＭＰＲＯＧＲＥＳＳ區======================================================================================================
 
 
-$(".msg-ok").on("click", function () {
-    //獲得標題內容
-    let msg_title = $(".msg_title").val();
-    //獲得圖片內容
-    let msg_content = $('#summernote').summernote('code');
-    let msg_add = `
+    $(".msg-ok").on("click", function () {
+        //獲得標題內容
+        let msg_title = $(".msg_title").val();
+        //獲得圖片內容
+        let msg_content = $('#summernote').summernote('code');
+        let msg_add = `
     <div class="card card-warning card-outline">
     <div class="card-header">
       <div class="row">
@@ -122,22 +122,23 @@ $(".msg-ok").on("click", function () {
       ${msg_content}
     </div>
   </div>`;
-   //新增留言
-   $(this).closest("div.msg-input").before(msg_add);
-   //清空標題
-   $(".msg_title").val("");
-   //清空summernote
-   $('#summernote').summernote('reset');
+        //新增留言
+        $(this).closest("div.msg-input").before(msg_add);
+        //清空標題
+        $(".msg_title").val("");
+        //清空summernote
+        $('#summernote').summernote('reset');
 
 
 
+    })
 
+    //=↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＭＥＳＳＥＮＧ區======================================================================================================
 
 
 
 
 
-})
 
 
 
@@ -145,13 +146,13 @@ $(".msg-ok").on("click", function () {
 
 
 
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑圖片預覽區======================================================================================================
 
 
 
 
 
 
-//=↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＭＥＳＳＥＮＧ區======================================================================================================
 
 
 
@@ -171,13 +172,13 @@ $(".msg-ok").on("click", function () {
 
 
 
-//==============================ＦＵＮＣＴＩＯＮ區======================================================================================================
 
 
 
 
 
 
+    //==============================ＦＵＮＣＴＩＯＮ區======================================================================================================
 
 
 
@@ -198,19 +199,30 @@ $(".msg-ok").on("click", function () {
 
 
 
-// 用css 新增手狀樣式,滑鼠移上去變小手,變小手
-// cursor:pointer;
-// 用JS使滑鼠變小手onmouseover(滑鼠越過的時候)
-// onmouseover="this.style.cursor='hand'"cursor其他取值
-//  auto :標準游標
-//  default :標準箭頭
-//  pointer, hand :手形游標
-//  wait :等待游標
-//  text :I形游標
-//  vertical-text :水平I形游標
-//  no-drop :不可拖動游標
-//  not-allowed :無效游標
-//  help :幫助游標
-//  all-scroll :三角方向標
-//  move :移動標
-//  crosshair :十字標 
+
+
+
+
+
+
+    // 用css 新增手狀樣式,滑鼠移上去變小手,變小手
+    // cursor:pointer;
+    // 用JS使滑鼠變小手onmouseover(滑鼠越過的時候)
+    // onmouseover="this.style.cursor='hand'"cursor其他取值
+    //  auto :標準游標
+    //  default :標準箭頭
+    //  pointer, hand :手形游標
+    //  wait :等待游標
+    //  text :I形游標
+    //  vertical-text :水平I形游標
+    //  no-drop :不可拖動游標
+    //  not-allowed :無效游標
+    //  help :幫助游標
+    //  all-scroll :三角方向標
+    //  move :移動標
+    //  crosshair :十字標 
+
+
+
+
+});

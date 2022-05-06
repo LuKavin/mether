@@ -5,75 +5,13 @@
 <%
 ProductVO productVO = (ProductVO) request.getAttribute("productVO");
 %>
-<html>
 
-<head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>修改商品</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-	crossorigin="anonymous"></script>
-
-<style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
-
-<style>
-table {
-	width: auto;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-}
-
-table, th, td {
-	border: 0px solid #CCCCFF;
-}
-
-th, td {
-	padding: 1px;
-}
-
-.preview_img {
-	max-width: 280px;
-	max-height: 300px;
-}
-
-.sizeholder {
-	width: 100%;
-	overflow: auto;
-}
-</style>
-
-</head>
-
-<body bgcolor='white'>
+<%@ include file="header.jsp" %>
 
 
-
-
-
-	<div class="container">
+		<div class="content-wrapper">
+			<section class="content">
+			<div class="container">
 		<div class="row text-align">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8">
@@ -92,7 +30,7 @@ th, td {
 		</div>
 			<br>
 		<div class="row">
-			<div class="col-sm-2">
+			<div class="col-sm-1">
 				<!-- 錯誤列表 -->
 				<c:if test="${not empty errorMsgs}">
 					<font style="color: red">請修正以下錯誤:</font>
@@ -104,7 +42,7 @@ th, td {
 				</c:if>
 
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-5">
 				<FORM METHOD="POST" enctype="multipart/form-data"
 					ACTION="<%=request.getContextPath()%>/product/product.do">
 					<div class="sizeholder">
@@ -210,67 +148,12 @@ String mintime = df.format(new java.util.Date());
 			<div class="col-sm-2"></div>
 		</div>
 	</div>
+			
+			
+			
+			</section>
+		</div>
 
-	<!-- data:image/jpg;base64; -->
+	
 
-
-
-
-	<script>
-		document
-				.addEventListener(
-						"DOMContentLoaded",
-						function() {
-
-							document
-									.querySelector("#p_file")
-									.addEventListener(
-											"change",
-											function(e) {
-												if (this.files.length > 0) {
-													preview_img(this.files[0]);
-												} else {
-													document
-															.querySelector("#preview .text").innerText = "預覽圖";
-												}
-
-											})
-
-							//函式：接收一個file(圖片)參數，將接收的(圖片)顯示在預覽圖上
-							function preview_img(file) {
-								var reader = new FileReader();
-								reader.readAsDataURL(file)
-								reader
-										.addEventListener(
-												"load",
-												function() {
-													let db64 = 'data:image/jpg;base64';
-													let rr = reader.result;
-													var post = `<img src="\${rr}" alt="載入錯誤" class = "preview_img">`;
-													document
-															.querySelector("#preview .text").innerText = "";//先清空
-													if (document
-															.querySelector("#preview img") != null) {
-														document.querySelector(
-																"#preview>img")
-																.remove();
-													}
-													document
-															.querySelector(
-																	"#preview")
-															.insertAdjacentHTML(
-																	"beforeend",
-																	post);
-													console
-															.log(document
-																	.querySelector("#preview img"));
-												})
-
-							}
-
-						})
-	</script>
-
-</body>
-
-</html>
+<%@ include file="footer.jsp" %>
