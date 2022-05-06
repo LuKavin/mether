@@ -1,12 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.jobType.model.*"%>
+<%@ page import="com.platformType.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
-<%
-JobService jobTypeSvc = new JobService();
-List<JobTypeVO> list = jobTypeSvc.getAll();
+<% 
+PlatformTypeService platformTypeService = new PlatformTypeService();
+List<PlatformTypeVO> list = platformTypeService.getAll();
 pageContext.setAttribute("list", list);
 %>
 
