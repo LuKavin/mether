@@ -248,7 +248,6 @@ public class ProductServlet extends HttpServlet {
 				ProductTypeService productTypeService = new ProductTypeService();
 				productVO = productService.updateProduct(productVO);
 				String product_typename = productTypeService.getOneProductType(product_typenum).getProduct_typename();
-				System.out.println(product_typename);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				fileContent.close();

@@ -1,6 +1,12 @@
-
-h2{
-	color:red;
+h2 {
+	color: red;
 }
 
+.jntest{
+	color: red;
+}
 
+.preview_img {
+	max-width: 280px;
+	max-height: 300px;
+}
