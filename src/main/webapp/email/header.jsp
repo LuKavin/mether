@@ -33,8 +33,9 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
 	integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
+<!-- summer note -->	
+<link rel="stylesheet"
+href="<%=request.getContextPath()%>/resources/summernote/summernote-bs4.min.css">
 
 <style>
 .preview_img {
