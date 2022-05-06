@@ -5,8 +5,6 @@ import java.util.*;
 public interface MessageDetailDAO_interface {
 	public void insert(MessageDetailVO messageDetailVO);
 
-//	public void update(MessageDetailVO messageDetailVO);
-
 	public void delete(Integer mes_num);
 
 	public MessageDetailVO findByPrimaryKey(Integer mes_num);
