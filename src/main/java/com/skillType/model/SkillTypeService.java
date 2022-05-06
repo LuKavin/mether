@@ -10,7 +10,7 @@ public class SkillTypeService {
 		dao = new SkillTypeDAO();
 	}
 	
-	public SkillTypeVO addAdmMeb(Integer skill_typenum, String skill_typename) {
+	public SkillTypeVO addSkillType(Integer skill_typenum, String skill_typename) {
 
 		SkillTypeVO skillTypeVO = new SkillTypeVO();
 
@@ -21,7 +21,7 @@ public class SkillTypeService {
 		return skillTypeVO;
 	}
 
-	public SkillTypeVO updateAdmMeb(Integer skill_typenum, String skill_typename) {
+	public SkillTypeVO updateSkillType(Integer skill_typenum, String skill_typename) {
 
 		SkillTypeVO skillTypeVO = new SkillTypeVO();
 
@@ -32,7 +32,7 @@ public class SkillTypeService {
 		return skillTypeVO;
 	}
 
-	public SkillTypeVO getOneAdmMeb(Integer skill_typenum) {
+	public SkillTypeVO getOneSkillType(Integer skill_typenum) {
 		return dao.findByPrimaryKey(skill_typenum);
 	}
 
