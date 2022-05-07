@@ -1,4 +1,4 @@
-package com.skillType.model;
+package com.platformType.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,33 +8,33 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.skillType.model.SkillTypeVO;
 
+public class PlatformTypeDAO implements PlatformTypeDAO_interface {
 
-public class SkillTypeDAO implements SkillTypeDAO_interface{
-	
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/dbmether?serverTimezone=Asia/Taipei";
 	String userid = "root";
 	String passwd = "password";
 
-	private static final String INSERT_STMT = "INSERT INTO SKILL_TYPE (SKILL_TYPENUM,SKILL_TYPENAME) VALUES (?, ?)";
-	private static final String GET_ALL_STMT = "SELECT SKILL_TYPENUM,SKILL_TYPENAME FROM SKILL_TYPE order by SKILL_TYPENUM";
-	private static final String GET_ONE_STMT = "SELECT SKILL_TYPENUM,SKILL_TYPENAME FROM SKILL_TYPE where SKILL_TYPENUM = ?";
-	private static final String UPDATE = "UPDATE SKILL_TYPE set SKILL_TYPENUM=?, SKILL_TYPENAME=? where SKILL_TYPENUM = ?";
+	private static final String INSERT_STMT = "INSERT INTO PLATFORM_TYPE (PLATFORM_TYPENUM,PLATFORM_TYPENAME) VALUES (?, ?)";
+	private static final String GET_ALL_STMT = "SELECT PLATFORM_TYPENUM,PLATFORM_TYPENAME FROM PLATFORM_TYPE order by PLATFORM_TYPENUM";
+	private static final String GET_ONE_STMT = "SELECT PLATFORM_TYPENUM,PLATFORM_TYPENAME FROM PLATFORM_TYPE where PLATFORM_TYPENUM = ?";
+	private static final String UPDATE = "UPDATE PLATFORM_TYPE set PLATFORM_TYPENUM=?, PLATFORM_TYPENAME=? where PLATFORM_TYPENUM = ?";
 
 	@Override
-	public void insert(SkillTypeVO skillTypeVO) {
+	public void insert(PlatformTypeVO platformTypeVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, skillTypeVO.getSkill_typenum());
-			pstmt.setString(2, skillTypeVO.getSkill_typename());
+			pstmt.setInt(1, platformTypeVO.getPlatform_typenum());
+			pstmt.setString(2, platformTypeVO.getPlatform_typename());
 
 			pstmt.executeUpdate();
 
@@ -61,11 +61,10 @@ public class SkillTypeDAO implements SkillTypeDAO_interface{
 				}
 			}
 		}
-
 	}
 
 	@Override
-	public void update(SkillTypeVO skillTypeVO) {
+	public void update(PlatformTypeVO platformTypeVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -75,8 +74,8 @@ public class SkillTypeDAO implements SkillTypeDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, skillTypeVO.getSkill_typenum());
-			pstmt.setString(2, skillTypeVO.getSkill_typename());
+			pstmt.setInt(1, platformTypeVO.getPlatform_typenum());
+			pstmt.setString(2, platformTypeVO.getPlatform_typename());
 
 			pstmt.executeUpdate();
 
@@ -106,10 +105,9 @@ public class SkillTypeDAO implements SkillTypeDAO_interface{
 
 	}
 
-
 	@Override
-	public SkillTypeVO findByPrimaryKey(Integer skill_typenum) {
-		SkillTypeVO skillTypeVO = null;
+	public PlatformTypeVO findByPrimaryKey(Integer platform_typenum) {
+		PlatformTypeVO platformTypeVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -120,16 +118,17 @@ public class SkillTypeDAO implements SkillTypeDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, skill_typenum);
+			pstmt.setInt(1, platform_typenum);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo �]�٬� Domain objects
-				
-				skillTypeVO = new SkillTypeVO();
-				skillTypeVO.setSkill_typenum(rs.getInt("skill_typenum"));
-				skillTypeVO.setSkill_typename(rs.getString("skill_typename"));
+
+				platformTypeVO = new PlatformTypeVO();
+				platformTypeVO.setPlatform_typenum(rs.getInt("platform_typenum"));
+				platformTypeVO.setPlatform_typename(rs.getString("platform_typename"));
+
 			}
 
 			// Handle any driver errors
@@ -162,13 +161,13 @@ public class SkillTypeDAO implements SkillTypeDAO_interface{
 				}
 			}
 		}
-		return skillTypeVO;
+		return platformTypeVO;
 	}
 
 	@Override
-	public List<SkillTypeVO> getAll() {
-		List<SkillTypeVO> list = new ArrayList<SkillTypeVO>();
-		SkillTypeVO skillTypeVO = null;
+	public List<PlatformTypeVO> getAll() {
+		List<PlatformTypeVO> list = new ArrayList<PlatformTypeVO>();
+		PlatformTypeVO platformTypeVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -183,10 +182,10 @@ public class SkillTypeDAO implements SkillTypeDAO_interface{
 
 			while (rs.next()) {
 				// empVO �]�٬� Domain objects
-				skillTypeVO = new SkillTypeVO();
-				skillTypeVO.setSkill_typenum(rs.getInt("skill_typenum"));
-				skillTypeVO.setSkill_typename(rs.getString("skill_typename"));
-				list.add(skillTypeVO); // Store the row in the list
+				platformTypeVO = new PlatformTypeVO();
+				platformTypeVO.setPlatform_typenum(rs.getInt("platform_typenum"));
+				platformTypeVO.setPlatform_typename(rs.getString("platform_typename"));
+				list.add(platformTypeVO); // Store the row in the list
 			}
 
 			// Handle any driver errors
@@ -220,6 +219,6 @@ public class SkillTypeDAO implements SkillTypeDAO_interface{
 			}
 		}
 		return list;
+
 	}
-	
 }
