@@ -35,11 +35,11 @@ pageContext.setAttribute("list", list);
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<h6 style="display: inline-block;">新增平台類型</h6>
+				<h6 style="display: inline-block;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h6>
 				<FORM METHOD="post"
 					ACTION="<%=request.getContextPath()%>/platformType/platformType.do"
 					style="display: inline-block;">
-					<input type="text" name="job_typename" placeholder="輸入新平台類型名稱">
+					<h6 style="display: inline-block;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h6>
 					<input type="hidden" name="action" value="insert"> <input
 						type="submit" value="新增">
 				</FORM>
