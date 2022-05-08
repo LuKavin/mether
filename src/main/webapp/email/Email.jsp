@@ -6,7 +6,7 @@
 
 <%
 EmailDetailService emailDetailService = new EmailDetailService();
-List<EmailDetailVO> list = emailDetailService.findMailBox("COM",1);
+List<EmailDetailVO> list = emailDetailService.findMailBox("COM", "tibameCOM");
 pageContext.setAttribute("list", list);
 %>
 
@@ -63,23 +63,32 @@ pageContext.setAttribute("list", list);
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="emailDetailVO" items="${list}">
-									<tr>
-										<td>
-											<div class="icheck-primary">
-												<input type="checkbox" value="" id="check1" class="item">
-												<label for="check1"></label>
-											</div>
-										</td>
-										<td></td>
-										<td class="mailbox-name"><a href="read-mail.html"><%=emailDetailService.findMemAccount(2)%></a></td>
-										<td class="mailbox-subject"><b>${emailDetailVO.email_title}</b></td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">
-										<fmt:formatDate value="${emailDetailVO.email_date}" pattern="yyyy-MM-dd HH:mm"/>
-										</td>
-									</tr>
-								</c:forEach>
+									<c:forEach var="emailDetailVO" items="${list}">
+										<tr>
+											<td>
+												<div class="icheck-primary">
+													<input type="checkbox" value="" id="check1" class="item">
+													<label for="check1"></label>
+												</div>
+											</td>
+											<td></td>
+											<td class="mailbox-name"><a href="read-mail.html">${emailDetailVO.kol_account}</a></td>
+											<td class="mailbox-subject">
+												<form action="<%=request.getContextPath()%>/email/email.do">
+													<input type="hidden" name="action" value="showletter">
+													<input type="hidden" name="email_num" value="${emailDetailVO.email_num}">
+													<button type="submit" class="btn btn-link btn-sm">
+														<b>${emailDetailVO.email_title}</b>
+													</button>
+													
+												</form>
+											</td>
+											<td class="mailbox-attachment"></td>
+											<td class="mailbox-date"><fmt:formatDate
+													value="${emailDetailVO.email_date}"
+													pattern="yyyy-MM-dd HH:mm" /></td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -99,8 +108,7 @@ pageContext.setAttribute("list", list);
 					</div>
 					<ul class="nav nav-pills flex-column">
 						<li class="nav-item active"><a href="meb_mailinbox.html"
-							class="nav-link"> <i class="fas fa-inbox"></i> 收件夾 
-<!-- 							<span class="badge bg-primary float-right">2</span> -->
+							class="nav-link"> <i class="fas fa-inbox"></i> 收件夾 <!-- 							<span class="badge bg-primary float-right">2</span> -->
 						</a></li>
 						<li class="nav-item"><a href="#" class="nav-link"> <i
 								class="far fa-file-alt"></i> 草稿夾

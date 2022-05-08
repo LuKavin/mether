@@ -98,34 +98,11 @@ $(function () {
     //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＦＯＲＭＰＲＯＧＲＥＳＳ區======================================================================================================
 
 
-    $(".msg-ok").on("click", function () {
-        //獲得標題內容
-        let msg_title = $(".msg_title").val();
-        //獲得圖片內容
+    $(".sendOK").on("click", function () {
+        console.log("123");
+        //獲得內容
         let msg_content = $('#summernote').summernote('code');
-        let msg_add = `
-    <div class="card card-warning card-outline">
-    <div class="card-header">
-      <div class="row">
-        <div class="container h4" style="text-align: center;background-color: rgb(234, 240, 250);">
-          廠商
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-2 p-1">
-          <h5>標題：</h5>
-        </div>
-        <p>${msg_title}</p>
-      </div>
-    </div>
-    <div class="card-body">
-      ${msg_content}
-    </div>
-  </div>`;
-        //新增留言
-        $(this).closest("div.msg-input").before(msg_add);
-        //清空標題
-        $(".msg_title").val("");
+        $(".email_content").val(msg_content);
         //清空summernote
         $('#summernote').summernote('reset');
 
