@@ -57,18 +57,15 @@ pageContext.setAttribute("list", list);
 								<div id="summernote"></div>
 							</div>
 							<div class="form-group">
-								<!-- 								<div class="btn btn-default btn-file"> -->
-								<!-- 									<i class="fas fa-paperclip"></i>上傳圖片 <input type="file" -->
-								<!-- 										name="attachment"> -->
-								<!-- 								</div> -->
 							</div>
 							<div class="card-footer">
 								<input type="hidden" name="action" value="insert">
+								<input type="hidden" name="email_content" class="email_content" value="">
 								<div class="float-right">
 									<button type="button" class="btn btn-default">
 										<i class="fas fa-pencil-alt"></i> Draft
 									</button>
-									<button type="submit" class="btn btn-warning">
+									<button type="submit" class="btn btn-warning sendOK">
 										<i class="far fa-envelope"></i> Send
 									</button>
 								</div>

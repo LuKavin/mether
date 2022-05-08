@@ -37,33 +37,31 @@ public class EmailServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-//		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
-//
-//			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
-//			
-//			try {
-//				/***************************1.接收請求參數****************************************/
-//				Integer product_num = new Integer(req.getParameter("product_num"));
-//				
-//				/***************************2.開始查詢資料****************************************/
-//				ProductService productService = new ProductService();
-//				ProductVO productVO = productService.getOneProduct(product_num);
-//								
-//				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-//				req.setAttribute("productVO", productVO);
-//				String url = "/product/updateProduct.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url);
-//				successView.forward(req, res);
-//
-//				/***************************其他可能的錯誤處理**********************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/product/product.jsp");
-//				failureView.forward(req, res);
-//			}
-//		}
+		if ("showletter".equals(action)) { // 來自listAllEmp.jsp的請求
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***************************1.接收請求參數****************************************/
+				Integer email_num = new Integer(req.getParameter("email_num"));
+				
+				/***************************2.開始查詢資料****************************************/
+				EmailDetailService emailDetailService = new EmailDetailService();
+				EmailDetailVO emailDetailVO = emailDetailService.getOneLetter(email_num);
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("emailDetailVO", emailDetailVO);
+				String url = "/email/letter.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/email/Email.jsp啥");
+				failureView.forward(req, res);
+			}
+		}
 //		
 //		
 //		if ("update".equals(action)) { 
@@ -193,12 +191,12 @@ public class EmailServlet extends HttpServlet {
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				String mem_account = req.getParameter("mem_account");//收件人
-				Integer com_idnum = emailDetailService.findMemIdnum(mem_account);//把收件人的會員編號找出來
 				if (mem_account == null || mem_account.trim().length() == 0) {
 					errorMsgs.add("收件人: 請勿空白");
-				}else if(com_idnum == null) {
+				}else if(mem_account == null) {
 					errorMsgs.add("沒有此收件人或帳號輸入錯誤");
 				}
+				String email_content = req.getParameter("email_content");//收件人
 				
 				Integer email_typenum = 1;//信件類別,先寫死
 				
@@ -208,13 +206,13 @@ public class EmailServlet extends HttpServlet {
 				}
 				
 				EmailDetailVO emailDetailVO =new EmailDetailVO();
-				emailDetailVO.setCom_idnum(com_idnum);
+				emailDetailVO.setCom_account(mem_account);
 				emailDetailVO.setEmail_typenum(email_typenum);
 				emailDetailVO.setEmail_title(email_title);
-				emailDetailVO.setEmail_content("信件內容測試用文字");//信件內容先寫死
+				emailDetailVO.setEmail_content(email_content);//信件內容先寫死
 				emailDetailVO.setRecipient("COM");//收件人,先寫死
 				
-				emailDetailVO.setKol_idnum(2);//寄件人先寫死
+				emailDetailVO.setKol_account("tibamekol");//寄件人先寫死
 				
 				if (!errorMsgs.isEmpty()) {
 //					req.setAttribute("productVO", productVO);
