@@ -360,10 +360,13 @@ public class ProductServlet extends HttpServlet {
 				ProductService productService = new ProductService();
 				int product_num = productService.addProduct(productVO);
 				productVO.setProduct_num(product_num);
+				ProductTypeService productTypeService = new ProductTypeService();
+				String product_typename = productTypeService.getOneProductType(product_typenum).getProduct_typename();
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				fileContent.close();
 				
 				req.setAttribute("productVO", productVO);
+				req.setAttribute("product_typename", product_typename);
 				String url = "/product/successView.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
