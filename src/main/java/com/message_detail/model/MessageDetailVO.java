@@ -45,6 +45,5 @@ public class MessageDetailVO implements java.io.Serializable {
 	public void setMes_date_time(Timestamp mes_date_time) {
 		this.mes_date_time = mes_date_time;
 	}
-	
 
 }

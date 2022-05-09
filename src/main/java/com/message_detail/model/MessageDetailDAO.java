@@ -1,9 +1,11 @@
 package com.message_detail.model;
 
-import java.util.*;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -38,12 +40,12 @@ public class MessageDetailDAO implements MessageDetailDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
-			
+
 			pstmt.setInt(1, messageDetailVO.getOrder_num());
 			pstmt.setString(2, messageDetailVO.getCom_message());
 			pstmt.setString(3, messageDetailVO.getKol_message());
 			pstmt.setString(4, messageDetailVO.getMes_topic());
-			
+
 			pstmt.executeUpdate();
 
 			// Handle any SQL errors
@@ -68,7 +70,6 @@ public class MessageDetailDAO implements MessageDetailDAO_interface {
 		}
 
 	}
-
 
 	@Override
 	public void delete(Integer mes_num) {

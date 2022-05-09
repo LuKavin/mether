@@ -1,6 +1,5 @@
 package com.match_form.model;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class MatchService {
@@ -11,7 +10,7 @@ public class MatchService {
 		dao = new MatchFormDAO();
 	}
 
-	public MatchFormVO addAdmMeb(Integer kol_idnum, Integer product_num, String match_result) {
+	public MatchFormVO addMatchForm(Integer kol_idnum, Integer product_num, String match_result) {
 
 		MatchFormVO matchFormVO = new MatchFormVO();
 
@@ -23,7 +22,7 @@ public class MatchService {
 		return matchFormVO;
 	}
 
-	public MatchFormVO updateAdmMeb(Integer kol_idnum, Integer product_num, String match_result) {
+	public MatchFormVO updateMatchForm(Integer kol_idnum, Integer product_num, String match_result) {
 
 		MatchFormVO matchFormVO = new MatchFormVO();
 
@@ -35,11 +34,11 @@ public class MatchService {
 		return matchFormVO;
 	}
 
-	public void deleteAdmMeb(Integer kol_idnum, Integer product_num) {
+	public void deleteMatchForm(Integer kol_idnum, Integer product_num) {
 		dao.delete(kol_idnum, product_num);
 	}
 
-	public MatchFormVO getOneAdmMeb(Integer kol_idnum, Integer product_num) {
+	public MatchFormVO getOneMatchForm(Integer kol_idnum, Integer product_num) {
 		return dao.findByPrimaryKey(kol_idnum, product_num);
 	}
 

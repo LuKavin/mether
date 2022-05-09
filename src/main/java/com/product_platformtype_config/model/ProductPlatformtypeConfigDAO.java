@@ -1,4 +1,4 @@
-package com.message_photo.model;
+package com.product_platformtype_config.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class MessagePhotoDAO implements MessagePhotoDAO_interface {
+public class ProductPlatformtypeConfigDAO implements ProductPlatformtypeConfigDAO_interface {
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
@@ -25,13 +25,13 @@ public class MessagePhotoDAO implements MessagePhotoDAO_interface {
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO MESSAGE_PHOTO (MES_NUM, COM_PHOTO, KOL_PHOTO) VALUES (?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT MES_PHOTONUM, MES_NUM, COM_PHOTO, KOL_PHOTO FROM MESSAGE_PHOTO order by MES_PHOTONUM";
-	private static final String GET_ONE_STMT = "SELECT MES_PHOTONUM, MES_NUM, COM_PHOTO, KOL_PHOTO FROM MESSAGE_PHOTO where MES_PHOTONUM = ?";
-	private static final String DELETE = "DELETE FROM MESSAGE_PHOTO where MES_PHOTONUM = ?";
+	private static final String INSERT_STMT = "INSERT INTO PRODUCT_PLATFORMTYPE_CONFIG (PRODUCT_NUM, PLATFORM_TYPENUM) VALUES (?, ?)";
+	private static final String GET_ALL_STMT = "SELECT PRODUCT_NUM, PLATFORM_TYPENUM FROM PRODUCT_PLATFORMTYPE_CONFIG order by PRODUCT_NUM, PLATFORM_TYPENUM";
+	private static final String GET_ONE_STMT = "SELECT PRODUCT_NUM, PLATFORM_TYPENUM FROM PRODUCT_PLATFORMTYPE_CONFIG where PRODUCT_NUM = ? and PLATFORM_TYPENUM = ?";
+	private static final String DELETE = "DELETE FROM PRODUCT_PLATFORMTYPE_CONFIG where PRODUCT_NUM = ? and PLATFORM_TYPENUM = ?";
 
 	@Override
-	public void insert(MessagePhotoVO messagePhotoVO) {
+	public void insert(ProductPlatformtypeConfigVO productPlatformtypeConfigVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -41,9 +41,8 @@ public class MessagePhotoDAO implements MessagePhotoDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, messagePhotoVO.getMes_num());
-			pstmt.setBytes(2, messagePhotoVO.getCom_photo());
-			pstmt.setBytes(3, messagePhotoVO.getKol_photo());
+			pstmt.setInt(1, productPlatformtypeConfigVO.getProduct_num());
+			pstmt.setInt(2, productPlatformtypeConfigVO.getPlatform_typenum());
 
 			pstmt.executeUpdate();
 
@@ -71,7 +70,7 @@ public class MessagePhotoDAO implements MessagePhotoDAO_interface {
 	}
 
 	@Override
-	public void delete(Integer mes_photonum) {
+	public void delete(Integer product_num, Integer platform_typenum) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -81,7 +80,8 @@ public class MessagePhotoDAO implements MessagePhotoDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, mes_photonum);
+			pstmt.setInt(1, product_num);
+			pstmt.setInt(2, platform_typenum);
 
 			pstmt.executeUpdate();
 
@@ -109,9 +109,9 @@ public class MessagePhotoDAO implements MessagePhotoDAO_interface {
 	}
 
 	@Override
-	public MessagePhotoVO findByPrimaryKey(Integer mes_photonum) {
+	public ProductPlatformtypeConfigVO findByPrimaryKey(Integer product_num, Integer platform_typenum) {
 
-		MessagePhotoVO messagePhotoVO = null;
+		ProductPlatformtypeConfigVO productPlatformtypeConfigVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -121,18 +121,18 @@ public class MessagePhotoDAO implements MessagePhotoDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, mes_photonum);
+			pstmt.setInt(1, product_num);
+			pstmt.setInt(2, platform_typenum);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
 
-				messagePhotoVO = new MessagePhotoVO();
-				messagePhotoVO.setMes_photonum(rs.getInt("mes_photonum"));
-				messagePhotoVO.setMes_num(rs.getInt("mes_num"));
-				messagePhotoVO.setCom_photo(rs.getBytes("com_photo"));
-				messagePhotoVO.setKol_photo(rs.getBytes("kol_photo"));
+				productPlatformtypeConfigVO = new ProductPlatformtypeConfigVO();
+				productPlatformtypeConfigVO.setProduct_num(rs.getInt("product_num"));
+				productPlatformtypeConfigVO.setPlatform_typenum(rs.getInt("platform_typenum"));
+
 			}
 
 			// Handle any driver errors
@@ -162,13 +162,13 @@ public class MessagePhotoDAO implements MessagePhotoDAO_interface {
 				}
 			}
 		}
-		return messagePhotoVO;
+		return productPlatformtypeConfigVO;
 	}
 
 	@Override
-	public List<MessagePhotoVO> getAll() {
-		List<MessagePhotoVO> list = new ArrayList<MessagePhotoVO>();
-		MessagePhotoVO messagePhotoVO = null;
+	public List<ProductPlatformtypeConfigVO> getAll() {
+		List<ProductPlatformtypeConfigVO> list = new ArrayList<ProductPlatformtypeConfigVO>();
+		ProductPlatformtypeConfigVO productPlatformtypeConfigVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -182,12 +182,10 @@ public class MessagePhotoDAO implements MessagePhotoDAO_interface {
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				messagePhotoVO = new MessagePhotoVO();
-				messagePhotoVO.setMes_photonum(rs.getInt("mes_photonum"));
-				messagePhotoVO.setMes_num(rs.getInt("mes_num"));
-				messagePhotoVO.setCom_photo(rs.getBytes("com_photo"));
-				messagePhotoVO.setKol_photo(rs.getBytes("kol_photo"));
-				list.add(messagePhotoVO); // Store the row in the list
+				productPlatformtypeConfigVO = new ProductPlatformtypeConfigVO();
+				productPlatformtypeConfigVO.setProduct_num(rs.getInt("product_num"));
+				productPlatformtypeConfigVO.setPlatform_typenum(rs.getInt("platform_typenum"));
+				list.add(productPlatformtypeConfigVO); // Store the row in the list
 			}
 
 			// Handle any driver errors

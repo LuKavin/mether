@@ -1,6 +1,6 @@
 package com.message_photo.model;
 
-import java.util.*;
+import java.util.List;
 
 public interface MessagePhotoDAO_interface {
 	public void insert(MessagePhotoVO messagePhotoVO);

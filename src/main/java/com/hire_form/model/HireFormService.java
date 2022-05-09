@@ -1,6 +1,5 @@
 package com.hire_form.model;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class HireFormService {
@@ -11,7 +10,7 @@ public class HireFormService {
 		dao = new HireFormDAO();
 	}
 
-	public HireFormVO addAdmMeb(Integer kol_idnum, Integer product_num, String hire_result) {
+	public HireFormVO addHireForm(Integer kol_idnum, Integer product_num, String hire_result) {
 
 		HireFormVO hireFormVO = new HireFormVO();
 
@@ -23,7 +22,7 @@ public class HireFormService {
 		return hireFormVO;
 	}
 
-	public HireFormVO updateAdmMeb(Integer kol_idnum, Integer product_num, String hire_result) {
+	public HireFormVO updateHireForm(Integer kol_idnum, Integer product_num, String hire_result) {
 
 		HireFormVO hireFormVO = new HireFormVO();
 
@@ -35,11 +34,11 @@ public class HireFormService {
 		return hireFormVO;
 	}
 
-	public void deleteAdmMeb(Integer kol_idnum, Integer product_num) {
+	public void deleteHireForm(Integer kol_idnum, Integer product_num) {
 		dao.delete(kol_idnum, product_num);
 	}
 
-	public HireFormVO getOneAdmMeb(Integer kol_idnum, Integer product_num) {
+	public HireFormVO getOneHireForm(Integer kol_idnum, Integer product_num) {
 		return dao.findByPrimaryKey(kol_idnum, product_num);
 	}
 

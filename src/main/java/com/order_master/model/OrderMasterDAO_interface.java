@@ -1,6 +1,6 @@
 package com.order_master.model;
 
-import java.util.*;
+import java.util.List;
 
 public interface OrderMasterDAO_interface {
 	public void insert(OrderMasterVO orderMasterVO);
