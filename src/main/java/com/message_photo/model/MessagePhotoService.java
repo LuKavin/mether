@@ -10,7 +10,7 @@ public class MessagePhotoService {
 		dao = new MessagePhotoDAO();
 	}
 
-	public MessagePhotoVO addAdmMeb(Integer mes_num, byte[] com_photo, byte[] kol_photo) {
+	public MessagePhotoVO addMessagePhoto(Integer mes_num, byte[] com_photo, byte[] kol_photo) {
 
 		MessagePhotoVO messagePhotoVO = new MessagePhotoVO();
 
@@ -22,11 +22,11 @@ public class MessagePhotoService {
 		return messagePhotoVO;
 	}
 
-	public void deleteAdmMeb(Integer mes_photonum) {
+	public void deleteMessagePhoto(Integer mes_photonum) {
 		dao.delete(mes_photonum);
 	}
 
-	public MessagePhotoVO getOneAdmMeb(Integer mes_photonum) {
+	public MessagePhotoVO getOneMessagePhoto(Integer mes_photonum) {
 		return dao.findByPrimaryKey(mes_photonum);
 	}
 

@@ -10,7 +10,7 @@ public class OrderMasterService {
 		dao = new OrderMasterDAO();
 	}
 
-	public OrderMasterVO addAdmMeb(Integer product_num, Integer kol_idnum, Integer com_idnum, String order_status,
+	public OrderMasterVO addOrderMaster(Integer product_num, Integer kol_idnum, Integer com_idnum, String order_status,
 			Integer order_amount, String com_rate, String kol_rate, Integer com_star, Integer kol_star) {
 
 		OrderMasterVO orderMasterVO = new OrderMasterVO();
@@ -29,8 +29,8 @@ public class OrderMasterService {
 		return orderMasterVO;
 	}
 
-	public OrderMasterVO updateAdmMeb(Integer order_num, String order_status, String com_rate, String kol_rate, Integer com_star,
-			Integer kol_star) {
+	public OrderMasterVO updateOrderMaster(Integer order_num, String order_status, String com_rate, String kol_rate,
+			Integer com_star, Integer kol_star) {
 
 		OrderMasterVO orderMasterVO = new OrderMasterVO();
 
@@ -45,11 +45,11 @@ public class OrderMasterService {
 		return orderMasterVO;
 	}
 
-	public void deleteAdmMeb(Integer order_num) {
+	public void deleteOrderMaster(Integer order_num) {
 		dao.delete(order_num);
 	}
 
-	public OrderMasterVO getOneAdmMeb(Integer order_num) {
+	public OrderMasterVO getOneOrderMaster(Integer order_num) {
 		return dao.findByPrimaryKey(order_num);
 	}
 

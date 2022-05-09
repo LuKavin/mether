@@ -1,6 +1,6 @@
 package com.match_form.model;
 
-import java.util.*;
+import java.util.List;
 
 public interface MatchFormDAO_interface {
 	public void insert(MatchFormVO matchFormVO);

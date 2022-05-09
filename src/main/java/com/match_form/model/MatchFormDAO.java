@@ -1,9 +1,11 @@
 package com.match_form.model;
 
-import java.util.*;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -39,11 +41,11 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
-			
+
 			pstmt.setInt(1, matchFormVO.getKol_idnum());
 			pstmt.setInt(2, matchFormVO.getProduct_num());
 			pstmt.setString(3, matchFormVO.getMatch_result());
-			
+
 			pstmt.executeUpdate();
 
 			// Handle any SQL errors

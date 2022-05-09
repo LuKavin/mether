@@ -10,7 +10,7 @@ public class MessageDetailService {
 		dao = new MessageDetailDAO();
 	}
 
-	public MessageDetailVO addAdmMeb(Integer order_num, String com_message, String kol_message, String mes_topic) {
+	public MessageDetailVO addMessageDetail(Integer order_num, String com_message, String kol_message, String mes_topic) {
 
 		MessageDetailVO messageDetailVO = new MessageDetailVO();
 
@@ -23,11 +23,11 @@ public class MessageDetailService {
 		return messageDetailVO;
 	}
 
-	public void deleteAdmMeb(Integer mes_num) {
+	public void deleteMessageDetail(Integer mes_num) {
 		dao.delete(mes_num);
 	}
 
-	public MessageDetailVO getOneAdmMeb(Integer mes_num) {
+	public MessageDetailVO getOneMessageDetail(Integer mes_num) {
 		return dao.findByPrimaryKey(mes_num);
 	}
 

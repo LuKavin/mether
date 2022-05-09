@@ -1,6 +1,6 @@
 package com.hire_form.model;
 
-import java.util.*;
+import java.util.List;
 
 public interface HireFormDAO_interface {
 	public void insert(HireFormVO hireFormVO);

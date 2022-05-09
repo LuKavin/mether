@@ -1,6 +1,6 @@
 package com.message_detail.model;
 
-import java.util.*;
+import java.util.List;
 
 public interface MessageDetailDAO_interface {
 	public void insert(MessageDetailVO messageDetailVO);
