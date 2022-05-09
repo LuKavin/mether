@@ -1,4 +1,4 @@
-package com.adm_meb.model;
+package com.kol_skilltype_config.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class AdmMebDAO implements AdmMebDAO_interface {
+public class KolSkilltypeConfigDAO implements KolSkilltypeConfigDAO_interface {
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
@@ -25,14 +25,13 @@ public class AdmMebDAO implements AdmMebDAO_interface {
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO ADM_MEB (ADM_ACCOUNT,ADM_PASSWORD,ADM_NAME,ADM_PHOTO) VALUES (?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT ADM_IDNUM,ADM_ACCOUNT,ADM_PASSWORD,ADM_NAME,ADM_PHOTO FROM ADM_MEB order by ADM_IDNUM";
-	private static final String GET_ONE_STMT = "SELECT ADM_IDNUM,ADM_ACCOUNT,ADM_PASSWORD,ADM_NAME,ADM_PHOTO FROM ADM_MEB where ADM_IDNUM = ?";
-	private static final String DELETE = "DELETE FROM ADM_MEB where ADM_IDNUM = ?";
-	private static final String UPDATE = "UPDATE ADM_MEB set ADM_ACCOUNT=?, ADM_PASSWORD=?, ADM_NAME=?, ADM_PHOTO=? where ADM_IDNUM = ?";
+	private static final String INSERT_STMT = "INSERT INTO KOL_SKILLTYPE_CONFIG (KOL_IDNUM, SKILL_TYPENUM) VALUES (?, ?)";
+	private static final String GET_ALL_STMT = "SELECT KOL_IDNUM, SKILL_TYPENUM FROM KOL_SKILLTYPE_CONFIG order by KOL_IDNUM, SKILL_TYPENUM";
+	private static final String GET_ONE_STMT = "SELECT KOL_IDNUM, SKILL_TYPENUM FROM KOL_SKILLTYPE_CONFIG where KOL_IDNUM = ? and SKILL_TYPENUM = ?";
+	private static final String DELETE = "DELETE FROM KOL_SKILLTYPE_CONFIG where KOL_IDNUM = ? and SKILL_TYPENUM = ?";
 
 	@Override
-	public void insert(AdmMebVO admMebVO) {
+	public void insert(KolSkilltypeConfigVO kolSkilltypeConfigVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -42,10 +41,8 @@ public class AdmMebDAO implements AdmMebDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setString(1, admMebVO.getAdm_account());
-			pstmt.setString(2, admMebVO.getAdm_password());
-			pstmt.setString(3, admMebVO.getAdm_name());
-			pstmt.setBytes(4, admMebVO.getAdm_photo());
+			pstmt.setInt(1, kolSkilltypeConfigVO.getKol_idnum());
+			pstmt.setInt(2, kolSkilltypeConfigVO.getSkill_typenum());
 
 			pstmt.executeUpdate();
 
@@ -73,49 +70,7 @@ public class AdmMebDAO implements AdmMebDAO_interface {
 	}
 
 	@Override
-	public void update(AdmMebVO admMebVO) {
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-
-		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE);
-
-			pstmt.setString(1, admMebVO.getAdm_account());
-			pstmt.setString(2, admMebVO.getAdm_password());
-			pstmt.setString(3, admMebVO.getAdm_name());
-			pstmt.setBytes(4, admMebVO.getAdm_photo());
-			pstmt.setInt(5, admMebVO.getAdm_idnum());
-
-			pstmt.executeUpdate();
-
-			// Handle any driver errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-
-	}
-
-	@Override
-	public void delete(Integer adm_idnum) {
+	public void delete(Integer kol_idnum, Integer skill_typenum) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -125,7 +80,8 @@ public class AdmMebDAO implements AdmMebDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, adm_idnum);
+			pstmt.setInt(1, kol_idnum);
+			pstmt.setInt(2, skill_typenum);
 
 			pstmt.executeUpdate();
 
@@ -153,9 +109,9 @@ public class AdmMebDAO implements AdmMebDAO_interface {
 	}
 
 	@Override
-	public AdmMebVO findByPrimaryKey(Integer adm_idnum) {
+	public KolSkilltypeConfigVO findByPrimaryKey(Integer kol_idnum, Integer skill_typenum) {
 
-		AdmMebVO admMebVO = null;
+		KolSkilltypeConfigVO kolSkilltypeConfigVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -165,19 +121,18 @@ public class AdmMebDAO implements AdmMebDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, adm_idnum);
+			pstmt.setInt(1, kol_idnum);
+			pstmt.setInt(2, skill_typenum);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
 
-				admMebVO = new AdmMebVO();
-				admMebVO.setAdm_idnum(rs.getInt("adm_idnum"));
-				admMebVO.setAdm_account(rs.getString("adm_account"));
-				admMebVO.setAdm_password(rs.getString("adm_password"));
-				admMebVO.setAdm_name(rs.getString("adm_name"));
-				admMebVO.setAdm_photo(rs.getBytes("adm_photo"));
+				kolSkilltypeConfigVO = new KolSkilltypeConfigVO();
+				kolSkilltypeConfigVO.setKol_idnum(rs.getInt("kol_idnum"));
+				kolSkilltypeConfigVO.setSkill_typenum(rs.getInt("skill_typenum"));
+
 			}
 
 			// Handle any driver errors
@@ -207,13 +162,13 @@ public class AdmMebDAO implements AdmMebDAO_interface {
 				}
 			}
 		}
-		return admMebVO;
+		return kolSkilltypeConfigVO;
 	}
 
 	@Override
-	public List<AdmMebVO> getAll() {
-		List<AdmMebVO> list = new ArrayList<AdmMebVO>();
-		AdmMebVO admMebVO = null;
+	public List<KolSkilltypeConfigVO> getAll() {
+		List<KolSkilltypeConfigVO> list = new ArrayList<KolSkilltypeConfigVO>();
+		KolSkilltypeConfigVO kolSkilltypeConfigVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -227,13 +182,11 @@ public class AdmMebDAO implements AdmMebDAO_interface {
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				admMebVO = new AdmMebVO();
-				admMebVO.setAdm_idnum(rs.getInt("adm_idnum"));
-				admMebVO.setAdm_account(rs.getString("adm_account"));
-				admMebVO.setAdm_password(rs.getString("adm_password"));
-				admMebVO.setAdm_name(rs.getString("adm_name"));
-				admMebVO.setAdm_photo(rs.getBytes("adm_photo"));
-				list.add(admMebVO); // Store the row in the list
+				kolSkilltypeConfigVO = new KolSkilltypeConfigVO();
+				kolSkilltypeConfigVO.setKol_idnum(rs.getInt("kol_idnum"));
+				kolSkilltypeConfigVO.setSkill_typenum(rs.getInt("skill_typenum"));
+
+				list.add(kolSkilltypeConfigVO); // Store the row in the list
 			}
 
 			// Handle any driver errors

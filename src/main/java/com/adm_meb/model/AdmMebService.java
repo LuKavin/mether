@@ -23,7 +23,8 @@ public class AdmMebService {
 		return admMebVO;
 	}
 
-	public AdmMebVO updateAdmMeb(Integer adm_idnum, String adm_account, String adm_password, String adm_name, byte[] adm_photo) {
+	public AdmMebVO updateAdmMeb(Integer adm_idnum, String adm_account, String adm_password, String adm_name,
+			byte[] adm_photo) {
 
 		AdmMebVO admMebVO = new AdmMebVO();
 
