@@ -1,6 +1,6 @@
 package com.adm_meb.model;
 
-import java.util.*;
+import java.util.List;
 
 public interface AdmMebDAO_interface {
 	public void insert(AdmMebVO admMebVO);

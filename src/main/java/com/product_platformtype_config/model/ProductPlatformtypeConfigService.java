@@ -12,13 +12,13 @@ public class ProductPlatformtypeConfigService {
 
 	public ProductPlatformtypeConfigVO addProductPlatformtypeConfig(Integer product_num, Integer platform_typenum) {
 
-		ProductPlatformtypeConfigVO ProductPlatformtypeConfigVO = new ProductPlatformtypeConfigVO();
+		ProductPlatformtypeConfigVO productPlatformtypeConfigVO = new ProductPlatformtypeConfigVO();
 
-		ProductPlatformtypeConfigVO.setProduct_num(product_num);
-		ProductPlatformtypeConfigVO.setPlatform_typenum(platform_typenum);
-		dao.insert(ProductPlatformtypeConfigVO);
+		productPlatformtypeConfigVO.setProduct_num(product_num);
+		productPlatformtypeConfigVO.setPlatform_typenum(platform_typenum);
+		dao.insert(productPlatformtypeConfigVO);
 
-		return ProductPlatformtypeConfigVO;
+		return productPlatformtypeConfigVO;
 	}
 
 	public void deleteProductPlatformtypeConfig(Integer product_num, Integer platform_typenum) {
