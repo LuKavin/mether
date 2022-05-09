@@ -6,34 +6,7 @@ $(function () {
     $("input.checkbox-master").on("click", function () {
         $("input.item").prop("checked", $(this).prop("checked"));
     })
-    //刪除勾選信件
-    $(".trashcan").on("click", function () {
-        $(".item:checked").closest("tr").fadeOut(700, function () {
-            $(".item:checked").closest("tr").remove();
-        })
-    })
-    //測試用新增信件
-    $(".testplus").on("click", function () {
-        count = count + 1;
-        let add = `<tr>
-        <td>
-        <div class="icheck-primary">
-        <input type="checkbox" value="" id="check${count}" class="item">
-        <label for="check${count}"></label>
-        </div>
-        </td>
-      <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-      <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-      <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this
-      problem...
-      </td>
-      <td class="mailbox-attachment"></td>
-      <td class="mailbox-date">5 mins ago</td>
-      </tr>`;
-        $(".mailtable").append(add);
-
-        //   console.log(count);
-    })
+ 
     //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＭＡＩＬＩＮＢＯＸ區======================================================================================================
     $('#summernote').summernote({
         placeholder: '可拖曳圖片至此...',
@@ -111,6 +84,18 @@ $(function () {
     })
 
     //=↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＭＥＳＳＥＮＧ區======================================================================================================
+    let pk;
+    $(".trashcan").on("click", function () {
+        let array = $(this).closest(".card-body").find(".checkdelete");
+        $.each(array,function(index,val) {
+            if($(this).prop("checked")){
+                // console.log($(this).closest("tr").find(".email_num").val());//找出有打勾的信件PK
+                pk = $(this).closest("tr").find(".email_num").val();
+                console.log(pk);
+                $(".trashform").append(`<input type="hidden" name="deletePk" value="${pk}"></input>`);
+            }
+        })
+    })
 
 
 
@@ -120,10 +105,7 @@ $(function () {
 
 
 
-
-
-
-    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑圖片預覽區======================================================================================================
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑信箱刪除======================================================================================================
 
 
 

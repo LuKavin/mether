@@ -1,4 +1,39 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	 <div class="col-md-2">
+            <!--==側邊功能列表==-->
+            <div class="card">
+              <div class="card-header">
+                <div class="row justify-content-center">
+                  <a href="<%=request.getContextPath()%>/email/sendEmail.jsp"
+                    class="btn btn-warning" style="padding: 5px 30px;"> <i
+                    class="fa fa-paper-plane-o" aria-hidden="true"> 寄信</i>
+                  </a>
+                </div>
+              </div>
+              <ul class="nav nav-pills flex-column">
+                <li class="nav-item active"><a href="<%=request.getContextPath() %>/email/Email.jsp"
+                  class="nav-link"> <i class="fas fa-inbox"></i> 收件夾
+                </a></li>
+                <li class="nav-item"><a href="#" class="nav-link"> <i
+                    class="far fa-file-alt"></i> 草稿夾
+                </a></li>
+                <li class="nav-item"><a href="#" class="nav-link"> <i
+                    class="far fa-trash-alt"></i> 垃圾桶
+                </a></li>
+              </ul>
+            </div>
+            <c:if test="${not empty errorMsgs}">
+					<font style="color: red">請修正以下錯誤:</font>
+					<ul>
+						<c:forEach var="message" items="${errorMsgs}">
+							<li style="color: red">${message}</li>
+						</c:forEach>
+					</ul>
+				</c:if>
+          </div>
+        </div>
+      </section>
+	</div><!--這個div結尾是 email, sendEmail, letter的第22行<div.row結尾> -->
 	<!-- ============================================================================================================================================= -->
 
 	<!-- jquery -->
@@ -37,60 +72,7 @@
   	<script src="<%=request.getContextPath()%>/resources/summernote/summernote-bs4.min.js"></script>
 	
 	
-		<script>
-		document
-				.addEventListener(
-						"DOMContentLoaded",
-						function() {
-
-							document
-									.querySelector("#p_file")
-									.addEventListener(
-											"change",
-											function(e) {
-												if (this.files.length > 0) {
-													preview_img(this.files[0]);
-												} else {
-													document
-															.querySelector("#preview .text").innerText = "預覽圖";
-												}
-
-											})
-
-							//函式：接收一個file(圖片)參數，將接收的(圖片)顯示在預覽圖上
-							function preview_img(file) {
-								var reader = new FileReader();
-								reader.readAsDataURL(file)
-								reader
-										.addEventListener(
-												"load",
-												function() {
-													let db64 = 'data:image/jpg;base64';
-													let rr = reader.result;
-													var post = `<img src="\${rr}" alt="載入錯誤" class = "preview_img">`;
-													document
-															.querySelector("#preview .text").innerText = "";//先清空
-													if (document
-															.querySelector("#preview img") != null) {
-														document.querySelector(
-																"#preview>img")
-																.remove();
-													}
-													document
-															.querySelector(
-																	"#preview")
-															.insertAdjacentHTML(
-																	"beforeend",
-																	post);
-													console
-															.log(document
-																	.querySelector("#preview img"));
-												})
-
-							}
-
-						})
-	</script>
+		
 	
 
 
