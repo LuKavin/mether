@@ -22,8 +22,8 @@ public class EmailDetailService {
 		return dao.findMailBox(recipient,mem_account);
 	}
 
-	public EmailDetailVO updateAdmMeb(Integer skill_typenum, String skill_typename) {
-		return null;
+	public void deleteLetter(Integer email_num) {
+		dao.delete(email_num);
 	}
 
 	public EmailDetailVO getOneLetter(Integer email_num) {

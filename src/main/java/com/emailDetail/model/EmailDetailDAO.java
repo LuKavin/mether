@@ -39,8 +39,7 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 	private static final String FINDMAIL_FOR_ADM = "SELECT COM_ACCOUNT, KOL_ACCOUNT, EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM FROM EMAIL_DETAIL WHERE ADM_ACCOUNT = ? and RECIPIENT='ADM';";
 	// 用編號找一封信
 	private static final String GET_A_LETTER = "SELECT * FROM EMAIL_DETAIL WHERE EMAIL_NUM =?;";
-	private static final String GET_ONE = "SELECT PRODUCT_TYPENUM, PRODUCT_TYPENAME FROM PRODUCT_TYPE WHERE PRODUCT_TYPENUM = ? ;";
-	private static final String UPDATE = "update `PRODUCT_TYPE` set `PRODUCT_TYPENAME` = ? where PRODUCT_TYPENUM = ?;";
+	private static final String DELETE = "DELETE FROM EMAIL_DETAIL WHERE EMAIL_NUM = ?";
 
 	@Override
 	public void insert(EmailDetailVO emailDetailVO) {
@@ -61,7 +60,7 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 			pstmt.executeUpdate();
 
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+			throw new RuntimeException("格式錯誤'或'沒有此帳號密碼");
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -218,8 +217,32 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 
 	@Override
 	public void delete(Integer email_num) {
-		// TODO Auto-generated method stub
-		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE);
+			pstmt.setInt(1, email_num);
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 	}
 
 	@Override
