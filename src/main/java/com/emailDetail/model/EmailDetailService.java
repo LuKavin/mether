@@ -10,16 +10,16 @@ public class EmailDetailService {
 		dao = new EmailDetailDAO();
 	}
 	
-	public Integer findMemIdnum(String memName) {
-		return dao.findID(memName);
+	public Integer findMemAccess(String memName) {
+		return dao.findAccess(memName);
 	}
 	
 	public void send(EmailDetailVO emailDetailVO) {
 		dao.insert(emailDetailVO);
 	}
 	
-	public List<EmailDetailVO> findMailBox(String recipient, String mem_account) {
-		return dao.findMailBox(recipient,mem_account);
+	public List<EmailDetailVO> findMailBox(String mem_account) {
+		return dao.findMailBox(mem_account);
 	}
 
 	public void deleteLetter(Integer email_num) {

@@ -21,16 +21,7 @@ public class EmailDetailVO {
 	private String email_title;
 	private String email_content;
 	private Timestamp email_date;
-	private String recipient;
-	
-	
-	
-	@Override
-	public String toString() {
-		return "EmailDetailVO [email_num=" + email_num + ", com_account=" + com_account + ", kol_account=" + kol_account
-				+ ", adm_account=" + adm_account + ", email_typenum=" + email_typenum + ", email_title=" + email_title
-				+ ", email_content=" + email_content + ", email_date=" + email_date + "]";
-	}
+	private String sender;
 	public Integer getEmail_num() {
 		return email_num;
 	}
@@ -79,11 +70,13 @@ public class EmailDetailVO {
 	public void setEmail_date(Timestamp email_date) {
 		this.email_date = email_date;
 	}
-	public String getRecipient() {
-		return recipient;
+	public String getSender() {
+		return sender;
 	}
-	public void setRecipient(String recipient) {
-		this.recipient = recipient;
+	public void setSender(String sender) {
+		this.sender = sender;
 	}
+	
+	
 	
 }

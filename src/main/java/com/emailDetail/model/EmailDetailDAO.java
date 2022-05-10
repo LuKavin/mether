@@ -30,16 +30,15 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 		}
 	}
 
-	private static final String INSERT = "INSERT INTO `EMAIL_DETAIL` (`COM_ACCOUNT`, `KOL_ACCOUNT`, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `RECIPIENT`) VALUES (?,?,?,?,?,?);";
-	// 用帳號找出廠商編號
-	private static final String FINDID = "SELECT `COM_ACCOUNT` FROM COMPANY_MEB where COM_ACCOUNT = ?;";
+	private static final String INSERT = "INSERT INTO `EMAIL_DETAIL` (`COM_ACCOUNT`, `KOL_ACCOUNT`, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `SENDER`) VALUES (?,?,?,?,?,?);";
 	// 找某某人的信箱
-	private static final String FINDMAIL_FOR_COM = "SELECT KOL_ACCOUNT, ADM_ACCOUNT, EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM FROM EMAIL_DETAIL WHERE COM_ACCOUNT = ? and RECIPIENT='COM';";
-	private static final String FINDMAIL_FOR_KOL = "SELECT COM_ACCOUNT, ADM_ACCOUNT, EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM FROM EMAIL_DETAIL WHERE KOL_ACCOUNT = ? and RECIPIENT='KOL';";
-	private static final String FINDMAIL_FOR_ADM = "SELECT COM_ACCOUNT, KOL_ACCOUNT, EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM FROM EMAIL_DETAIL WHERE ADM_ACCOUNT = ? and RECIPIENT='ADM';";
+	private static final String FIND_MAIL_BOX= "SELECT EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM, SENDER FROM EMAIL_DETAIL WHERE COM_ACCOUNT = ? or KOL_ACCOUNT = ? or ADM_ACCOUNT = ?";
 	// 用編號找一封信
 	private static final String GET_A_LETTER = "SELECT * FROM EMAIL_DETAIL WHERE EMAIL_NUM =?;";
+	//刪除信件
 	private static final String DELETE = "DELETE FROM EMAIL_DETAIL WHERE EMAIL_NUM = ?";
+	// 用帳號找出會員權限
+	private static final String FIND_ACCESS = "SELECT MEB_ACCESSNUM ACCESSNUM FROM COMPANY_MEB where COM_ACCOUNT=? union all SELECT MEB_ACCESSNUM FROM KOL_MEB where KOL_ACCOUNT=?";
 
 	@Override
 	public void insert(EmailDetailVO emailDetailVO) {
@@ -56,7 +55,7 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 			pstmt.setInt(3, emailDetailVO.getEmail_typenum());
 			pstmt.setString(4, emailDetailVO.getEmail_title());
 			pstmt.setString(5, emailDetailVO.getEmail_content());
-			pstmt.setString(6, emailDetailVO.getRecipient());
+			pstmt.setString(6, emailDetailVO.getSender());
 			pstmt.executeUpdate();
 
 		} catch (SQLException se) {
@@ -79,67 +78,31 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 		}
 	}
 
-	@Override
-	public Integer findID(String memName) {// 把收件者的帳號轉換成會員編號
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		Integer memACCOUNT = null;
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(FINDID);
-			pstmt.setString(1, memName);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				memACCOUNT = rs.getInt("COM_ACCOUNT");
-			}
 
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return memACCOUNT;
-	}
 
 	@Override
-	public List<EmailDetailVO> findMailBox(String recipient, String mem_account) {
+	public List<EmailDetailVO> findMailBox(String mem_account) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<EmailDetailVO> list = new ArrayList<>();
 		try {
 			con = ds.getConnection();
-			if ("COM".equals(recipient)) {// 找廠商的信箱
-				pstmt = con.prepareStatement(FINDMAIL_FOR_COM);
-				pstmt.setString(1, mem_account);
+			pstmt = con.prepareStatement(FIND_MAIL_BOX);
+			pstmt.setString(1, mem_account);
+			pstmt.setString(2, mem_account);
+			pstmt.setString(3, mem_account);
 
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
-					EmailDetailVO emailDetailVO = new EmailDetailVO();
-					emailDetailVO.setKol_account(rs.getString("KOL_ACCOUNT"));
-					emailDetailVO.setAdm_account(rs.getString("ADM_ACCOUNT"));
-					emailDetailVO.setEmail_title(rs.getString("EMAIL_TITLE"));
-					emailDetailVO.setEmail_content(rs.getString("EMAIL_CONTENT"));
-					emailDetailVO.setEmail_num(rs.getInt("EMAIL_NUM"));
-					emailDetailVO.setEmail_date(rs.getObject("EMAIL_DATE", Timestamp.class));
-					list.add(emailDetailVO);
-				}
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				EmailDetailVO emailDetailVO = new EmailDetailVO();
+				emailDetailVO.setEmail_title(rs.getString("EMAIL_TITLE"));
+				emailDetailVO.setEmail_content(rs.getString("EMAIL_CONTENT"));
+				emailDetailVO.setEmail_num(rs.getInt("EMAIL_NUM"));
+				emailDetailVO.setSender(rs.getString("SENDER"));
+				emailDetailVO.setEmail_date(rs.getObject("EMAIL_DATE", Timestamp.class));
+				list.add(emailDetailVO);
 			}
-
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
@@ -162,11 +125,7 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 		return list;
 	}
 
-	@Override
-	public void update(EmailDetailVO emailDetailVO) {
-		// TODO Auto-generated method stub
 
-	}
 
 	@Override
 	public EmailDetailVO findByPrimaryKey(Integer email_num) {
@@ -250,5 +209,50 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+//	@Override
+//	public void update(EmailDetailVO emailDetailVO) {
+//		// TODO Auto-generated method stub
+//
+//	}
+	
+	@Override
+	public Integer findAccess(String memName) {// 把收件者的帳號轉換成會員編號
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Integer accessNum = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FIND_ACCESS);
+			pstmt.setString(1, memName);
+			pstmt.setString(2, memName);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				accessNum = rs.getInt("ACCESSNUM");
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return accessNum;
+	}
+	
+	
 
 }

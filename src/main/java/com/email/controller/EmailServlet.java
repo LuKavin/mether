@@ -13,10 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.emailDetail.model.EmailDetailService;
 import com.emailDetail.model.EmailDetailVO;
+import com.login.LoginVo;
+import com.mysql.cj.Session;
 import com.product.model.*;
 import com.productType.model.ProductTypeService;
 
@@ -36,6 +39,8 @@ public class EmailServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		LoginVo loginVo =(LoginVo)req.getSession().getAttribute("loginVo");
+		
 		
 		if ("showletter".equals(action)) { // 來自listAllEmp.jsp的請求
 			List<String> errorMsgs = new LinkedList<String>();
@@ -69,10 +74,14 @@ public class EmailServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			EmailDetailService emailDetailService = new EmailDetailService();
-
+			
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				String mem_account = req.getParameter("mem_account");//收件人
+				Integer mem_access = emailDetailService.findMemAccess(mem_account);//1=廠商,2=網紅
+				if (mem_access == null) {
+					errorMsgs.add("帳號輸入錯誤,沒有此會員帳號");
+				}
 				if (mem_account == null || mem_account.trim().length() == 0) {
 					errorMsgs.add("收件人: 請勿空白");
 				}
@@ -89,13 +98,17 @@ public class EmailServlet extends HttpServlet {
 				}
 				
 				EmailDetailVO emailDetailVO =new EmailDetailVO();
+				if(mem_access==1) {//1=廠商,2=網紅
 				emailDetailVO.setCom_account(mem_account);
+				}else if(mem_access==2) {
+				emailDetailVO.setKol_account(mem_account);
+				}
 				emailDetailVO.setEmail_typenum(email_typenum);
 				emailDetailVO.setEmail_title(email_title);
 				emailDetailVO.setEmail_content(email_content);
-				emailDetailVO.setRecipient("COM");//收件人,先寫死
+				emailDetailVO.setSender(loginVo.getMebAccount());//寄件人
+//				emailDetailVO.setSender("tibameKOL");//寄件人登入還沒做好先寫死
 				
-				emailDetailVO.setKol_account("tibamekol");//寄件人先寫死
 				
 				if (!errorMsgs.isEmpty()) {
 //					req.setAttribute("productVO", productVO);
