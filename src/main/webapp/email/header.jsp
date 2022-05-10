@@ -1,4 +1,8 @@
+<%@page import="com.login.LoginVo"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+LoginVo loginVo = (LoginVo) session.getAttribute("loginVo");//讀取登入者的資料
+%>
 <html lang="en">
 
 <head>
@@ -98,8 +102,6 @@ href="<%=request.getContextPath()%>/resources/summernote/summernote-bs4.min.css"
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-<!-- 								<img src="dist/img/user1-128x128.jpg" alt="User Avatar" -->
-<!-- 									class="img-size-50 mr-3 img-circle"> -->
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Brad Diesel <span class="float-right text-sm text-danger"><i
@@ -115,8 +117,6 @@ href="<%=request.getContextPath()%>/resources/summernote/summernote-bs4.min.css"
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-<!-- 								<img src="dist/img/user8-128x128.jpg" alt="User Avatar" -->
-<!-- 									class="img-size-50 img-circle mr-3"> -->
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										John Pierce <span class="float-right text-sm text-muted"><i
@@ -132,8 +132,6 @@ href="<%=request.getContextPath()%>/resources/summernote/summernote-bs4.min.css"
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-<!-- 								<img src="dist/img/user3-128x128.jpg" alt="User Avatar" -->
-<!-- 									class="img-size-50 img-circle mr-3"> -->
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Nora Silvester <span class="float-right text-sm text-warning"><i
@@ -201,7 +199,7 @@ href="<%=request.getContextPath()%>/resources/summernote/summernote-bs4.min.css"
 						<!--             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">(顯示管理員帳號)</a>
+						<a href="#" class="d-block">${loginVo.mebAccount} 你好。</a>
 					</div>
 				</div>
 				<!-- Sidebar Menu -->

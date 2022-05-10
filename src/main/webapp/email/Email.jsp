@@ -1,15 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@page import="com.login.*"%>
 <%@ page import="com.emailDetail.model.*"%>
 <%@ page import="java.util.*"%>
 
+<%@ include file="header.jsp"%>
 <%
 EmailDetailService emailDetailService = new EmailDetailService();
-List<EmailDetailVO> list = emailDetailService.findMailBox("COM", "tibameCOM");
+// LoginVo loginVo = (LoginVo) session.getAttribute("loginVo");這段有寫在header.jsp上
+List<EmailDetailVO> list = emailDetailService.findMailBox(loginVo.getMebAccount());
 pageContext.setAttribute("list", list);
 %>
-<%@ include file="header.jsp"%>
+
 <div class="content-wrapper">
 	<section class="content">
 		<div class="row">
@@ -26,7 +29,7 @@ pageContext.setAttribute("list", list);
 				<div class="card card-primary card-outline">
 					<div class="card-header">
 						<div class="row m-2">
-							<i class="fa fa-envelope-open-o" aria-hidden="true" style="font-size: 22px;"> 收件夾</i>
+							<i class="fa fa-envelope-open-o" aria-hidden="true" style="font-size: 22px;"> ${loginVo.mebAccount} 的收件夾</i>
 						</div>
 					</div>
 					<div class="card-body p-0">
@@ -69,7 +72,7 @@ pageContext.setAttribute("list", list);
 												</div>
 											</td>
 											<td></td>
-											<td class="mailbox-name"><a href="read-mail.html">${emailDetailVO.kol_account}</a>
+											<td class="mailbox-name"><a href="read-mail.html">${emailDetailVO.sender}</a>
 											</td>
 											<td class="mailbox-subject">
 												<form action="<%=request.getContextPath()%>/email/email.do">
