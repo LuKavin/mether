@@ -11,7 +11,7 @@ import com.adm_meb.model.*;
 import com.adm_meb.model.AdmMebService;
 import com.adm_meb.model.AdmMebVO;
 @MultipartConfig
-public class AdmMebServlet extends HttpServlet {
+public class AdmMebServlet extends HttpServlet { 
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
