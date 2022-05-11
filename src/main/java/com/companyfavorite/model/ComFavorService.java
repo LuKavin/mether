@@ -16,13 +16,13 @@ public class ComFavorService {
 		
 	}
 
-	public ComFavorVO updateCompanyFavorite(Integer favorite_IdNum, Integer com_IdNum, Integer kol_IdNum) {
+	public ComFavorVO updateCompanyFavorite(Integer favorite_idnum, Integer com_idnum, Integer kol_idnum) {
 		
 		ComFavorVO comFavorVO = new ComFavorVO(); 
 		
-		comFavorVO.setCom_idnum(com_IdNum);
-		comFavorVO.setFavorite_idnum(favorite_IdNum);
-		comFavorVO.setKol_idnum(kol_IdNum);
+		comFavorVO.setCom_idnum(com_idnum);
+		comFavorVO.setFavorite_idnum(favorite_idnum);
+		comFavorVO.setKol_idnum(kol_idnum);
 		
 		dao.update(comFavorVO);
 		
@@ -30,8 +30,8 @@ public class ComFavorService {
 		
 	}
 	
-	public ComFavorVO deleteCompanyFavorite(Integer favorite_IdNum) {
-		return dao.findByPrimarKey(favorite_IdNum);		
+	public ComFavorVO deleteCompanyFavorite(Integer favorite_idnum) {
+		return dao.findByPrimarKey(favorite_idnum);		
 	}
 	
 	public List<ComFavorVO> getAll() {
