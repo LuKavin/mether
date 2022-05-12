@@ -9,10 +9,11 @@ $(function () {
  
     //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＭＡＩＬＩＮＢＯＸ區======================================================================================================
     $('#summernote').summernote({
-        placeholder: '可拖曳圖片至此...',
+        placeholder: '請輸入文字......',
         tabsize: 2,
         height: 200,
         shortcuts: false,
+        disableDragAndDrop: true,
         toolbar: [
             ['style', ['bold', 'italic', 'underline', 'clear']],
             ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -20,6 +21,7 @@ $(function () {
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['height', ['height']],
+            ['insert', ['link']],
             ['Misc', ['fullscreen']]
         ]
     });
@@ -64,24 +66,13 @@ $(function () {
             p_num = 0;
         }
     })
-
-
-
     //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＦＯＲＭＰＲＯＧＲＥＳＳ區======================================================================================================
-
-
     $(".sendOK").on("click", function () {
-        // console.log("123");
         //獲得內容
         let msg_content = $('#summernote').summernote('code');
         $(".email_content").val(msg_content);
         //清空summernote
-        // $('#summernote').summernote('reset');
-
-
-
     })
-
     //=↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＭＥＳＳＥＮＧ區======================================================================================================
     $(".trashCanBtn").on("click", function () {
         let pk;
@@ -147,10 +138,6 @@ $(function () {
          let sendTo= $(".send-to").val();
          let sendSubject= $(".send-subject").val();
          let sendContent= $('#summernote').summernote('code');
-         console.log("sendTo="+sendTo);
-         console.log("sendSubject="+sendSubject);
-         console.log("sendContent="+sendContent);
-
         if(sendTo!="" && sendSubject!="" && sendContent !="<p><br></p>"){
             Swal.fire({
                 icon: 'success',
@@ -165,17 +152,38 @@ $(function () {
             $(".sendForm").submit();
         }
      })
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑寄信的Button觸發======================================================================================================
-    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑刪除信件傳送PK至後端+sweetAlert======================================================================================================
+    $(".draftBtn").on('click',function(){
+        let sendTo= $(".send-to").val();
+        let sendSubject= $(".send-subject").val();
+        let sendContent= $('#summernote').summernote('code');
+        if(sendContent =="<p><br></p>"){
+            Swal.fire({
+                icon: 'error',
+                title: '錯誤!',
+                text: '無法加入空白草稿',
+                showConfirmButton: false
+              })
+        }else{
+            Swal.fire({
+                icon: 'success',
+                title: '已存入草稿夾!',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            $(".draftForm").append(`<input type="hidden" name="draftTO" value="${sendTo}"></input>`);
+            $(".draftForm").append(`<input type="hidden" name="draftTitle" value="${sendSubject}"></input>`);
+            $(".draftForm").append(`<input type="hidden" name="draftContent" value="${sendContent}"></input>`);
+            $(".draftForm").append(`<input type="hidden" name="action" value="draft"></input>`);
+    
+            setTimeout(function () {
+                $(".draftForm").submit();
+            }, 800);
+        }
+
+    })
+    
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑+draft的Button觸發======================================================================================================
 
 
 

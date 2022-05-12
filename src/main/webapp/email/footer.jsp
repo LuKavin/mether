@@ -13,7 +13,7 @@
 				<li class="nav-item active"><a href="<%=request.getContextPath() %>/email/Email.jsp" class="nav-link">
 						<i class="fas fa-inbox"></i> 收件夾
 					</a></li>
-				<li class="nav-item"><a href="#" class="nav-link"> <i class="far fa-file-alt"></i> 草稿夾
+				<li class="nav-item"><a href="<%=request.getContextPath() %>/email/draft.jsp" class="nav-link"> <i class="far fa-file-alt"></i> 草稿夾
 					</a></li>
 				<li class="nav-item"><a href="<%=request.getContextPath() %>/email/trashCan.jsp" class="nav-link"> <i
 							class="far fa-trash-alt"></i> 垃圾桶
