@@ -39,10 +39,35 @@ public class EmailServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		LoginVo loginVo =(LoginVo)req.getSession().getAttribute("loginVo");
+		LoginVo loginVo =(LoginVo)req.getSession().getAttribute("loginVo");//登入者的資料
+		
+		if ("reply".equals(action)) { // 回信
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***************************1.接收請求參數****************************************/
+				String replyAccount = req.getParameter("replyAccount");
+				/***************************2.開始查詢資料****************************************/
+//				EmailDetailService emailDetailService = new EmailDetailService();
+//				EmailDetailVO emailDetailVO = emailDetailService.getOneLetter(email_num);
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("replyAccount", replyAccount);
+				String url = "/email/sendEmail.jsp???????";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/email/Email.jsp啥");
+				failureView.forward(req, res);
+			}
+		}
 		
 		
-		if ("showletter".equals(action)) { // 來自listAllEmp.jsp的請求
+		if ("showletter".equals(action)) { 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			

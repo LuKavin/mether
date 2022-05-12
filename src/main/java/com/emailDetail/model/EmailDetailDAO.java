@@ -144,6 +144,7 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 				emailDetailVO.setKol_account(rs.getString("KOL_ACCOUNT"));
 				emailDetailVO.setAdm_account(rs.getString("ADM_ACCOUNT"));
 				emailDetailVO.setEmail_title(rs.getString("EMAIL_TITLE"));
+				emailDetailVO.setSender(rs.getString("SENDER"));
 				emailDetailVO.setEmail_content(rs.getString("EMAIL_CONTENT"));
 				emailDetailVO.setEmail_num(rs.getInt("EMAIL_NUM"));
 				emailDetailVO.setEmail_date(rs.getObject("EMAIL_DATE",Timestamp.class));

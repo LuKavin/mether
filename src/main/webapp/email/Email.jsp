@@ -29,18 +29,22 @@ pageContext.setAttribute("list", list);
 				<div class="card card-primary card-outline">
 					<div class="card-header">
 						<div class="row m-2">
-							<i class="fa fa-envelope-open-o" aria-hidden="true" style="font-size: 22px;"> ${loginVo.mebAccount} 的收件夾</i>
+							<i class="fa fa-envelope-open-o" aria-hidden="true"
+								style="font-size: 22px;"> ${loginVo.mebAccount} 的收件夾</i>
 						</div>
 					</div>
 					<div class="card-body p-0">
 						<div class="mailbox-controls">
 							<div class="row align-items-center">
 								<label class="btn btn-default btn-lg checkbox-toggle"
-									style="display: inline; padding:8px 12px; height: 38px; width: 48px; margin: 0 15px; ">
-									<input type="checkbox" class="checkbox-master " style="width:20px;height:20px;">
+									style="display: inline; padding: 8px 12px; height: 38px; width: 48px; margin: 0 15px;">
+									<input type="checkbox" class="checkbox-master "
+									style="width: 20px; height: 20px;">
 								</label>
-								<form action="<%=request.getContextPath()%>/email/email.do" class="trashform" style="margin:0 ;">
-									<button class="btn btn-default btn-lg trashcan" onclick="return(confirm('確定刪除?'))" type="submit"
+								<form action="<%=request.getContextPath()%>/email/email.do"
+									class="trashform" style="margin: 0;">
+									<button class="btn btn-default btn-lg trashcan"
+										onclick="return(confirm('確定刪除?'))" type="submit"
 										style="display: inline;">
 										<i class="far fa-trash-alt"></i>
 									</button>
@@ -67,13 +71,19 @@ pageContext.setAttribute("list", list);
 											<td>
 												<div class="icheck-primary">
 													<input type="checkbox" value="" id="check1"
-														class="item checkdelete" name="checkdelete" style="width:20px;height:20px;"> <label
+														class="item checkdelete" name="checkdelete"
+														style="width: 20px; height: 20px;"> <label
 														for="check1"></label>
 												</div>
 											</td>
 											<td></td>
-											<td class="mailbox-name"><a href="read-mail.html">${emailDetailVO.sender}</a>
-											</td>
+											<td class="mailbox-name">
+												<form action="<%=request.getContextPath()%>/email/email.do">
+													<button type="submit" class="btn btn-link btn-sm">${emailDetailVO.sender}</button>
+													<input type="hidden" name="action" value="reply"> <input
+														type="hidden" name="replyAccount"
+														value="${emailDetailVO.sender}">
+												</form></td>
 											<td class="mailbox-subject">
 												<form action="<%=request.getContextPath()%>/email/email.do">
 													<input type="hidden" name="action" value="showletter">
@@ -97,4 +107,4 @@ pageContext.setAttribute("list", list);
 					</div>
 				</div>
 			</div>
-<%@ include file="footer.jsp"%>
+			<%@ include file="footer.jsp"%>
