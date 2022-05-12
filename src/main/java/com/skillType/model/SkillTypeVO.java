@@ -1,6 +1,8 @@
 package com.skillType.model;
 
-public class SkillTypeVO {
+import java.io.Serializable;
+
+public class SkillTypeVO implements Serializable{
 	
 	private Integer skill_typenum;
 	private String skill_typename;

@@ -1,6 +1,8 @@
 package com.platformType.model;
 
-public class PlatformTypeVO {
+import java.io.Serializable;
+
+public class PlatformTypeVO implements Serializable{
 	
 	private Integer platform_typenum;
 	private String platform_typename;
