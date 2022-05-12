@@ -6,6 +6,7 @@
 <%
 ProductService productService = new ProductService();
 List<ProductVO> list = productService.getAll();
+String replyAccount = (String) request.getAttribute("replyAccount");
 pageContext.setAttribute("list", list);
 %>
 
@@ -43,7 +44,7 @@ pageContext.setAttribute("list", list);
 									class="col-sm-2 col-form-label btn-outline-info text-center">收件者：</a>
 								<div class="col-sm-10">
 									<input type="text" class="form-control send-to"
-										name="mem_account" placeholder="To:">
+										name="mem_account" placeholder="To:" value="${replyAccount}">
 								</div>
 							</div>
 							<div class="row m-2">
