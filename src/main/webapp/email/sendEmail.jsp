@@ -38,7 +38,7 @@ pageContext.setAttribute("list", list);
 					</div>
 
 					<div class="card-body">
-						<form action="<%=request.getContextPath()%>/email/email.do">
+						<form action="<%=request.getContextPath()%>/email/email.do" class="sendForm">
 							<div class="row m-2">
 								<a href="#"
 									class="col-sm-2 col-form-label btn-outline-info text-center">收件者：</a>
@@ -57,26 +57,23 @@ pageContext.setAttribute("list", list);
 							<div class="form-group">
 								<div id="summernote"></div>
 							</div>
-							<div class="form-group">
-							</div>
-							<div class="card-footer">
-								<input type="hidden" name="action" value="insert">
-								<input type="hidden" name="email_content" class="email_content" value="">
-								<div class="float-right">
-									<button type="button" class="btn btn-default">
-										<i class="fas fa-pencil-alt"></i> Draft
-									</button>
-									<button type="submit" class="btn btn-warning sendOK">
-										<i class="far fa-envelope"></i> Send
-									</button>
-								</div>
-								<button type="reset" class="btn btn-default">
-									<i class="fas fa-times"></i> Discard
+							<div class="form-group"></div>
+							<input type="hidden" name="action" value="insert"> <input
+								type="hidden" name="email_content" class="email_content"
+								value="">
+						</form>
+						<div class="card-footer">
+							<div class="float-right">
+								<button type="button" class="btn btn-default draftVtn">
+									<i class="fas fa-pencil-alt"></i> +Draft
+								</button>
+								<button type="button" class="btn btn-warning sendOK">
+									<i class="far fa-envelope"></i> Send
 								</button>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
 
-<%@ include file="footer.jsp"%>
+			<%@ include file="footer.jsp"%>

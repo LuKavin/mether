@@ -30,7 +30,7 @@ pageContext.setAttribute("list", list);
 					<div class="card-header">
 						<div class="row m-2">
 							<i class="fa fa-envelope-open-o" aria-hidden="true"
-								style="font-size: 22px;"> ${loginVo.mebAccount} 的收件夾</i>
+								style="font-size: 22px;"> <span style="color:orange">${loginVo.mebAccount}</span> 的收件夾</i>
 						</div>
 					</div>
 					<div class="card-body p-0">
@@ -42,13 +42,12 @@ pageContext.setAttribute("list", list);
 									style="width: 20px; height: 20px;">
 								</label>
 								<form action="<%=request.getContextPath()%>/email/email.do"
-									class="trashform" style="margin: 0;">
-									<button class="btn btn-default btn-lg trashcan"
-										onclick="return(confirm('確定刪除?'))" type="submit"
-										style="display: inline;">
+									class="trashCanForm" style="margin: 0;" >
+									<button class="btn btn-default btn-lg trashCanBtn"
+										type="button" style="display: inline;">
 										<i class="far fa-trash-alt"></i>
 									</button>
-									<input type="hidden" name="action" value="delete">
+									<input type="hidden" name="action" value="toTrashCan">
 								</form>
 							</div>
 						</div>
@@ -90,7 +89,7 @@ pageContext.setAttribute("list", list);
 													<input type="hidden" name="email_num" class="email_num"
 														value="${emailDetailVO.email_num}">
 													<button type="submit" class="btn btn-link btn-sm">
-														<b>${emailDetailVO.email_title}</b>
+														<b style="${(emailDetailVO.sender=='ADM')?'background:rgb(233, 191, 191)':''}">${emailDetailVO.email_title}</b>
 													</button>
 
 												</form>

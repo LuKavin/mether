@@ -25,7 +25,6 @@ $(function () {
     });
 
     $(".cln-send").on("click", function () {
-        console.log('123');
         $('#summernote').summernote('reset');
         $('.send-to').val('');
         $('.send-subject').val('');
@@ -72,49 +71,111 @@ $(function () {
 
 
     $(".sendOK").on("click", function () {
-        console.log("123");
+        // console.log("123");
         //獲得內容
         let msg_content = $('#summernote').summernote('code');
         $(".email_content").val(msg_content);
         //清空summernote
-        $('#summernote').summernote('reset');
+        // $('#summernote').summernote('reset');
 
 
 
     })
 
     //=↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ＭＥＳＳＥＮＧ區======================================================================================================
-    let pk;
-    $(".trashcan").on("click", function () {
+    $(".trashCanBtn").on("click", function () {
+        let pk;
         let array = $(this).closest(".card-body").find(".checkdelete");
         $.each(array,function(index,val) {
             if($(this).prop("checked")){
                 // console.log($(this).closest("tr").find(".email_num").val());//找出有打勾的信件PK
                 pk = $(this).closest("tr").find(".email_num").val();
-                console.log(pk);
-                $(".trashform").append(`<input type="hidden" name="deletePk" value="${pk}"></input>`);
+                $(".trashCanForm").append(`<input type="hidden" name="deletePk" value="${pk}"></input>`);
             }
         })
     })
+    $(".trashCanBtn").on('click',function(){
+        Swal.fire({
+            title: '至垃圾桶',
+            text: "確定要將信件移至垃圾桶?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setTimeout(function () {
+                    $(".trashCanForm").submit();
+                }, 400);
+            }
+        })
+     })
 
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑至垃圾桶傳送PK至後端+sweetAlert======================================================================================================
+    $(".deleteBtn").on("click", function () {
+        let pk;
+        let array = $(this).closest(".card-body").find(".checkdelete");
+        $.each(array,function(index,val) {
+            if($(this).prop("checked")){
+                // console.log($(this).closest("tr").find(".email_num").val());//找出有打勾的信件PK
+                pk = $(this).closest("tr").find(".email_num").val();
+                $(".deleteForm").append(`<input type="hidden" name="deletePk" value="${pk}"></input>`);
+            }
+        })
+    })
+    $(".deleteBtn").on('click',function(){
+        Swal.fire({
+            title: '永久刪除信件',
+            text: "確定要將信件永久刪除?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setTimeout(function () {
+                    $(".deleteForm").submit();
+                }, 400);
+            }
+        })
+     })
 
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑刪除信件傳送PK至後端+sweetAlert======================================================================================================
+    $(".sendOK").on('click',function(){
+         let sendTo= $(".send-to").val();
+         let sendSubject= $(".send-subject").val();
+         let sendContent= $('#summernote').summernote('code');
+         console.log("sendTo="+sendTo);
+         console.log("sendSubject="+sendSubject);
+         console.log("sendContent="+sendContent);
 
-
-
-
-
-
-
-    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑信箱刪除======================================================================================================
-
-
-
-
-
-
-
-
-
+        if(sendTo!="" && sendSubject!="" && sendContent !="<p><br></p>"){
+            Swal.fire({
+                icon: 'success',
+                title: '信件已寄出',
+                showConfirmButton: false,
+                timer: 1000
+              })
+            setTimeout(function () {
+                $(".sendForm").submit();
+            }, 1300);
+        }else{
+            $(".sendForm").submit();
+        }
+     })
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑寄信的Button觸發======================================================================================================
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑刪除信件傳送PK至後端+sweetAlert======================================================================================================
 
 
 
