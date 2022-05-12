@@ -29,19 +29,21 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 			e.printStackTrace();
 		}
 	}
-
+	//加入草稿
+	private static final String add = "INSERT INTO `EMAIL_DETAIL` (`COM_ACCOUNT`, `KOL_ACCOUNT`, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `SENDER`) VALUES (?,?,?,?,?,?);";
+	//寄普通信
 	private static final String INSERT = "INSERT INTO `EMAIL_DETAIL` (`COM_ACCOUNT`, `KOL_ACCOUNT`, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `SENDER`) VALUES (?,?,?,?,?,?);";
-	// 帳號+找垃圾信箱
-	private static final String FIND_TRASHCAN_BOX= "SELECT EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM, SENDER FROM EMAIL_DETAIL WHERE (COM_ACCOUNT = ? and EMAIL_TYPENUM = 3) or (KOL_ACCOUNT = ? and EMAIL_TYPENUM = 3) or (ADM_ACCOUNT = ? and EMAIL_TYPENUM = 3)";
-	// 帳號+找信箱
+	// 帳號找垃圾桶 或 草稿夾
+	private static final String FIND_BOX= "SELECT EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM, SENDER FROM EMAIL_DETAIL WHERE (COM_ACCOUNT = ? and EMAIL_TYPENUM = ?) or (KOL_ACCOUNT = ? and EMAIL_TYPENUM = ?) or (ADM_ACCOUNT = ? and EMAIL_TYPENUM = ?)";
+	// 帳號找信箱
 	private static final String FIND_MAIL_BOX= "SELECT EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM, SENDER FROM EMAIL_DETAIL WHERE (COM_ACCOUNT = ? and EMAIL_TYPENUM in(1,4)) or (KOL_ACCOUNT = ? and EMAIL_TYPENUM in(1,4)) or (ADM_ACCOUNT = ? and EMAIL_TYPENUM in(1,4))";
-	// 用編號找一封信
+	// 用PK找一封信
 	private static final String GET_A_LETTER = "SELECT * FROM EMAIL_DETAIL WHERE EMAIL_NUM =?;";
 	//刪除信件
 	private static final String DELETE = "DELETE FROM EMAIL_DETAIL WHERE EMAIL_NUM = ?";
 	//移至垃圾桶
 	private static final String TRASH_CAN = "UPDATE EMAIL_DETAIL SET EMAIL_TYPENUM = 3  where EMAIL_NUM = ?;";
-	// 用帳號找出會員權限
+	//用帳號找出會員權限
 	private static final String FIND_ACCESS = "SELECT MEB_ACCESSNUM ACCESSNUM FROM COMPANY_MEB where COM_ACCOUNT=? union all SELECT MEB_ACCESSNUM FROM KOL_MEB where KOL_ACCOUNT=?";
 	//出現例外時，系統自動寄出信件
 	private static final String EXCEPTION_LETTER_COM = "INSERT INTO `EMAIL_DETAIL` (COM_ACCOUNT, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `SENDER`) VALUES (?, 4, '寄件失敗',?, 'ADM');";
@@ -88,17 +90,20 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 
 
 	@Override
-	public List<EmailDetailVO> findTrashCanBox(String mem_account) {
+	public List<EmailDetailVO> findBox(String mem_account,Integer mailType) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<EmailDetailVO> list = new ArrayList<>();
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(FIND_TRASHCAN_BOX);
+			pstmt = con.prepareStatement(FIND_BOX);
 			pstmt.setString(1, mem_account);
-			pstmt.setString(2, mem_account);
+			pstmt.setInt(2, mailType);
 			pstmt.setString(3, mem_account);
+			pstmt.setInt(4, mailType);
+			pstmt.setString(5, mem_account);
+			pstmt.setInt(6, mailType);
 
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -374,7 +379,46 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 
 		return list;
 	}
-	
-	
+
+	@Override
+	public void addDraft(EmailDetailVO emailDetailVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(add);
+
+			pstmt.setString(1, emailDetailVO.getCom_account());
+			pstmt.setString(2, emailDetailVO.getKol_account());
+			pstmt.setInt(3, emailDetailVO.getEmail_typenum());
+			pstmt.setString(4, emailDetailVO.getEmail_title());
+			pstmt.setString(5, emailDetailVO.getEmail_content());
+			pstmt.setString(6, emailDetailVO.getSender());
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			throw new RuntimeException("格式錯誤'或'沒有此帳號密碼");
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+
+
+
 
 }

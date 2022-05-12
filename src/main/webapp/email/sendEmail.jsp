@@ -1,3 +1,4 @@
+<%@page import="com.emailDetail.model.EmailDetailVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.product.model.*"%>
@@ -5,9 +6,8 @@
 
 <%
 ProductService productService = new ProductService();
-List<ProductVO> list = productService.getAll();
 String replyAccount = (String) request.getAttribute("replyAccount");
-pageContext.setAttribute("list", list);
+EmailDetailVO emailDetailVO = (EmailDetailVO) request.getAttribute("emailDetailVO");
 %>
 
 <%@ include file="header.jsp"%>
@@ -51,11 +51,11 @@ pageContext.setAttribute("list", list);
 								<label class="col-sm-2 col-form-label text-center">標題：</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control send-subject"
-										name="email_title" placeholder="Subject:">
+										name="email_title" placeholder="Subject:" value="${emailDetailVO.email_title}">
 								</div>
 							</div>
 							<div class="form-group">
-								<div id="summernote"></div>
+								<div id="summernote">${emailDetailVO.email_content}</div>
 							</div>
 							<div class="form-group"></div>
 							<input type="hidden" name="action" value="insert"> <input
@@ -64,7 +64,7 @@ pageContext.setAttribute("list", list);
 						</form>
 						<div class="card-footer">
 							<div class="float-right">
-								<button type="button" class="btn btn-default draftVtn">
+								<button type="button" class="btn btn-default draftBtn">
 									<i class="fas fa-pencil-alt"></i> +Draft
 								</button>
 								<button type="button" class="btn btn-warning sendOK">
@@ -75,5 +75,7 @@ pageContext.setAttribute("list", list);
 					</div>
 				</div>
 			</div>
+			<form action="<%=request.getContextPath()%>/email/email.do" class="draftForm">
+			</form>
 
 			<%@ include file="footer.jsp"%>

@@ -59,12 +59,11 @@ EmailDetailVO emailDetailVO = (EmailDetailVO) request.getAttribute("emailDetailV
 								<input type="hidden" name="action" value="reply">
 								 <input type="hidden" name="replyAccount"value="${emailDetailVO.sender}">
 							</form>
-							<form action="<%=request.getContextPath()%>/email/email.do">
-								<button class="btn btn-outline-danger btn-lg m-2" type="submit"
-									onclick="return(confirm('確定刪除?'))">
+							<form action="<%=request.getContextPath()%>/email/email.do" class="trashCanForm">
+								<button class="btn btn-outline-danger btn-lg m-2 trashCanBtn" type="button">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>刪除
 								</button>
-								<input type="hidden" name="action" value="delete">
+								<input type="hidden" name="action" value="toTrashCan">
 								 <input type="hidden" name="deletePk"value="${emailDetailVO.email_num}">
 							</form>
 						</div>
