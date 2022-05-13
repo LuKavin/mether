@@ -16,14 +16,6 @@ Integer kolMebcount = backStageSvc.kolMebcount();
 pageContext.setAttribute("kolMebcount", kolMebcount);
 %>
 
-
-<html lang="en">
-
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>後台管理系統</title>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
