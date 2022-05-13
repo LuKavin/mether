@@ -4,18 +4,18 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="row justify-content-center">
-					<a href="<%=request.getContextPath()%>/email/sendEmail.jsp" class="btn btn-warning"
+					<a href="<%=request.getContextPath()%>/comBackStage/email/sendEmail.jsp" class="btn btn-warning"
 						style="padding: 5px 30px;"> <i class="fa fa-paper-plane-o" aria-hidden="true"> 寄信</i>
 					</a>
 				</div>
 			</div>
 			<ul class="nav nav-pills flex-column">
-				<li class="nav-item active"><a href="<%=request.getContextPath() %>/email/Email.jsp" class="nav-link">
+				<li class="nav-item active"><a href="<%=request.getContextPath() %>/comBackStage/email/Email.jsp" class="nav-link">
 						<i class="fas fa-inbox"></i> 收件夾
 					</a></li>
-				<li class="nav-item"><a href="<%=request.getContextPath() %>/email/draft.jsp" class="nav-link"> <i class="far fa-file-alt"></i> 草稿夾
+				<li class="nav-item"><a href="<%=request.getContextPath() %>/comBackStage/email/draft.jsp" class="nav-link"> <i class="far fa-file-alt"></i> 草稿夾
 					</a></li>
-				<li class="nav-item"><a href="<%=request.getContextPath() %>/email/trashCan.jsp" class="nav-link"> <i
+				<li class="nav-item"><a href="<%=request.getContextPath() %>/comBackStage/email/trashCan.jsp" class="nav-link"> <i
 							class="far fa-trash-alt"></i> 垃圾桶
 					</a></li>
 			</ul>
@@ -56,15 +56,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"
 		integrity="sha512-KBeR1NhClUySj9xBB0+KRqYLPkM6VvXiiWaSz/8LCQNdRpUm38SWUrj0ccNDNSkwCD9qPA4KobLliG26yPppJA=="
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/adminlte.js"></script>
+	<script src="<%=request.getContextPath()%>/comBackStage/resources/js/adminlte.js"></script>
 	<!-- Table sort -->
-	<script src="<%=request.getContextPath()%>/resources/js/sort.js"></script>
+	<script src="<%=request.getContextPath()%>/comBackStage/resources/js/sort.js"></script>
 	<!-- Summernote -->
-	<script src="<%=request.getContextPath()%>/resources/summernote/summernote-bs4.min.js"></script>
+	<script src="<%=request.getContextPath()%>/comBackStage/resources/summernote/summernote-bs4.min.js"></script>
 	<!-- sweet alert2 -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- CJN Js -->
-	<script src="<%=request.getContextPath()%>/resources/js/awsome.js"></script>
+	<script src="<%=request.getContextPath()%>/comBackStage/resources/js/awsome.js"></script>
 	
 	</body>
 

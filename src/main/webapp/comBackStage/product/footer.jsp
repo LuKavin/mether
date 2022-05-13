@@ -28,11 +28,11 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"
 		integrity="sha512-KBeR1NhClUySj9xBB0+KRqYLPkM6VvXiiWaSz/8LCQNdRpUm38SWUrj0ccNDNSkwCD9qPA4KobLliG26yPppJA=="
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/adminlte.js"></script>
+	<script src="<%=request.getContextPath()%>/comBackStage/resources/js/adminlte.js"></script>
 	<!-- CJN Js -->
-	<script src="<%=request.getContextPath()%>/resources/js/awsome.js"></script>
+	<script src="<%=request.getContextPath()%>/comBackStage/resources/js/awsome.js"></script>
 	<!-- Table sort -->
-	<script src="<%=request.getContextPath()%>/resources/js/sort.js"></script>
+	<script src="<%=request.getContextPath()%>/comBackStage/resources/js/sort.js"></script>
 		<script>
 		document
 				.addEventListener(
