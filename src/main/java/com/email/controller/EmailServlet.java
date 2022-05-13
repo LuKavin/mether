@@ -51,7 +51,7 @@ public class EmailServlet extends HttpServlet {
 				/***************************2.開始查詢資料****************************************/
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("replyAccount", replyAccount);
-				String url = "/email/sendEmail.jsp";
+				String url = "/comBackStage/email/sendEmail.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
@@ -59,7 +59,7 @@ public class EmailServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得修改的資料:");
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/email/Email.jsp");
+						.getRequestDispatcher("/comBackStage/email/Email.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -76,7 +76,7 @@ public class EmailServlet extends HttpServlet {
 				EmailDetailVO emailDetailVO = emailDetailService.getOneLetter(email_num);
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("emailDetailVO", emailDetailVO);
-				String url = "/email/sendEmail.jsp";
+				String url = "/comBackStage/email/sendEmail.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
@@ -84,7 +84,7 @@ public class EmailServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得修改的資料:");
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/email/Email.jsp啥");
+						.getRequestDispatcher("/comBackStage/email/Email.jsp啥");
 				failureView.forward(req, res);
 			}
 		}
@@ -102,7 +102,7 @@ public class EmailServlet extends HttpServlet {
 				EmailDetailVO emailDetailVO = emailDetailService.getOneLetter(email_num);
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("emailDetailVO", emailDetailVO);
-				String url = "/email/letter.jsp";
+				String url = "/comBackStage/email/letter.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
@@ -110,7 +110,7 @@ public class EmailServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得修改的資料:");
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/email/Email.jsp啥");
+						.getRequestDispatcher("/comBackStage/email/Email.jsp啥");
 				failureView.forward(req, res);
 			}
 		}
@@ -153,7 +153,7 @@ public class EmailServlet extends HttpServlet {
 				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/email/sendEmail.jsp");
+							.getRequestDispatcher("/comBackStage/email/sendEmail.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -161,7 +161,7 @@ public class EmailServlet extends HttpServlet {
 				/***************************2.開始新增資料***************************************/
 				emailDetailService.send(emailDetailVO);
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/email/Email.jsp";
+				String url = "/comBackStage/email/Email.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);				
 				
@@ -170,12 +170,12 @@ public class EmailServlet extends HttpServlet {
 				//傳入三個參數:寄件失敗者的帳號,寄件者會員權限,輸入錯誤的帳號
 				emailDetailService.sendErrorLetter(loginVo.getMebAccount(),loginVo.getMebAccess(),mem_account);
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/email/Email.jsp");
+						.getRequestDispatcher("/comBackStage/email/Email.jsp");
 				failureView.forward(req, res);
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/email/sendEmail.jsp");
+						.getRequestDispatcher("/comBackStage/email/sendEmail.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -209,7 +209,7 @@ public class EmailServlet extends HttpServlet {
 				/***************************2.開始新增資料***************************************/
 				emailDetailService.addDraft(emailDetailVO);
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/email/Email.jsp";
+				String url = "/comBackStage/email/Email.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);				
 				
@@ -217,7 +217,7 @@ public class EmailServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/email/sendEmail.jsp");
+						.getRequestDispatcher("/comBackStage/email/sendEmail.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -239,7 +239,7 @@ public class EmailServlet extends HttpServlet {
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				String url = "/email/trashCan.jsp";
+				String url = "/comBackStage/email/trashCan.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
@@ -247,7 +247,7 @@ public class EmailServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/email/trashCan.jsp");
+						.getRequestDispatcher("/comBackStage/email/trashCan.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -269,7 +269,7 @@ public class EmailServlet extends HttpServlet {
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				String url = "/email/Email.jsp";
+				String url = "/comBackStage/email/Email.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
@@ -277,7 +277,7 @@ public class EmailServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/email/Email.jsp");
+						.getRequestDispatcher("/comBackStage/email/Email.jsp");
 				failureView.forward(req, res);
 			}
 		}

@@ -1,4 +1,8 @@
+<%@page import="com.login.LoginVo"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+LoginVo loginVo = (LoginVo) session.getAttribute("loginVo");//讀取登入者的資料
+%>
 <html lang="en">
 
 <head>
@@ -22,7 +26,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- jncss -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/awsome.css">
+	href="<%=request.getContextPath()%>/comBackStage/resources/css/awsome.css">
 <!-- bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -33,8 +37,9 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
 	integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
+<!-- summer note -->	
+<link rel="stylesheet"
+href="<%=request.getContextPath()%>/comBackStage/resources/summernote/summernote-bs4.min.css">
 
 <style>
 .preview_img {
@@ -194,7 +199,7 @@
 						<!--             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">(顯示管理員帳號)</a>
+						<a href="#" class="d-block">${loginVo.mebAccount} 你好。</a>
 					</div>
 				</div>
 				<!-- Sidebar Menu -->
@@ -203,7 +208,7 @@
 						data-widget="treeview" role="menu" data-accordion="false">
 						<!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="<%=request.getContextPath() %>/product/product.jsp" class="nav-link">
+							href="<%=request.getContextPath() %>/comBackStage/product/product.jsp" class="nav-link">
 								<p>
 									<i class="fas fa-box"></i> 商品列表
 								</p>
@@ -238,7 +243,7 @@
 
 
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="<%=request.getContextPath() %>/email/Email.jsp" class="nav-link">
+							href="<%=request.getContextPath() %>/comBackStage/email/Email.jsp" class="nav-link">
 								<p>
 									<i class="fa fa-envelope" aria-hidden="true"></i> 信箱
 								</p>
