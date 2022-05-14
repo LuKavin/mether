@@ -12,23 +12,18 @@ public class PlatformTypeService {
 		dao = new PlatformTypeDAO();
 	}
 	
-	public PlatformTypeVO addPlatformType(Integer platform_typenum, String platform_typename) {
+	public PlatformTypeVO addPlatformType(String platform_typename) {
 
 		PlatformTypeVO platformTypeVO = new PlatformTypeVO();
 
-		platformTypeVO.setPlatform_typenum(platform_typenum);
 		platformTypeVO.setPlatform_typename(platform_typename);
 		dao.insert(platformTypeVO);
 
 		return platformTypeVO;
 	}
 
-	public PlatformTypeVO updatePlatformType(Integer platform_typenum, String platform_typename) {
+	public PlatformTypeVO updatePlatformType(PlatformTypeVO platformTypeVO ) {
 
-		PlatformTypeVO platformTypeVO = new PlatformTypeVO();
-
-		platformTypeVO.setPlatform_typenum(platform_typenum);
-		platformTypeVO.setPlatform_typename(platform_typename);
 		dao.update(platformTypeVO);
 
 		return platformTypeVO;
