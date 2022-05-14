@@ -27,10 +27,10 @@ public class SkillTypeDAO implements SkillTypeDAO_interface{
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO SKILL_TYPE (SKILL_TYPENUM,SKILL_TYPENAME) VALUES (?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO SKILL_TYPE (SKILL_TYPENAME) VALUES (?)";
 	private static final String GET_ALL_STMT = "SELECT SKILL_TYPENUM,SKILL_TYPENAME FROM SKILL_TYPE order by SKILL_TYPENUM";
 	private static final String GET_ONE_STMT = "SELECT SKILL_TYPENUM,SKILL_TYPENAME FROM SKILL_TYPE where SKILL_TYPENUM = ?";
-	private static final String UPDATE = "UPDATE SKILL_TYPE set SKILL_TYPENUM=?, SKILL_TYPENAME=? where SKILL_TYPENUM = ?";
+	private static final String UPDATE = "UPDATE SKILL_TYPE set SKILL_TYPENAME=? where SKILL_TYPENUM = ?";
 
 	@Override
 	public void insert(SkillTypeVO skillTypeVO) {
@@ -42,8 +42,7 @@ public class SkillTypeDAO implements SkillTypeDAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, skillTypeVO.getSkill_typenum());
-			pstmt.setString(2, skillTypeVO.getSkill_typename());
+			pstmt.setString(1, skillTypeVO.getSkill_typename());
 
 			pstmt.executeUpdate();
 
@@ -80,8 +79,8 @@ public class SkillTypeDAO implements SkillTypeDAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, skillTypeVO.getSkill_typenum());
-			pstmt.setString(2, skillTypeVO.getSkill_typename());
+			pstmt.setString(1, skillTypeVO.getSkill_typename());
+			pstmt.setInt(2, skillTypeVO.getSkill_typenum());
 
 			pstmt.executeUpdate();
 

@@ -30,65 +30,65 @@ public class SkillTypeServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
-
-			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
-
-			try {
-				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String str = req.getParameter("skill_typenum");
-				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請輸入平台編號");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("");
-					failureView.forward(req, res);
-					return;// 程式中斷
-				}
-
-				Integer skill_typenum = null;
-				try {
-					skill_typenum = new Integer(str);
-				} catch (Exception e) {
-					errorMsgs.add("平台編號格式不正確");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("");
-					failureView.forward(req, res);
-					return;// 程式中斷
-				}
-
-				/*************************** 2.開始查詢資料 *****************************************/
-				SkillTypeService skillTypeService = new SkillTypeService();
-				SkillTypeVO skillTypeVO = skillTypeService.getOneSkillType(skill_typenum);
-				if (skillTypeVO == null) {
-					errorMsgs.add("查無資料");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("");
-					failureView.forward(req, res);
-					return;// 程式中斷
-				}
-
-				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("skillTypeVO", skillTypeVO); // 資料庫取出的empVO物件,存入req
-				String url = "";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
-				successView.forward(req, res);
-
-				/*************************** 其他可能的錯誤處理 *************************************/
-			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("");
-				failureView.forward(req, res);
-			}
-		}
+//		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
+//
+//			List<String> errorMsgs = new LinkedList<String>();
+//			// Store this set in the request scope, in case we need to
+//			// send the ErrorPage view.
+//			req.setAttribute("errorMsgs", errorMsgs);
+//
+//			try {
+//				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+//				String str = req.getParameter("skill_typenum");
+//				if (str == null || (str.trim()).length() == 0) {
+//					errorMsgs.add("請輸入平台編號");
+//				}
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req.getRequestDispatcher("");
+//					failureView.forward(req, res);
+//					return;// 程式中斷
+//				}
+//
+//				Integer skill_typenum = null;
+//				try {
+//					skill_typenum = new Integer(str);
+//				} catch (Exception e) {
+//					errorMsgs.add("平台編號格式不正確");
+//				}
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req.getRequestDispatcher("");
+//					failureView.forward(req, res);
+//					return;// 程式中斷
+//				}
+//
+//				/*************************** 2.開始查詢資料 *****************************************/
+//				SkillTypeService skillTypeService = new SkillTypeService();
+//				SkillTypeVO skillTypeVO = skillTypeService.getOneSkillType(skill_typenum);
+//				if (skillTypeVO == null) {
+//					errorMsgs.add("查無資料");
+//				}
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req.getRequestDispatcher("");
+//					failureView.forward(req, res);
+//					return;// 程式中斷
+//				}
+//
+//				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+//				req.setAttribute("skillTypeVO", skillTypeVO); // 資料庫取出的empVO物件,存入req
+//				String url = "";
+//				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+//				successView.forward(req, res);
+//
+//				/*************************** 其他可能的錯誤處理 *************************************/
+//			} catch (Exception e) {
+//				errorMsgs.add("無法取得資料:" + e.getMessage());
+//				RequestDispatcher failureView = req.getRequestDispatcher("");
+//				failureView.forward(req, res);
+//			}
+//		}
 
 		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
 
@@ -107,14 +107,14 @@ public class SkillTypeServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("skillTypeVO", skillTypeVO); // 資料庫取出的empVO物件,存入req
-				String url = "";
+				String url = "/skillType/update_skillType.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("");
+				RequestDispatcher failureView = req.getRequestDispatcher("/skillType/AllskillType.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -145,25 +145,25 @@ public class SkillTypeServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("skillTypeVO", skillTypeVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("");
+					RequestDispatcher failureView = req.getRequestDispatcher("/skillType/update_skillType.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
 
 				/*************************** 2.開始修改資料 *****************************************/
 				SkillTypeService skillTypeService = new SkillTypeService();
-				skillTypeVO = skillTypeService.updateSkillType(skill_typenum,skill_typename );
-				
+				skillTypeVO = skillTypeService.updateSkillType(skillTypeVO);
+
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("skillTypeVO", skillTypeVO); // 資料庫update成功後,正確的的empVO物件,存入req
-				String url = "";
+				String url = "/skillType/AllskillType.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("");
+				RequestDispatcher failureView = req.getRequestDispatcher("/skillType/AllskillType.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -177,8 +177,6 @@ public class SkillTypeServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				Integer skill_typenum = new Integer(req.getParameter("skill_typenum").trim());
-
 				String skill_typename = req.getParameter("skill_typename");
 				String skill_typenameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (skill_typename == null || skill_typename.trim().length() == 0) {
@@ -187,33 +185,27 @@ public class SkillTypeServlet extends HttpServlet {
 					errorMsgs.add("平台類別名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
 				}
 
-				SkillTypeVO skillTypeVO = new SkillTypeVO();
-				skillTypeVO.setSkill_typenum(skill_typenum);
-				skillTypeVO.setSkill_typename(skill_typename);
-
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("skillTypeVO", skillTypeVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("");
+					RequestDispatcher failureView = req.getRequestDispatcher("/skillType/AllskillType.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
 
-
 				/*************************** 2.開始新增資料 ***************************************/
 
 				SkillTypeService skillTypeService = new SkillTypeService();
-				skillTypeVO = skillTypeService.addSkillType(null,skill_typename );
+				skillTypeService.addSkillType(skill_typename);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "";
+				String url = "/skillType/AllskillType.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("");
+				RequestDispatcher failureView = req.getRequestDispatcher("/skillType/AllskillType.jsp");
 				failureView.forward(req, res);
 			}
 		}
