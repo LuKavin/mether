@@ -1,11 +1,13 @@
+<%@page import="com.skillType.model.SkillTypeService"%>
+<%@page import="com.skillType.model.SkillTypeVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.platformType.model.*"%>
+<%@ page import="com.skillType.model.*"%>
 <%@ page import="java.util.*"%>
 
 <% 
-PlatformTypeService platformTypeService = new PlatformTypeService();
-List<PlatformTypeVO> list = platformTypeService.getAll();
+SkillTypeService skillTypeService = new SkillTypeService();
+List<SkillTypeVO> list = skillTypeService.getAll();
 pageContext.setAttribute("list", list);
 %>
 <%@ include file="header.jsp" %>
@@ -16,7 +18,7 @@ pageContext.setAttribute("list", list);
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8">
 				<div class="container h2" style="text-align: center;">
-					所有平台類型資料</div>
+					所有專長類型資料</div>
 			</div>
 			<div class="col-sm-2"></div>
 		</div>
@@ -35,11 +37,11 @@ pageContext.setAttribute("list", list);
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<h6 style="display: inline-block;">新增平台類型</h6>
+				<h6 style="display: inline-block;">新增專長類型</h6>
 				<FORM METHOD="post"
-					ACTION="<%=request.getContextPath()%>/platformType/platformType.do"
+					ACTION="<%=request.getContextPath()%>/SkillTypeServlet"
 					style="display: inline-block;">
-					<input type="text" name="job_typename" placeholder="輸入新平台類型名稱">
+					<input type="text" name="skill_typename" placeholder="輸入新專長類型名稱">
 					<input type="hidden" name="action" value="insert"> <input
 						type="submit" value="新增">
 				</FORM>
@@ -61,28 +63,38 @@ pageContext.setAttribute("list", list);
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>平台類型編號</th>
-								<th>平台類型名稱</th>
+								<th>專長類型編號</th>
+								<th>專長類型名稱</th>
 								<th>修改</th>
+								<th>刪除</th>
 							</tr>
 						</thead>
-						<c:forEach var="platformTypeVO" items="${list}">
+						<c:forEach var="skillTypeVO" items="${list}">
 							<tr>
-								<td>${platformVO.platform_typenum}</td>
-								<td>${platformVO.platform_typename}</td>
+								<td>${skillTypeVO.skill_typenum}</td>
+								<td>${skillTypeVO.skill_typename}</td>
 								<td>
 									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/platformType/platformType.do"
+										ACTION="<%=request.getContextPath()%>/SkillTypeServlet"
 										style="margin-bottom: 0px;">
 										<input type="submit" value="修改"
 											class="btn btn-outline-secondary"> <input
-											type="hidden" name="job_typenum"
-											value="${jobTypeVO.job_typenum}"> <input
+											type="hidden" name="skill_typenum"
+											value="${skillTypeVO.skill_typenum}"> <input
 											type="hidden" name="action" value="getOne_For_Update">
 									</FORM>
 								</td>
 								<td>
-									
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/SkillTypeServlet"
+										style="margin-bottom: 0px;">
+										<input type="button" value="刪除"
+											class="btn btn-outline-secondary" disabled
+											data-bs-toggle="button" onclick="return(confirm('確定刪除?'))">
+										<input type="hidden" name="skill_typenum"
+											value="${skillTypeVO.skill_typenum}"> <input
+											type="hidden" name="action" value="delete">
+									</FORM>
 								</td>
 							</tr>
 						</c:forEach>
