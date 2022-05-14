@@ -3,15 +3,30 @@
 <%@ page import="com.platformType.model.*"%>
 <%@ page import="java.util.*"%>
 
-<% 
+<%
 PlatformTypeService platformTypeService = new PlatformTypeService();
 List<PlatformTypeVO> list = platformTypeService.getAll();
 pageContext.setAttribute("list", list);
 %>
-<%@ include file="header.jsp" %>
+<%@ include file="header.jsp"%>
+<html lang="en">
+<head>
+<title>所有平台類型</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+	crossorigin="anonymous"></script>
+</head>
+
+
 <body bgcolor='white'>
 	<div class="content-wrapper">
-    	<br>
+		<br>
 		<div class="row">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8">
@@ -22,24 +37,13 @@ pageContext.setAttribute("list", list);
 		</div>
 		<div class="row">
 			<div class="col-sm-2"></div>
+			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
-				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button"
-						id="dropdownMenuButton1" data-bs-toggle="dropdown"
-						aria-expanded="false">選擇類型</button>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						<li><a class="dropdown-item" href="#">工作類型</a></li>
-						<li><a class="dropdown-item" href="#">專長類型</a></li>
-						<li><a class="dropdown-item" href="#">平台類型</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<h6 style="display: inline-block;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h6>
+				<h6 style="display: inline-block;">新增平台類型</h6>
 				<FORM METHOD="post"
-					ACTION="<%=request.getContextPath()%>/platformType/platformType.do"
+					ACTION="<%=request.getContextPath()%>/PlatformTypeServlet"
 					style="display: inline-block;">
-					<h6 style="display: inline-block;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h6>
+					<input type="text" name="platform_typename" placeholder="輸入平台類型名稱">
 					<input type="hidden" name="action" value="insert"> <input
 						type="submit" value="新增">
 				</FORM>
@@ -64,25 +68,35 @@ pageContext.setAttribute("list", list);
 								<th>平台類型編號</th>
 								<th>平台類型名稱</th>
 								<th>修改</th>
+								<th>刪除</th>
 							</tr>
 						</thead>
 						<c:forEach var="platformTypeVO" items="${list}">
 							<tr>
-								<td>${platformVO.platform_typenum}</td>
-								<td>${platformVO.platform_typename}</td>
+								<td>${platformTypeVO.platform_typenum}</td>
+								<td>${platformTypeVO.platform_typename}</td>
 								<td>
 									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/platformType/platformType.do"
+										ACTION="<%=request.getContextPath()%>/PlatformTypeServlet"
 										style="margin-bottom: 0px;">
 										<input type="submit" value="修改"
 											class="btn btn-outline-secondary"> <input
-											type="hidden" name="job_typenum"
-											value="${jobTypeVO.job_typenum}"> <input
+											type="hidden" name="platform_typenum"
+											value="${platformTypeVO.platform_typenum}"> <input
 											type="hidden" name="action" value="getOne_For_Update">
 									</FORM>
 								</td>
 								<td>
-									
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/PlatformTypeServlet"
+										style="margin-bottom: 0px;">
+										<input type="button" value="刪除"
+											class="btn btn-outline-secondary" disabled
+											data-bs-toggle="button" onclick="return(confirm('確定刪除?'))">
+										<input type="hidden" name="platform_typenum"
+											value="${platformTypeVO.platform_typenum}"> <input
+											type="hidden" name="action" value="delete">
+									</FORM>
 								</td>
 							</tr>
 						</c:forEach>
@@ -92,12 +106,14 @@ pageContext.setAttribute("list", list);
 			</div>
 		</div>
 </body>
-		
-<%@ include file="footer.jsp" %>
 
-	
-	
-	
-	
-	
-	
+<%@ include file="footer.jsp"%>
+
+
+
+
+
+
+
+
+</html>

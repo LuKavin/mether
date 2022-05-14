@@ -27,10 +27,10 @@ public class PlatformTypeDAO implements PlatformTypeDAO_interface {
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO PLATFORM_TYPE (PLATFORM_TYPENUM,PLATFORM_TYPENAME) VALUES (?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO PLATFORM_TYPE (PLATFORM_TYPENAME) VALUES (?)";
 	private static final String GET_ALL_STMT = "SELECT PLATFORM_TYPENUM,PLATFORM_TYPENAME FROM PLATFORM_TYPE order by PLATFORM_TYPENUM";
 	private static final String GET_ONE_STMT = "SELECT PLATFORM_TYPENUM,PLATFORM_TYPENAME FROM PLATFORM_TYPE where PLATFORM_TYPENUM = ?";
-	private static final String UPDATE = "UPDATE PLATFORM_TYPE set PLATFORM_TYPENUM=?, PLATFORM_TYPENAME=? where PLATFORM_TYPENUM = ?";
+	private static final String UPDATE = "UPDATE PLATFORM_TYPE set PLATFORM_TYPENAME=? where PLATFORM_TYPENUM = ?";
 
 	@Override
 	public void insert(PlatformTypeVO platformTypeVO) {
@@ -42,8 +42,8 @@ public class PlatformTypeDAO implements PlatformTypeDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, platformTypeVO.getPlatform_typenum());
-			pstmt.setString(2, platformTypeVO.getPlatform_typename());
+//			pstmt.setInt(1, platformTypeVO.getPlatform_typenum());
+			pstmt.setString(1, platformTypeVO.getPlatform_typename());
 
 			pstmt.executeUpdate();
 
@@ -79,8 +79,8 @@ public class PlatformTypeDAO implements PlatformTypeDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, platformTypeVO.getPlatform_typenum());
-			pstmt.setString(2, platformTypeVO.getPlatform_typename());
+			pstmt.setString(1, platformTypeVO.getPlatform_typename());
+			pstmt.setInt(2, platformTypeVO.getPlatform_typenum());
 
 			pstmt.executeUpdate();
 
