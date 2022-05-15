@@ -15,13 +15,6 @@ import javax.sql.DataSource;
 
 import com.jobType.model.JobTypeVO;
 
-
-//
-//
-//此Dao尚未做任何測試
-//
-//
-
 public class ProductPhotoDao implements ProductPhotoDao_interface{
 	private static DataSource ds = null;
 	static {
@@ -33,20 +26,26 @@ public class ProductPhotoDao implements ProductPhotoDao_interface{
 		}
 	}
 	
-	private static final String INSERT = "INSERT INTO PRODUCT_PHOTO (PRODUCT_PHOTO) value (?);";
+	private static final String INSERT = "INSERT INTO PRODUCT_PHOTO (PRODUCT_NUM, PRODUCT_PHOTO1, PRODUCT_PHOTO2, PRODUCT_PHOTO3, PRODUCT_PHOTO4, PRODUCT_PHOTO5) value (?,?,?,?,?,?);";
+	
 	private static final String DELETE =  "DELETE FROM PRODUCT_PHOTO WHERE PRODUCT_PHOTONUM = ?;";
 	private static final String GET_ONE = "SELECT PRODUCT_PHOTONUM, PRODUCT_PHOTO, PRODUCT_NUM FROM PRODUCT_PHOTO WHERE PRODUCT_PHOTONUM = ?";
-	private static final String GET_ALL_FORMEM = "SELECT PRODUCT_PHOTONUM, PRODUCT_PHOTO, PRODUCT_NUM FROM PRODUCT_PHOTO WHERE PRODUCT_NUM = ?;";
+	private static final String GET_ALL = "SELECT PRODUCT_PHOTONUM, PRODUCT_PHOTO, PRODUCT_NUM FROM PRODUCT_PHOTO WHERE PRODUCT_NUM = ?;";
+	private static final String GET_ALL_FOR_PRO = "SELECT * FROM PRODUCT_PHOTO where PRODUCT_NUM = ?";
 	@Override
-	public void insert(ProductPhotoVO productPhotoVO) {
+	public void insert(Integer product_num, byte[] product_photo1, byte[] product_photo2, byte[] product_photo3, byte[] product_photo4, byte[] product_photo5) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT);
-			pstmt.setBytes(1, productPhotoVO.getProduct_photo());
-
+			pstmt.setInt(1, product_num);
+			pstmt.setBytes(2, product_photo1);
+			pstmt.setBytes(3, product_photo2);
+			pstmt.setBytes(4, product_photo3);
+			pstmt.setBytes(5, product_photo4);
+			pstmt.setBytes(6, product_photo5);
 			pstmt.executeUpdate();
 			
 
@@ -120,7 +119,7 @@ public class ProductPhotoDao implements ProductPhotoDao_interface{
 			while(rs.next()) {
 				productPhotoVO = new ProductPhotoVO();
 				productPhotoVO.setProduct_photonum(rs.getInt("PRODUCT_PHOTONUM"));
-				productPhotoVO.setProduct_photo(rs.getBytes("PRODUCT_PHOTO"));
+				productPhotoVO.setProduct_photo1(rs.getBytes("PRODUCT_PHOTO1"));
 				productPhotoVO.setProduct_num(rs.getInt("PRODUCT_NUM"));
 			}
 			
@@ -148,21 +147,69 @@ public class ProductPhotoDao implements ProductPhotoDao_interface{
 		return productPhotoVO;
 	}
 	@Override
-	public List<ProductPhotoVO> getAll(Integer product_num) {//找某商品全部的圖片
+	public List<ProductPhotoVO> getAll(Integer product_num) {
+		List<ProductPhotoVO> list = null;
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		try {
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(GET_ALL);
+//			pstmt.setInt(1, product_num);
+//			pstmt.executeUpdate();
+//			rs = pstmt.executeQuery();
+//			while(rs.next()) {
+//				ProductPhotoVO productPhotoVO = new ProductPhotoVO();
+//				productPhotoVO.setProduct_photonum(rs.getInt("PRODUCT_PHOTONUM"));
+//				productPhotoVO.setProduct_photo(rs.getBytes("PRODUCT_PHOTO"));
+//				productPhotoVO.setProduct_num(rs.getInt("PRODUCT_NUM"));
+//				list.add(productPhotoVO);
+//			}
+//			
+//
+//		}catch (SQLException se) {
+//			throw new RuntimeException("A database error occured. "
+//					+ se.getMessage());
+//		} finally {
+//			if (pstmt != null) {
+//				try {
+//					pstmt.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (con != null) {
+//				try {
+//					con.close();
+//				} catch (Exception e) {
+//					e.printStackTrace(System.err);
+//				}
+//			}
+//		}
+		
+		return list;
+	}
+
+	@Override
+	public List<ProductPhotoVO> getOneProductAll(Integer product_num) {//找某商品全部的圖片
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<ProductPhotoVO> list = null;
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_FORMEM);
+			pstmt = con.prepareStatement(GET_ALL_FOR_PRO);
 			pstmt.setInt(1, product_num);
 			pstmt.executeUpdate();
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ProductPhotoVO productPhotoVO = new ProductPhotoVO();
 				productPhotoVO.setProduct_photonum(rs.getInt("PRODUCT_PHOTONUM"));
-				productPhotoVO.setProduct_photo(rs.getBytes("PRODUCT_PHOTO"));
+				productPhotoVO.setProduct_photo1(rs.getBytes("PRODUCT_PHOTO1"));
+				productPhotoVO.setProduct_photo2(rs.getBytes("PRODUCT_PHOTO2"));
+				productPhotoVO.setProduct_photo3(rs.getBytes("PRODUCT_PHOTO3"));
+				productPhotoVO.setProduct_photo4(rs.getBytes("PRODUCT_PHOTO4"));
+				productPhotoVO.setProduct_photo5(rs.getBytes("PRODUCT_PHOTO5"));
 				productPhotoVO.setProduct_num(rs.getInt("PRODUCT_NUM"));
 				list.add(productPhotoVO);
 			}

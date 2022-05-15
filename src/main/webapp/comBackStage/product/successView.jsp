@@ -87,7 +87,7 @@ pageContext.setAttribute("list", list);
 						<div class="col-sm-4">
 							<div class="row  justify-content-center">
 								<a class="btn btn-outline-secondary"
-									href="<%=request.getContextPath()%>/product/product.jsp">回首頁</a>
+									href="<%=request.getContextPath()%>/comBackStage/product/product.jsp">回首頁</a>
 							</div>
 						</div>
 						<div class="col-sm-4"></div>

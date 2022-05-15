@@ -3,6 +3,7 @@ package com.product.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.product.model.*;
+import com.productPhoto.model.ProductPhotoService;
 import com.productType.model.ProductTypeService;
 
 
@@ -47,7 +49,7 @@ public class ProductServlet extends HttpServlet {
 				ProductService productService = new ProductService();
 				productService.updateProductState("上架", product_num);
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/product/product.jsp";
+				String url = "/comBackStage/product/product.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);				
 				
@@ -55,7 +57,7 @@ public class ProductServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product/product.jsp");
+						.getRequestDispatcher("/comBackStage/product/product.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -72,7 +74,7 @@ public class ProductServlet extends HttpServlet {
 					ProductService productService = new ProductService();
 					productService.updateProductState("下架", product_num);
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
-					String url = "/product/product.jsp";
+					String url = "/comBackStage/product/product.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(req, res);				
 					
@@ -80,7 +82,7 @@ public class ProductServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add(e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/product/product.jsp");
+							.getRequestDispatcher("/comBackStage/product/product.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -107,7 +109,7 @@ public class ProductServlet extends HttpServlet {
 					ProductService productService = new ProductService();
 					productService.allProductState(state, com_idnum);
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
-					String url = "/product/product.jsp";
+					String url = "/comBackStage/product/product.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(req, res);				
 					
@@ -115,7 +117,7 @@ public class ProductServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add(e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/product/product.jsp");
+							.getRequestDispatcher("/comBackStage/product/product.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -136,7 +138,7 @@ public class ProductServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("productVO", productVO);
-				String url = "/product/updateProduct.jsp";
+				String url = "/comBackStage/product/updateProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
@@ -144,7 +146,7 @@ public class ProductServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product/product.jsp");
+						.getRequestDispatcher("/comBackStage/product/product.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -154,7 +156,6 @@ public class ProductServlet extends HttpServlet {
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			InputStream fileContent = null;
 
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
@@ -208,15 +209,6 @@ public class ProductServlet extends HttpServlet {
 				Integer product_typenum = new Integer(req.getParameter("product_typenum"));
 				Integer product_num = new Integer(req.getParameter("product_num"));
 				
-//				測試上傳圖片
-			    Part filePart = req.getPart("p_file"); // Retrieves <input type="file" name="p_file">
-			    String partName = filePart.getSubmittedFileName();
-			    fileContent = filePart.getInputStream();
-			    byte[] buffer =new byte[fileContent.available()];
-			    fileContent.read(buffer);//把圖傳進buffer陣列
-
-			    
-				
 			    ProductVO productVO =new ProductVO();
 				productVO.setProduct_name(product_name);
 				productVO.setProduct_introduce(product_introduce);
@@ -229,16 +221,10 @@ public class ProductServlet extends HttpServlet {
 				productVO.setProduct_typenum(product_typenum);
 				productVO.setProduct_num(product_num);
 
-			    if(partName == "") {
-			    	productVO.setTest_pic(null);
-			    }else{
-			    	productVO.setTest_pic(buffer);
-			    }
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productVO", productVO);
-					fileContent.close();
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/product/updateProduct.jsp");
+							.getRequestDispatcher("/comBackStage/product/updateProduct.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -250,19 +236,17 @@ public class ProductServlet extends HttpServlet {
 				String product_typename = productTypeService.getOneProductType(product_typenum).getProduct_typename();
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				fileContent.close();
 				req.setAttribute("productVO", productVO);
 				req.setAttribute("product_typename", product_typename);
-				String url = "/product/successView.jsp";
+				String url = "/comBackStage/product/successView.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
 				
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				fileContent.close();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product/updateProduct.jsp");
+						.getRequestDispatcher("/comBackStage/product/updateProduct.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -271,7 +255,6 @@ public class ProductServlet extends HttpServlet {
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			InputStream fileContent = null;
 
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
@@ -298,18 +281,12 @@ public class ProductServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("預估預算格式不正確");
 				}
-//				if (product_budget == null) {
-//					errorMsgs.add("預估預算: 請勿空白");
-//				}
 				Integer product_count = null;
 				try {
 					product_count = new Integer(req.getParameter("product_count").trim());
 				} catch (Exception e) {
 					errorMsgs.add("商品數量格式不正確");
 				}
-//				if (product_count == null) {
-//					errorMsgs.add("商品數量: 請勿空白");
-//				}
 				String product_contract = req.getParameter("product_contract");
 				if (product_contract == null || product_contract.trim().length() == 0) {
 					errorMsgs.add("合約內容: 請勿空白");
@@ -324,13 +301,6 @@ public class ProductServlet extends HttpServlet {
 				String product_state = req.getParameter("product_state");
 				Integer product_typenum = new Integer(req.getParameter("product_typenum"));
 				
-//				測試上傳圖片
-			    Part filePart = req.getPart("p_file"); // Retrieves <input type="file" name="file">
-			    fileContent = filePart.getInputStream();
-			    byte[] buffer =new byte[fileContent.available()];
-			    fileContent.read(buffer);//把圖傳進buffer陣列
-
-			    
 				
 			    ProductVO productVO =new ProductVO();
 				productVO.setProduct_name(product_name);
@@ -342,16 +312,12 @@ public class ProductServlet extends HttpServlet {
 				productVO.setProduct_deadline(product_deadline);
 				productVO.setProduct_state(product_state);
 				productVO.setProduct_typenum(product_typenum);
-			    if(filePart != null) {
-			    	productVO.setTest_pic(buffer);
-			    }
 				productVO.setCom_idnum(1);
 				
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productVO", productVO);
-					fileContent.close();
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/product/addProduct.jsp");
+							.getRequestDispatcher("/comBackStage/product/addProduct.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -362,21 +328,53 @@ public class ProductServlet extends HttpServlet {
 				productVO.setProduct_num(product_num);
 				ProductTypeService productTypeService = new ProductTypeService();
 				String product_typename = productTypeService.getOneProductType(product_typenum).getProduct_typename();
-				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				fileContent.close();
 				
+				//圖片上傳
+				Part updateFile1 = req.getPart("updateFile1");
+				InputStream file1is = updateFile1.getInputStream();
+				byte[] buffer1 =new byte[file1is.available()];
+				file1is.read(buffer1);
+				
+				Part updateFile2 = req.getPart("updateFile2");
+				InputStream file2is = updateFile2.getInputStream();
+				byte[] buffer2 =new byte[file2is.available()];
+				file2is.read(buffer2);
+				
+				Part updateFile3 = req.getPart("updateFile3");
+				InputStream file3is = updateFile3.getInputStream();
+				byte[] buffer3 =new byte[file3is.available()];
+				file3is.read(buffer3);
+				
+				Part updateFile4 = req.getPart("updateFile4");
+				InputStream file4is = updateFile4.getInputStream();
+				byte[] buffer4 =new byte[file4is.available()];
+				file4is.read(buffer4);
+				
+				Part updateFile5 = req.getPart("updateFile5");
+				InputStream file5is = updateFile5.getInputStream();
+				byte[] buffer5 =new byte[file5is.available()];
+				file5is.read(buffer5);
+				
+				ProductPhotoService productPhotoService = new ProductPhotoService();
+				productPhotoService.addProductPhoto(product_num, buffer1, buffer2, buffer3, buffer4, buffer5);
+				
+				file1is.close();
+				file2is.close();
+				file3is.close();
+				file4is.close();
+				file5is.close();
+				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				req.setAttribute("productVO", productVO);
 				req.setAttribute("product_typename", product_typename);
-				String url = "/product/successView.jsp";
+				String url = "/comBackStage/product/successView.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
 				
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				fileContent.close();
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product/addProduct.jsp");
+						.getRequestDispatcher("/comBackStage/product/addProduct.jsp");
 				failureView.forward(req, res);
 			}
 		}

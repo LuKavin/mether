@@ -50,7 +50,7 @@ pageContext.setAttribute("list", list);
 									<input type="hidden" name="action" value="delete">
 								</form>
 								<form action="<%=request.getContextPath()%>/email/email.do"
-									class="deleteForm" style="margin: 0;">
+									class="rollBackForm" style="margin: 0;">
 									<button class="btn btn-default btn-lg rollBackBtn" type="button"
 										style="display: inline;">
 										<i class="fa fa-reply-all" aria-hidden="true"></i>

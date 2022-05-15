@@ -23,7 +23,7 @@ pageContext.setAttribute("list", list);
 					<div class="container-fluid">
 						<div class="row mb-2">
 							<div class="col-sm-6">
-								<h1 class="m-0">商品列表</h1>
+								<h1 class="m-0 aaa">商品列表</h1>
 							</div>
 							<!-- /.col -->
 							<div class="col-sm-3">
@@ -40,7 +40,7 @@ pageContext.setAttribute("list", list);
 							<div class="col-sm-3">
 
 								<a class="btn btn-warning"
-									href="<%=request.getContextPath()%>/product/addProduct.jsp"><i
+									href="<%=request.getContextPath()%>/comBackStage/product/addProduct.jsp"><i
 									class="fa fa-cube" aria-hidden="true"></i>新增商品+</a>
 							</div>
 						</div>

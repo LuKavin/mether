@@ -12,9 +12,9 @@ public class ProductPhotoService {
 		dao = new ProductPhotoDao();
 	}
 
-	public void addProductPhoto(ProductPhotoVO productPhotoVO) {
+	public void addProductPhoto(Integer product_num, byte[] product_photo1, byte[] product_photo2, byte[] product_photo3, byte[] product_photo4, byte[] product_photo5) {
 
-		dao.insert(productPhotoVO);
+		dao.insert(product_num, product_photo1, product_photo2, product_photo3, product_photo4, product_photo5);
 
 	}
 

@@ -26,7 +26,7 @@ LoginVo loginVo = (LoginVo) session.getAttribute("loginVo");//讀取登入者的
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- jncss -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/comBackStage/resources/css/awsome.css">
+	href="<%=request.getContextPath()%>/comBackStage/resources/css/awsome.css" type="text/css">
 <!-- bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
