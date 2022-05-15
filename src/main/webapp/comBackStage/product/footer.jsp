@@ -33,60 +33,11 @@
 	<script src="<%=request.getContextPath()%>/comBackStage/resources/js/awsome.js"></script>
 	<!-- Table sort -->
 	<script src="<%=request.getContextPath()%>/comBackStage/resources/js/sort.js"></script>
-		<script>
-		document
-				.addEventListener(
-						"DOMContentLoaded",
-						function() {
-
-							document
-									.querySelector("#p_file")
-									.addEventListener(
-											"change",
-											function(e) {
-												if (this.files.length > 0) {
-													preview_img(this.files[0]);
-												} else {
-													document
-															.querySelector("#preview .text").innerText = "預覽圖";
-												}
-
-											})
-
-							//函式：接收一個file(圖片)參數，將接收的(圖片)顯示在預覽圖上
-							function preview_img(file) {
-								var reader = new FileReader();
-								reader.readAsDataURL(file)
-								reader
-										.addEventListener(
-												"load",
-												function() {
-													let db64 = 'data:image/jpg;base64';
-													let rr = reader.result;
-													var post = `<img src="\${rr}" alt="載入錯誤" class = "preview_img">`;
-													document
-															.querySelector("#preview .text").innerText = "";//先清空
-													if (document
-															.querySelector("#preview img") != null) {
-														document.querySelector(
-																"#preview>img")
-																.remove();
-													}
-													document
-															.querySelector(
-																	"#preview")
-															.insertAdjacentHTML(
-																	"beforeend",
-																	post);
-													console
-															.log(document
-																	.querySelector("#preview img"));
-												})
-
-							}
-
-						})
-	</script>
+	<!-- slick -->
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
+	<!-- sweet alert2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
 
 

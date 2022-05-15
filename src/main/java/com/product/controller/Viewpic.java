@@ -31,15 +31,16 @@ public class Viewpic extends HttpServlet {
 
 		res.setContentType("image/gif");
 		ServletOutputStream out = res.getOutputStream();
-		String id = req.getParameter("id");
+		String product_num = req.getParameter("product_num");
+		int photoNum =  Integer.parseInt(req.getParameter("photoNum"));
 
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(
-				"SELECT TEST_PIC FROM PRODUCT where PRODUCT_NUM ="+id);
-
+					"SELECT PRODUCT_PHOTO" + photoNum + " FROM PRODUCT_PHOTO where PRODUCT_NUM = "+ product_num );
+			System.out.println("123");
 			if (rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("TEST_PIC"));
+				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream(1));
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
 				int len;
 				while ((len = in.read(buf)) != -1) {

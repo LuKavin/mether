@@ -20,9 +20,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
 	integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!-- jncss -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/comBackStage/resources/css/awsome.css">
+
 <!-- bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -33,15 +31,16 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
 	integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- slick -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+<!-- jncss -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resources/css/awsome.css" type="text/css">
 
 
 
-<style>
-.preview_img {
-	max-width: 280px;
-	max-height: 300px;
-}
-</style>
+
 
 
 </head>
@@ -194,7 +193,7 @@
 						<!--             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">(顯示管理員帳號)</a>
+						<a href="#" class="d-block">${loginVo.mebAccount} 你好。</a>
 					</div>
 				</div>
 				<!-- Sidebar Menu -->

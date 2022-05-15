@@ -185,72 +185,101 @@ $(function () {
     
     // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑+draft的Button觸發======================================================================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //==============================ＦＵＮＣＴＩＯＮ區======================================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // 用css 新增手狀樣式,滑鼠移上去變小手,變小手
-    // cursor:pointer;
-    // 用JS使滑鼠變小手onmouseover(滑鼠越過的時候)
-    // onmouseover="this.style.cursor='hand'"cursor其他取值
-    //  auto :標準游標
-    //  default :標準箭頭
-    //  pointer, hand :手形游標
-    //  wait :等待游標
-    //  text :I形游標
-    //  vertical-text :水平I形游標
-    //  no-drop :不可拖動游標
-    //  not-allowed :無效游標
-    //  help :幫助游標
-    //  all-scroll :三角方向標
-    //  move :移動標
-    //  crosshair :十字標 
-
-
-
-
 });
+
+	 	$("#p_file").on("change", function(e){         
+	 	console.log("123");
+	     // 寫在這
+	     var picBox = document.getElementsByClassName("picBox")[0];
+	    picBox.innerHTML = ""; // 清空
+	    
+	    // 跑每個使用者選的檔案，留意 i 的部份
+	    for (let i = 0; i < this.files.length; i++) {
+	       let reader = new FileReader(); // 用來讀取檔案
+	       reader.readAsDataURL(this.files[i]); // 讀取檔案
+	       reader.addEventListener("load", function () {
+	         $('.picBox').append(`<img src="${reader.result}" alt="" style="height: 300px; width: 298px;display:inline-block">`)
+
+	       });
+	     } 
+
+
+	   });
+          // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑新增商品預覽圖======================================================================================================
+
+
+       $(".editBg").css("cursor", "pointer");
+       $(".editBg").on("mousemove",function(){
+            $(".editBg").css("background","rgba(255,255,255,0.3)");
+       });
+       $(".editBg").on("mouseout",function(){
+        $(".editBg").css("background","rgba(255,255,255,0.7)");
+       })
+       $(".editBg").on("mousedown",function(){
+        $(".editBg").css("background","rgba(255,255,255,0)");
+       })
+       $(".editBg").on("mouseup",function(){
+        $(".editBg").css("background","rgba(255,255,255,0.7)");
+       })
+       $(".editBg").on("click",function(){
+        $("div.overlay").fadeIn();
+        console.log("123");
+
+
+       })
+
+       $("button.btn_modal_close").on("click", function(){
+        $("div.overlay").fadeOut();
+       });
+   // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑編輯商品預覽圖按鈕======================================================================================================
+
+   for(let i = 1; i<=5; i++){
+       let btn = ".ueb"+i;
+       let file  = ".updateFile"+i;
+
+       $(btn).css("cursor", "pointer");
+       $(btn).on("mousemove",function(){
+            $(btn).css("background","rgba(255,255,255,0.3)");
+       });
+       $(btn).on("mouseout",function(){
+        $(btn).css("background","rgba(255,255,255,0.7)");
+       })
+       $(btn).on("mousedown",function(){
+        $(btn).css("background","rgba(255,255,255,0)");
+       })
+       $(btn).on("mouseup",function(){
+        $(btn).css("background","rgba(255,255,255,0.7)");
+       })
+       $(btn).on("click",function(){
+          $(file).click();
+       })
+
+       let box  = ".boxBg"+i
+
+
+       $(file).on("change", function(e){
+           $(box).css("background","");
+            console.log("123");
+            let reader = new FileReader();
+            reader.readAsDataURL(this.files[0])
+            reader.addEventListener("load", function(){
+                $(box).css("background",`url(${reader.result})no-repeat`).css("background-size","145px");
+            })
+       })
+    }
+
+
+    $(".updateImgOK").on("click",function(){
+        console.log("123");
+        Swal.fire({
+            icon: 'success',
+            title: '編輯成功！',
+            showConfirmButton: false,
+            timer: 1000
+          })
+        setTimeout(function () {
+            $("div.overlay").fadeOut();
+        }, 1100);
+    })
+
+   // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑燈箱內修改圖片======================================================================================================
