@@ -22,7 +22,19 @@ public class BackStageService {
 		return dao.orderMastercount();
 	}
 
-	public List getNew() {
-		return dao.getNew();
+	public List getOrderMasterNew() {
+		return dao.getOrderMasterNew();
+	}
+
+	public void updateComAccess(Integer meb_accessnum, Integer com_idnum) {
+		dao.updateComAccess(meb_accessnum, com_idnum);
+	}
+
+	public void updateKolAccess(Integer meb_accessnum, Integer kol_idnum) {
+		dao.updateKolAccess(meb_accessnum, kol_idnum);
+	}
+	
+	public void updateOrderMasterStatus(String order_status, Integer order_num) {
+		dao.updateOrderMasterStatus(order_status, order_num);
 	}
 }

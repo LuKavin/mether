@@ -20,14 +20,6 @@ pageContext.setAttribute("list", list);
 				<div class="col-sm-6">
 					<h1 class="m-0">網紅</h1>
 				</div>
-				<!-- /.col -->
-				<div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">■測試用管理員■</li>
-					</ol>
-				</div>
-				<!-- /.col -->
 			</div>
 			<!-- /.row -->
 		</div>
@@ -62,7 +54,7 @@ pageContext.setAttribute("list", list);
 										</th>
 										<th>網紅註冊日期 <i class="fas fa-sort-amount-up"></i>
 										</th>
-										<th>媒合率 <i class="fas fa-sort-amount-up"></i>
+										<th>目前權限代碼 <i class="fas fa-sort-amount-up"></i>
 										</th>
 									<tr></tr>
 									</tr>
@@ -75,27 +67,48 @@ pageContext.setAttribute("list", list);
 											<td>${kolMebVO.kol_idnum}</td>
 											<td>${kolMebVO.kol_name}</td>
 											<td>${kolMebVO.kol_regdate}</td>
-											<td></td>
+											<td>${kolMebVO.meb_accessnum}</td>
 
 											<td class="text-right py-0 align-middle">
 												<!--靠右對齊-->
 												<div class="btn-group" data-display="static">
 													<!--按鈕-->
 													<div class="btn btn-info">
-														<i class="fas fa-eye">_詳細資料</i>
+														<FORM METHOD="post"
+															ACTION="<%=request.getContextPath()%>/backStage/backStage.do"
+															style="width: 150px; display: inline">
+															<input type="hidden" name="action" value="getOneKol">
+															<input type="hidden" name="kol_idnum"
+																value="${kolMebVO.kol_idnum}">
+															<button class="btn btn-info" type="submit">
+																<i class="fas fa-eye">_詳細資料</i>
+															</button>
+														</FORM>
 													</div>
 													<div class="btn btn-danger" data-toggle="dropdown">
 														<i class="fas fa-cog">_更改權限</i>
 													</div>
 													<div class="dropdown-menu dropdown-menu">
-														<button class="dropdown-item" type="button">
-															<i class="fa fa-smile-o fa-2x" aria-hidden="true"></i>
-															帳號啟用
-														</button>
-														<button class="dropdown-item" type="button">
-															<i class="fa fa-frown-o fa-2x" aria-hidden="true"></i>
-															帳號停用
-														</button>
+														<FORM METHOD="post"
+															ACTION="<%=request.getContextPath()%>/backStage/backStage.do">
+															<input type="hidden" name="action" value="KolUpdate2">
+															<input type="hidden" name="kol_idnum"
+																value="${kolMebVO.kol_idnum}">
+															<button class="dropdown-item" type="submit">
+																<i class="fa fa-smile-o fa-2x" aria-hidden="true"></i>
+																帳號啟用
+															</button>
+														</form>
+														<FORM METHOD="post"
+															ACTION="<%=request.getContextPath()%>/backStage/backStage.do">
+															<input type="hidden" name="action" value="KolUpdate4">
+															<input type="hidden" name="kol_idnum"
+																value="${kolMebVO.kol_idnum}">
+															<button class="dropdown-item" type="submit">
+																<i class="fa fa-frown-o fa-2x" aria-hidden="true"></i>
+																帳號停用
+															</button>
+														</form>
 													</div>
 												</div>
 											</td>

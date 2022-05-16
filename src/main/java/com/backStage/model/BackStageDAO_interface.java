@@ -9,5 +9,11 @@ public interface BackStageDAO_interface {
 
 	public Integer orderMastercount();
 
-	public List getNew();
+	public List getOrderMasterNew();
+
+	public void updateComAccess(Integer meb_accessnum, Integer com_idnum);
+
+	public void updateKolAccess(Integer meb_accessnum, Integer kol_idnum);
+	
+	public void updateOrderMasterStatus(String order_status, Integer order_num);
 }
