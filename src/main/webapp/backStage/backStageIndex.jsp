@@ -7,7 +7,7 @@
 <%
 BackStageService backStageSvc = new BackStageService();
 Integer orderMastercount = backStageSvc.orderMastercount();
-List list = backStageSvc.getNew();
+List list = backStageSvc.getOrderMasterNew();
 pageContext.setAttribute("orderMastercount", orderMastercount);
 pageContext.setAttribute("list", list);
 Integer companyMebcount = backStageSvc.companyMebcount();
@@ -25,14 +25,6 @@ pageContext.setAttribute("kolMebcount", kolMebcount);
 				<div class="col-sm-6">
 					<h1 class="m-0">系統首頁</h1>
 				</div>
-				<!-- /.col -->
-				<div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">■測試用管理員■</li>
-					</ol>
-				</div>
-				<!-- /.col -->
 			</div>
 			<!-- /.row -->
 		</div>

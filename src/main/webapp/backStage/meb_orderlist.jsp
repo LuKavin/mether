@@ -21,14 +21,6 @@ pageContext.setAttribute("list", list);
 				<div class="col-sm-6">
 					<h1 class="m-0">訂單列表</h1>
 				</div>
-				<!-- /.col -->
-				<div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">■測試用管理員■</li>
-					</ol>
-				</div>
-				<!-- /.col -->
 			</div>
 			<!-- /.row -->
 		</div>
@@ -77,20 +69,32 @@ pageContext.setAttribute("list", list);
 										<td class="text-right py-0 align-middle">
 											<div class="btn-group" data-display="static">
 												<div class="btn btn-info">
-													<i class="fas fa-eye">_詳細資料</i>
+
+													<FORM METHOD="post"
+														ACTION="<%=request.getContextPath()%>/backStage/backStage.do"
+														style="width: 150px; display: inline">
+														<input type="hidden" name="action" value="getOneCom">
+														<input type="hidden" name="com_idnum"
+															value="${companyMebVO.com_idnum}">
+														<button class="btn btn-info" type="submit">
+															<i class="fas fa-eye">_詳細資料</i>
+														</button>
+													</FORM>
 												</div>
 												<div class="btn btn-danger" data-toggle="dropdown">
 													<i class="fas fa-cog">_更改狀態</i>
 												</div>
 												<div class="dropdown-menu dropdown-menu">
-													<button class="dropdown-item" type="button">
-														<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
-														上架
-													</button>
-													<button class="dropdown-item" type="button">
-														<i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i>
-														下架
-													</button>
+												<FORM METHOD="post"
+														ACTION="<%=request.getContextPath()%>/backStage/backStage.do">
+														<input type="hidden" name="action" value="OrderUpdateDown">
+														<input type="hidden" name="order_num"
+															value="${orderMasterVO.order_num}">
+														<button class="dropdown-item" type="submit">
+															<i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i>
+															下架
+														</button>
+													</form>
 												</div>
 											</div>
 										</td>

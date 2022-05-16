@@ -40,6 +40,12 @@
 <!-- Table sort -->
 <script src="<%=request.getContextPath()%>/resources/js/sort.js"></script>
 <script>
+	function loadImageFile(event) {
+		var image = document.getElementById('image');
+		image.src = URL.createObjectURL(event.target.files[0]);
+	};
+</script>
+<script>
 	document
 			.addEventListener(
 					"DOMContentLoaded",
