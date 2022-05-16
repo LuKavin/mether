@@ -26,4 +26,8 @@ public class ProductPhotoService {
 		return dao.getAll(product_num);
 	}
 
+	public void updateOnePhoto(Integer productNum, byte[] photo, Integer whitchCol) {
+		dao.updateOnePhoto(productNum, photo, whitchCol);
+	}
+
 }

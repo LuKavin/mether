@@ -126,7 +126,7 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO");
 						</div>
 
 						<br> <input type="hidden" name="action" value="update">
-						<input type="hidden" name="product_num"
+						<input type="hidden" name="product_num" class="product_num"
 							value="${productVO.product_num}"> <input type="submit"
 							class="btn btn-secondary" value="確定修改">
 					</FORM>
@@ -149,22 +149,19 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO");
 				<div class="col-sm-2"></div>
 			</div>
 		</div>
-
-
-
 	</section>
 </div>
 <div class="overlay">
 	<article>
 		<div class="row">
 			<div class="col-sm-6">
-				<h1>修改圖片</h1>
+				<h3>編輯圖片</h3>
 			</div>
 			<div class="col-sm-6">
 				<button type="button" class="btn_modal_close float-sm-right btn btn-lg btn-outline-danger">X</button>
 			</div>
 		</div>
-		<form action="">
+		<form action="" class="someWhere">
 			<div class="row ">
 				<div id="updatePreview" class="container picBox boxBg1"
 					style="border: 1px solid rgb(202, 201, 201);margin:10px 10px 10px 35px;background:url('<%=request.getContextPath() %>/viewpic?product_num=${productVO.product_num}&photoNum=1');background-size:145px">
@@ -213,23 +210,35 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO");
 					</div>
 				</div>
 			</div>
-			<div style="height:0;overflow:hidden;">
-				<input type="file" name="updateFile1" class="updateFile1">
-				<input type="file" name="updateFile2" class="updateFile2">
-				<input type="file" name="updateFile3" class="updateFile3">
-				<input type="file" name="updateFile4" class="updateFile4">
-				<input type="file" name="updateFile5" class="updateFile5">
-
+			<div class="row">
+				
 			</div>
+			
+
 		<div class="row">
 			<div class="col-sm-6">
 			</div>
 			<div class="col-sm-6">
-				<button type="button" class="btn float-sm-right btn-outline-secondary updateImgOK" style="margin:15px">    送出    </button>
 			</div>
 		</div>
 		</form>
-
+			<div style="height:0;overflow:hidden;">
+				<form action="<%=request.getContextPath()%>/product/proPhoto.do" class="updatePcGo" METHOD="POST" enctype="multipart/form-data">
+					<input type="file" name="updateFile1" class="updateFile1">
+				</form>
+				<form action="<%=request.getContextPath()%>/product/proPhoto.do" class="updatePcGo" METHOD="POST" enctype="multipart/form-data">
+					<input type="file" name="updateFile2" class="updateFile2">
+				</form>
+				<form action="<%=request.getContextPath()%>/product/proPhoto.do" class="updatePcGo" METHOD="POST" enctype="multipart/form-data">
+					<input type="file" name="updateFile3" class="updateFile3">
+				</form>
+				<form action="<%=request.getContextPath()%>/product/proPhoto.do" class="updatePcGo" METHOD="POST" enctype="multipart/form-data">
+					<input type="file" name="updateFile4" class="updateFile4">
+				</form>
+				<form action="<%=request.getContextPath()%>/product/proPhoto.do" class="updatePcGo" METHOD="POST" enctype="multipart/form-data">
+					<input type="file" name="updateFile5" class="updateFile5">
+				</form>
+			</div>
 	</article>
 </div>
 

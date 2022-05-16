@@ -188,7 +188,6 @@ $(function () {
 });
 
 	 	$("#p_file").on("change", function(e){         
-	 	console.log("123");
 	     // 寫在這
 	     var picBox = document.getElementsByClassName("picBox")[0];
 	    picBox.innerHTML = ""; // 清空
@@ -223,7 +222,6 @@ $(function () {
        })
        $(".editBg").on("click",function(){
         $("div.overlay").fadeIn();
-        console.log("123");
 
 
        })
@@ -259,7 +257,6 @@ $(function () {
 
        $(file).on("change", function(e){
            $(box).css("background","");
-            console.log("123");
             let reader = new FileReader();
             reader.readAsDataURL(this.files[0])
             reader.addEventListener("load", function(){
@@ -270,7 +267,6 @@ $(function () {
 
 
     $(".updateImgOK").on("click",function(){
-        console.log("123");
         Swal.fire({
             icon: 'success',
             title: '編輯成功！',
@@ -283,3 +279,33 @@ $(function () {
     })
 
    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑燈箱內修改圖片======================================================================================================
+   
+
+   for(let i = 1; i<=5; i++){
+    let file  = ".updateFile"+i;
+    let value  = "updatePc"+i;
+    let productNum = $(".product_num").val();
+    $(file).on("change", function(e){
+      
+      console.log($(file).closest(".updatePcGo"));
+      $(file).closest(".updatePcGo").append(`
+      <input type="hidden" name="action" value=${value}>
+      <input type="hidden" name="product_num" value=${productNum}>
+      `);
+       $(file).closest(".updatePcGo").submit();
+
+    })
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+   // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑燈箱更新改圖片======================================================================================================

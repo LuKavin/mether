@@ -28,6 +28,12 @@ public class ProductPhotoDao implements ProductPhotoDao_interface{
 	
 	private static final String INSERT = "INSERT INTO PRODUCT_PHOTO (PRODUCT_NUM, PRODUCT_PHOTO1, PRODUCT_PHOTO2, PRODUCT_PHOTO3, PRODUCT_PHOTO4, PRODUCT_PHOTO5) value (?,?,?,?,?,?);";
 	
+	private static final String UPDATE_COL_1 = "UPDATE PRODUCT_PHOTO SET PRODUCT_PHOTO1 = ? WHERE PRODUCT_NUM = ?;";
+	private static final String UPDATE_COL_2 = "UPDATE PRODUCT_PHOTO SET PRODUCT_PHOTO2 = ? WHERE PRODUCT_NUM = ?;";
+	private static final String UPDATE_COL_3 = "UPDATE PRODUCT_PHOTO SET PRODUCT_PHOTO3 = ? WHERE PRODUCT_NUM = ?;";
+	private static final String UPDATE_COL_4 = "UPDATE PRODUCT_PHOTO SET PRODUCT_PHOTO4 = ? WHERE PRODUCT_NUM = ?;";
+	private static final String UPDATE_COL_5 = "UPDATE PRODUCT_PHOTO SET PRODUCT_PHOTO5 = ? WHERE PRODUCT_NUM = ?;";
+	
 	private static final String DELETE =  "DELETE FROM PRODUCT_PHOTO WHERE PRODUCT_PHOTONUM = ?;";
 	private static final String GET_ONE = "SELECT PRODUCT_PHOTONUM, PRODUCT_PHOTO, PRODUCT_NUM FROM PRODUCT_PHOTO WHERE PRODUCT_PHOTONUM = ?";
 	private static final String GET_ALL = "SELECT PRODUCT_PHOTONUM, PRODUCT_PHOTO, PRODUCT_NUM FROM PRODUCT_PHOTO WHERE PRODUCT_NUM = ?;";
@@ -236,6 +242,55 @@ public class ProductPhotoDao implements ProductPhotoDao_interface{
 		}
 		
 		return list;
+	}
+
+	@Override
+	public void updateOnePhoto(Integer productNum,byte[] photo, Integer whitchCol) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ds.getConnection();
+			switch (whitchCol) {
+			case 1:
+				pstmt = con.prepareStatement(UPDATE_COL_1);
+				break;
+			case 2:
+				pstmt = con.prepareStatement(UPDATE_COL_2);
+				break;
+			case 3:
+				pstmt = con.prepareStatement(UPDATE_COL_3);
+				break;
+			case 4:
+				pstmt = con.prepareStatement(UPDATE_COL_4);
+				break;
+			case 5:
+				pstmt = con.prepareStatement(UPDATE_COL_5);
+			}
+			pstmt.setBytes(1, photo);
+			pstmt.setInt(2, productNum);
+			pstmt.executeUpdate();
+			
+
+		}catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 	} 
 
 	
