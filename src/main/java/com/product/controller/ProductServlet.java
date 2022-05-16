@@ -14,8 +14,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.companymeb.model.CompanyMebVO;
 import com.product.model.*;
 import com.productPhoto.model.ProductPhotoService;
 import com.productType.model.ProductTypeService;
@@ -36,6 +38,7 @@ public class ProductServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		CompanyMebVO companyMebVO =(CompanyMebVO)req.getSession().getAttribute("companyMebVO");
 		
 		if ("changeProStUp".equals(action)) { // 來自addEmp.jsp的請求  
 			
@@ -312,7 +315,7 @@ public class ProductServlet extends HttpServlet {
 				productVO.setProduct_deadline(product_deadline);
 				productVO.setProduct_state(product_state);
 				productVO.setProduct_typenum(product_typenum);
-				productVO.setCom_idnum(1);
+				productVO.setCom_idnum(companyMebVO.getCom_idnum());
 				
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productVO", productVO);

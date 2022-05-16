@@ -8,8 +8,8 @@
 <%@ include file="header.jsp"%>
 <%
 EmailDetailService emailDetailService = new EmailDetailService();
-// LoginVo loginVo = (LoginVo) session.getAttribute("loginVo");這段有寫在header.jsp上
-List<EmailDetailVO> list = emailDetailService.findBox(loginVo.getMebAccount(),3);
+//CcompanyMebVO companyMebVO = (CcompanyMebVO) session.getAttribute("companyMebVO");這段有寫在header.jsp上
+List<EmailDetailVO> list = emailDetailService.findBox(companyMebVO.getCom_account(),3);
 pageContext.setAttribute("list", list);
 %>
 
@@ -30,7 +30,7 @@ pageContext.setAttribute("list", list);
 					<div class="card-header">
 						<div class="row m-2">
 							<i class="fa fa-envelope-open-o" aria-hidden="true"
-								style="font-size: 22px;"> <span style="color:orange">${loginVo.mebAccount}</span> 的垃圾信</i>
+								style="font-size: 22px;"> <span style="color:orange">${companyMebVO.com_account}</span> 的垃圾信</i>
 						</div>
 					</div>
 					<div class="card-body p-0">
