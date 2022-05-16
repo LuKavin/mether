@@ -32,7 +32,7 @@ public class BackStageDAO implements BackStageDAO_interface {
 
 	private static final String GET_COMPANYMEB_COUNT = "SELECT COUNT(*) FROM COMPANY_MEB where MEB_ACCESSNUM = 1";
 	private static final String GET_KOLMEB_COUNT = "SELECT COUNT(*) FROM KOL_MEB where MEB_ACCESSNUM = 2";
-	private static final String GET_ORDERMASTER_COUNT = "SELECT COUNT(*) FROM ORDER_MASTER where ORDER_STATUS != \"已完成\"";
+	private static final String GET_ORDERMASTER_COUNT = "SELECT COUNT(*) FROM ORDER_MASTER where ORDER_STATUS != \"已完成\" and ORDER_STATUS != \"下架\"";
 	private static final String GET_ORDERMASTER_NEW = "SELECT o.ORDER_NUM, p.PRODUCT_NAME, p.PRODUCT_DEADLINE, o.ORDER_DATE, o.ORDER_STATUS FROM ORDER_MASTER o join PRODUCT p on o.PRODUCT_NUM = p.PRODUCT_NUM order by o.ORDER_NUM desc LIMIT 6";
 	private static final String SET_COM_ACCESS = "UPDATE COMPANY_MEB SET MEB_ACCESSNUM = ? where COM_IDNUM = ?";
 	private static final String SET_KOL_ACCESS = "UPDATE KOL_MEB SET MEB_ACCESSNUM = ? where KOL_IDNUM = ?";
