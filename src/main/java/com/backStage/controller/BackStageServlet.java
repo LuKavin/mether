@@ -204,7 +204,7 @@ public class BackStageServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/meb_orderlidst.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/meb_orderlist.jsp");
 				failureView.forward(req, res);
 			}
 		}
