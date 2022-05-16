@@ -15,8 +15,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.companymeb.model.CompanyMebVO;
 @WebFilter(
-urlPatterns = {"/comBackStage/email/*"}
+urlPatterns = {"/comBackStage/email/*", "/comBackStage/product/*"}
 )
 public class LoginFilter implements Filter {
 
@@ -24,8 +26,8 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
-		LoginVo loginVo = (LoginVo) session.getAttribute("loginVo");
-		if(loginVo!=null) {
+		CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
+		if(companyMebVO!=null) {
 			chain.doFilter(request, response);
 		}else {
 		    session.setAttribute("preURL", req.getRequestURI()); 

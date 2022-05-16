@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.companymeb.model.CompanyMebVO;
 import com.emailDetail.model.EmailDetailService;
 import com.emailDetail.model.EmailDetailVO;
-import com.login.LoginVo;
 import com.mysql.cj.Session;
 import com.product.model.*;
 import com.productType.model.ProductTypeService;
@@ -39,7 +39,7 @@ public class EmailServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		LoginVo loginVo =(LoginVo)req.getSession().getAttribute("loginVo");//登入者的資料
+		CompanyMebVO companyMebVO =(CompanyMebVO)req.getSession().getAttribute("companyMebVO");//登入者的資料
 		
 		if ("reply".equals(action)) { // 回信
 			List<String> errorMsgs = new LinkedList<String>();
@@ -125,6 +125,7 @@ public class EmailServlet extends HttpServlet {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				mem_account = req.getParameter("mem_account");//收件人
 				Integer mem_access = emailDetailService.findMemAccess(mem_account);//判斷收件者的類型1=廠商,2=網紅
+				System.out.println(mem_access);
 				if (mem_account == null || mem_account.trim().length() == 0) {
 					errorMsgs.add("收件人: 請勿空白");
 				}else if(mem_access == null) {
@@ -149,7 +150,7 @@ public class EmailServlet extends HttpServlet {
 				emailDetailVO.setEmail_typenum(email_typenum);
 				emailDetailVO.setEmail_title(email_title);
 				emailDetailVO.setEmail_content(email_content);
-				emailDetailVO.setSender(loginVo.getMebAccount());//寄件人
+				emailDetailVO.setSender(companyMebVO.getCom_account());//寄件人
 				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -168,7 +169,7 @@ public class EmailServlet extends HttpServlet {
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (EmailAccountException e) {//當無此收件者。管理員寄一封寄件失敗信件
 				//傳入三個參數:寄件失敗者的帳號,寄件者會員權限,輸入錯誤的帳號
-				emailDetailService.sendErrorLetter(loginVo.getMebAccount(),loginVo.getMebAccess(),mem_account);
+				emailDetailService.sendErrorLetter(companyMebVO.getCom_account(),companyMebVO.getMeb_accessnum(),mem_account);
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/comBackStage/email/Email.jsp");
 				failureView.forward(req, res);
@@ -188,7 +189,7 @@ public class EmailServlet extends HttpServlet {
 			try {
 				/***********************1.接收請求參數 - 只是加入草稿因此沒有太多資料驗證*************************/
 				/***********************如果使用者存入全部空白的草稿會在前端進行錯誤處理**************************/
-				String mem_account = loginVo.getMebAccount();//收件人,草稿信收件人為自己
+				String mem_account = companyMebVO.getCom_account();//收件人,草稿信收件人為自己
 				Integer mem_access = emailDetailService.findMemAccess(mem_account);//判斷收件者的類型1=廠商,2=網紅
 				String email_content = req.getParameter("draftContent");
 				Integer email_typenum = 2;//信件類別,加入草稿為草稿信件=2

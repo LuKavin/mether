@@ -43,5 +43,8 @@ public class ProductService {
 	public List<ProductVO> getAll() {
 		return dao.getAll();
 	}
+	public List<ProductVO> getComAllProduct(Integer com_Idnum) {
+		return dao.getComAllProduct(com_Idnum);
+	}
 
 }

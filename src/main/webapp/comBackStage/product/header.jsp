@@ -1,4 +1,8 @@
+<%@page import="com.companymeb.model.CompanyMebVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料
+%>
 <html lang="en">
 
 <head>

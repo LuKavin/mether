@@ -25,8 +25,10 @@ public class ProductDAO implements ProductDAO_interface{
 
 	private static final String INSERT_STMT = "INSERT INTO `PRODUCT` (`PRODUCT_TYPENUM`, `PRODUCT_NAME`, `PRODUCT_INTRODUCE`, `PRODUCT_LINK`, `PRODUCT_BUDGET`, `PRODUCT_COUNT`, `PRODUCT_CONTRACT`, `PRODUCT_DEADLINE`,`PRODUCT_STATE`,`COM_IDNUM`,`TEST_PIC`)" 
 			+"VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String GET_ALL_STMT = 
+	private static final String GET_ALL = 
 		"SELECT product_num, product_typenum, product_name, product_introduce, product_link, product_budget, product_count, product_contract, product_deadline, product_date, product_state, test_pic, com_idnum  FROM PRODUCT";
+	private static final String GET_ALL_FROM_COM = 
+			"SELECT product_num, product_typenum, product_name, product_introduce, product_link, product_budget, product_count, product_contract, product_deadline, product_date, product_state, test_pic, com_idnum  FROM PRODUCT where com_idnum = ?";
 	private static final String GET_ONE_STMT = 
 		"SELECT product_num, product_typenum, product_name, product_introduce, product_link, product_budget, product_count, product_contract, product_deadline, product_date, product_state, test_pic, com_idnum  FROM PRODUCT where product_num = ?";
 //	private static final String DELETE = 
@@ -373,7 +375,72 @@ public class ProductDAO implements ProductDAO_interface{
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT);
+			pstmt = con.prepareStatement(GET_ALL);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				productVO = new ProductVO();
+				productVO.setProduct_name(rs.getString("product_name"));
+				productVO.setProduct_introduce(rs.getString("product_introduce"));
+				productVO.setProduct_link(rs.getString("product_link"));
+				productVO.setProduct_budget(rs.getInt("product_budget"));
+				productVO.setProduct_count(rs.getInt("product_count"));
+				productVO.setProduct_contract(rs.getString("product_contract"));
+				productVO.setProduct_deadline(rs.getObject("product_deadline",java.sql.Date.class));
+				productVO.setProduct_state(rs.getString("product_state"));
+				productVO.setProduct_typenum(rs.getInt("product_typenum"));
+				productVO.setProduct_num(rs.getInt("product_num"));
+			    productVO.setTest_pic(rs.getBytes("test_pic"));
+				productVO.setCom_idnum(rs.getInt("com_idnum"));
+				list.add(productVO);
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+
+	@Override
+	public List<ProductVO> getComAllProduct(Integer com_Idnum) {
+		List<ProductVO> list = new ArrayList<ProductVO>();
+		ProductVO productVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_FROM_COM);
+			pstmt.setInt(1,com_Idnum);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

@@ -1,7 +1,7 @@
-<%@page import="com.login.LoginVo"%>
+<%@page import="com.companymeb.model.CompanyMebVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-LoginVo loginVo = (LoginVo) session.getAttribute("loginVo");//讀取登入者的資料
+CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料
 %>
 <html lang="en">
 
@@ -199,7 +199,7 @@ href="<%=request.getContextPath()%>/comBackStage/resources/summernote/summernote
 						<!--             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">${loginVo.mebAccount} 你好。</a>
+						<a href="#" class="d-block">${companyMebVO.com_account} 你好。</a>
 					</div>
 				</div>
 				<!-- Sidebar Menu -->

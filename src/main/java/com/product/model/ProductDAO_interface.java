@@ -11,5 +11,6 @@ public interface ProductDAO_interface {
 //    public void delete(Integer product_typenum);
     public ProductVO findByPrimaryKey(Integer product_typenum);
     public List<ProductVO> getAll();
+    public List<ProductVO> getComAllProduct(Integer com_Idnum);
 
 }

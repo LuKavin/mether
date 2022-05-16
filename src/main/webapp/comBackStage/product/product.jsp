@@ -3,12 +3,13 @@
 <%@ page import="com.product.model.*"%>
 <%@ page import="java.util.*"%>
 
+<%@ include file="header.jsp" %>
 <%
 ProductService productService = new ProductService();
-List<ProductVO> list = productService.getAll();
+// CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料
+List<ProductVO> list = productService.getComAllProduct(companyMebVO.getCom_idnum());
 pageContext.setAttribute("list", list);
 %>
-<%@ include file="header.jsp" %>
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
