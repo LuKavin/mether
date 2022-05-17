@@ -17,43 +17,7 @@ pageContext.setAttribute("list", list);
 
 
 <%@ include file="header.jsp"%>
-<
-<style>
-body {
-	margin: 1.5em;
-}
 
-/* style favorite icon */
-[class^="icon"] {
-	font-size: 1.5em;
-	color: white;
-	font-family: dingbats;
-	-webkit-text-stroke: 1.5px #ddd;
-}
-
-[class^="icon"].selected {
-	color: lightpink;
-}
-
-[class^="icon"].selected, [data-descr]:hover::after {
-	-webkit-text-stroke: 0;
-}
-
-/* override tool tip styles */
-[class^="icon"][data-descr] {
-	text-decoration: none;
-}
-
-[class^="icon"]::selection {
-	background: inherit;
-}
-
-[class^="icon"][data-descr]:hover::after {
-	color: black;
-	font-size: 0.75em;
-	min-width: 7em;
-}
-</style>
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -128,8 +92,14 @@ body {
 											<input type="hidden" name="kol_idnum"
 												value="${kolMebVO.kol_idnum}"> <input type="hidden"
 												name="action" value="like">
-											<li data-descr="add to favorites" class="icon-heart"><span>&#10084;</span>
-											</li>
+
+											<div class="flexbox">
+
+												<div class="fav-btn">
+													<span href="" class="favme dashicons dashicons-heart"></span>
+												</div>
+
+											</div>
 										</FORM>
 
 									</div>
@@ -159,26 +129,6 @@ body {
 
 	</section>
 </div>
-
-<script>
-	var favorites = [];
-
-	$(".icon-heart").click(function() {
-		$(this).toggleClass("selected");
-		var selected = $(this).parent().attr("id");
-
-		var index = jQuery.inArray(selected, favorites);
-		if (index >= 0) {
-			favorites.splice(index, 1);
-			console.log('removing ' + selected);
-		} else {
-
-			favorites.push(selected);
-			console.log('adding ' + selected)
-		}
-		console.log(favorites);
-	});
-</script>
 
 <%@ include file="footer.jsp"%>
 

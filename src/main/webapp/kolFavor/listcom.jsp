@@ -4,29 +4,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.companyfavorite.model.*"%>
 <%@ page import="com.companymeb.model.*"%>
+<%@page import="com.kolfavorite.model.KolFavorService"%>
 
 <%
-KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");
+KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO"); 
+/* CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");  */
 
-ComFavorService comFavorService = new ComFavorService();
-List<CompanyMebVO> list = comFavorService.FindKolFavorite(1);
+KolFavorService kolFavorService = new KolFavorService();
+List<CompanyMebVO> list = kolFavorService.getAll();
 /* kolMebVO.getKol_idnum() */
 pageContext.setAttribute("list", list);
 %>
 
 
 <%@ include file="header.jsp"%>
-<!-- <script>
-	function changeText(){
-	var text = document.getElementById("btn").value
-	if("加入最愛" == text){
-		document.getElementById("btn").value="移除最愛";
-	}
-	else{
-		document.getElementById("btn").value="加入最愛";
-	}
-}
-</script> -->
+
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -35,7 +27,7 @@ pageContext.setAttribute("list", list);
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>我的最愛列表</h1>
+					<h1>網紅列表</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -91,25 +83,28 @@ pageContext.setAttribute("list", list);
 								</div>
 								<div class="card-footer">
 									<div class="text-right">
-									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/comfavor/comfavor.do"
-										style="margin-bottom: 0px;">
-										<a href="#" class="btn btn-sm bg-teal"> <i
-											class="fas fa-comments"></i>
-										</a> <a href="#" class="btn btn-sm btn-primary"> <i
-											class="fas fa-user"></i> View Profile
-										</a>
-											
-									
-										<input type="submit" value="移除最愛"
-											class="btn btn-outline-secondary"  data-bs-toggle="button"
-											> <input
-											type="hidden" name="com_idnum"
-											value="${companyMebVO.com_idnum}">
-											 <input
-											type="hidden" name="action" value="dislike">
-									</FORM>
-								
+										<FORM METHOD="post"
+											ACTION="<%=request.getContextPath()%>/kolfavor/kolfavor.do"
+											style="margin-bottom: 0px;">
+											<a href="#" class="btn btn-sm bg-teal"> <i
+												class="fas fa-comments"></i>
+											</a> <a href="#" class="btn btn-sm btn-primary"> <i
+												class="fas fa-user"></i> View Profile
+											</a> <input type="submit" value="新增最愛"
+												class="btn btn-outline-secondary" data-bs-toggle="button">
+											<input type="hidden" name="com_idnum"
+												value="${companyMebVO.com_idnum}}"> <input type="hidden"
+												name="action" value="like">
+
+											<div class="flexbox">
+
+												<div class="fav-btn">
+													<span href="" class="favme dashicons dashicons-heart"></span>
+												</div>
+
+											</div>
+										</FORM>
+
 									</div>
 								</div>
 							</div>

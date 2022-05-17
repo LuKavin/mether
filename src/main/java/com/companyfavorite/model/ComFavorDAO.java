@@ -31,7 +31,9 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 			+ "VALUES (?,?)";
 	private static final String GET_ALL_STMT = "SELECT KOL_IDNUM, KOL_NAME, KOL_EMAIL, KOL_PHONE,  KOL_WEBSITE "
 			+ "FROM KOL_MEB ;";
-	private static final String UPDATE = "UPDATE COMPANY_FAVORITE SET favorite_idnum = ? where favorite_idnum = ?";
+	private static final String GET_ONE_STMT = "SELECT c.KOL_IDNUM, k.KOL_NAME, k.KOL_EMAIL, k.KOL_PHONE,  k.KOL_WEBSITE "
+			+ "FROM KOL_MEB k JOIN COMPANY_FAVORITE c ON k.KOL_IDNUM  = c.KOL_IDNUM where "
+			+ "c.COM_IDNUM = ? ;";
 	private static final String DELETE = "DELETE FROM COMPANY_FAVORITE where com_idnum  = ? and kol_idnum = ? ";
 
 	public void insert(Integer com_idnum, Integer kol_idnum) {
@@ -78,7 +80,7 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE);
+//			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, comFavorVO.getFavorite_idnum());
 			pstmt.setInt(2, comFavorVO.getCom_idnum());
@@ -115,7 +117,6 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			System.out.println("12345");
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
@@ -148,7 +149,7 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 	}
 
 	@Override
-	public List<KolMebVO> findByPrimarKey(Integer kol_idnum) {
+	public List<KolMebVO> findByPrimarKey(Integer com_idnum) {
 		// TODO Auto-generated method stub
 		List<KolMebVO> list = new ArrayList<KolMebVO>();
 		Connection con = null;
@@ -159,8 +160,8 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 
 			con = ds.getConnection();
 
-			pstmt = con.prepareStatement(GET_ALL_STMT);
-			pstmt.setInt(1, kol_idnum);
+			pstmt = con.prepareStatement(GET_ONE_STMT);
+			pstmt.setInt(1, com_idnum);
 
 			rs = pstmt.executeQuery();
 
@@ -216,7 +217,6 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 	@Override
 	public List<KolMebVO> getAll() {
 		List<KolMebVO> list = new ArrayList<KolMebVO>();
-		ComFavorVO comFavorVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
