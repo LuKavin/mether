@@ -13,6 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.companymeb.model.CompanyMebVO;
+import com.kolmeb.model.KolMebVO;
 
 public class ComFavorDAO implements ComFavorDAO_interface {
 
@@ -28,9 +29,8 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO `COMPANY_FAVORITE` (`COM_IDNUM`, `KOL_IDNUM`)"
 			+ "VALUES (?,?)";
-	private static final String GET_ALL_STMT = "SELECT k.COM_IDNUM, c.COM_NAME, c.COM_EMAIL, c.COM_PHONE,  c.COM_WEBSITE "
-			+ "			FROM COMPANY_MEB c JOIN KOL_FAVORITE k ON c.COM_IDNUM  = k.COM_IDNUM where "
-			+ "			k.KOL_IDNUM = ? ";
+	private static final String GET_ALL_STMT = "SELECT KOL_IDNUM, KOL_NAME, KOL_EMAIL, KOL_PHONE,  KOL_WEBSITE "
+			+ "FROM KOL_MEB ;";
 	private static final String UPDATE = "UPDATE COMPANY_FAVORITE SET favorite_idnum = ? where favorite_idnum = ?";
 	private static final String DELETE = "DELETE FROM COMPANY_FAVORITE where com_idnum  = ? and kol_idnum = ? ";
 
@@ -148,9 +148,9 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 	}
 
 	@Override
-	public List<CompanyMebVO> findByPrimarKey(Integer kol_idnum) {
+	public List<KolMebVO> findByPrimarKey(Integer kol_idnum) {
 		// TODO Auto-generated method stub
-		List<CompanyMebVO> list = new ArrayList<CompanyMebVO>();
+		List<KolMebVO> list = new ArrayList<KolMebVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -165,15 +165,22 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				CompanyMebVO companyMebVO = new CompanyMebVO();
-				companyMebVO.setCom_idnum(rs.getInt("COM_IDNUM"));
-				companyMebVO.setCom_name(rs.getString(2));
-				companyMebVO.setCom_email(rs.getString(3));
-				companyMebVO.setCom_phone(rs.getString(4));
-				companyMebVO.setCom_website(rs.getString(5));
+				KolMebVO kolMebVO = new KolMebVO();
+				kolMebVO.setKol_idnum(rs.getInt("KOL_IDNUM"));
+				kolMebVO.setKol_name(rs.getString(2));
+				kolMebVO.setKol_email(rs.getString(3));
+				kolMebVO.setKol_cellphone(rs.getString(4));
+				kolMebVO.setKol_website(rs.getString(5));
+				
+				
+//				CompanyMebVO companyMebVO = new CompanyMebVO();
+//				companyMebVO.setCom_idnum(rs.getInt("COM_IDNUM"));
+//				companyMebVO.setCom_name(rs.getString(2));
+//				companyMebVO.setCom_email(rs.getString(3));
+//				companyMebVO.setCom_phone(rs.getString(4));
+//				companyMebVO.setCom_website(rs.getString(5));
 //				c.COM_IDNUM, c.COM_NAME, c.COM_EMAIL, c.COM_PHONE,  c.COM_WEBSITE
-
-				list.add(companyMebVO);
+				list.add(kolMebVO);
 			}
 
 			// Handle any driver errors
@@ -207,8 +214,8 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 	}
 
 	@Override
-	public List<ComFavorVO> getAll() {
-		List<ComFavorVO> list = new ArrayList<ComFavorVO>();
+	public List<KolMebVO> getAll() {
+		List<KolMebVO> list = new ArrayList<KolMebVO>();
 		ComFavorVO comFavorVO = null;
 
 		Connection con = null;
@@ -222,12 +229,14 @@ public class ComFavorDAO implements ComFavorDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-//				System.out.println("���]��");
-				comFavorVO = new ComFavorVO();
-				comFavorVO.setFavorite_idnum(rs.getInt("favorite_idnum"));
-				comFavorVO.setCom_idnum(rs.getInt("com_idnum"));
-				comFavorVO.setKol_idnum(rs.getInt("kol_idnum"));
-				list.add(comFavorVO);
+				
+				KolMebVO kolMebVO = new KolMebVO();
+				kolMebVO.setKol_idnum(rs.getInt("KOL_IDNUM"));
+				kolMebVO.setKol_name(rs.getString(2));
+				kolMebVO.setKol_email(rs.getString(3));
+				kolMebVO.setKol_cellphone(rs.getString(4));
+				kolMebVO.setKol_website(rs.getString(5));
+				list.add(kolMebVO);
 			}
 
 			// Handle any driver errors

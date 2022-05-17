@@ -29,9 +29,9 @@ public class ComFavorServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		
-		KolMebVO kolMebVO = (KolMebVO) req.getSession().getAttribute("kolMebVO");
-		System.out.println(kolMebVO);
+		CompanyMebVO companyMebVO = (CompanyMebVO) req.getSession().getAttribute("companyMebVO"); 
+//		KolMebVO kolMebVO = (KolMebVO) req.getSession().getAttribute("kolMebVO");
+//		System.out.println(kolMebVO);
 		if ("like".equals(action)) { // 來自addEmp.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -41,28 +41,28 @@ public class ComFavorServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				Integer com_idnum = new Integer(req.getParameter("com_idnum")) ;
+//				Integer com_idnum = new Integer(req.getParameter("com_idnum")) ;
 				Integer kol_idnum = new Integer(req.getParameter("kol_idnum")) ;
 //				Integer kol_idnum = 1 ;
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/comFavor/listcom.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/comFavor/listkol.jsp");
 					failureView.forward(req, res); 
 					return; // 程式中斷
 				}
 
 				/*************************** 2.開始新增資料 ***************************************/
 				ComFavorService comFavorService = new ComFavorService();
-				comFavorService.addCompanyFavorite(com_idnum, kol_idnum);
+				comFavorService.addCompanyFavorite(companyMebVO.getCom_idnum(), kol_idnum);
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/comFavor/listcom.jsp";
+				String url = "/comFavor/listkol.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/comFavor/listcom.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/comFavor/listkol.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -75,12 +75,12 @@ public class ComFavorServlet extends HttpServlet {
 	
 			try {
 				/***************************1.接收請求參數***************************************/
-				Integer com_idnum = new Integer(req.getParameter("com_idnum")) ;
-//				Integer kol_idnum = new Integer(req.getParameter("kol_idnum")) ;
+//				Integer com_idnum = new Integer(req.getParameter("com_idnum")) ;
+				Integer kol_idnum = new Integer(req.getParameter("kol_idnum")) ;
 				/***************************2.開始刪除資料***************************************/
 				ComFavorService comFavorService = new ComFavorService();
-				comFavorService.deleteCompanyFavorite(com_idnum,kolMebVO.getKol_idnum());
-				System.out.println(kolMebVO.getKol_idnum());
+				comFavorService.deleteCompanyFavorite(companyMebVO.getCom_idnum(),kol_idnum);
+//				System.out.println(kolMebVO.getKol_idnum());
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/comFavor/listcom.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
@@ -88,7 +88,6 @@ public class ComFavorServlet extends HttpServlet {
 				
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
-				System.out.println("nooooooooooooooo");
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/comFavor/listcom.jsp");

@@ -6,27 +6,54 @@
 <%@ page import="com.companymeb.model.*"%>
 
 <%
-KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");
+/* KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");  */
+CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 
 ComFavorService comFavorService = new ComFavorService();
-List<CompanyMebVO> list = comFavorService.FindKolFavorite(1);
+List<KolMebVO> list = comFavorService.getAll();
 /* kolMebVO.getKol_idnum() */
 pageContext.setAttribute("list", list);
 %>
 
 
 <%@ include file="header.jsp"%>
-<!-- <script>
-	function changeText(){
-	var text = document.getElementById("btn").value
-	if("加入最愛" == text){
-		document.getElementById("btn").value="移除最愛";
-	}
-	else{
-		document.getElementById("btn").value="加入最愛";
-	}
+<
+<style>
+body {
+	margin: 1.5em;
 }
-</script> -->
+
+/* style favorite icon */
+[class^="icon"] {
+	font-size: 1.5em;
+	color: white;
+	font-family: dingbats;
+	-webkit-text-stroke: 1.5px #ddd;
+}
+
+[class^="icon"].selected {
+	color: lightpink;
+}
+
+[class^="icon"].selected, [data-descr]:hover::after {
+	-webkit-text-stroke: 0;
+}
+
+/* override tool tip styles */
+[class^="icon"][data-descr] {
+	text-decoration: none;
+}
+
+[class^="icon"]::selection {
+	background: inherit;
+}
+
+[class^="icon"][data-descr]:hover::after {
+	color: black;
+	font-size: 0.75em;
+	min-width: 7em;
+}
+</style>
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -35,7 +62,7 @@ pageContext.setAttribute("list", list);
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>我的最愛列表</h1>
+					<h1>網紅列表</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -51,7 +78,7 @@ pageContext.setAttribute("list", list);
 		<div class="card card-solid">
 			<div class="card-body pb-0">
 				<div class="row">
-					<c:forEach var="companyMebVO" items="${list}">
+					<c:forEach var="kolMebVO" items="${list}">
 						<div
 							class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
 							<div class="card bg-light d-flex flex-fill">
@@ -66,22 +93,20 @@ pageContext.setAttribute("list", list);
 										<div>
 											<div class="col-12">
 												<h2 class="lead">
-													<b>${companyMebVO.com_name}</b>
+													<b>${kolMebVO.kol_name}</b>
 												</h2>
-												
+
 												<ul class="ml-4 mb-0 fa-ul text-muted">
-												<li class="small"><span class="fa-li"><i
-															class="fas fa-id-card"></i></span>Meb no.:
-														${companyMebVO.com_idnum}</li>
 													<li class="small"><span class="fa-li"><i
-															class="far fa-envelope"></i></span>Email:
-														${companyMebVO.com_email}</li>
+															class="fas fa-id-card"></i></span>Meb no.: ${kolMebVO.kol_idnum}</li>
+													<li class="small"><span class="fa-li"><i
+															class="far fa-envelope"></i></span>Email: ${kolMebVO.kol_email}</li>
 													<li class="small"><span class="fa-li"><i
 															class="fas fa-lg fa-building"></i></span>Website:
-														${companyMebVO.com_website}</li>
+														${kolMebVO.kol_website}</li>
 													<li class="small"><span class="fa-li"><i
 															class="fas fa-lg fa-phone"></i></span>Company Phone:
-														${companyMebVO.com_phone}</li>
+														${kolMebVO.kol_phone}</li>
 												</ul>
 											</div>
 
@@ -91,25 +116,22 @@ pageContext.setAttribute("list", list);
 								</div>
 								<div class="card-footer">
 									<div class="text-right">
-									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/comfavor/comfavor.do"
-										style="margin-bottom: 0px;">
-										<a href="#" class="btn btn-sm bg-teal"> <i
-											class="fas fa-comments"></i>
-										</a> <a href="#" class="btn btn-sm btn-primary"> <i
-											class="fas fa-user"></i> View Profile
-										</a>
-											
-									
-										<input type="submit" value="移除最愛"
-											class="btn btn-outline-secondary"  data-bs-toggle="button"
-											> <input
-											type="hidden" name="com_idnum"
-											value="${companyMebVO.com_idnum}">
-											 <input
-											type="hidden" name="action" value="dislike">
-									</FORM>
-								
+										<FORM METHOD="post"
+											ACTION="<%=request.getContextPath()%>/comfavor/comfavor.do"
+											style="margin-bottom: 0px;">
+											<a href="#" class="btn btn-sm bg-teal"> <i
+												class="fas fa-comments"></i>
+											</a> <a href="#" class="btn btn-sm btn-primary"> <i
+												class="fas fa-user"></i> View Profile
+											</a> <input type="submit" value="新增最愛"
+												class="btn btn-outline-secondary" data-bs-toggle="button">
+											<input type="hidden" name="kol_idnum"
+												value="${kolMebVO.kol_idnum}"> <input type="hidden"
+												name="action" value="like">
+											<li data-descr="add to favorites" class="icon-heart"><span>&#10084;</span>
+											</li>
+										</FORM>
+
 									</div>
 								</div>
 							</div>
@@ -137,6 +159,26 @@ pageContext.setAttribute("list", list);
 
 	</section>
 </div>
+
+<script>
+	var favorites = [];
+
+	$(".icon-heart").click(function() {
+		$(this).toggleClass("selected");
+		var selected = $(this).parent().attr("id");
+
+		var index = jQuery.inArray(selected, favorites);
+		if (index >= 0) {
+			favorites.splice(index, 1);
+			console.log('removing ' + selected);
+		} else {
+
+			favorites.push(selected);
+			console.log('adding ' + selected)
+		}
+		console.log(favorites);
+	});
+</script>
 
 <%@ include file="footer.jsp"%>
 
