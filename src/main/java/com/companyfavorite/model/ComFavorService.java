@@ -3,6 +3,7 @@ package com.companyfavorite.model;
 import java.util.List;
 
 import com.companymeb.model.CompanyMebVO;
+import com.kolmeb.model.KolMebVO;
 
 public class ComFavorService {
 	
@@ -21,7 +22,7 @@ public class ComFavorService {
 		return comFavorVO;
 	}
 	
-	public List<CompanyMebVO> FindKolFavorite(Integer kol_idnum) {
+	public List<KolMebVO> FindMebFavorite(Integer kol_idnum) {
 			
 		return dao.findByPrimarKey(kol_idnum);
 	}
@@ -30,7 +31,7 @@ public class ComFavorService {
 		dao.delete(com_idnum,kol_idnum);		
 	}
 	
-	public List<ComFavorVO> getAll() {
+	public List<KolMebVO> getAll() {
 		return dao.getAll();
 	}
 	
