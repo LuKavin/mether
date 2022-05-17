@@ -9,11 +9,11 @@ public interface ComFavorDAO_interface {
 	
 	public void insert(Integer com_idnum,Integer kol_idnum);
 
-	public void update(ComFavorVO comFavorVO);
+//	public void update(ComFavorVO comFavorVO);
 
 	public void delete(Integer com_idnum,Integer kol_idnum);
 
-	public List<KolMebVO> findByPrimarKey(Integer kol_idnum);
+	public List<KolMebVO> findByPrimarKey(Integer com_idnum);
 
 	public List<KolMebVO> getAll();
 }

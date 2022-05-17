@@ -34,7 +34,9 @@
 	integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<link href="//s.w.org/wp-includes/css/dashicons.css?20150710" rel="stylesheet" type="text/css">
 
+<link href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/78801/_modular-scale.scss" rel="stylesheet" type="text/css">
 
 <style>
 .preview_img {
@@ -42,7 +44,87 @@
 	max-height: 300px;
 }
 </style>
+<style>
+	html, body {
+  height: 100%;
+}
 
+.flexbox {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: inline-block;
+}
+
+.fav-btn {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes favme-anime {
+  0% {
+    opacity: 1;
+    font-size: ms(0);
+    -webkit-text-stroke-color: transparent;
+  }
+  25% {
+    opacity: .6;
+    color: #FFF;
+    font-size: ms(-2);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #DC3232;
+  }
+  75% {
+    opacity: .6;
+    color: #FFF;
+    font-size: ms(3);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #DC3232;
+  }
+  100% {
+    opacity: 1;
+    font-size: ms(2);
+    -webkit-text-stroke-color: transparent;
+  }
+}
+
+@keyframes favme-hover {
+  from {
+    font-size: ms(3);
+  }
+  80% {
+    font-size: ms(2);
+  }
+}
+
+.favme {
+  display: block;
+  font-size: ms(2);
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  box-shadow: none;
+  transition: all .2s ease;
+  color: #CBCDCE;
+  margin: 0;
+}
+
+.favme.active {
+  color: #DC3232;
+}
+
+.favme:hover {
+  animation: favme-hover .3s infinite alternate;
+}
+
+.favme.is_animating {
+  animation: favme-anime .3s;
+}
+	
+</style>
 
 </head>
 <!-- ============================================================================================================================================================ -->

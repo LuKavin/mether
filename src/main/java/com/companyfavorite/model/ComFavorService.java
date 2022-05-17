@@ -17,14 +17,14 @@ public class ComFavorService {
 		dao.insert(com_idnum,kol_idnum);
 	}
 
-	public ComFavorVO updateCompanyFavorite(ComFavorVO comFavorVO) {
-		dao.update(comFavorVO);
-		return comFavorVO;
-	}
+//	public ComFavorVO updateCompanyFavorite(ComFavorVO comFavorVO) {
+//		dao.update(comFavorVO);
+//		return comFavorVO;
+//	}
 	
-	public List<KolMebVO> FindMebFavorite(Integer kol_idnum) {
+	public List<KolMebVO> FindMebFavorite(Integer com_idnum) {
 			
-		return dao.findByPrimarKey(kol_idnum);
+		return dao.findByPrimarKey(com_idnum);
 	}
 	
 	public void deleteCompanyFavorite(Integer com_idnum,Integer kol_idnum) {

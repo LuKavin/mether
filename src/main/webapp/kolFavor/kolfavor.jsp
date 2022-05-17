@@ -4,14 +4,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.companyfavorite.model.*"%>
 <%@ page import="com.companymeb.model.*"%>
+<%@page import="com.kolfavorite.model.KolFavorService"%>
 
 <%
-/* KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");  */
-CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO"); 
+KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO"); 
+/* CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");  */
 
-ComFavorService comFavorService = new ComFavorService();
-List<KolMebVO> list = comFavorService.FindMebFavorite(1);
-/* companyMebVO.getCom_idnum() */
+KolFavorService kolFavorService = new KolFavorService();
+List<CompanyMebVO> list = kolFavorService.FindKolFavorite(kolMebVO.getKol_idnum());
+/* kolMebVO.getKol_idnum(); */
 pageContext.setAttribute("list", list);
 %>
 
@@ -52,7 +53,7 @@ pageContext.setAttribute("list", list);
 		<div class="card card-solid">
 			<div class="card-body pb-0">
 				<div class="row">
-					<c:forEach var="kolMebVO" items="${list}">
+					<c:forEach var="companyMebVO" items="${list}">
 						<div
 							class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
 							<div class="card bg-light d-flex flex-fill">
@@ -67,22 +68,22 @@ pageContext.setAttribute("list", list);
 										<div>
 											<div class="col-12">
 												<h2 class="lead">
-													<b>${kolMebVO.kol_name}</b>
+													<b>${companyMebVO.com_name}</b>
 												</h2>
 												
 												<ul class="ml-4 mb-0 fa-ul text-muted">
 												<li class="small"><span class="fa-li"><i
 															class="fas fa-id-card"></i></span>Meb no.:
-														${kolMebVO.kol_idnum}</li>
+														${companyMebVO.com_idnum}</li>
 													<li class="small"><span class="fa-li"><i
 															class="far fa-envelope"></i></span>Email:
-														${kolMebVO.kol_email}</li>
+														${companyMebVO.com_email}</li>
 													<li class="small"><span class="fa-li"><i
 															class="fas fa-lg fa-building"></i></span>Website:
-														${kolMebVO.kol_website}</li>
+														${companyMebVO.com_website}</li>
 													<li class="small"><span class="fa-li"><i
 															class="fas fa-lg fa-phone"></i></span>Company Phone:
-														${kolMebVO.kol_phone}</li>
+														${companyMebVO.com_phone}</li>
 												</ul>
 											</div>
 
@@ -93,7 +94,7 @@ pageContext.setAttribute("list", list);
 								<div class="card-footer">
 									<div class="text-right">
 									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/comfavor/comfavor.do"
+										ACTION="<%=request.getContextPath()%>/kolfavor/kolfavor.do"
 										style="margin-bottom: 0px;">
 										<a href="#" class="btn btn-sm bg-teal"> <i
 											class="fas fa-comments"></i>
@@ -105,8 +106,8 @@ pageContext.setAttribute("list", list);
 										<input type="submit" value="移除最愛"
 											class="btn btn-outline-secondary"  data-bs-toggle="button"
 											> <input
-											type="hidden" name="kol_idnum"
-											value="${kolMebVO.kol_idnum}">
+											type="hidden" name="com_idnum"
+											value="${companyMebVO.com_idnum}">
 											 <input
 											type="hidden" name="action" value="dislike">
 											<div class="flexbox">
