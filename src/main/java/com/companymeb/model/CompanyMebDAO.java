@@ -61,8 +61,92 @@ public class CompanyMebDAO implements CompanyMebDAO_interface{
 			+ "COM_WEBSITE=?, COM_BIRTHDAY=?, COM_GENDER=?, COM_ID=?, COM_BANKCODE=?, COM_BANKACCOUNT=?, COM_NAME=?, "
 			+ "COM_INTRODUCE=?, COM_FOUNDDATE=?, COM_TAXIDNUM=? where COM_IDNUM = ?";
 	
+	private static final String UPDATE_CPASSWORD =
+			"UPDATE COMPANY_MEB set COM_PASSWORD = ? WHERE COM_EMAIL=?";
+	
+	private static final String SELECT_COMEMIAL = 
+			"SELECT COM_IDNUM FROM COMPANY_MEB WHERE COM_EMAIL = ?";
 	
 	
+	
+	@Override
+	public Integer findByComEmail(String com_email) {
+		Integer com_idnum = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(SELECT_COMEMIAL);
+			pstmt.setString(1, com_email);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				com_idnum = rs.getInt("com_idnum");				
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured."
+					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return com_idnum;
+	}
+
+
+	@Override
+	public void updatepassword(String com_email, String com_password) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_CPASSWORD);
+			pstmt.setString(1, com_password);
+			pstmt.setString(2, com_email);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured."
+					+ se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}		
+	}
+
+
 	@Override
 	public CompanyMebVO findAccountPassword(String mem_account, String mem_password) {
 		CompanyMebVO companyMebVO = null;

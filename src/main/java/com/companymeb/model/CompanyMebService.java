@@ -43,4 +43,12 @@ public class CompanyMebService {
 	public List<CompanyMebVO> getAll() {
 		return dao.getAll();
 	}	
+	
+	public void updateCompanyPassword(String com_email, String com_password) {
+		dao.updatepassword(com_email,com_password);
+	}
+	
+	public Integer getOneCompanyEmail(String com_email) {
+		return dao.findByComEmail(com_email);
+	}
 }

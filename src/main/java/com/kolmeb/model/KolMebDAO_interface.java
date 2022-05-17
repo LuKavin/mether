@@ -12,4 +12,6 @@ public interface KolMebDAO_interface {
 		public List<KolMebVO> getAll();
 		public boolean commatch(String kol_account);
 		public KolMebVO findAccountPassword(String mem_account, String mem_password);
+		public void updatepassword(String kol_email, String kol_password);
+		public Integer findByKolEmail(String kol_email);
 }

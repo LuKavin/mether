@@ -10,4 +10,6 @@ public interface CompanyMebDAO_interface {
 		public List<CompanyMebVO> getAll();
 		public boolean kolmatch(String com_account);
 		public CompanyMebVO findAccountPassword(String mem_account, String mem_password);
+		public void updatepassword(String com_email, String com_password);
+		public Integer findByComEmail(String com_email);
 }

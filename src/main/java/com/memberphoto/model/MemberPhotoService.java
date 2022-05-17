@@ -13,17 +13,25 @@ public class MemberPhotoService {
 	public int addMemberPhoto(MemberPhotoVO memberPhotoVO) {
 		return dao.insert(memberPhotoVO);
 	}
+	
+	public void updateMemberPhoto(MemberPhotoVO memberPhotoVO) {
+		dao.update(memberPhotoVO);
+	}
 
-//	public void deleteMemberPhoto(Integer meb_photonum) {
-//		dao.delete(meb_photonum);
-//	}
+	public void deleteMemberPhoto(Integer meb_photonum) {
+		dao.delete(meb_photonum);
+	}
 
 	public MemberPhotoVO getOneMemberPhoto(Integer meb_photonum) {
 		return dao.findByPrimaryKey(meb_photonum);
 	}
 
-	public List<MemberPhotoVO> getAll() {
-		return dao.getAll();
+	public List<MemberPhotoVO> getComAll(Integer com_idnum) {
+		return dao.getComAll(com_idnum);
+	}
+	
+	public List<MemberPhotoVO> getKolAll(Integer kol_idnum) {
+		return dao.getKolAll(kol_idnum);
 	}
 }
 
