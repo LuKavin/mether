@@ -1,10 +1,5 @@
 package com.kolfavorite.controller;
 
-<<<<<<< HEAD
-public class KolFavorServlet {
-
-}
-=======
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -102,4 +97,3 @@ public class KolFavorServlet extends HttpServlet{
 
 }
 
->>>>>>> alanyu

@@ -12,11 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-<<<<<<< HEAD
-=======
 import com.companymeb.model.CompanyMebVO;
 
->>>>>>> alanyu
 public class KolFavorDAO implements KolFavorDAO_interface {
 
 	private static DataSource ds = null;
@@ -25,19 +22,6 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 			Context ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBmether");
 		} catch (NamingException e) {
-<<<<<<< HEAD
-				e.printStackTrace();
-		}
-	}
-	
-	private static final String INSERT_STMT = "INSERT INTO `KOL_FAVORITE` (`FAVORTIE_IDNUM`, `COM_IDNUM`, `KOL_IDNUM`)"
-			+ "VALUES (?,?,?)";
-	private static final String GET_ALL_STMT = "SELECT favorite_idnum, com_idnum, kol_idnum  FROM PRODUCT";
-	private static final String GET_ONE_STMT = "SELECT * FROM KOL_FAVORITE where favorite_idnum = ?";
-	private static final String DELETE = "DELETE FROM KOL_FAVORITE where favorite_idnum = ?";
-	private static final String UPDATE = "UPDATE KOL_FAVORITE SET favorite_idnum = ? where favorite_idnum = ?";
-	
-=======
 			e.printStackTrace();
 		}
 	}
@@ -49,7 +33,6 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 			+ "FROM COMPANY_MEB c JOIN KOL_FAVORITE k ON c.COM_IDNUM  = k.COM_IDNUM where \n" + "k.KOL_IDNUM = ? ;";
 	private static final String DELETE = "DELETE FROM KOL_FAVORITE where kol_idnum = ? and com_idnum  = ? ";
 
->>>>>>> alanyu
 //	public static void main(String[] args) {
 //		
 //		ComFavorDAO test = new ComFavorDAO();
@@ -58,11 +41,7 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 //	}
 //		
 
-<<<<<<< HEAD
-	public void insert(KolFavorVO kolFavorVO) {
-=======
 	public void insert(Integer kol_idnum, Integer com_idnum) {
->>>>>>> alanyu
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -70,27 +49,12 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 
 		try {
 			con = ds.getConnection();
-<<<<<<< HEAD
-			String columns[] = { "favorite_idnum" };
-			pstmt = con.prepareStatement(INSERT_STMT, columns);
-
-			pstmt.setInt(1, kolFavorVO.getFavorite_idnum());
-			pstmt.setInt(2, kolFavorVO.getCom_idnum());
-			pstmt.setInt(3, kolFavorVO.getKol_idnum());
-
-			pstmt.executeUpdate();
-			ResultSet rs = pstmt.getGeneratedKeys();// ���@�˥�ResultSet
-			if (rs.next()) {
-				favorite_idnum = rs.getInt(1);// ���o�۰ʽs���A�H�K����s�W��FK����LTABLE
-			}
-=======
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, kol_idnum);
 			pstmt.setInt(2, com_idnum);
 
 			pstmt.executeUpdate();
->>>>>>> alanyu
 
 			// Handle any SQL errors
 		} catch (SQLException se) {
@@ -115,16 +79,6 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 	}
 
 	public void update(KolFavorVO kolFavorVO) {
-<<<<<<< HEAD
-		
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE);
-=======
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -133,18 +87,13 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 
 			con = ds.getConnection();
 //			pstmt = con.prepareStatement(UPDATE);
->>>>>>> alanyu
 
 			pstmt.setInt(1, kolFavorVO.getFavorite_idnum());
 			pstmt.setInt(2, kolFavorVO.getCom_idnum());
 			pstmt.setInt(3, kolFavorVO.getKol_idnum());
 
 			pstmt.executeUpdate();
-<<<<<<< HEAD
-			
-=======
 
->>>>>>> alanyu
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -164,19 +113,11 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 				}
 			}
 		}
-<<<<<<< HEAD
-		
-	}
-
-	@Override
-	public void delete(Integer Favorite_IdNum) {
-=======
 
 	}
 
 	@Override
 	public void delete(Integer kol_idnum, Integer com_idnum) {
->>>>>>> alanyu
 		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -186,23 +127,14 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
-<<<<<<< HEAD
-			pstmt.setInt(1, Favorite_IdNum);
-=======
 			pstmt.setInt(1, kol_idnum);
 			pstmt.setInt(2, com_idnum);
->>>>>>> alanyu
 
 			pstmt.executeUpdate();
 
 			// Handle any SQL errors
 		} catch (SQLException se) {
-<<<<<<< HEAD
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-=======
 			throw new RuntimeException("A database error occured. " + se.getMessage());
->>>>>>> alanyu
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
@@ -223,45 +155,24 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 	}
 
 	@Override
-<<<<<<< HEAD
-	public KolFavorVO findByPrimarKey(Integer favorite_idnum) {
-		// TODO Auto-generated method stub
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		KolFavorVO kolFavorVO =null;
-=======
 	public List<CompanyMebVO> findByPrimarKey(Integer kol_idnum) {
 		// TODO Auto-generated method stub
 		List<CompanyMebVO> list = new ArrayList<CompanyMebVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
->>>>>>> alanyu
 		ResultSet rs = null;
 
 		try {
 
 			con = ds.getConnection();
-<<<<<<< HEAD
-			
-			pstmt = con.prepareStatement(GET_ONE_STMT);
-			rs = pstmt.getResultSet();
-			pstmt.setInt(1, favorite_idnum);
-=======
 
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			rs = pstmt.getResultSet();
 			pstmt.setInt(1, kol_idnum);
->>>>>>> alanyu
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-<<<<<<< HEAD
-				kolFavorVO = new KolFavorVO();
-				kolFavorVO.setFavorite_idnum(kolFavorVO.getFavorite_idnum());
-				kolFavorVO.setCom_idnum(kolFavorVO.getCom_idnum());
-				kolFavorVO.setKol_idnum(kolFavorVO.getKol_idnum());
-=======
 				CompanyMebVO companyMebVO = new CompanyMebVO();
 				companyMebVO.setCom_idnum(rs.getInt("COM_IDNUM"));
 				companyMebVO.setCom_name(rs.getString(2));
@@ -270,17 +181,11 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 				companyMebVO.setCom_website(rs.getString(5));
 				
 				list.add(companyMebVO);
->>>>>>> alanyu
 			}
 
 			// Handle any driver errors
 		} catch (SQLException se) {
-<<<<<<< HEAD
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-=======
 			throw new RuntimeException("A database error occured. " + se.getMessage());
->>>>>>> alanyu
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -305,16 +210,6 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 				}
 			}
 		}
-<<<<<<< HEAD
-		return kolFavorVO;
-	}
-
-	@Override
-	public List<KolFavorVO> getAll() {
-		List<KolFavorVO> list = new ArrayList<KolFavorVO>();
-		KolFavorVO kolFavorVO = null;
-		
-=======
 		return list;
 	}
 
@@ -322,7 +217,6 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 	public List<CompanyMebVO> getAll() {
 		List<CompanyMebVO> list = new ArrayList<CompanyMebVO>();
 
->>>>>>> alanyu
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -335,13 +229,6 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 
 			while (rs.next()) {
 //				System.out.println("���]��");
-<<<<<<< HEAD
-				kolFavorVO = new KolFavorVO();
-				kolFavorVO.setFavorite_idnum(rs.getInt("favorite_idnum"));
-				kolFavorVO.setCom_idnum(rs.getInt("com_idnum"));
-				kolFavorVO.setKol_idnum(rs.getInt("kol_idnum"));
-				list.add(kolFavorVO);
-=======
 				CompanyMebVO companyMebVO = new CompanyMebVO();
 				companyMebVO.setCom_idnum(rs.getInt("COM_IDNUM"));
 				companyMebVO.setCom_name(rs.getString(2));
@@ -350,17 +237,11 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 				companyMebVO.setCom_website(rs.getString(5));
 				
 				list.add(companyMebVO);
->>>>>>> alanyu
 			}
 
 			// Handle any driver errors
 		} catch (SQLException se) {
-<<<<<<< HEAD
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-=======
 			throw new RuntimeException("A database error occured. " + se.getMessage());
->>>>>>> alanyu
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -387,9 +268,5 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 		}
 		return list;
 	}
-<<<<<<< HEAD
-			
-=======
 
->>>>>>> alanyu
 }

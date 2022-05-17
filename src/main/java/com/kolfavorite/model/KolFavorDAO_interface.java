@@ -1,20 +1,5 @@
 package com.kolfavorite.model;
 
-<<<<<<< HEAD
-import java.util.*;
-
-public interface KolFavorDAO_interface {
-
-	public void insert(KolFavorVO kolFavorVO);
-
-	public void update(KolFavorVO kolFavorVO);
-
-	public void delete(Integer favorite_idnum);
-
-	public KolFavorVO findByPrimarKey(Integer favorite_idnum);
-
-	public List<KolFavorVO> getAll();
-=======
 import java.util.List;
 
 import com.companymeb.model.CompanyMebVO;
@@ -30,7 +15,6 @@ public interface KolFavorDAO_interface {
 	public List<CompanyMebVO>  findByPrimarKey(Integer favorite_idnum);
 
 	public List<CompanyMebVO> getAll();
->>>>>>> alanyu
 
 	
 
