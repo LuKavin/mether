@@ -14,29 +14,29 @@
 <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
 
 <!-- Animate.css -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/animate.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/animate.css">
 
 <!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/icomoon.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/icomoon.css">
 
 <!-- Bootstrap  -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/bootstrap.css">
 
 <!-- Magnific Popup -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/magnific-popup.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/magnific-popup.css">
 
 <!-- Owl Carousel  -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/owl.carousel.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/owl.carousel.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/owl.theme.default.min.css">
 
 <!-- Theme style  -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/style.css">
 
 <!-- adminlte style -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminlte.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/adminlte.min.css">
 
 <!-- Modernizr JS -->
-<script src="<%=request.getContextPath()%>/js/modernizr-2.6.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/modernizr-2.6.2.min.js"></script>
 
 </head>
 <body>
@@ -65,10 +65,10 @@
 									<li><a href="#">Branding</a></li>
 									<li><a href="#">API</a></li>
 								</ul></li>
-							<li class="has-dropdown active"><a href="<%=request.getContextPath()%>/companymeb/companyMebJsp.jsp">會員中心</a>
+							<li class="has-dropdown active"><a href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJsp.jsp">會員中心</a>
 								<ul class="dropdown">
-									<li><a href="<%=request.getContextPath()%>/companymeb/companyMebJsp.jsp">會員註冊</a></li>
-									<li><a href="#">會員登入</a></li>
+									<li><a href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJsp.jsp">會員註冊</a></li>
+									<li><a href="<%=request.getContextPath()%>/login/companyMebJspLogin.jsp">會員登入</a></li>
 									<li><a href="#">會員中心</a></li>
 									<li><a href="<%=request.getContextPath()%>/logout/companyMebJspLogout.jsp">會員登出</a></li>
 								</ul></li>
@@ -82,7 +82,7 @@
 
 		<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm"
 			role="banner"
-			style="background-image: url(<%=request.getContextPath()%>/images/img_bg_1.jpg); height: 200px;">
+			style="background-image: url(<%=request.getContextPath()%>/comBackStage/resourceslee/images/img_bg_1.jpg); height: 200px;">
 		</header>
 
 <!--========================================body part========================================-->
@@ -112,7 +112,7 @@
 									<label for="VK_account" class="col-md-2 col-form-label">會員帳號:</label>
 									<div class="col-md-10">
 										<input type="text" class="form-control" id="VK_account" name="mem_account" onkeyup="value=value.replace(/[\W]/g,'')"
-											onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" required>
+											onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" >
 									</div>
 								</div>
 
@@ -120,7 +120,7 @@
 									<label for="VK_password" class="col-md-2 col-form-label">會員密碼:</label>
 									<div class="col-md-10">
 										<input type="password" class="form-control" id="VK_password" name="mem_password" onkeyup="value=value.replace(/[\W]/g,'')"
-											onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" required>
+											onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" >
 									</div>
 								</div>
 
@@ -129,7 +129,7 @@
 										<button type="submit" class="btn btn-primary" id="VK_member_login">登入</button>
 										<input type="hidden" name="action" value="login">
 										<button type="submit" class="btn btn-primary" id="VK_member_forgetpassword">
-											<a href="Member_forgetpassword_IW.html" style="color: black">忘記密碼</a> 
+											<a href="<%=request.getContextPath()%>/forgetpassword/companyMebJspForgetPassword.jsp" style="color: black">忘記密碼</a> 
 										</button>
 									</div>
 								</div>
@@ -175,35 +175,35 @@
 <!--========================================else part========================================-->
 
 		<!-- jQuery -->
-		<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+		<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.min.js"></script>
 
 		<!-- jQuery Easing -->
-		<script src="<%=request.getContextPath()%>/js/jquery.easing.1.3.js"></script>
+		<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.easing.1.3.js"></script>
 
 		<!-- Bootstrap -->
-		<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+		<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/bootstrap.min.js"></script>
 
 		<!-- Waypoints -->
-		<script src="<%=request.getContextPath()%>/js/jquery.waypoints.min.js"></script>
+		<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.waypoints.min.js"></script>
 
 		<!-- Carousel -->
-		<script src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
+		<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/owl.carousel.min.js"></script>
 
 		<!-- countTo -->
-		<script src="<%=request.getContextPath()%>/js/jquery.countTo.js"></script>
+		<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.countTo.js"></script>
 
 		<!-- Stellar -->
-		<script src="<%=request.getContextPath()%>/js/jquery.stellar.min.js"></script>
+		<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.stellar.min.js"></script>
 
 		<!-- Magnific Popup -->
-		<script src="<%=request.getContextPath()%>/js/jquery.magnific-popup.min.js"></script>
-		<script src="<%=request.getContextPath()%>/js/magnific-popup-options.js"></script>
+		<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.magnific-popup.min.js"></script>
+		<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/magnific-popup-options.js"></script>
 
 		<!-- Main -->
-		<script src="<%=request.getContextPath()%>/js/main.js"></script>
+		<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/main.js"></script>
 		
 		<!-- js from IW -->
-	    <script src="<%=request.getContextPath()%>/js/MemberInfo_IW.js"></script>
+	    <script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/MemberInfo_IW.js"></script>
 
 </body>
 </html>

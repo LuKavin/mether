@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.companymeb.model.CompanyMebService;
 import com.companymeb.model.CompanyMebVO;
@@ -76,7 +77,7 @@ public class CompanyMebServlet extends HttpServlet{
 				 
 				if(companyMebVO != null) {
 					req.getSession().setAttribute("companyMebVO", companyMebVO);
-String url = "/listAllEmp.jsp";
+String url = "/comBackStage/companymeb/companyMebJsp.jsp";
 RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(req, res);
 					return;
@@ -87,7 +88,7 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 				
 				if(kolMebVO != null) {
 					req.getSession().setAttribute("kolMebVO", kolMebVO);
-String url = "/listAllEmp.jsp";
+String url = "/comBackStage/companymeb/companyMebJsp.jsp";
 RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(req, res);
 					return;
@@ -103,6 +104,51 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 			}
 		}
 	
+	
+//	if ("logout".equals(action)) { 
+//		
+//			List<String> errorMsgs = new LinkedList<String>();
+//			req.setAttribute("errorMsgs", errorMsgs);
+//		
+//			try {
+//				HttpSession session = req.getSession();
+//				session.invalidate();
+//				res.sendRedirect("/companyMebJspLogout2.jsp");
+//								
+//				} catch (Exception e) {
+//				errorMsgs.add("會員登出失敗，請重新操作");
+//			}
+//		}
+	
+	
+	if ("logout".equals(action)) { 
+	
+		List<String> errorMsgs = new LinkedList<String>();
+		req.setAttribute("errorMsgs", errorMsgs);
+		HttpSession session = req.getSession();
+		
+		try {
+			if((session.getAttribute("companyMebVO")) != null) {
+			String url = "/logout/companyMebJspLogout2.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+			return;
+			}
+	
+			if((session.getAttribute("kolMebVO")) != null) {
+			String url = "/logout/companyMebJspLogout2.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+			return;
+			}
+		
+			RequestDispatcher failureView = req.getRequestDispatcher("/logout/companyMebJspLogoutfail.jsp");
+			failureView.forward(req, res);
+						
+			} catch (Exception e) {
+			errorMsgs.add("會員登出失敗，請重新操作");
+			}
+		}
 		
 		
 	if ("update".equals(action)) { // 來自companyMebJsp3.jsp的請求
@@ -243,7 +289,7 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 				
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("companyMebVO", companyMebVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/companymeb/companyMebJsp3.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyMebJsp3.jsp");
 					failureView.forward(req, res);
 					return;
 				}				
@@ -253,14 +299,14 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 				companyMebSvc.updateCompanyMeb(companyMebVO);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-String url = "/listAllEmp.jsp";
+String url = "/comBackStage/companymeb/companyMebJsp.jsp";
 RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);	
 
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/companymeb/companyMebJsp3.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyMebJsp3.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -430,7 +476,7 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 				
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("companyMebVO", companyMebVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/companymeb/companyMebJsp2.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyMebJsp2.jsp");
 					failureView.forward(req, res);
 					return;
 				}				
@@ -441,7 +487,7 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 				req.setAttribute("companyMebVO", companyMebVO);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/companymeb/companyMebJsp3.jsp";
+				String url = "/comBackStage/companymeb/companyMebJsp3.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
 				
@@ -449,7 +495,7 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 	            } catch (Exception e) {
 	            req.setAttribute("companyMebVO", companyMebVO);
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/companymeb/companyMebJsp2.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyMebJsp2.jsp");
 				failureView.forward(req, res);
 			}
 		}

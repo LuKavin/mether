@@ -185,7 +185,7 @@ public class KolMebServlet extends HttpServlet{
 					
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("kolMebVO", kolMebVO);
-						RequestDispatcher failureView = req.getRequestDispatcher("/kolmeb/kolMebJsp3.jsp");
+						RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolMebJsp3.jsp");
 						failureView.forward(req, res);
 						return;
 					}				
@@ -202,7 +202,7 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 					/***************************其他可能的錯誤處理*************************************/
 				} catch (Exception e) {
 					errorMsgs.add("修改資料失敗:"+e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/kolmeb/kolMebJsp3.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolMebJsp3.jsp");
 					failureView.forward(req, res);
 				}
 			}	
@@ -347,7 +347,7 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 				
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("kolMebVO", kolMebVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/kolmeb/kolMebJsp2.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolMebJsp2.jsp");
 					failureView.forward(req, res);
 					return;
 				}				
@@ -358,7 +358,7 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 					req.setAttribute("kolMebVO", kolMebVO);
 					
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
-					String url = "/kolmeb/kolMebJsp3.jsp";
+					String url = "/kolBackStage/kolmeb/kolMebJsp3.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(req, res);				
 					
@@ -366,7 +366,7 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 				} catch (Exception e) {
 					req.setAttribute("kolMebVO", kolMebVO);
 					errorMsgs.add(e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/kolmeb/kolMebJsp2.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolMebJsp2.jsp");
 					failureView.forward(req, res);
 				}
 			}	

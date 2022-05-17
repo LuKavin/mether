@@ -65,8 +65,92 @@ public class KolMebDAO implements KolMebDAO_interface{
 			+ "KOL_WEBSITE=?, KOL_BIRTHDAY=?, KOL_GENDER=?, KOL_ID=?, KOL_BANKCODE=?, KOL_BANKACCOUNT=?, KOL_NAME=?, "
 			+ "KOL_LOCATION=?, KOL_HEIGHT=?, KOL_WEIGHT=?, KOL_STYLE=?, KOL_EXPERIENCE=? where KOL_IDNUM = ?";
 	
+	private static final String UPDATE_KPASSWORD =
+			"UPDATE KOL_MEB set KOL_PASSWORD = ? WHERE KOL_EMAIL=?";
+	
+	private static final String SELECT_KOLEMIAL = 
+			"SELECT KOL_IDNUM FROM KOL_MEB WHERE KOL_EMAIL = ?";
 	
 	
+	
+	@Override
+	public void updatepassword(String kol_email, String kol_password) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_KPASSWORD);
+			pstmt.setString(1, kol_password);
+			pstmt.setString(2, kol_email);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured."
+					+ se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}		
+	}
+
+
+	@Override
+	public Integer findByKolEmail(String kol_email) {
+		Integer kol_idnum = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(SELECT_KOLEMIAL);
+			pstmt.setString(1, kol_email);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				kol_idnum = rs.getInt("kol_idnum");				
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured."
+					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return kol_idnum;
+	}
+
+
 	@Override
 	public KolMebVO findAccountPassword(String mem_account, String mem_password) {
 		KolMebVO kolMebVO = null;

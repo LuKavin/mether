@@ -40,4 +40,12 @@ public class KolMebService {
 	public List<KolMebVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public void updateKolPassword(String kol_email, String kol_password) {
+		dao.updatepassword(kol_email,kol_password);
+	}
+	
+	public Integer getOneKolEmail(String kol_email) {
+		return dao.findByKolEmail(kol_email);
+	}
 }
