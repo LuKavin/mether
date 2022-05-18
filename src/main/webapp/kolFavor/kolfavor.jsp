@@ -8,10 +8,10 @@
 
 <%
 KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO"); 
-/* CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");  */
+CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO"); 
 
 KolFavorService kolFavorService = new KolFavorService();
-List<CompanyMebVO> list = kolFavorService.FindKolFavorite(kolMebVO.getKol_idnum());
+List list = kolFavorService.FindKolFavorite(kolMebVO.getKol_idnum());
 /* kolMebVO.getKol_idnum(); */
 pageContext.setAttribute("list", list);
 %>
@@ -37,7 +37,7 @@ pageContext.setAttribute("list", list);
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>我的最愛列表</h1>
+					<h1>最愛廠商列表</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -64,7 +64,7 @@ pageContext.setAttribute("list", list);
 										<div class="col-12 text-center">
 											<img  style="max-width: 150px; min-height: 150px" alt="user-avatar"
 												class="img-circle img-fluid"
-												src="<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=1">
+												src="<%=request.getContextPath()%>/ReadComMemberPhoto?com_idnum=${companyMebVO.com_idnum}">
 
 										</div>
 										<div>

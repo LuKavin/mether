@@ -1,15 +1,13 @@
-package com.kolfavorite.controller;
+package com.companyfavorite.controller;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -18,58 +16,42 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-
-import com.product.model.ProductVO;
-
-@WebServlet("/viewkolmebpic")
-public class Viewpic extends HttpServlet {
-
+@WebServlet("/ReadKolMemberPhoto")
+public class ReadMemberPhoto extends HttpServlet{
+	
 	Connection con;
 
-	public void doGet(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		res.setContentType("image/gif");
+		res.setContentType("image/jpg");
 		ServletOutputStream out = res.getOutputStream();
-		String product_num = req.getParameter("product_num");
-		int photoNum =  Integer.parseInt(req.getParameter("photoNum"));
 
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(
-					"SELECT PRODUCT_PHOTO" + photoNum + " FROM PRODUCT_PHOTO where PRODUCT_NUM = "+ product_num );
+			String kol_idnum = req.getParameter("kol_idnum");
+			
+			ResultSet rs = stmt.executeQuery("SELECT MEB_PHOTO FROM MEMBER_PHOTO where KOL_IDNUM = " + kol_idnum + " limit 1 ;");
+
 			if (rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream(1));
+				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("meb_photo"));
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
 				int len;
 				while ((len = in.read(buf)) != -1) {
 					out.write(buf, 0, len);
 				}
 				in.close();
-			} else {
-//				res.sendError(HttpServletResponse.SC_NOT_FOUND);
-				InputStream in = getServletContext().getResourceAsStream("/NoData/none2.jpg");
-				byte[] buf = new byte[in.available()];
-				in.read(buf);
-				out.write(buf);
-				in.close();
 			}
 			rs.close();
 			stmt.close();
 		} catch (Exception e) {
-//			System.out.println(e);
-			InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
-			byte[] buf = new byte[in.available()];
-			in.read(buf);
-			out.write(buf);
-			in.close();
-					
+			// System.out.println(e);
+			e.printStackTrace();
 		}
 	}
 
 	public void init() throws ServletException {
 		try {
-			Context ctx = new InitialContext();
+			Context ctx = new javax.naming.InitialContext();
 			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBmether");
 			con = ds.getConnection();
 		} catch (NamingException e) {
@@ -81,7 +63,8 @@ public class Viewpic extends HttpServlet {
 
 	public void destroy() {
 		try {
-			if (con != null) con.close();
+			if (con != null)
+				con.close();
 		} catch (SQLException e) {
 			System.out.println(e);
 		}

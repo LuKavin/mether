@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -155,32 +157,43 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 	}
 
 	@Override
-	public List<CompanyMebVO> findByPrimarKey(Integer kol_idnum) {
+	public List findByPrimarKey(Integer kol_idnum) {
 		// TODO Auto-generated method stub
-		List<CompanyMebVO> list = new ArrayList<CompanyMebVO>();
+		List list = new ArrayList();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-
 			con = ds.getConnection();
-
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-			rs = pstmt.getResultSet();
 			pstmt.setInt(1, kol_idnum);
-
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				CompanyMebVO companyMebVO = new CompanyMebVO();
-				companyMebVO.setCom_idnum(rs.getInt("COM_IDNUM"));
-				companyMebVO.setCom_name(rs.getString(2));
-				companyMebVO.setCom_email(rs.getString(3));
-				companyMebVO.setCom_phone(rs.getString(4));
-				companyMebVO.setCom_website(rs.getString(5));
+//				CompanyMebVO companyMebVO = new CompanyMebVO();
+				Integer com_idnum = rs.getInt(1);
+				String com_name = rs.getString(2);
+				String com_email = rs.getString(3);
+				String com_phone = rs.getString(4);
+				String com_website = rs.getString(5);
+//				COM_IDNUM, COM_NAME, COM_EMAIL, COM_PHONE,  COM_WEBSITE
 				
-				list.add(companyMebVO);
+				Map map = new HashMap();
+				map.put("com_idnum", com_idnum);
+				map.put("com_name", com_name);
+				map.put("com_email", com_email);
+				map.put("com_phone", com_phone);
+				map.put("com_website", com_website);
+				
+				
+//				companyMebVO.setCom_idnum(rs.getInt("COM_IDNUM"));
+//				companyMebVO.setCom_name(rs.getString(2));
+//				companyMebVO.setCom_email(rs.getString(3));
+//				companyMebVO.setCom_phone(rs.getString(4));
+//				companyMebVO.setCom_website(rs.getString(5));
+				
+				list.add(map);
 			}
 
 			// Handle any driver errors

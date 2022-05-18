@@ -6,11 +6,11 @@
 <%@ page import="com.companymeb.model.*"%>
 
 <%
-/* KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");  */
+KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");
 CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO"); 
 
 ComFavorService comFavorService = new ComFavorService();
-List<KolMebVO> list = comFavorService.FindMebFavorite(1);
+List<KolMebVO> list = comFavorService.FindMebFavorite(companyMebVO.getCom_idnum());
 /* companyMebVO.getCom_idnum() */
 pageContext.setAttribute("list", list);
 %>
@@ -63,7 +63,7 @@ pageContext.setAttribute("list", list);
 										<div class="col-12 text-center">
 											<img  style="max-width: 150px; min-height: 150px" alt="user-avatar"
 												class="img-circle img-fluid"
-												src="<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=1">
+												src="<%=request.getContextPath()%>/ReadKolMemberPhoto?kol_idnum=${kolMebVO.kol_idnum}">
 
 										</div>
 										<div>
