@@ -61,8 +61,10 @@ pageContext.setAttribute("list", list);
 
 									<div class="row">
 										<div class="col-12 text-center">
-											<img src="../../dist/img/user1-128x128.jpg" alt="user-avatar"
-												class="img-circle img-fluid">
+											<img  style="max-width: 150px; min-height: 150px" alt="user-avatar"
+												class="img-circle img-fluid"
+												src="<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=1">
+
 										</div>
 										<div>
 											<div class="col-12">

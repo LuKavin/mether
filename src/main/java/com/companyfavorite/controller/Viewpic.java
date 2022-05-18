@@ -37,7 +37,7 @@ public class Viewpic extends HttpServlet {
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(
-					"SELECT PRODUCT_PHOTO" + photoNum + " FROM PRODUCT_PHOTO where PRODUCT_NUM = "+ product_num );
+					"SELECT MEM_PHOTO" + photoNum + " FROM MEMBER_PHOTO where MEB_PHOTONUM = "+ product_num );
 			if (rs.next()) {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream(1));
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
