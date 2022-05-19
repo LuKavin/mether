@@ -45,6 +45,11 @@ public class EmailDetailService {
 		dao.toTrashCan(email_num);
 	}
 	
+	//垃圾信rollBack回一般信
+	public void rollBackLetter(Integer email_num, String email_type) {
+		dao.rollBack(email_num, email_type);
+	}
+
 	//顯示一封信
 	public EmailDetailVO getOneLetter(Integer email_num) {
 		return dao.findByPrimaryKey(email_num);

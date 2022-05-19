@@ -134,6 +134,45 @@ $(function () {
      })
 
     // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑刪除信件傳送PK至後端+sweetAlert======================================================================================================
+    
+    
+    $(".rollBackBtn").on("click", function () {
+        let pk;
+        let type;
+        let array = $(this).closest(".card-body").find(".checkdelete");
+        $.each(array,function(index,val) {
+            if($(this).prop("checked")){
+                // console.log($(this).closest("tr").find(".email_num").val());//找出有打勾的信件PK
+                pk = $(this).closest("tr").find(".email_num").val();
+                type = $(this).closest("tr").find(".sender").val();
+
+                $(".rollBackForm").append(`<input type="hidden" name="rollBackPk" value="${pk}"></input>`);
+                $(".rollBackForm").append(`<input type="hidden" name="rollBackType" value="${type}"></input>`);
+                console.log("pk="+pk);
+                console.log("type="+type);
+            }
+        })
+    })
+    $(".rollBackBtn").on('click',function(){
+        Swal.fire({
+            title: '復原刪除',
+            text: "確定要復原刪除?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setTimeout(function () {
+                    $(".rollBackForm").submit();
+                }, 400);
+            }
+        })
+    })
+   
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑信件取消刪除傳送PK至後端+sweetAlert======================================================================================================
+   
     $(".sendOK").on('click',function(){
          let sendTo= $(".send-to").val();
          let sendSubject= $(".send-subject").val();

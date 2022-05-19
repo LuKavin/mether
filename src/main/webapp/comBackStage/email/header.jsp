@@ -26,7 +26,8 @@ CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- jncss -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/comBackStage/resources/css/awsome.css" type="text/css">
+	href="<%=request.getContextPath()%>/comBackStage/resources/css/awsome.css"
+	type="text/css">
 <!-- bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -37,9 +38,9 @@ CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 	href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
 	integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!-- summer note -->	
+<!-- summer note -->
 <link rel="stylesheet"
-href="<%=request.getContextPath()%>/comBackStage/resources/summernote/summernote-bs4.min.css">
+	href="<%=request.getContextPath()%>/comBackStage/resources/summernote/summernote-bs4.min.css">
 
 <style>
 .preview_img {
@@ -208,9 +209,18 @@ href="<%=request.getContextPath()%>/comBackStage/resources/summernote/summernote
 						data-widget="treeview" role="menu" data-accordion="false">
 						<!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="<%=request.getContextPath() %>/comBackStage/product/product.jsp" class="nav-link">
+							href="<%=request.getContextPath()%>/comBackStage/product/product.jsp"
+							class="nav-link">
 								<p>
 									<i class="fas fa-box"></i> 商品列表
+								</p>
+						</a></li>
+						<li class="nav-header" style="font-size: 25px;"><a href="<%=request.getContextPath()%>/comBackStage/order/orderList.jsp"
+							class="nav-link">
+
+								<p>
+									<i class="ion ion-android-list" style="font-size: 31px;"></i>
+									訂單列表
 								</p>
 						</a></li>
 						<li class="nav-header" style="font-size: 25px;"><a
@@ -243,7 +253,8 @@ href="<%=request.getContextPath()%>/comBackStage/resources/summernote/summernote
 
 
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="<%=request.getContextPath() %>/comBackStage/email/Email.jsp" class="nav-link">
+							href="<%=request.getContextPath()%>/comBackStage/email/Email.jsp"
+							class="nav-link">
 								<p>
 									<i class="fa fa-envelope" aria-hidden="true"></i> 信箱
 								</p>
