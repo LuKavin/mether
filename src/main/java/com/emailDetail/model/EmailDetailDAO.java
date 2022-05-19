@@ -43,6 +43,9 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 	private static final String DELETE = "DELETE FROM EMAIL_DETAIL WHERE EMAIL_NUM = ?";
 	//移至垃圾桶
 	private static final String TRASH_CAN = "UPDATE EMAIL_DETAIL SET EMAIL_TYPENUM = 3  where EMAIL_NUM = ?;";
+	//取消刪除
+	private static final String TRASH_ROLL_BACK_TO_LETTER = "UPDATE EMAIL_DETAIL SET EMAIL_TYPENUM = 1  where EMAIL_NUM = ?;";
+	private static final String TRASH_ROLL_BACK_TO_DRAFT = "UPDATE EMAIL_DETAIL SET EMAIL_TYPENUM = 2  where EMAIL_NUM = ?;";
 	//用帳號找出會員權限
 	private static final String FIND_ACCESS = "SELECT MEB_ACCESSNUM ACCESSNUM FROM COMPANY_MEB where COM_ACCOUNT=? union all SELECT MEB_ACCESSNUM FROM KOL_MEB where KOL_ACCOUNT=?";
 	//出現例外時，系統自動寄出信件
@@ -416,6 +419,44 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 				}
 			}
 		}
+	}
+
+
+
+	@Override
+	public void rollBack(Integer email_num, String email_type) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			switch (email_type) {
+			case "draft":
+				pstmt = con.prepareStatement(TRASH_ROLL_BACK_TO_DRAFT);
+				break;
+			default:
+				pstmt = con.prepareStatement(TRASH_ROLL_BACK_TO_LETTER);
+			}
+			pstmt.setInt(1, email_num);
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}	
 	}
 
 

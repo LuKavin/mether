@@ -40,6 +40,9 @@ CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+<!-- summer note -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resources/summernote/summernote-bs4.min.css">
 <!-- jncss -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/comBackStage/resources/css/awsome.css"

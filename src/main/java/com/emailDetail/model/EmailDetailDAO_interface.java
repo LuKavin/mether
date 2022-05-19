@@ -15,6 +15,7 @@ public interface EmailDetailDAO_interface {
 	
 	public void delete(Integer email_num);//刪除信件
 	public void toTrashCan(Integer email_num);//移至垃圾信箱
+	public void rollBack(Integer email_num, String email_type);//取消刪除
 	
 	public Integer findAccess(String memAccount);//用會員account找會員權限
 	public void errorLetter(String memAccount,Integer memAccess, String wrongAccount);//操作錯誤系統自動寄出信件

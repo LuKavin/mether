@@ -67,7 +67,7 @@ pageContext.setAttribute("list", list);
 														style="width: 150px; display: inline">
 														<input type="hidden" name="action" value="allState">
 														<input type="hidden" name="state" value="up"> <input
-															type="hidden" name="com_idnum" value="1">
+															type="hidden" name="com_idnum" value="${companyMebVO.com_idnum}">
 														<button class="btn btn-outline-info">
 															<i class="fa fa-thumbs-up fa-fw" aria-hidden="true"></i><i>_全部上架</i>
 														</button>
@@ -78,7 +78,7 @@ pageContext.setAttribute("list", list);
 														style="width: 150px; display: inline">
 														<input type="hidden" name="action" value="allState">
 														<input type="hidden" name="state" value="down"> <input
-															type="hidden" name="com_idnum" value="1">
+															type="hidden" name="com_idnum" value="${companyMebVO.com_idnum}">
 														<button class="btn btn-outline-danger">
 															<i class="fa fa-thumbs-down fa-fw" aria-hidden="true"></i><i>_全部下架</i>
 														</button>

@@ -41,6 +41,39 @@ public class EmailServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		CompanyMebVO companyMebVO =(CompanyMebVO)req.getSession().getAttribute("companyMebVO");//登入者的資料
 		
+		if ("rollBack".equals(action)) { // 回信
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***************************1.接收請求參數****************************************/
+				String[] email_nums =req.getParameterValues("rollBackPk");
+				String[] email_types =req.getParameterValues("rollBackType");
+				
+				/***************************2.開始查詢資料****************************************/
+				EmailDetailService emailDetailService = new EmailDetailService();
+				Integer email_num;
+				String email_type = null;
+				for(int i=0; i<email_nums.length; i++) {
+					email_num = new Integer(email_nums[i]);
+					email_type = email_types[i];
+//					System.out.println("email_num="+email_num+"|"+"email_type="+email_type);
+					emailDetailService.rollBackLetter(email_num, email_type);
+				}
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				String url = "/comBackStage/email/trashCan.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/comBackStage/email/trashCan.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
 		if ("reply".equals(action)) { // 回信
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -125,7 +158,6 @@ public class EmailServlet extends HttpServlet {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				mem_account = req.getParameter("mem_account");//收件人
 				Integer mem_access = emailDetailService.findMemAccess(mem_account);//判斷收件者的類型1=廠商,2=網紅
-				System.out.println(mem_access);
 				if (mem_account == null || mem_account.trim().length() == 0) {
 					errorMsgs.add("收件人: 請勿空白");
 				}else if(mem_access == null) {

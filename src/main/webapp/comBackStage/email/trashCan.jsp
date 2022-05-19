@@ -81,15 +81,16 @@ pageContext.setAttribute("list", list);
 														class="item checkdelete" name="checkdelete"
 														style="width: 20px; height: 20px;"> <label
 														for="check1"></label>
+														<input type="hidden" name="emailType" class="emailType" value="${emailDetailVO.email_typenum}">
 												</div>
 											</td>
 											<td></td>
 											<td class="mailbox-name">
 												<form action="<%=request.getContextPath()%>/email/email.do">
-													<button type="submit" class="btn btn-link btn-sm">${(emailDetailVO.sender==null)?"<p style='color:green'>草稿</p>":emailDetailVO.sender}</button>
+													<button type="submit" class="btn btn-link btn-sm ">${(emailDetailVO.sender==null)?"<p style='color:green'>草稿</p>":emailDetailVO.sender}</button>
 													<input type="hidden" name="action" value="reply"> <input
-														type="hidden" name="replyAccount"
-														value="${emailDetailVO.sender}">
+														type="hidden" name="replyAccount" class="sender"
+														value="${(emailDetailVO.sender==null)?'draft':emailDetailVO.sender}">
 												</form></td>
 											<td class="mailbox-subject">
 												<form action="<%=request.getContextPath()%>/email/email.do">
