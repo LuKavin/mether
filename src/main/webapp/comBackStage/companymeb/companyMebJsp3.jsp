@@ -5,7 +5,8 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-CompanyMebVO companyMebVO = (CompanyMebVO) request.getAttribute("companyMebVO");
+CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
+pageContext.setAttribute("companyMebVO", companyMebVO);
 %>
 
 <html>

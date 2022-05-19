@@ -5,7 +5,8 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-KolMebVO kolMebVO = (KolMebVO) request.getAttribute("kolMebVO");
+KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");
+pageContext.setAttribute("kolMebVO", kolMebVO);
 %>
 
 <html>
