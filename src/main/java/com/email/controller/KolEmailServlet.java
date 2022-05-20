@@ -160,7 +160,7 @@ public class KolEmailServlet extends HttpServlet {
 				Integer mem_access = emailDetailService.findMemAccess(mem_account);//判斷收件者的類型1=廠商,2=網紅
 				if (mem_account == null || mem_account.trim().length() == 0) {
 					errorMsgs.add("收件人: 請勿空白");
-				}else if(mem_access == null) {
+				}else if(mem_access == null&& !("ADM".equals(mem_account))) {
 					throw new EmailAccountException();//當無此收件者時拋出自訂例外
 				}
 				String email_content = req.getParameter("email_content");
@@ -178,6 +178,9 @@ public class KolEmailServlet extends HttpServlet {
 				emailDetailVO.setCom_account(mem_account);
 				}else if(mem_access==2) {
 				emailDetailVO.setKol_account(mem_account);
+				}
+				if("ADM".equals(mem_account)) {
+					emailDetailVO.setAdm_account("ADM");
 				}
 				emailDetailVO.setEmail_typenum(email_typenum);
 				emailDetailVO.setEmail_title(email_title);

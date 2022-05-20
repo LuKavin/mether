@@ -32,11 +32,13 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 	//加入草稿
 	private static final String add = "INSERT INTO `EMAIL_DETAIL` (`COM_ACCOUNT`, `KOL_ACCOUNT`, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `SENDER`) VALUES (?,?,?,?,?,?);";
 	//寄普通信
-	private static final String INSERT = "INSERT INTO `EMAIL_DETAIL` (`COM_ACCOUNT`, `KOL_ACCOUNT`, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `SENDER`) VALUES (?,?,?,?,?,?);";
+	private static final String INSERT = "INSERT INTO `EMAIL_DETAIL` (`COM_ACCOUNT`, `KOL_ACCOUNT`, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `SENDER`, `ADM_ACCOUNT`) VALUES (?,?,?,?,?,?,?);";
 	// 帳號找垃圾桶 或 草稿夾
 	private static final String FIND_BOX= "SELECT EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM, SENDER FROM EMAIL_DETAIL WHERE (COM_ACCOUNT = ? and EMAIL_TYPENUM = ?) or (KOL_ACCOUNT = ? and EMAIL_TYPENUM = ?) or (ADM_ACCOUNT = ? and EMAIL_TYPENUM = ?)";
 	// 帳號找信箱
 	private static final String FIND_MAIL_BOX= "SELECT EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM, SENDER FROM EMAIL_DETAIL WHERE (COM_ACCOUNT = ? and EMAIL_TYPENUM in(1,4)) or (KOL_ACCOUNT = ? and EMAIL_TYPENUM in(1,4)) or (ADM_ACCOUNT = ? and EMAIL_TYPENUM in(1,4))";
+	// 管理員信箱
+	private static final String FIND_ADM_BOX= "SELECT EMAIL_TITLE, EMAIL_CONTENT, EMAIL_DATE, EMAIL_NUM, SENDER FROM EMAIL_DETAIL WHERE ADM_ACCOUNT = ADM";
 	// 用PK找一封信
 	private static final String GET_A_LETTER = "SELECT * FROM EMAIL_DETAIL WHERE EMAIL_NUM =?;";
 	//刪除信件
@@ -68,6 +70,7 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 			pstmt.setString(4, emailDetailVO.getEmail_title());
 			pstmt.setString(5, emailDetailVO.getEmail_content());
 			pstmt.setString(6, emailDetailVO.getSender());
+			pstmt.setString(7, emailDetailVO.getAdm_account());
 			pstmt.executeUpdate();
 
 		} catch (SQLException se) {
@@ -234,13 +237,15 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 		ResultSet rs = null;
 		Integer accessNum = null;
 		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(FIND_ACCESS);
-			pstmt.setString(1, memName);
-			pstmt.setString(2, memName);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				accessNum = rs.getInt("ACCESSNUM");
+			if(!("ADM".equals(memName))) {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(FIND_ACCESS);
+				pstmt.setString(1, memName);
+				pstmt.setString(2, memName);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					accessNum = rs.getInt("ACCESSNUM");
+				}
 			}
 
 		} catch (SQLException se) {
@@ -457,6 +462,49 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 				}
 			}
 		}	
+	}
+
+
+
+	@Override
+	public List<EmailDetailVO> findADMBox() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<EmailDetailVO> list = new ArrayList<>();
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FIND_ADM_BOX);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				EmailDetailVO emailDetailVO = new EmailDetailVO();
+				emailDetailVO.setEmail_title(rs.getString("EMAIL_TITLE"));
+				emailDetailVO.setEmail_content(rs.getString("EMAIL_CONTENT"));
+				emailDetailVO.setEmail_num(rs.getInt("EMAIL_NUM"));
+				emailDetailVO.setSender(rs.getString("SENDER"));
+				emailDetailVO.setEmail_date(rs.getObject("EMAIL_DATE", Timestamp.class));
+				list.add(emailDetailVO);
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+		return list;
 	}
 
 

@@ -7,6 +7,7 @@ public interface EmailDetailDAO_interface {
 	
 	public EmailDetailVO findByPrimaryKey(Integer email_num);//用mailPK找出VO(一封信)
 	public List<EmailDetailVO> findMailBox(String mem_account);//用帳號找出信箱
+	public List<EmailDetailVO> findADMBox();//用帳號找出信箱
 	public List<EmailDetailVO> findBox(String mem_account, Integer mailType);//用帳號找出垃圾桶 或 草稿夾
 	
 	public void insert(EmailDetailVO emailDetailVO);//寄信
