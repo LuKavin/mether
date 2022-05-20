@@ -3,14 +3,15 @@
 <%@ page import="java.util.*"%>
 
 <%@ include file="header.jsp"%>
-<%@page import="com.order_master.model.OrderMasterVO"%>
-<%@page import="com.order_master.model.OrderMasterService"%>
+<%@page import="com.order_master.model.*"%>
 <%
 // CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料,header有寫這段
 OrderMasterService orderMasterService = new OrderMasterService();
 List<OrderMasterVO> list = orderMasterService.getMeBAllOrderList(1);
-// OrderMasterVO orderMasterVO = orderMasterService.getOneOrderMaster(1);
+pageContext.setAttribute("list", list);
 %>
+
+
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -53,7 +54,7 @@ List<OrderMasterVO> list = orderMasterService.getMeBAllOrderList(1);
 										<th>商品編號</th>
 										<th>交易狀態</th>
 										<th>日期</th>
-										<td>${orderMasterVO.order_num}</td>
+										<td></td>
 									</tr>
 								</thead>
 								<tbody>
@@ -65,10 +66,10 @@ List<OrderMasterVO> list = orderMasterService.getMeBAllOrderList(1);
 											<td>${orderMasterVO.order_date}</td>
 											<td>
 												<FORM METHOD="post"
-													ACTION="<%=request.getContextPath()%>/order/order.do"
+													ACTION="<%=request.getContextPath()%>/comBackStage/order/order.jsp"
 													style="width: 150px; display: inline">
-													<input type="hidden" name="action" value="getOneOrder">
-													<input type="hidden" name="product_num" value="${orderMasterVO.product_num}">
+<!-- 													<input type="hidden" name="action" value="getOneOrder"> -->
+													<input type="hidden" name="order_num" value="${orderMasterVO.order_num}">
 													<button class="btn btn-info" type="submit">
 													<i class="fas fa-eye"></i><i>詳細資料</i>
 													</button>
