@@ -30,6 +30,10 @@ public class EmailDetailService {
 	public List<EmailDetailVO> findMailBox(String mem_account) {
 		return dao.findMailBox(mem_account);
 	}
+	//找信箱管理員信箱
+	public List<EmailDetailVO> findADMBox() {
+		return dao.findADMBox();
+	}
 	//找垃圾桶
 	public List<EmailDetailVO> findBox(String mem_account, Integer mailType) {
 		return dao.findBox(mem_account, mailType);
