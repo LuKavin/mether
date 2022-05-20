@@ -21,7 +21,7 @@ pageContext.setAttribute("list", list);
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0 aaa"><a href="/mether/comBackStage/order/orderList.jsp">訂單列表</a>>交易流程>待網紅編輯</h1>
+						<h1 class="m-0 aaa"><a href="/mether/comBackStage/order/orderList.jsp">訂單列表</a>>交易流程>網紅編輯</h1>
 					</div>
 					<!-- /.col -->
 					<div class="col-sm-3">
@@ -130,7 +130,7 @@ pageContext.setAttribute("list", list);
 												<div class="card-header">
 													<div class="container h4"
 														style="text-align: center; background-color: rgb(222, 239, 222);">
-														交易</div>
+														待網紅編輯</div>
 												</div>
 												<div class="card-body">
 

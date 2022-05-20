@@ -29,20 +29,8 @@ public class OrderMasterService {
 		return orderMasterVO;
 	}
 
-	public OrderMasterVO updateOrderMaster(Integer order_num, String order_status, String com_rate, String kol_rate,
-			Integer com_star, Integer kol_star) {
-
-		OrderMasterVO orderMasterVO = new OrderMasterVO();
-
-		orderMasterVO.setOrder_num(order_num);
-		orderMasterVO.setOrder_status(order_status);
-		orderMasterVO.setCom_rate(com_rate);
-		orderMasterVO.setKol_rate(kol_rate);
-		orderMasterVO.setCom_star(com_star);
-		orderMasterVO.setKol_star(kol_star);
-		dao.update(orderMasterVO);
-
-		return orderMasterVO;
+	public void updateOrderMaster(OrderMasterVO orderMasterVO) {
+		 dao.update(orderMasterVO);
 	}
 
 	public void deleteOrderMaster(Integer order_num) {

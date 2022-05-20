@@ -21,7 +21,7 @@ pageContext.setAttribute("list", list);
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0 aaa">訂單列表</h1>
+						<h1 class="m-0 aaa"><a href="/mether/comBackStage/order/orderList.jsp">訂單列表</a></h1>
 					</div>
 					<!-- /.col -->
 					<div class="col-sm-3">
@@ -54,23 +54,23 @@ pageContext.setAttribute("list", list);
 					<div class="form-progress">
 						<div class="progress" style="width: 500px;">
 							<div class="progress-bar bg-success" role="progressbar"
-								style="width: 0%" aria-valuenow="25" aria-valuemin="0"
+								style="width: 100%" aria-valuenow="25" aria-valuemin="0"
 								aria-valuemax="100"></div>
 						</div>
 						<div class="form-progress-indicator one active">
-							<div class="text-box">製作中</div>
+							<div class="text-box" style="color:#E0E0E0">製作中</div>
 						</div>
-						<div class="form-progress-indicator two">
-							<div class="text-box">審核中</div>
+						<div class="form-progress-indicator two active">
+							<div class="text-box" style="color:#E0E0E0">審核中</div>
 						</div>
-						<div class="form-progress-indicator three">
-							<div class="text-box">審核成功</div>
+						<div class="form-progress-indicator three active">
+							<div class="text-box" style="color:#E0E0E0">審核成功</div>
 						</div>
-						<div class="form-progress-indicator four">
-							<div class="text-box">評價中</div>
+						<div class="form-progress-indicator four active">
+							<div class="text-box" style="color:#E0E0E0">評價中</div>
 						</div>
-						<div class="form-progress-indicator five">
-							<div class="text-box">交易完成</div>
+						<div class="form-progress-indicator five active">
+							<div class="text-box" style="color:#E0E0E0">交易完成</div>
 						</div>
 					</div>
 				</div>
@@ -87,9 +87,7 @@ pageContext.setAttribute("list", list);
                     <!-- 標頭 -->
 						<div class="row trade-head m-3">
 							<p>交易對象：</p>
-							<a href="#">
 								<p>xxx</p>
-							</a>
 							<div class="btn btn-danger ml-auto">取消交易</div>
 						</div>
 					</div>
@@ -120,6 +118,13 @@ pageContext.setAttribute("list", list);
 								<div class="card-body">
 									<div class="tab-content" id="custom-tabs-one-tabContent">
 
+													<div class="card-body">
+													<div class="row trade-step1 ">
+														<div class="container" style="background-color: rgb(239, 211, 239)">
+															<h1 class="wtforkol" style="margin: 120px 0; color:red">交易結束</h1>
+														</div>
+													</div>
+													</div>
 									</div>
 								</div>
 
