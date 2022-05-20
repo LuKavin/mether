@@ -7,8 +7,6 @@
 <%
 ProductService productService = new ProductService();
 // CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料
-List<ProductVO> list = productService.getComAllProduct(companyMebVO.getCom_idnum());
-pageContext.setAttribute("list", list);
 %>
 
 <!-- Content Wrapper. Contains page content -->
@@ -21,7 +19,7 @@ pageContext.setAttribute("list", list);
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0 aaa"><a href="/mether/comBackStage/order/orderList.jsp">訂單列表</a>>交易流程>交易完成</h1>
+						<h1 class="m-0 aaa"><a href="/mether/comBackStage/order/orderList.jsp">訂單列表</a></h1>
 					</div>
 					<!-- /.col -->
 					<div class="col-sm-3">
@@ -83,14 +81,11 @@ pageContext.setAttribute("list", list);
 
 					<!-- 主內容標頭 -->
 					<div class="container">
-
-						<!-- 標頭 -->
+					
+                    <!-- 標頭 -->
 						<div class="row trade-head m-3">
 							<p>交易對象：</p>
-							<a href="#">
 								<p>xxx</p>
-							</a>
-							<div class="btn btn-danger ml-auto">取消交易</div>
 						</div>
 					</div>
 					<!--  -->
@@ -119,106 +114,24 @@ pageContext.setAttribute("list", list);
 								</div>
 								<div class="card-body">
 									<div class="tab-content" id="custom-tabs-one-tabContent">
-										<div class="tab-pane fade active show"
-											id="custom-tabs-one-home" role="tabpanel"
-											aria-labelledby="custom-tabs-one-home-tab">
-											<!-- 交易區塊頁籤 -->
-											<div class="card card-warning card-outline">
-												<div class="card-header">
-													<div class="container h4"
-														style="text-align: center; background-color: rgb(222, 239, 222);">
-														交易</div>
-												</div>
-												<div class="card-body">
-
 
 													<div class="card-body">
 													<div class="row trade-step1 ">
-														<div class="container" style="background-color: rgb(239, 211, 239)">
-															<h1 class="wtforkol" style="margin: 120px 0;">交易完成</h1>
+														<div class="container" style="background-color: rgb(239, 229, 211)">
+															<h1 class="wtforkol" style="margin: 120px 0;">待對方評價</h1>
 														</div>
 													</div>
 													</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-												</div>
-											</div>
-										</div>
-										<!-- 留言板頁籤 -->
-										<div class="tab-pane fade" id="custom-tabs-one-profile"
-											role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-											<div class="card card-warning card-outline">
-												<div class="card-header">
-													<div class="row">
-														<div class="container h4"
-															style="text-align: center; background-color: rgb(234, 240, 250);">
-															留言者對象：顯示廠商/網紅</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-2 p-1">
-															<h5>標題：</h5>
-														</div>
-														<p>！！！動態抓出→標題←區塊！！！</p>
-													</div>
-												</div>
-												<div class="card-body">！！！動態抓出→內容←區塊！！！</div>
-											</div>
-											<div class="card card-warning card-outline msg-input">
-												<div class="card-header">
-													<div class="row ">
-														<div class="col-sm-6"></div>
-														<div class="col-sm-6">
-															<div class="btn btn-outline-warning pull-right cln-send">清空重寫</div>
-														</div>
-													</div>
-												</div>
-												<div class="card-body">
-													<div class="row m-2">
-														<label class="col-sm-2 col-form-label text-center">標題：</label>
-														<div class="col-sm-10">
-															<input type="email"
-																class="form-control send-subject msg_title"
-																placeholder="Subject:">
-														</div>
-													</div>
-													<div class="form-group">
-														<div id="summernote"></div>
-													</div>
-													<div class="card-footer">
-														<div class="float-right">
-															<button class="btn btn-warning msg-ok" type="submit">留言</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-
-
-
 									</div>
 								</div>
 
 							</div>
 						</div>
 					</div>
-					</di>
-				</div>
-				<!-- 無意義的切版區塊 -->
-				<div class="col-sm-2"></div>
+				</di>
+			</div>
+			<!-- 無意義的切版區塊 -->
+			<div class="col-sm-2"></div>
 		</section>
 	</section>
 </div>

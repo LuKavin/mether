@@ -331,20 +331,61 @@ $(function () {
       <input type="hidden" name="action" value=${value}>
       <input type="hidden" name="product_num" value=${productNum}>
       `);
-       $(file).closest(".updatePcGo").submit();
+      Swal.fire({
+        icon: 'success',
+        title: '編輯成功！',
+        showConfirmButton: false,
+        timer: 1000
+      })
+    setTimeout(function () {
+        $(file).closest(".updatePcGo").submit();
+    }, 1100);
+
+
+
 
     })
  }
 
 
 
-
-
-
-
-
-
-
-
-
    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑燈箱更新改圖片======================================================================================================
+  $(".checkOK").on("click",function(){
+    Swal.fire({
+        title: '確定送出?',
+        text: "確認對方內容正確?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                icon: 'success',
+                title: '送出成功！',
+                showConfirmButton: false,
+                timer: 1000
+              })
+            setTimeout(function () {
+                $(".checkOKForm").submit();
+            }, 1100);
+        }
+    })
+  });
+   // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑交易流程→確定審核成功?======================================================================================================
+  
+  
+  
+   $(".rateBtn").on("click",function(){
+    Swal.fire({
+        icon: 'success',
+        title: '送出成功！',
+        showConfirmButton: false,
+        timer: 1000
+    })
+    setTimeout(function () {
+        $(".rateForm").submit();
+    }, 1100);
+  });
+   // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑交易流程→確定送出評價?======================================================================================================

@@ -5,10 +5,8 @@
 
 <%@ include file="header.jsp"%>
 <%
-ProductService productService = new ProductService();
-// CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料
-List<ProductVO> list = productService.getComAllProduct(companyMebVO.getCom_idnum());
-pageContext.setAttribute("list", list);
+ProductService productService = new ProductService(); // CompanyMebVO companyMebVO=(CompanyMebVO)
+session.getAttribute("companyMebVO");//讀取登入者的資料 List<ProductVO> list =
 %>
 
 <!-- Content Wrapper. Contains page content -->
@@ -21,7 +19,9 @@ pageContext.setAttribute("list", list);
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0 aaa"><a href="/mether/comBackStage/order/orderList.jsp">訂單列表</a>>交易流程>廠商審核</h1>
+						<h1 class="m-0 aaa">
+							<a href="/mether/comBackStage/order/orderList.jsp">訂單列表</a>>交易流程>廠商審核
+						</h1>
 					</div>
 					<!-- /.col -->
 					<div class="col-sm-3">
@@ -58,7 +58,7 @@ pageContext.setAttribute("list", list);
 								aria-valuemax="100"></div>
 						</div>
 						<div class="form-progress-indicator one active">
-							<div class="text-box" style="color:#E0E0E0">製作中</div>
+							<div class="text-box" style="color: #E0E0E0">製作中</div>
 						</div>
 						<div class="form-progress-indicator two active">
 							<div class="text-box">審核中</div>
@@ -127,7 +127,7 @@ pageContext.setAttribute("list", list);
 												<div class="card-header">
 													<div class="container h4"
 														style="text-align: center; background-color: rgb(222, 239, 222);">
-														交易</div>
+														檢視作品</div>
 												</div>
 												<div class="card-body">
 
@@ -137,12 +137,10 @@ pageContext.setAttribute("list", list);
 															<label>細項:</label>
 															<div class="input-group">
 																<div class="input-group-prepend">
-																	<span class="input-group-text"><i
-																		class="fa fa-globe" aria-hidden="true"></i></span>
+																	<span class="input-group-text"> <i
+																		class="fa fa-file-powerpoint-o" aria-hidden="true"></i></span>
 																</div>
 																<input type="text" class="form-control"
-																	data-inputmask-alias="datetime"
-																	data-inputmask-inputformat="dd/mm/yyyy" data-mask=""
 																	inputmode="numeric">
 															</div>
 
@@ -154,27 +152,19 @@ pageContext.setAttribute("list", list);
 																		class="far fa-calendar-alt"></i></span>
 																</div>
 																<input type="text" class="form-control"
-																	data-inputmask-alias="datetime"
-																	data-inputmask-inputformat="mm/dd/yyyy" data-mask=""
 																	inputmode="numeric">
 															</div>
 														</div>
+														<form action="<%=request.getContextPath()%>/order/orderCom.do" class="checkOKForm">
+															<div class="row trade-head m-3">
+																<button type="button" class="btn  btn-outline-success ml-auto checkOK">
+																		審核完成
+																</button>
+															</div>
+															<input type="hidden" name="action" value="checkOK">
+															<input type="hidden" name="order_num" value="${order_num}">
+														</form>
 													</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 												</div>
 											</div>
 										</div>
@@ -202,7 +192,8 @@ pageContext.setAttribute("list", list);
 													<div class="row ">
 														<div class="col-sm-6"></div>
 														<div class="col-sm-6">
-															<div class="btn btn-outline-warning pull-right cln-send">清空重寫</div>
+															<div class="btn btn-outline-warning pull-right cln-send">
+																清空重寫</div>
 														</div>
 													</div>
 												</div>
@@ -246,4 +237,3 @@ pageContext.setAttribute("list", list);
 <!-- </div> 多的標籤???網頁沒問題就刪掉-->
 
 <%@ include file="footer.jsp"%>
-

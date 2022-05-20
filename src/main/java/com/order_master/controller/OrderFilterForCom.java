@@ -28,7 +28,7 @@ urlPatterns = {"/comBackStage/order/order.jsp",
                "/comBackStage/order/orderComTurnThree.jsp",
                "/comBackStage/order/orderComfinal.jsp"})
 
-public class OrderFilter implements Filter {
+public class OrderFilterForCom implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -37,6 +37,7 @@ public class OrderFilter implements Filter {
 		//取得登入者資料
 		CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 		Integer order_num = new Integer(req.getParameter("order_num"));
+		req.setAttribute("order_num", order_num);
 		OrderMasterService orderMasterService = new OrderMasterService();
 		OrderMasterVO orderMasterVO = orderMasterService.getOneOrderMaster(order_num);
 		
@@ -54,14 +55,17 @@ public class OrderFilter implements Filter {
 			req.getRequestDispatcher("/comBackStage/order/orderComTurnTwo.jsp").forward(req, res);
 			break;
 		case "評價中":
-			req.getRequestDispatcher("/comBackStage/order/orderComTurnThree.jsp").forward(req, res);
+			if(orderMasterVO.getKol_rate()!=null && orderMasterVO.getKol_star()!=0) {
+				req.getRequestDispatcher("/comBackStage/order/orderWaitForRate.jsp").forward(req, res);
+			}else {
+				req.getRequestDispatcher("/comBackStage/order/orderComTurnThree.jsp").forward(req, res);
+			}
 			break;
 		case "交易完成":
 			req.getRequestDispatcher("/comBackStage/order/orderComfinal.jsp").forward(req, res);
 			break;
 		default:
-			filterErrorMsgs.add("商品狀態 : 結束狀態");
-			req.getRequestDispatcher("/comBackStage/order/orderList.jsp").forward(req, res);
+			req.getRequestDispatcher("/comBackStage/order/order.jsp").forward(req, res);
 			
 		}
 		
