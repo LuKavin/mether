@@ -17,21 +17,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.companymeb.model.CompanyMebVO;
+import com.kolmeb.model.KolMebVO;
 @WebFilter(
-urlPatterns = {"/comBackStage/email/*", "/comBackStage/product/*"}
-)
-public class LoginFilter implements Filter {
+urlPatterns = {"/kolBackStage/email/*"})
+public class KolLoginFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
-		CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
-		if(companyMebVO!=null) {
+		KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");
+		if(kolMebVO!=null) {
 			chain.doFilter(request, response);
 		}else {
 		    session.setAttribute("preURL", req.getRequestURI()); 
-			RequestDispatcher successView = req.getRequestDispatcher("/login.jsp");
+			RequestDispatcher successView = req.getRequestDispatcher("/login/companyMebJspLogin.jsp");
 			successView.forward(req, res);
 		}
 	}

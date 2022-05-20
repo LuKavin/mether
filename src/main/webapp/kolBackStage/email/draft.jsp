@@ -8,8 +8,8 @@
 <%@ include file="header.jsp"%>
 <%
 EmailDetailService emailDetailService = new EmailDetailService();
-//LoginVo loginVo = (LoginVo) session.getAttribute("loginVo");這段有寫在header.jsp上
-List<EmailDetailVO> list = emailDetailService.findBox(loginVo.getMebAccount(),2);
+//KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");//讀取登入者的資料 這段有寫在header.jsp上
+List<EmailDetailVO> list = emailDetailService.findBox(kolMebVO.getKol_account(),2);
 pageContext.setAttribute("list", list);
 %>
 
@@ -30,7 +30,7 @@ pageContext.setAttribute("list", list);
 					<div class="card-header">
 						<div class="row m-2">
 							<i class="fa fa-envelope-open-o" aria-hidden="true"
-								style="font-size: 22px;"> <span style="color:orange">${loginVo.mebAccount}</span> 的草稿夾</i>
+								style="font-size: 22px;"> <span style="color:orange">${kolMebVO.kol_account}</span> 的草稿夾</i>
 						</div>
 					</div>
 					<div class="card-body p-0">
@@ -41,7 +41,7 @@ pageContext.setAttribute("list", list);
 									<input type="checkbox" class="checkbox-master "
 									style="width: 20px; height: 20px;">
 								</label>
-								<form action="<%=request.getContextPath()%>/email/email.do"
+								<form action="<%=request.getContextPath()%>/email/kolEmail.do"
 									class="trashCanForm" style="margin: 0;" >
 									<button class="btn btn-default btn-lg trashCanBtn"
 										type="button" style="display: inline;">
@@ -79,7 +79,7 @@ pageContext.setAttribute("list", list);
 											<td class="mailbox-name">
 												</td>
 											<td class="mailbox-subject">
-												<form action="<%=request.getContextPath()%>/email/email.do">
+												<form action="<%=request.getContextPath()%>/email/kolEmail.do">
 													<input type="hidden" name="action" value="draftSend">
 													<input type="hidden" name="email_num" class="email_num"
 														value="${emailDetailVO.email_num}">
