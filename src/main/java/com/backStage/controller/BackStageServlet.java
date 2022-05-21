@@ -47,14 +47,14 @@ public class BackStageServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("companyMebVO", companyMebVO);
-				String url = "/backStage/company_profile.jsp";
+				String url = "/backStage/com/company_profile.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/meb_com.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/com/meb_com.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -74,14 +74,14 @@ public class BackStageServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("kolMebVO", kolMebVO);
-				String url = "/backStage/kol_profile.jsp";
+				String url = "/backStage/kol/kol_profile.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/meb_kol.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/kol/meb_kol.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -99,14 +99,14 @@ public class BackStageServlet extends HttpServlet {
 				backStageSvc.updateComAccess(4, com_idnum);
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-				String url = "/backStage/meb_com.jsp";
+				String url = "/backStage/com/meb_com.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/meb_com.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/com/meb_com.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -123,14 +123,14 @@ public class BackStageServlet extends HttpServlet {
 				backStageSvc.updateComAccess(1, com_idnum);
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-				String url = "/backStage/meb_com.jsp";
+				String url = "/backStage/com/meb_com.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/meb_com.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/com/meb_com.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -148,14 +148,14 @@ public class BackStageServlet extends HttpServlet {
 				backStageSvc.updateKolAccess(4, kol_idnum);
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-				String url = "/backStage/meb_kol.jsp";
+				String url = "/backStage/kol/meb_kol.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/meb_kol.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/kol/meb_kol.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -172,14 +172,14 @@ public class BackStageServlet extends HttpServlet {
 				backStageSvc.updateKolAccess(2, kol_idnum);
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-				String url = "/backStage/meb_kol.jsp";
+				String url = "/backStage/kol/meb_kol.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/meb_kol.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/kol/meb_kol.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -197,14 +197,14 @@ public class BackStageServlet extends HttpServlet {
 				backStageSvc.updateOrderMasterStatus("下架", order_num);
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-				String url = "/backStage/meb_orderlist.jsp";
+				String url = "/backStage/order/meb_orderlist.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/meb_orderlist.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/order/meb_orderlist.jsp");
 				failureView.forward(req, res);
 			}
 		}

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.backStage.model.*"%>
-<%@ include file="header.jsp"%>
+<%@ include file="/backStage/header.jsp"%>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -206,4 +206,4 @@
 <!-- /.content -->
 <!-- /.content-wrapper -->
 
-<%@ include file="footer.jsp"%>
+<%@ include file="/backStage/footer.jsp"%>

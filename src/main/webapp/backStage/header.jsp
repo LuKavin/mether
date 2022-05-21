@@ -1,5 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
+<%@ page import="com.adm_meb.model.*"%>
+<%
+AdmMebVO admMebVO = (AdmMebVO) request.getAttribute("admMebVO");
+%>
 
 <head>
 <meta charset="utf-8">
@@ -44,15 +48,15 @@
 	<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 		<ul class="navbar-nav">
 			<!--ＳＩＤＥＢＡＲ漢堡-->
-			<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-				href="#" role="button"><i class="fas fa-bars"></i></a></li>
+
 			<li class="nav-item d-none d-sm-inline-block"><a
-				href="backStageIndex.jsp" class="nav-link">回首頁點我</a></li>
+				href="/mether/backStage/backStageIndex.jsp" class="nav-link">回首頁點我</a></li>
 		</ul>
 
 		<!-- Right navbar links -->
+		<li class="nav-item">管理員${admMebVO.adm_name}</li>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item"></li>
+
 			<li class="nav-item">
 				<form METHOD="post" action="<%=request.getContextPath()%>/admLogin">
 					<input type="hidden" name="action" value="logout">
@@ -67,33 +71,33 @@
 
 	<aside class="main-sidebar sidebar-dark-primary elevation-4">
 		<!-- Brand Logo -->
-		<a href="backStageIndex.jsp" class="brand-link"> <span
-			class="brand-text font-weight-light">後台管理系統</span>
+		<a href="/mether/backStage/backStageIndex.jsp" class="brand-link">
+			<span class="brand-text font-weight-light">後台管理系統</span>
 		</a>
 
 		<!-- Sidebar -->
 		<div class="sidebar">
 			<!-- Sidebar user panel (optional)-->
-			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-				<a href="#" class="d-block">(顯示管理員帳號)</a>
-			</div>
+
 			<!-- Sidebar Menu -->
 			<nav class="mt-2">
 				<ul class="nav nav-pills nav-sidebar flex-column"
 					data-widget="treeview" role="menu" data-accordion="false">
 					<!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
 					<li class="nav-header" style="font-size: 25px;">會員</li>
-					<li class="nav-item"><a href="meb_com.jsp" class="nav-link">
-							<i class="ion ion-ios-briefcase-outline" style="font-size: 25px;">_</i>
+					<li class="nav-item"><a
+						href="/mether/backStage/com/meb_com.jsp" class="nav-link"> <i
+							class="ion ion-ios-briefcase-outline" style="font-size: 25px;">_</i>
 							<p>廠商</p>
 					</a></li>
-					<li class="nav-item"><a href="meb_kol.jsp" class="nav-link">
-							<i class="ion ion-ios-personadd-outline" style="font-size: 30px;">_</i>
+					<li class="nav-item"><a
+						href="/mether/backStage/kol/meb_kol.jsp" class="nav-link"> <i
+							class="ion ion-ios-personadd-outline" style="font-size: 30px;">_</i>
 							<p>網紅</p>
 					</a></li>
-					<li class="nav-item"><a href="meb_blocklist.jsp"
-						class="nav-link"> <i class="ion ion-android-cancel"
-							style="font-size: 25px;">_</i>
+					<li class="nav-item"><a
+						href="/mether/backStage/block/meb_blocklist.jsp" class="nav-link">
+							<i class="ion ion-android-cancel" style="font-size: 25px;">_</i>
 							<p>黑名單</p>
 					</a></li>
 					<li class="nav-header" style="font-size: 25px;">商品</li>
@@ -103,9 +107,9 @@
 							<p>商品列表</p>
 					</a></li>
 					<li class="nav-header" style="font-size: 25px;">訂單</li>
-					<li class="nav-item"><a href="meb_orderlist.jsp"
-						class="nav-link"> <i class="ion ion-android-list"
-							style="font-size: 25px;">_</i>
+					<li class="nav-item"><a
+						href="/mether/backStage/order/meb_orderlist.jsp" class="nav-link">
+							<i class="ion ion-android-list" style="font-size: 25px;">_</i>
 							<p>訂單列表</p>
 					</a></li>
 					<li class="nav-header" style="font-size: 25px;">信箱</li>
