@@ -27,7 +27,7 @@ public class AdmMebFilter implements Filter {
 			chain.doFilter(request, response);
 		} else {
 			session.setAttribute("preURL", req.getRequestURI());
-			RequestDispatcher successView = req.getRequestDispatcher("admLogin.jsp");
+			RequestDispatcher successView = req.getRequestDispatcher("/admLogin.jsp");
 			successView.forward(req, res);
 		}
 	}

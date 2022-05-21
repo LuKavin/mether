@@ -3,7 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.backStage.model.*"%>
 <%@ page import="com.order_master.model.*"%>
-<%@ include file="header.jsp"%>
+<%@ include file="/backStage/header.jsp"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
@@ -57,7 +57,7 @@ pageContext.setAttribute("list", list);
 								</tr>
 							</thead>
 							<tbody>
-								<%@ include file="page1.file"%>
+								<%@ include file="/backStage/page1.file"%>
 								<c:forEach var="orderMasterVO" items="${list}"
 									begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 									<tr>
@@ -102,7 +102,7 @@ pageContext.setAttribute("list", list);
 								</c:forEach>
 							</tbody>
 						</table>
-						<%@ include file="page2.file"%>
+						<%@ include file="/backStage/page2.file"%>
 					</div>
 				</div>
 			</div>
@@ -114,4 +114,4 @@ pageContext.setAttribute("list", list);
 </div>
 <!-- /.content-wrapper -->
 
-<%@ include file="footer.jsp"%>
+<%@ include file="/backStage/footer.jsp"%>

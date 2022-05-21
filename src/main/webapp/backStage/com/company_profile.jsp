@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.backStage.model.*"%>
-<%@ page import="com.kolmeb.model.*"%>
-<%@ include file="header.jsp"%>
+<%@ page import="com.companymeb.model.*"%>
+<%@ include file="/backStage/header.jsp"%>
 
 <%
-KolMebService kolMebService = new KolMebService();
-List<KolMebVO> list = kolMebService.getAll();
+CompanyMebService companyMebService = new CompanyMebService();
+List<CompanyMebVO> list = companyMebService.getAll();
 pageContext.setAttribute("list", list);
 %>
 <!-- Content Wrapper. Contains page content -->
@@ -41,73 +41,73 @@ pageContext.setAttribute("list", list);
 					<form class="form-horizontal">
 						<div class="form-group row">
 
-							<label for="inputSkills" class="col-form-label">網紅名稱:</label>
+							<label for="inputSkills" class="col-form-label">廠商名稱:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="Name" value="${kolMebVO.kol_name}"
+									placeholder="Name" value="${companyMebVO.com_name}"
 									disabled="disabled">
 							</div>
 
-							<label for="inputSkills" class="col-form-label">網紅帳號:</label>
+							<label for="inputSkills" class="col-form-label">廠商帳號:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="account" value="${kolMebVO.kol_account}"
+									placeholder="account" value="${companyMebVO.com_account}"
 									disabled="disabled">
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="inputSkills" class="col-form-label">網紅信箱:</label>
+							<label for="inputSkills" class="col-form-label">廠商信箱:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="email" value="${kolMebVO.kol_email}"
+									placeholder="email" value="${companyMebVO.com_email}"
 									disabled="disabled">
 							</div>
-							<label for="inputSkills" class="col-form-label">網紅市話:</label>
+							<label for="inputSkills" class="col-form-label">廠商市話:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="phone" value="${kolMebVO.kol_phone}"
-									disabled="disabled">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="inputSkills" class="col-form-label">網紅手機: </label>
-							<div class="col-sm-5">
-								<input type="text" class="form-control" id="inputSkills"
-									placeholder="cellphone" value="${kolMebVO.kol_cellphone}"
-									disabled="disabled">
-							</div>
-							<label for="inputSkills" class="col-form-label">網紅地址:</label>
-							<div class="col-sm-5">
-								<input type="text" class="form-control" id="inputSkills"
-									placeholder="address" value="${kolMebVO.kol_address}"
+									placeholder="phone" value="${companyMebVO.com_phone}"
 									disabled="disabled">
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="inputSkills" class="col-form-label">網紅網址:</label>
+							<label for="inputSkills" class="col-form-label">廠商手機: </label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="website" value="${kolMebVO.kol_website}"
+									placeholder="cellphone" value="${companyMebVO.com_cellphone}"
 									disabled="disabled">
 							</div>
-							<label for="inputSkills" class="col-form-label">網紅生日:</label>
+							<label for="inputSkills" class="col-form-label">廠商地址:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="birthday" value="${kolMebVO.kol_birthday}"
+									placeholder="address" value="${companyMebVO.com_address}"
 									disabled="disabled">
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="inputSkills" class="col-form-label">網紅性別:</label>
+							<label for="inputSkills" class="col-form-label">廠商網址:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="gender" value="${kolMebVO.kol_gender}"
+									placeholder="website" value="${companyMebVO.com_website}"
+									disabled="disabled">
+							</div>
+							<label for="inputSkills" class="col-form-label">廠商生日:</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="inputSkills"
+									placeholder="birthday" value="${companyMebVO.com_birthday}"
+									disabled="disabled">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputSkills" class="col-form-label">廠商性別:</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="inputSkills"
+									placeholder="gender" value="${companyMebVO.com_gender}"
 									disabled="disabled">
 							</div>
 							<label for="inputSkills" class="col-form-label">註冊日期:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="regdate" value="${kolMebVO.kol_regdate}"
+									placeholder="regdate" value="${companyMebVO.com_regdate}"
 									disabled="disabled">
 							</div>
 						</div>
@@ -115,33 +115,34 @@ pageContext.setAttribute("list", list);
 							<label for="inputSkills" class="col-form-label">身分證號:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="id" value="${kolMebVO.kol_id}" disabled="disabled">
+									placeholder="id" value="${companyMebVO.com_id}"
+									disabled="disabled">
 							</div>
 							<label for="inputSkills" class="col-form-label">銀行帳戶:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="bankaccount" value="${kolMebVO.kol_bankaccount}"
-									disabled="disabled">
+									placeholder="bankaccount"
+									value="${companyMebVO.com_bankaccount}" disabled="disabled">
 							</div>
 						</div>
 
 						<div class="form-group row">
-							<label for="inputSkills" class="col-form-label">網紅身高:</label>
+							<label for="inputSkills" class="col-form-label">成立日期:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="founddate" value="${kolMebVO.kol_height}"
+									placeholder="founddate" value="${companyMebVO.com_founddate}"
 									disabled="disabled">
 							</div>
-							<label for="inputSkills" class="col-form-label">網紅體重:</label>
+							<label for="inputSkills" class="col-form-label">統一編號:</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="inputSkills"
-									placeholder="taxidnum" value="${kolMebVO.kol_weight}"
+									placeholder="taxidnum" value="${companyMebVO.com_taxidnum}"
 									disabled="disabled">
 							</div>
 						</div>
 					</form>
 					<div align="center">
-						<a href="javascript:;" onclick="location='meb_kol.jsp'"><input
+						<a href="javascript:;" onclick="location='meb_com.jsp'"><input
 							type=button value="上一頁" /></a>
 					</div>
 				</div>
@@ -152,4 +153,4 @@ pageContext.setAttribute("list", list);
 
 </div>
 
-<%@ include file="footer.jsp"%>
+<%@ include file="/backStage/footer.jsp"%>

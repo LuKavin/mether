@@ -46,7 +46,7 @@ pageContext.setAttribute("kolMebcount", kolMebcount);
 						<div class="icon">
 							<i class="ion ion-clipboard"></i>
 						</div>
-						<a href="meb_orderlist.jsp" class="small-box-footer">More info
+						<a href="/mether/backStage/order/meb_orderlist.jsp" class="small-box-footer">More info
 							<i class="fas fa-arrow-circle-right"></i>
 						</a>
 					</div>
@@ -62,7 +62,7 @@ pageContext.setAttribute("kolMebcount", kolMebcount);
 						<div class="icon">
 							<i class="ion ion-briefcase"></i>
 						</div>
-						<a href="meb_com.jsp" class="small-box-footer">More info <i
+						<a href="/mether/backStage/com/meb_com.jsp" class="small-box-footer">More info <i
 							class="fas fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
@@ -77,7 +77,7 @@ pageContext.setAttribute("kolMebcount", kolMebcount);
 						<div class="icon">
 							<i class="ion ion-person-add"></i>
 						</div>
-						<a href="meb_kol.jsp" class="small-box-footer">More info <i
+						<a href="/mether/backStage/kol/meb_kol.jsp" class="small-box-footer">More info <i
 							class="fas fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
