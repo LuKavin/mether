@@ -17,6 +17,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.companymeb.model.CompanyMebVO;
+import com.kolmeb.model.KolMebVO;
 
 public class BackStageDAO implements BackStageDAO_interface {
 
@@ -37,7 +38,11 @@ public class BackStageDAO implements BackStageDAO_interface {
 	private static final String SET_COM_ACCESS = "UPDATE COMPANY_MEB SET MEB_ACCESSNUM = ? where COM_IDNUM = ?";
 	private static final String SET_KOL_ACCESS = "UPDATE KOL_MEB SET MEB_ACCESSNUM = ? where KOL_IDNUM = ?";
 	private static final String SET_ORDERMASTER_STATUS = "UPDATE ORDER_MASTER SET ORDER_STATUS = ? where ORDER_NUM = ?";
-	
+	private static final String GET_ALLCOM_STMT4 = "SELECT COM_IDNUM, COM_ACCOUNT, COM_PASSWORD, COM_EMAIL, COM_PHONE, COM_CELLPHONE, COM_ADDRESS, COM_WEBSITE, COM_BIRTHDAY, COM_GENDER, COM_REGDATE, COM_ID, COM_BANKCODE, COM_BANKACCOUNT, COM_NAME, COM_INTRODUCE, COM_FOUNDDATE, COM_TAXIDNUM, MEB_ACCESSNUM, AVG_STAR, TOTAL_RATE, TOTAL_STAR FROM COMPANY_MEB where MEB_ACCESSNUM = 4";
+	private static final String GET_ALLCOM_STMT1 = "SELECT COM_IDNUM, COM_ACCOUNT, COM_PASSWORD, COM_EMAIL, COM_PHONE, COM_CELLPHONE, COM_ADDRESS, COM_WEBSITE, COM_BIRTHDAY, COM_GENDER, COM_REGDATE, COM_ID, COM_BANKCODE, COM_BANKACCOUNT, COM_NAME, COM_INTRODUCE, COM_FOUNDDATE, COM_TAXIDNUM, MEB_ACCESSNUM, AVG_STAR, TOTAL_RATE, TOTAL_STAR FROM COMPANY_MEB where MEB_ACCESSNUM = 1";
+	private static final String GET_ALLKOL_STMT4 = "SELECT KOL_IDNUM, KOL_ACCOUNT, KOL_PASSWORD, KOL_EMAIL, KOL_PHONE, KOL_CELLPHONE, KOL_ADDRESS, KOL_WEBSITE, KOL_BIRTHDAY, KOL_GENDER, KOL_REGDATE, KOL_ID, KOL_BANKCODE, KOL_BANKACCOUNT, KOL_NAME, KOL_LOCATION, KOL_HEIGHT, KOL_WEIGHT, KOL_STYLE, KOL_EXPERIENCE, MEB_ACCESSNUM, AVG_STAR, TOTAL_RATE, TOTAL_STAR FROM KOL_MEB where MEB_ACCESSNUM = 4";
+	private static final String GET_ALLKOL_STMT2 = "SELECT KOL_IDNUM, KOL_ACCOUNT, KOL_PASSWORD, KOL_EMAIL, KOL_PHONE, KOL_CELLPHONE, KOL_ADDRESS, KOL_WEBSITE, KOL_BIRTHDAY, KOL_GENDER, KOL_REGDATE, KOL_ID, KOL_BANKCODE, KOL_BANKACCOUNT, KOL_NAME, KOL_LOCATION, KOL_HEIGHT, KOL_WEIGHT, KOL_STYLE, KOL_EXPERIENCE, MEB_ACCESSNUM, AVG_STAR, TOTAL_RATE, TOTAL_STAR FROM KOL_MEB where MEB_ACCESSNUM = 2";
+
 	// 廠商數量
 	public Integer companyMebcount() {
 		Integer count = null;
@@ -356,5 +361,277 @@ public class BackStageDAO implements BackStageDAO_interface {
 				}
 			}
 		}
+	}
+
+	// 被停權的廠商
+	@Override
+	public List getComAccess4() {
+		List list = new ArrayList();
+		CompanyMebVO companyMebVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALLCOM_STMT4);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				companyMebVO = new CompanyMebVO();
+				companyMebVO.setCom_idnum(rs.getInt("com_idnum"));
+				companyMebVO.setCom_account(rs.getString("com_account"));
+				companyMebVO.setCom_password(rs.getString("com_password"));
+				companyMebVO.setCom_email(rs.getString("com_email"));
+				companyMebVO.setCom_phone(rs.getString("com_phone"));
+				companyMebVO.setCom_cellphone(rs.getString("com_cellphone"));
+				companyMebVO.setCom_address(rs.getString("com_address"));
+				companyMebVO.setCom_website(rs.getString("com_website"));
+				companyMebVO.setCom_birthday(rs.getDate("com_birthday"));
+				companyMebVO.setCom_gender(rs.getString("com_gender"));
+				companyMebVO.setCom_regdate(rs.getDate("com_regdate"));
+				companyMebVO.setCom_id(rs.getString("com_id"));
+				companyMebVO.setCom_bankcode(rs.getString("com_bankcode"));
+				companyMebVO.setCom_bankaccount(rs.getString("com_bankaccount"));
+				companyMebVO.setCom_name(rs.getString("com_name"));
+				companyMebVO.setCom_introduce(rs.getString("com_introduce"));
+				companyMebVO.setCom_founddate(rs.getDate("com_founddate"));
+				companyMebVO.setCom_taxidnum(rs.getString("com_taxidnum"));
+				companyMebVO.setMeb_accessnum(rs.getInt("meb_accessnum"));
+				companyMebVO.setAvg_star(rs.getInt("avg_star"));
+				companyMebVO.setTotal_rate(rs.getInt("total_rate"));
+				companyMebVO.setTotal_star(rs.getInt("total_star"));
+				list.add(companyMebVO);
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured." + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	// 沒停權的廠商
+	@Override
+	public List getComAccess1() {
+		List list = new ArrayList();
+		CompanyMebVO companyMebVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALLCOM_STMT1);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				companyMebVO = new CompanyMebVO();
+				companyMebVO.setCom_idnum(rs.getInt("com_idnum"));
+				companyMebVO.setCom_account(rs.getString("com_account"));
+				companyMebVO.setCom_password(rs.getString("com_password"));
+				companyMebVO.setCom_email(rs.getString("com_email"));
+				companyMebVO.setCom_phone(rs.getString("com_phone"));
+				companyMebVO.setCom_cellphone(rs.getString("com_cellphone"));
+				companyMebVO.setCom_address(rs.getString("com_address"));
+				companyMebVO.setCom_website(rs.getString("com_website"));
+				companyMebVO.setCom_birthday(rs.getDate("com_birthday"));
+				companyMebVO.setCom_gender(rs.getString("com_gender"));
+				companyMebVO.setCom_regdate(rs.getDate("com_regdate"));
+				companyMebVO.setCom_id(rs.getString("com_id"));
+				companyMebVO.setCom_bankcode(rs.getString("com_bankcode"));
+				companyMebVO.setCom_bankaccount(rs.getString("com_bankaccount"));
+				companyMebVO.setCom_name(rs.getString("com_name"));
+				companyMebVO.setCom_introduce(rs.getString("com_introduce"));
+				companyMebVO.setCom_founddate(rs.getDate("com_founddate"));
+				companyMebVO.setCom_taxidnum(rs.getString("com_taxidnum"));
+				companyMebVO.setMeb_accessnum(rs.getInt("meb_accessnum"));
+				companyMebVO.setAvg_star(rs.getInt("avg_star"));
+				companyMebVO.setTotal_rate(rs.getInt("total_rate"));
+				companyMebVO.setTotal_star(rs.getInt("total_star"));
+				list.add(companyMebVO);
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured." + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	// 被停權的網紅
+	@Override
+	public List getKolAccess4() {
+		List list = new ArrayList();
+		KolMebVO kolMebVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALLKOL_STMT4);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				kolMebVO = new KolMebVO();
+				kolMebVO.setKol_idnum(rs.getInt("kol_idnum"));
+				kolMebVO.setKol_account(rs.getString("kol_account"));
+				kolMebVO.setKol_password(rs.getString("kol_password"));
+				kolMebVO.setKol_email(rs.getString("kol_email"));
+				kolMebVO.setKol_phone(rs.getString("kol_phone"));
+				kolMebVO.setKol_cellphone(rs.getString("kol_cellphone"));
+				kolMebVO.setKol_address(rs.getString("kol_address"));
+				kolMebVO.setKol_website(rs.getString("kol_website"));
+				kolMebVO.setKol_birthday(rs.getDate("kol_birthday"));
+				kolMebVO.setKol_gender(rs.getString("kol_gender"));
+				kolMebVO.setKol_regdate(rs.getDate("kol_regdate"));
+				kolMebVO.setKol_id(rs.getString("kol_id"));
+				kolMebVO.setKol_bankcode(rs.getString("kol_bankcode"));
+				kolMebVO.setKol_bankaccount(rs.getString("kol_bankaccount"));
+				kolMebVO.setKol_name(rs.getString("kol_name"));
+				kolMebVO.setKol_location(rs.getString("kol_location"));
+				kolMebVO.setKol_height(rs.getString("kol_height"));
+				kolMebVO.setKol_weight(rs.getString("kol_weight"));
+				kolMebVO.setKol_style(rs.getString("kol_style"));
+				kolMebVO.setKol_experience(rs.getString("kol_experience"));
+				kolMebVO.setMeb_accessnum(rs.getInt("meb_accessnum"));
+				kolMebVO.setAvg_star(rs.getInt("avg_star"));
+				kolMebVO.setTotal_rate(rs.getInt("total_rate"));
+				kolMebVO.setTotal_star(rs.getInt("total_star"));
+				list.add(kolMebVO);
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured." + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	// 沒停權的網紅
+	@Override
+	public List getKolAccess2() {
+		List list = new ArrayList();
+		KolMebVO kolMebVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALLKOL_STMT2);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				kolMebVO = new KolMebVO();
+				kolMebVO.setKol_idnum(rs.getInt("kol_idnum"));
+				kolMebVO.setKol_account(rs.getString("kol_account"));
+				kolMebVO.setKol_password(rs.getString("kol_password"));
+				kolMebVO.setKol_email(rs.getString("kol_email"));
+				kolMebVO.setKol_phone(rs.getString("kol_phone"));
+				kolMebVO.setKol_cellphone(rs.getString("kol_cellphone"));
+				kolMebVO.setKol_address(rs.getString("kol_address"));
+				kolMebVO.setKol_website(rs.getString("kol_website"));
+				kolMebVO.setKol_birthday(rs.getDate("kol_birthday"));
+				kolMebVO.setKol_gender(rs.getString("kol_gender"));
+				kolMebVO.setKol_regdate(rs.getDate("kol_regdate"));
+				kolMebVO.setKol_id(rs.getString("kol_id"));
+				kolMebVO.setKol_bankcode(rs.getString("kol_bankcode"));
+				kolMebVO.setKol_bankaccount(rs.getString("kol_bankaccount"));
+				kolMebVO.setKol_name(rs.getString("kol_name"));
+				kolMebVO.setKol_location(rs.getString("kol_location"));
+				kolMebVO.setKol_height(rs.getString("kol_height"));
+				kolMebVO.setKol_weight(rs.getString("kol_weight"));
+				kolMebVO.setKol_style(rs.getString("kol_style"));
+				kolMebVO.setKol_experience(rs.getString("kol_experience"));
+				kolMebVO.setMeb_accessnum(rs.getInt("meb_accessnum"));
+				kolMebVO.setAvg_star(rs.getInt("avg_star"));
+				kolMebVO.setTotal_rate(rs.getInt("total_rate"));
+				kolMebVO.setTotal_star(rs.getInt("total_star"));
+				list.add(kolMebVO);
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured." + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
 	}
 }

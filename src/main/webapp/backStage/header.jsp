@@ -96,12 +96,17 @@ AdmMebVO admMebVO = (AdmMebVO) request.getAttribute("admMebVO");
 							<p>網紅</p>
 					</a></li>
 					<li class="nav-item"><a
-						href="/mether/backStage/block/meb_blocklist.jsp" class="nav-link">
+						href="/mether/backStage/block/com_blocklist.jsp" class="nav-link">
 							<i class="ion ion-android-cancel" style="font-size: 25px;">_</i>
-							<p>黑名單</p>
+							<p>廠商黑名單</p>
+					</a></li>
+										<li class="nav-item"><a
+						href="/mether/backStage/block/kol_blocklist.jsp" class="nav-link">
+							<i class="ion ion-android-cancel" style="font-size: 25px;">_</i>
+							<p>網紅黑名單</p>
 					</a></li>
 					<li class="nav-header" style="font-size: 25px;">商品</li>
-					<li class="nav-item"><a href="meb_product.jsp"
+					<li class="nav-item"><a href="/mether/productType/AllproductType.jsp"
 						class="nav-link"> <i class="ion ion-cube"
 							style="font-size: 25px;">_</i>
 							<p>商品列表</p>
@@ -112,6 +117,25 @@ AdmMebVO admMebVO = (AdmMebVO) request.getAttribute("admMebVO");
 							<i class="ion ion-android-list" style="font-size: 25px;">_</i>
 							<p>訂單列表</p>
 					</a></li>
+					<li class="nav-header" style="font-size: 25px;">類型配置</li>
+					<li class="nav-item"><a
+						href="/mether/platformType/AllplatformType.jsp" class="nav-link">
+							<i class="ion ion-android-list" style="font-size: 25px;">_</i>
+							<p>平台列表</p>
+					</a></li>
+
+					<li class="nav-item"><a href="/mether/jobType/AlljobType.jsp"
+						class="nav-link"> <i class="ion ion-android-list"
+							style="font-size: 25px;">_</i>
+							<p>工作列表</p>
+					</a></li>
+
+					<li class="nav-item"><a href="/mether/skillType/AllskillType.jsp"
+						class="nav-link"> <i class="ion ion-android-list"
+							style="font-size: 25px;">_</i>
+							<p>技能列表</p>
+					</a></li>
+
 					<li class="nav-header" style="font-size: 25px;">信箱</li>
 					<li class="nav-item"><a href="meb_mailinbox.jsp"
 						class="nav-link"> <i class="ion ion-ios-email-outline"

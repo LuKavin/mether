@@ -6,10 +6,10 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
 BackStageService backStageSvc = new BackStageService();
-Integer orderMastercount = backStageSvc.orderMastercount();
 List list = backStageSvc.getOrderMasterNew();
-pageContext.setAttribute("orderMastercount", orderMastercount);
 pageContext.setAttribute("list", list);
+Integer orderMastercount = backStageSvc.orderMastercount();
+pageContext.setAttribute("orderMastercount", orderMastercount);
 Integer companyMebcount = backStageSvc.companyMebcount();
 pageContext.setAttribute("companyMebcount", companyMebcount);
 Integer kolMebcount = backStageSvc.kolMebcount();
@@ -174,107 +174,7 @@ pageContext.setAttribute("kolMebcount", kolMebcount);
 				</div>
 				<!-- 最新用戶 -->
 
-				<div class="col-md-6 small-box">
-					<div class="row">
-						<h3 class="m-0">
-							最新用戶
-							</h1>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<div class="card card-widget widget-user shadow-lg">
-								<div class="widget-user-header text-white"
-									style="background: url('dist/img/photo2.png') center center;">
-								</div>
-								<div class="widget-user-image">
-									<img class="img-circle" src="dist/img/user6-128x128.jpg"
-										alt="User Avatar">
-								</div>
-								<div class="card-footer">
-									<p class="widget-user-username text-center">Pokemon</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card card-widget widget-user shadow-lg">
-								<div class="widget-user-header text-white"
-									style="background: url('dist/img/photo1.png') center center;">
-								</div>
-								<div class="widget-user-image">
-									<img class="img-circle" src="dist/img/user3-128x128.jpg"
-										alt="User Avatar">
-								</div>
-								<div class="card-footer">
-									<p class="widget-user-username text-center">Pokemon</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card card-widget widget-user shadow-lg">
-								<div class="widget-user-header text-white"
-									style="background: url('dist/img/photo4.jpg') center center;">
-								</div>
-								<div class="widget-user-image">
-									<img class="img-circle" src="dist/img/user1-128x128.jpg"
-										alt="User Avatar">
-								</div>
-								<div class="card-footer">
-									<p class="widget-user-username text-center">Pokemon</p>
-								</div>
-							</div>
-						</div>
-
-
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<div class="card card-widget widget-user shadow-lg">
-								<div class="widget-user-header text-white"
-									style="background: url('dist/img/photo3.jpg') center center;">
-								</div>
-								<div class="widget-user-image">
-									<img class="img-circle" src="dist/img/user7-128x128.jpg"
-										alt="User Avatar">
-								</div>
-								<div class="card-footer">
-									<p class="widget-user-username text-center">Pokemon</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card card-widget widget-user shadow-lg">
-								<div class="widget-user-header text-white"
-									style="background: url('dist/img/avatar5.png') center center;">
-								</div>
-								<div class="widget-user-image">
-									<img class="img-circle" src="dist/img/user5-128x128.jpg"
-										alt="User Avatar">
-								</div>
-								<div class="card-footer">
-									<p class="widget-user-username text-center">Pokemon</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card card-widget widget-user shadow-lg">
-								<div class="widget-user-header text-white"
-									style="background: url('dist/img/prod-2.jpg') center center;">
-								</div>
-								<div class="widget-user-image">
-									<img class="img-circle" src="dist/img/user8-128x128.jpg"
-										alt="User Avatar">
-								</div>
-								<div class="card-footer">
-									<p class="widget-user-username text-center">Pokemon</p>
-								</div>
-							</div>
-						</div>
-
-
-					</div>
-
-
-				</div>
+				
 
 			</div>
 		</div>
