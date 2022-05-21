@@ -5,9 +5,9 @@
 <%@ include file="header.jsp"%>
 <%@page import="com.order_master.model.*"%>
 <%
-// CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料,header有寫這段
+// KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");//讀取登入者的資料,這段有寫在header
 OrderMasterService orderMasterService = new OrderMasterService();
-List<OrderMasterVO> list = orderMasterService.getMeBAllOrderList(companyMebVO.getCom_idnum(),1);
+List<OrderMasterVO> list = orderMasterService.getMeBAllOrderList(kolMebVO.getKol_idnum(),2);
 pageContext.setAttribute("list", list);
 %>
 
@@ -63,11 +63,11 @@ pageContext.setAttribute("list", list);
 											<td>${orderMasterVO.order_num}</td>
 											<td>${orderMasterVO.product_num}</td>
 											<td><fmt:formatDate value="${orderMasterVO.order_date}" pattern="yyyy-MM-dd HH:mm" /></td>
-											<td>${(orderMasterVO.kol_rate!=null && orderMasterVO.order_status!='交易完成')?"待對方評價":orderMasterVO.order_status}</td>
+											<td>${(orderMasterVO.com_rate!=null && orderMasterVO.order_status!='交易完成')?"待對方評價":orderMasterVO.order_status}</td>
 											
 											<td>
 												<FORM METHOD="post"
-													ACTION="<%=request.getContextPath()%>/comBackStage/order/order.jsp"
+													ACTION="<%=request.getContextPath()%>/kolBackStage/order/order.jsp"
 													style="width: 150px; display: inline">
 <!-- 													<input type="hidden" name="action" value="getOneOrder"> -->
 													<input type="hidden" name="order_num" value="${orderMasterVO.order_num}">

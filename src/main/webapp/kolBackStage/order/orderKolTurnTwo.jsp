@@ -5,10 +5,8 @@
 
 <%@ include file="header.jsp"%>
 <%
-ProductService productService = new ProductService();
-// CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料
-List<ProductVO> list = productService.getComAllProduct(companyMebVO.getCom_idnum());
-pageContext.setAttribute("list", list);
+ProductService productService = new ProductService(); // CompanyMebVO companyMebVO=(CompanyMebVO)
+session.getAttribute("companyMebVO");//讀取登入者的資料 List<ProductVO> list =
 %>
 
 <!-- Content Wrapper. Contains page content -->
@@ -21,7 +19,9 @@ pageContext.setAttribute("list", list);
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0 aaa"><a href="/mether/comBackStage/order/orderList.jsp">訂單列表</a>>交易流程>網紅編輯</h1>
+						<h1 class="m-0 aaa">
+							<a href="/mether/kolBackStage/order/orderList.jsp">訂單列表</a>>交易流程>廠商審核
+						</h1>
 					</div>
 					<!-- /.col -->
 					<div class="col-sm-3">
@@ -54,13 +54,13 @@ pageContext.setAttribute("list", list);
 					<div class="form-progress">
 						<div class="progress" style="width: 500px;">
 							<div class="progress-bar bg-success" role="progressbar"
-								style="width: 0%" aria-valuenow="25" aria-valuemin="0"
+								style="width: 25%" aria-valuenow="25" aria-valuemin="0"
 								aria-valuemax="100"></div>
 						</div>
 						<div class="form-progress-indicator one active">
-							<div class="text-box">製作中</div>
+							<div class="text-box" style="color: #E0E0E0">製作中</div>
 						</div>
-						<div class="form-progress-indicator two">
+						<div class="form-progress-indicator two active">
 							<div class="text-box">審核中</div>
 						</div>
 						<div class="form-progress-indicator three">
@@ -83,12 +83,12 @@ pageContext.setAttribute("list", list);
 
 					<!-- 主內容標頭 -->
 					<div class="container">
-					
-                    <!-- 標頭 -->
+
+						<!-- 標頭 -->
 						<div class="row trade-head m-3">
 							<p>交易對象：</p>
 							<a href="#">
-								<p>${kol_account}</p>
+								<p>${com_account}</p>
 							</a>
 							<div class="btn btn-danger ml-auto">取消交易</div>
 						</div>
@@ -119,9 +119,6 @@ pageContext.setAttribute("list", list);
 								</div>
 								<div class="card-body">
 									<div class="tab-content" id="custom-tabs-one-tabContent">
-
-
-
 										<div class="tab-pane fade active show"
 											id="custom-tabs-one-home" role="tabpanel"
 											aria-labelledby="custom-tabs-one-home-tab">
@@ -130,39 +127,45 @@ pageContext.setAttribute("list", list);
 												<div class="card-header">
 													<div class="container h4"
 														style="text-align: center; background-color: rgb(222, 239, 222);">
-														待網紅編輯</div>
+														檢視作品</div>
 												</div>
 												<div class="card-body">
 
 
+<!-- 													<div class="card-body"> -->
+<!-- 														<div class="form-group"> -->
+<!-- 															<label>細項:</label> -->
+<!-- 															<div class="input-group"> -->
+<!-- 																<div class="input-group-prepend"> -->
+<!-- 																	<span class="input-group-text"> <i -->
+<!-- 																		class="fa fa-file-powerpoint-o" aria-hidden="true"></i></span> -->
+<!-- 																</div> -->
+<!-- 																<input type="text" class="form-control" -->
+<!-- 																	inputmode="numeric"> -->
+<!-- 															</div> -->
 
-
-
-
-
-
+<!-- 														</div> -->
+<!-- 														<div class="form-group"> -->
+<!-- 															<div class="input-group"> -->
+<!-- 																<div class="input-group-prepend"> -->
+<!-- 																	<span class="input-group-text"><i -->
+<!-- 																		class="far fa-calendar-alt"></i></span> -->
+<!-- 																</div> -->
+<!-- 																<input type="text" class="form-control" -->
+<!-- 																	inputmode="numeric"> -->
+<!-- 															</div> -->
+<!-- 														</div> -->
+<!-- 													</div> -->
 
 													<div class="row trade-step1 ">
 														<div class="container wtforkol-box">
-															<h1 class="wtforkol" style="margin: 120px 0">待網紅編輯</h1>
+															<h1 class="wtforkol" style="margin: 120px 0">待廠商審核</h1>
 														</div>
 													</div>
-
-
-
-
-
-
-
-
-
 
 												</div>
 											</div>
 										</div>
-
-
-
 										<!-- 留言板頁籤 -->
 										<div class="tab-pane fade" id="custom-tabs-one-profile"
 											role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
@@ -182,34 +185,13 @@ pageContext.setAttribute("list", list);
 												</div>
 												<div class="card-body">！！！動態抓出→內容←區塊！！！</div>
 											</div>
-
-
-											<!--                         <div class="card card-danger card-outline"> -->
-											<!--                           <div class="card-header"> -->
-											<!--                             <div class="row"> -->
-											<!--                               <div class="container h4" -->
-											<!--                                 style="text-align: center;background-color: rgb(250, 235, 234);"> -->
-											<!--                                 網紅 -->
-											<!--                               </div> -->
-											<!--                             </div> -->
-											<!--                             <div class="row"> -->
-											<!--                               <div class="col-sm-2 p-1"> -->
-											<!--                                 <h5>標題：</h5> -->
-											<!--                               </div> -->
-											<!--                               <p>沒問題!</p> -->
-											<!--                             </div> -->
-											<!--                           </div> -->
-											<!--                           <div class="card-body"> -->
-											<!--                             OK -->
-											<!--                           </div> -->
-											<!--                         </div> -->
-
 											<div class="card card-warning card-outline msg-input">
 												<div class="card-header">
 													<div class="row ">
 														<div class="col-sm-6"></div>
 														<div class="col-sm-6">
-															<div class="btn btn-outline-warning pull-right cln-send">清空重寫</div>
+															<div class="btn btn-outline-warning pull-right cln-send">
+																清空重寫</div>
 														</div>
 													</div>
 												</div>
@@ -243,14 +225,13 @@ pageContext.setAttribute("list", list);
 							</div>
 						</div>
 					</div>
-				</di>
-			</div>
-			<!-- 無意義的切版區塊 -->
-			<div class="col-sm-2"></div>
+					</di>
+				</div>
+				<!-- 無意義的切版區塊 -->
+				<div class="col-sm-2"></div>
 		</section>
 	</section>
 </div>
 <!-- </div> 多的標籤???網頁沒問題就刪掉-->
 
 <%@ include file="footer.jsp"%>
-

@@ -1,7 +1,7 @@
-<%@page import="com.companymeb.model.CompanyMebVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.kolmeb.model.KolMebVO"%>
 <%
-CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料
+KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");//讀取登入者的資料
 %>
 <html lang="en">
 
@@ -42,12 +42,13 @@ CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
 <!-- summer note -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/comBackStage/resources/summernote/summernote-bs4.min.css">
+	href="<%=request.getContextPath()%>/kolBackStage/resources/summernote/summernote-bs4.min.css">
 <!-- star rating -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <!-- jncss -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/comBackStage/resources/css/awsome.css"
+	href="<%=request.getContextPath()%>/kolBackStage/resources/css/awsome.css"
 	type="text/css">
 
 
@@ -91,7 +92,7 @@ CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image"></div>
 					<div class="info">
-						<a href="#" class="d-block">${companyMebVO.com_account} 你好。</a>
+						<a href="#" class="d-block">${kolMebVO.kol_account} 你好。</a>
 					</div>
 				</div>
 				<!-- Sidebar Menu -->
@@ -100,21 +101,14 @@ CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 						data-widget="treeview" role="menu" data-accordion="false">
 						<!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="<%=request.getContextPath()%>/comBackStage/product/product.jsp"
-							class="nav-link">
-								<p>
-									<i class="fas fa-box"></i> 商品列表
-								</p>
-						</a></li>
-
-						<li class="nav-header" style="font-size: 25px;"><a href="<%=request.getContextPath()%>/comBackStage/order/orderList.jsp"
+							href="<%=request.getContextPath()%>/kolBackStage/order/orderList.jsp"
 							class="nav-link">
 
 								<p>
-									<i class="ion ion-android-list" style="font-size: 31px;"></i> 訂單列表
+									<i class="ion ion-android-list" style="font-size: 31px;"></i>
+									訂單列表
 								</p>
 						</a></li>
-
 
 						<li class="nav-header" style="font-size: 25px;"><a
 							href="meb_kol.html" class="nav-link">
@@ -146,7 +140,7 @@ CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 
 
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="<%=request.getContextPath()%>/comBackStage/email/Email.jsp"
+							href="<%=request.getContextPath()%>/kolBackStage/email/Email.jsp"
 							class="nav-link">
 								<p>
 									<i class="fa fa-envelope" aria-hidden="true"></i> 信箱

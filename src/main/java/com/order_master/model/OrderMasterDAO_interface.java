@@ -11,8 +11,12 @@ public interface OrderMasterDAO_interface {
 
 	public OrderMasterVO findByPrimaryKey(Integer order_num);
 
-	public List<OrderMasterVO> getMebAll(Integer com_idnum);
+	public List<OrderMasterVO> getMebAll(Integer com_idnum, Integer mem_access);
 	
+	public String findComAccount(Integer order_num);
+	
+	public String findKolAccount(Integer order_num);
+
 	public List<OrderMasterVO> getAll();
 	// 萬用複合查詢(傳入參數型態Map)(回傳 List)
 //        public List<AdmMebVO> getAll(Map<String, String[]> map); 

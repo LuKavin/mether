@@ -88,7 +88,7 @@ session.getAttribute("companyMebVO");//讀取登入者的資料 List<ProductVO> 
 						<div class="row trade-head m-3">
 							<p>交易對象：</p>
 							<a href="#">
-								<p>xxx</p>
+								<p>${kol_account}</p>
 							</a>
 							<div class="btn btn-danger ml-auto">取消交易</div>
 						</div>

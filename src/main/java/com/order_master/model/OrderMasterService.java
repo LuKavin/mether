@@ -37,6 +37,14 @@ public class OrderMasterService {
 		dao.delete(order_num);
 	}
 
+	public String getComAccount(Integer order_num) {
+		return dao.findComAccount(order_num);
+	}
+	
+	public String getKolAccount(Integer order_num) {
+		return dao.findKolAccount(order_num);
+	}
+	
 	public OrderMasterVO getOneOrderMaster(Integer order_num) {
 		return dao.findByPrimaryKey(order_num);
 	}
@@ -45,7 +53,7 @@ public class OrderMasterService {
 		return dao.getAll();
 	}
 	
-	public List<OrderMasterVO> getMeBAllOrderList(Integer com_idnum) {
-		return dao.getMebAll(com_idnum);
+	public List<OrderMasterVO> getMeBAllOrderList(Integer com_idnum, Integer mem_access) {
+		return dao.getMebAll(com_idnum, mem_access);
 	}
 }
