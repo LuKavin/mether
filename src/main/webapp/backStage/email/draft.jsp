@@ -9,7 +9,7 @@
 <%
 EmailDetailService emailDetailService = new EmailDetailService();
 //CcompanyMebVO companyMebVO = (CcompanyMebVO) session.getAttribute("companyMebVO");這段有寫在header.jsp上
-List<EmailDetailVO> list = emailDetailService.findBox(companyMebVO.getCom_account(),2);
+List<EmailDetailVO> list = emailDetailService.findBox("ADM",2);
 pageContext.setAttribute("list", list);
 %>
 
@@ -30,7 +30,7 @@ pageContext.setAttribute("list", list);
 					<div class="card-header">
 						<div class="row m-2">
 							<i class="fa fa-envelope-open-o" aria-hidden="true"
-								style="font-size: 22px;"> <span style="color:orange">${companyMebVO.com_account}</span> 的草稿夾</i>
+								style="font-size: 22px;"> <span style="color:orange"></span>管理員 的草稿夾</i>
 						</div>
 					</div>
 					<div class="card-body p-0">
@@ -41,7 +41,7 @@ pageContext.setAttribute("list", list);
 									<input type="checkbox" class="checkbox-master "
 									style="width: 20px; height: 20px;">
 								</label>
-								<form action="<%=request.getContextPath()%>/email/email.do"
+								<form METHOD="post" action="<%=request.getContextPath()%>/email/admemail.do"
 									class="trashCanForm" style="margin: 0;" >
 									<button class="btn btn-default btn-lg trashCanBtn"
 										type="button" style="display: inline;">
@@ -79,7 +79,7 @@ pageContext.setAttribute("list", list);
 											<td class="mailbox-name">
 												</td>
 											<td class="mailbox-subject">
-												<form action="<%=request.getContextPath()%>/email/email.do">
+												<form METHOD="post" action="<%=request.getContextPath()%>/email/admemail.do">
 													<input type="hidden" name="action" value="draftSend">
 													<input type="hidden" name="email_num" class="email_num"
 														value="${emailDetailVO.email_num}">

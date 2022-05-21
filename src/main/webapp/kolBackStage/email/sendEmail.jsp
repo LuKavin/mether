@@ -38,7 +38,7 @@ EmailDetailVO emailDetailVO = (EmailDetailVO) request.getAttribute("emailDetailV
 					</div>
 
 					<div class="card-body">
-						<form action="<%=request.getContextPath()%>/email/kolEmail.do" class="sendForm">
+						<form METHOD="post" action="<%=request.getContextPath()%>/email/kolEmail.do" class="sendForm">
 							<div class="row m-2">
 								<a href="#"
 									class="col-sm-2 col-form-label btn-outline-info text-center">收件者：</a>
@@ -75,7 +75,7 @@ EmailDetailVO emailDetailVO = (EmailDetailVO) request.getAttribute("emailDetailV
 					</div>
 				</div>
 			</div>
-			<form action="<%=request.getContextPath()%>/email/kolEmail.do" class="draftForm">
+			<form METHOD="post" action="<%=request.getContextPath()%>/email/kolEmail.do" class="draftForm">
 			</form>
 
 			<%@ include file="footer.jsp"%>

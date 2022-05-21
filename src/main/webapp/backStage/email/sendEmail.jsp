@@ -38,7 +38,7 @@
 					</div>
 
 					<div class="card-body">
-						<form action="<%=request.getContextPath()%>/email/email.do" class="sendForm">
+						<form action="<%=request.getContextPath()%>/email/admemail.do" class="sendForm" METHOD="post">
 							<div class="row m-2">
 								<a href="#"
 									class="col-sm-2 col-form-label btn-outline-info text-center">收件者：</a>
@@ -75,7 +75,7 @@
 					</div>
 				</div>
 			</div>
-			<form action="<%=request.getContextPath()%>/email/email.do" class="draftForm">
+			<form action="<%=request.getContextPath()%>/email/admemail.do" class="draftForm" METHOD="post">
 			</form>
 
 			<%@ include file="footer.jsp"%>

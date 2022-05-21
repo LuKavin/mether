@@ -9,7 +9,7 @@
 <%
 EmailDetailService emailDetailService = new EmailDetailService();
 //CcompanyMebVO companyMebVO = (CcompanyMebVO) session.getAttribute("companyMebVO");這段有寫在header.jsp上
-List<EmailDetailVO> list = emailDetailService.findBox(companyMebVO.getCom_account(),3);
+List<EmailDetailVO> list = emailDetailService.findBox("ADM",3);
 pageContext.setAttribute("list", list);
 %>
 
@@ -30,7 +30,7 @@ pageContext.setAttribute("list", list);
 					<div class="card-header">
 						<div class="row m-2">
 							<i class="fa fa-envelope-open-o" aria-hidden="true"
-								style="font-size: 22px;"> <span style="color:orange">${companyMebVO.com_account}</span> 的垃圾信</i>
+								style="font-size: 22px;"> <span style="color:orange"></span>管理員 的垃圾信</i>
 						</div>
 					</div>
 					<div class="card-body p-0">
@@ -41,7 +41,7 @@ pageContext.setAttribute("list", list);
 									<input type="checkbox" class="checkbox-master "
 									style="width: 20px; height: 20px;">
 								</label>
-								<form action="<%=request.getContextPath()%>/email/email.do"
+								<form METHOD="post" action="<%=request.getContextPath()%>/email/admemail.do"
 									class="deleteForm" style="margin: 0;">
 									<button class="btn btn-default btn-lg deleteBtn" type="button"
 										style="display: inline;">
@@ -49,7 +49,7 @@ pageContext.setAttribute("list", list);
 									</button>
 									<input type="hidden" name="action" value="delete">
 								</form>
-								<form action="<%=request.getContextPath()%>/email/email.do"
+								<form METHOD="post" action="<%=request.getContextPath()%>/email/admemail.do"
 									class="rollBackForm" style="margin: 0;">
 									<button class="btn btn-default btn-lg rollBackBtn" type="button"
 										style="display: inline;">
@@ -86,14 +86,14 @@ pageContext.setAttribute("list", list);
 											</td>
 											<td></td>
 											<td class="mailbox-name">
-												<form action="<%=request.getContextPath()%>/email/email.do">
+												<form METHOD="post" action="<%=request.getContextPath()%>/email/admemail.do">
 													<button type="submit" class="btn btn-link btn-sm ">${(emailDetailVO.sender==null)?"<p style='color:green'>草稿</p>":emailDetailVO.sender}</button>
 													<input type="hidden" name="action" value="reply"> <input
 														type="hidden" name="replyAccount" class="sender"
 														value="${(emailDetailVO.sender==null)?'draft':emailDetailVO.sender}">
 												</form></td>
 											<td class="mailbox-subject">
-												<form action="<%=request.getContextPath()%>/email/email.do">
+												<form METHOD="post" action="<%=request.getContextPath()%>/email/admemail.do">
 													<input type="hidden" name="action" value="showletter">
 													<input type="hidden" name="email_num" class="email_num"
 														value="${emailDetailVO.email_num}">
