@@ -141,7 +141,7 @@ pageContext.setAttribute("list", list);
 						</div>
 					</form>
 					<div align="center">
-						<a href="javascript:;" onclick="location='/backStage/kol/meb_kol.jsp'"><input
+						<a href="javascript:;" onclick="location='/mether/backStage/kol/meb_kol.jsp'"><input
 							type=button value="上一頁" /></a>
 					</div>
 				</div>
