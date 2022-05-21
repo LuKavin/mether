@@ -31,9 +31,9 @@ pageContext.setAttribute("list", list);
 				會員列表> <a href="#" data-toggle="dropdown"> </i>廠商</i>
 				</a>
 				<div class="dropdown-menu dropdown-menu">
-					<a href="meb_com.jsp" class="dropdown-item bg-danger text-white"
-						type="button"> 廠商 </a> <a href="meb_kol.jsp" class="dropdown-item"
-						type="button"> 網紅 </a> <a href="meb_blocklist.jsp"
+					<a href="/mether/backStage/com/meb_com.jsp" class="dropdown-item bg-danger text-white"
+						type="button"> 廠商 </a> <a href="/mether/backStage/kol/meb_kol.jsp" class="dropdown-item"
+						type="button"> 網紅 </a> <a href="/mether/backStage/block/meb_blocklist.jsp"
 						class="dropdown-item" type="button"> 黑名單 </a>
 				</div>
 			</div>
