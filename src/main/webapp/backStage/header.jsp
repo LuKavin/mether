@@ -137,7 +137,7 @@ AdmMebVO admMebVO = (AdmMebVO) request.getAttribute("admMebVO");
 					</a></li>
 
 					<li class="nav-header" style="font-size: 25px;">信箱</li>
-					<li class="nav-item"><a href="meb_mailinbox.jsp"
+					<li class="nav-item"><a href="/mether/backStage/email/Email.jsp"
 						class="nav-link"> <i class="ion ion-ios-email-outline"
 							style="font-size: 30px;">_</i>
 							<p>我的信箱</p>

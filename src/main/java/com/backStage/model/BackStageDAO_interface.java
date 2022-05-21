@@ -10,11 +10,11 @@ public interface BackStageDAO_interface {
 	public Integer orderMastercount();
 
 	public List getOrderMasterNew();
-	
+
 	public List getComAccess1();
 
 	public List getComAccess4();
-	
+
 	public List getKolAccess2();
 
 	public List getKolAccess4();
@@ -24,4 +24,5 @@ public interface BackStageDAO_interface {
 	public void updateKolAccess(Integer meb_accessnum, Integer kol_idnum);
 
 	public void updateOrderMasterStatus(String order_status, Integer order_num);
+
 }
