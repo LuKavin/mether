@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@page import="com.login.*"%>
 <%@ page import="com.emailDetail.model.*"%>
 <%@ page import="java.util.*"%>
 
@@ -9,7 +8,7 @@
 <%
 EmailDetailService emailDetailService = new EmailDetailService();
 // AdmMebVO admMebVO = (AdmMebVO) session.getAttribute("admMebVO");//讀取登入者的資料 這段有寫在header.jsp上
-List<EmailDetailVO> list = emailDetailService.findADMBox();
+List<EmailDetailVO> list = emailDetailService.findMailBox("ADM");
 pageContext.setAttribute("list", list);
 %>
 
@@ -41,7 +40,7 @@ pageContext.setAttribute("list", list);
 									<input type="checkbox" class="checkbox-master "
 									style="width: 20px; height: 20px;">
 								</label>
-								<form action="<%=request.getContextPath()%>/email/email.do"
+								<form METHOD="post" action="<%=request.getContextPath()%>/email/admemail.do"
 									class="trashCanForm" style="margin: 0;" >
 									<button class="btn btn-default btn-lg trashCanBtn"
 										type="button" style="display: inline;">
@@ -77,14 +76,14 @@ pageContext.setAttribute("list", list);
 											</td>
 											<td></td>
 											<td class="mailbox-name">
-												<form action="<%=request.getContextPath()%>/email/email.do">
+												<form METHOD="post" action="<%=request.getContextPath()%>/email/admemail.do">
 													<button type="submit" class="btn btn-link btn-sm">${emailDetailVO.sender}</button>
 													<input type="hidden" name="action" value="reply"> <input
 														type="hidden" name="replyAccount"
 														value="${emailDetailVO.sender}">
 												</form></td>
 											<td class="mailbox-subject">
-												<form action="<%=request.getContextPath()%>/email/email.do">
+												<form METHOD="post" action="<%=request.getContextPath()%>/email/admemail.do">
 													<input type="hidden" name="action" value="showletter">
 													<input type="hidden" name="email_num" class="email_num"
 														value="${emailDetailVO.email_num}">

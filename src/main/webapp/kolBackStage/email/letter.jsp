@@ -52,14 +52,14 @@ EmailDetailVO emailDetailVO = (EmailDetailVO) request.getAttribute("emailDetailV
 					</div>
 					<div class="card-footer">
 						<div class="row">
-							<form action="<%=request.getContextPath()%>/email/kolEmail.do">
+							<form METHOD="post" action="<%=request.getContextPath()%>/email/kolEmail.do">
 								<button type="submit" class="btn btn-outline-info btn-lg m-2">
 									<i class="fa fa-hand-o-right" aria-hidden="true"></i>回信
 								</button>
 								<input type="hidden" name="action" value="reply">
 								 <input type="hidden" name="replyAccount"value="${emailDetailVO.sender}">
 							</form>
-							<form action="<%=request.getContextPath()%>/email/kolEmail.do" class="trashCanForm">
+							<form METHOD="post" action="<%=request.getContextPath()%>/email/kolEmail.do" class="trashCanForm">
 								<button class="btn btn-outline-danger btn-lg m-2 trashCanBtn" type="button">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>刪除
 								</button>

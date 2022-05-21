@@ -41,7 +41,7 @@ pageContext.setAttribute("list", list);
 									<input type="checkbox" class="checkbox-master "
 									style="width: 20px; height: 20px;">
 								</label>
-								<form action="<%=request.getContextPath()%>/email/email.do"
+								<form METHOD="post" action="<%=request.getContextPath()%>/email/email.do"
 									class="trashCanForm" style="margin: 0;" >
 									<button class="btn btn-default btn-lg trashCanBtn"
 										type="button" style="display: inline;">
@@ -79,7 +79,7 @@ pageContext.setAttribute("list", list);
 											<td class="mailbox-name">
 												</td>
 											<td class="mailbox-subject">
-												<form action="<%=request.getContextPath()%>/email/email.do">
+												<form METHOD="post" action="<%=request.getContextPath()%>/email/email.do">
 													<input type="hidden" name="action" value="draftSend">
 													<input type="hidden" name="email_num" class="email_num"
 														value="${emailDetailVO.email_num}">
