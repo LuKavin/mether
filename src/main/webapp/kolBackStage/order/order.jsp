@@ -5,10 +5,6 @@
 
 <%@ include file="header.jsp"%>
 <%
-ProductService productService = new ProductService();
-// CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料
-List<ProductVO> list = productService.getComAllProduct(companyMebVO.getCom_idnum());
-pageContext.setAttribute("list", list);
 %>
 
 <!-- Content Wrapper. Contains page content -->
@@ -21,7 +17,7 @@ pageContext.setAttribute("list", list);
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0 aaa"><a href="/mether/comBackStage/order/orderList.jsp">訂單列表</a></h1>
+						<h1 class="m-0 aaa"><a href="/mether/kolBackStage/order/orderList.jsp">訂單列表</a></h1>
 					</div>
 					<!-- /.col -->
 					<div class="col-sm-3">
@@ -87,7 +83,7 @@ pageContext.setAttribute("list", list);
                     <!-- 標頭 -->
 						<div class="row trade-head m-3">
 							<p>交易對象：</p>
-								<p>${kol_account}</p>
+								<p>xxx</p>
 							<div class="btn btn-danger ml-auto">取消交易</div>
 						</div>
 					</div>

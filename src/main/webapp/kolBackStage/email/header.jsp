@@ -97,6 +97,16 @@ KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");//讀取登入�
 						data-widget="treeview" role="menu" data-accordion="false">
 						<!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
 						<li class="nav-header" style="font-size: 25px;"><a
+							href="<%=request.getContextPath()%>/kolBackStage/order/orderList.jsp"
+							class="nav-link">
+
+								<p>
+									<i class="ion ion-android-list" style="font-size: 31px;"></i>
+									訂單列表
+								</p>
+						</a></li>
+
+						<li class="nav-header" style="font-size: 25px;"><a
 							href="meb_kol.html" class="nav-link">
 								<p>
 									<i class="fa fa-address-book" aria-hidden="true"></i> 應徵列表

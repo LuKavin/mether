@@ -7,8 +7,6 @@
 <%
 ProductService productService = new ProductService();
 // CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");//讀取登入者的資料
-List<ProductVO> list = productService.getComAllProduct(companyMebVO.getCom_idnum());
-pageContext.setAttribute("list", list);
 %>
 
 <!-- Content Wrapper. Contains page content -->
@@ -21,7 +19,9 @@ pageContext.setAttribute("list", list);
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0 aaa"><a href="/mether/comBackStage/order/orderList.jsp">訂單列表</a>>交易流程>交易完成</h1>
+						<h1 class="m-0 aaa">
+							<a href="/mether/kolBackStage/order/orderList.jsp">訂單列表</a>>交易流程>評價狀態
+						</h1>
 					</div>
 					<!-- /.col -->
 					<div class="col-sm-3">
@@ -54,23 +54,23 @@ pageContext.setAttribute("list", list);
 					<div class="form-progress">
 						<div class="progress" style="width: 500px;">
 							<div class="progress-bar bg-success" role="progressbar"
-								style="width: 100%" aria-valuenow="25" aria-valuemin="0"
+								style="width: 75%" aria-valuenow="25" aria-valuemin="0"
 								aria-valuemax="100"></div>
 						</div>
 						<div class="form-progress-indicator one active">
-							<div class="text-box" style="color:#E0E0E0">製作中</div>
+							<div class="text-box" style="color: #E0E0E0">製作中</div>
 						</div>
 						<div class="form-progress-indicator two active">
-							<div class="text-box" style="color:#E0E0E0">審核中</div>
+							<div class="text-box" style="color: #E0E0E0">審核中</div>
 						</div>
 						<div class="form-progress-indicator three active">
-							<div class="text-box" style="color:#E0E0E0">審核成功</div>
+							<div class="text-box" style="color: #E0E0E0">審核成功</div>
 						</div>
 						<div class="form-progress-indicator four active">
-							<div class="text-box" style="color:#E0E0E0">評價中</div>
+							<div class="text-box">評價中</div>
 						</div>
-						<div class="form-progress-indicator five active">
-							<div class="text-box" style="color:#E0E0E0">交易完成</div>
+						<div class="form-progress-indicator five">
+							<div class="text-box">交易完成</div>
 						</div>
 					</div>
 				</div>
@@ -88,9 +88,9 @@ pageContext.setAttribute("list", list);
 						<div class="row trade-head m-3">
 							<p>交易對象：</p>
 							<a href="#">
-								<p>${kol_account}</p>
+								<p>${com_account}</p>
 							</a>
-							<div class="btn btn-danger ml-auto">取消交易</div>
+
 						</div>
 					</div>
 					<!--  -->
@@ -119,93 +119,66 @@ pageContext.setAttribute("list", list);
 								</div>
 								<div class="card-body">
 									<div class="tab-content" id="custom-tabs-one-tabContent">
-										<div class="tab-pane fade active show"
-											id="custom-tabs-one-home" role="tabpanel"
-											aria-labelledby="custom-tabs-one-home-tab">
-											<!-- 交易區塊頁籤 -->
-											<div class="card card-warning card-outline">
-												<div class="card-header">
-													<div class="container h4"
-														style="text-align: center; background-color: rgb(222, 239, 222);">
-														交易</div>
-												</div>
-												<div class="card-body">
-
-
-													<div class="card-body">
-													<div class="row trade-step1 ">
-														<div class="container" style="background-color: rgb(239, 211, 239)">
-															<h1 class="wtforkol" style="margin: 120px 0;">交易完成</h1>
-														</div>
-													</div>
-													</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+										<div class="card card-warning card-outline">
+											<div class="card-header">
+												<div class="container h4"
+													style="text-align: center; background-color: rgb(222, 239, 222);">
+													給予廠商評價 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
 												</div>
 											</div>
-										</div>
-										<!-- 留言板頁籤 -->
-										<div class="tab-pane fade" id="custom-tabs-one-profile"
-											role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-											<div class="card card-warning card-outline">
-												<div class="card-header">
-													<div class="row">
-														<div class="container h4"
-															style="text-align: center; background-color: rgb(234, 240, 250);">
-															留言者對象：顯示廠商/網紅</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-2 p-1">
-															<h5>標題：</h5>
-														</div>
-														<p>！！！動態抓出→標題←區塊！！！</p>
-													</div>
-												</div>
-												<div class="card-body">！！！動態抓出→內容←區塊！！！</div>
-											</div>
-											<div class="card card-warning card-outline msg-input">
-												<div class="card-header">
-													<div class="row ">
-														<div class="col-sm-6"></div>
-														<div class="col-sm-6">
-															<div class="btn btn-outline-warning pull-right cln-send">清空重寫</div>
-														</div>
-													</div>
-												</div>
-												<div class="card-body">
-													<div class="row m-2">
-														<label class="col-sm-2 col-form-label text-center">標題：</label>
-														<div class="col-sm-10">
-															<input type="email"
-																class="form-control send-subject msg_title"
-																placeholder="Subject:">
+											<div class="card-body">
+
+												<form
+													action="<%=request.getContextPath()%>/order/orderKol.do" class="rateForm">
+
+													<div class="star-rating">
+														<div class="star-rating__wrap">
+															<input class="star-rating__input" id="star-rating-5"
+																type="radio" name="com_star" value="5" checked="true">
+															<label class="star-rating__ico fa fa-star-o fa-lg"
+																for="star-rating-5" title="5 out of 5 stars"></label> <input
+																class="star-rating__input" id="star-rating-4"
+																type="radio" name="kol_star" value="4"> <label
+																class="star-rating__ico fa fa-star-o fa-lg"
+																for="star-rating-4" title="4 out of 5 stars"></label> <input
+																class="star-rating__input" id="star-rating-3"
+																type="radio" name="kol_star" value="3"> <label
+																class="star-rating__ico fa fa-star-o fa-lg"
+																for="star-rating-3" title="3 out of 5 stars"></label> <input
+																class="star-rating__input" id="star-rating-2"
+																type="radio" name="kol_star" value="2"> <label
+																class="star-rating__ico fa fa-star-o fa-lg"
+																for="star-rating-2" title="2 out of 5 stars"></label> <input
+																class="star-rating__input" id="star-rating-1"
+																type="radio" name="kol_star" value="1"> <label
+																class="star-rating__ico fa fa-star-o fa-lg"
+																for="star-rating-1" title="1 out of 5 stars"></label>
 														</div>
 													</div>
 													<div class="form-group">
-														<div id="summernote"></div>
-													</div>
-													<div class="card-footer">
-														<div class="float-right">
-															<button class="btn btn-warning msg-ok" type="submit">留言</button>
+														<label>評分留言:</label>
+														<div class="input-group">
+															<div class="input-group-prepend">
+																<span class="input-group-text"> <i
+																	class="fa fa-handshake-o" aria-hidden="true"></i>
+																</span>
+															</div>
+															<textarea class="form-control" inputmode="numeric"
+																placeholder="請填入文字..." name="com_rate"
+																style="height: 80px">請大家多多與他交易～</textarea>
 														</div>
+
 													</div>
-												</div>
+													<div class="row trade-head m-3">
+														<button type="button"
+															class="btn  btn-outline-success ml-auto rateBtn">送出評價</button>
+													</div>
+													<input type="hidden" name="action" value="rateOK">
+													<input type="hidden" name="order_num" value="${order_num}">
+												</form>
+
 											</div>
 										</div>
-
 
 
 
@@ -222,6 +195,7 @@ pageContext.setAttribute("list", list);
 		</section>
 	</section>
 </div>
+<!-- </div> 多的標籤???網頁沒問題就刪掉-->
 
 <%@ include file="footer.jsp"%>
 

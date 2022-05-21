@@ -27,7 +27,13 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO ORDER_MASTER (PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT ORDER_NUM, PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_DATE, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR FROM ORDER_MASTER order by ORDER_NUM";
-	private static final String GET_MEB_ORDER_LIST = "SELECT ORDER_NUM, PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_DATE, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR FROM ORDER_MASTER where COM_IDNUM = ?";
+	
+	private static final String GET_COM_ORDER_LIST = "SELECT ORDER_NUM, PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_DATE, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR FROM ORDER_MASTER where COM_IDNUM = ?";
+	private static final String GET_KOL_ORDER_LIST = "SELECT ORDER_NUM, PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_DATE, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR FROM ORDER_MASTER where KOL_IDNUM = ?";
+	
+	private static final String GET_KOL_ACCOUNT = "SELECT k.KOL_ACCOUNT FROM KOL_MEB k join ORDER_MASTER o on (k.KOL_IDNUM = o.KOL_IDNUM) and o.ORDER_NUM = ?";
+	private static final String GET_COM_ACCOUNT = "SELECT c.COM_ACCOUNT FROM COMPANY_MEB c join ORDER_MASTER o on (c.COM_IDNUM = o.COM_IDNUM) and o.ORDER_NUM = ?";
+	
 	private static final String GET_ONE_STMT = "SELECT ORDER_NUM, PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_DATE, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR FROM ORDER_MASTER where ORDER_NUM = ?";
 	private static final String DELETE = "DELETE FROM ORDER_MASTER where ORDER_NUM = ?";
 	private static final String UPDATE = "UPDATE ORDER_MASTER set ORDER_STATUS=?, COM_RATE=?, KOL_RATE=?, COM_STAR=?, KOL_STAR=? where ORDER_NUM = ?";
@@ -287,7 +293,7 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 	}
 
 	@Override
-	public List<OrderMasterVO> getMebAll(Integer com_idnum) {
+	public List<OrderMasterVO> getMebAll(Integer mem_idnum, Integer mem_access) {
 		List<OrderMasterVO> list = new ArrayList<OrderMasterVO>();
 		OrderMasterVO orderMasterVO = null;
 
@@ -298,8 +304,15 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_MEB_ORDER_LIST);
-			pstmt.setInt(1, com_idnum);
+			switch (mem_access) {
+			case 1:
+				pstmt = con.prepareStatement(GET_COM_ORDER_LIST);
+				break;
+			case 2:
+				pstmt = con.prepareStatement(GET_KOL_ORDER_LIST);
+				break;
+			}
+			pstmt.setInt(1, mem_idnum);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -347,4 +360,119 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 		}
 		return list;
 	}
+	
+	@Override
+	public String findComAccount(Integer order_num) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String com_account = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_COM_ACCOUNT);
+			pstmt.setInt(1, order_num);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				com_account = rs.getString(1);
+
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return com_account;
+	}
+	
+	@Override
+	public String findKolAccount(Integer order_num) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String kol_account = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_KOL_ACCOUNT);
+			pstmt.setInt(1, order_num);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				kol_account = rs.getString(1);
+
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return kol_account;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

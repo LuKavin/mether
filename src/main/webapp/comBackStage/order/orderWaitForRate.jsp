@@ -85,7 +85,7 @@ ProductService productService = new ProductService();
                     <!-- 標頭 -->
 						<div class="row trade-head m-3">
 							<p>交易對象：</p>
-								<p>xxx</p>
+								<p>${kol_account}</p>
 						</div>
 					</div>
 					<!--  -->

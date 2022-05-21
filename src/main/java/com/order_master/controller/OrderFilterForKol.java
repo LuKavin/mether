@@ -22,14 +22,14 @@ import com.companymeb.model.CompanyMebVO;
 import com.order_master.model.OrderMasterService;
 import com.order_master.model.OrderMasterVO;
 @WebFilter(
-urlPatterns = {"/comBackStage/order/order.jsp",
-               "/comBackStage/order/orderComTurnOne.jsp",
-               "/comBackStage/order/orderComTurnTwo.jsp",
-               "/comBackStage/order/orderComTurnThree.jsp",
-               "/comBackStage/order/orderComfinal.jsp"
+urlPatterns = {"/kolBackStage/order/order.jsp",
+               "/kolBackStage/order/orderComTurnOne.jsp",
+               "/kolBackStage/order/orderComTurnTwo.jsp",
+               "/kolBackStage/order/orderComTurnThree.jsp",
+               "/kolBackStage/order/orderComfinal.jsp"
 })
 
-public class OrderFilterForCom implements Filter {
+public class OrderFilterForKol implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -56,24 +56,24 @@ public class OrderFilterForCom implements Filter {
 		
 		switch (orderMasterVO.getOrder_status()) {
 		case "製作中":
-			req.getRequestDispatcher("/comBackStage/order/orderComTurnOne.jsp").forward(req, res);
+			req.getRequestDispatcher("/kolBackStage/order/orderKolTurnOne.jsp").forward(req, res);
 			break;
 		case "審核中":
-			req.getRequestDispatcher("/comBackStage/order/orderComTurnTwo.jsp").forward(req, res);
+			req.getRequestDispatcher("/kolBackStage/order/orderKolTurnTwo.jsp").forward(req, res);
 			break;
 		case "評價中":
-			if(orderMasterVO.getKol_rate()!=null && orderMasterVO.getKol_star()!=0) {
-				req.getRequestDispatcher("/comBackStage/order/orderWaitForRate.jsp").forward(req, res);
+			if(orderMasterVO.getCom_rate()!=null && orderMasterVO.getCom_star()!=0) {
+				req.getRequestDispatcher("/kolBackStage/order/orderWaitForRate.jsp").forward(req, res);
 			}else {
-				req.getRequestDispatcher("/comBackStage/order/orderComTurnThree.jsp").forward(req, res);
+				req.getRequestDispatcher("/kolBackStage/order/orderKolTurnThree.jsp").forward(req, res);
 			}
 			break;
 		case "交易完成":
-			req.getRequestDispatcher("/comBackStage/order/orderComfinal.jsp").forward(req, res);
+			req.getRequestDispatcher("/kolBackStage/order/orderKolfinal.jsp").forward(req, res);
 			break;
 		default:
 			
-			req.getRequestDispatcher("/comBackStage/order/order.jsp").forward(req, res);
+			req.getRequestDispatcher("/kolBackStage/order/order.jsp").forward(req, res);
 			
 		}
 		
