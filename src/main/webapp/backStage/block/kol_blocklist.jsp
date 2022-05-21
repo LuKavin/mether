@@ -3,15 +3,14 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.backStage.model.*"%>
 <%@ page import="com.kolmeb.model.*"%>
+<%@ page import="com.companymeb.model.*"%>
 <%@ include file="/backStage/header.jsp"%>
-<%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
 BackStageService backStageSvc = new BackStageService();
-List list = backStageSvc.getKolAccess2();
+List list = backStageSvc.getKolAccess4();
 pageContext.setAttribute("list", list);
 %>
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<div class="content-header">
@@ -77,7 +76,7 @@ pageContext.setAttribute("list", list);
 														<FORM METHOD="post"
 															ACTION="<%=request.getContextPath()%>/backStage/backStage.do"
 															style="width: 150px; display: inline">
-															<input type="hidden" name="action" value="getOneKol">
+															<input type="hidden" name="action" value="getOneKol4">
 															<input type="hidden" name="kol_idnum"
 																value="${kolMebVO.kol_idnum}">
 															<button class="btn btn-info" type="submit">
@@ -89,17 +88,17 @@ pageContext.setAttribute("list", list);
 														<i class="fas fa-cog">_更改權限</i>
 													</div>
 													<div class="dropdown-menu dropdown-menu">
-
 														<FORM METHOD="post"
 															ACTION="<%=request.getContextPath()%>/backStage/backStage.do">
-															<input type="hidden" name="action" value="KolUpdate4">
+															<input type="hidden" name="action" value="KolUpdate2">
 															<input type="hidden" name="kol_idnum"
 																value="${kolMebVO.kol_idnum}">
 															<button class="dropdown-item" type="submit">
-																<i class="fa fa-frown-o fa-2x" aria-hidden="true"></i>
-																帳號停用
+																<i class="fa fa-smile-o fa-2x" aria-hidden="true"></i>
+																帳號啟用
 															</button>
 														</form>
+
 													</div>
 												</div>
 											</td>

@@ -3,11 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.companymeb.model.*"%>
+<%@ page import="com.backStage.model.*"%>
 <%@ include file="/backStage/header.jsp"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
-CompanyMebService companyMebSvc = new CompanyMebService();
-List<CompanyMebVO> list = companyMebSvc.getAll();
+BackStageService backStageSvc = new BackStageService();
+List list = backStageSvc.getComAccess1();
 pageContext.setAttribute("list", list);
 %>
 
@@ -84,16 +85,7 @@ pageContext.setAttribute("list", list);
 														<i class="fas fa-cog">_更改權限</i>
 													</div>
 													<div class="dropdown-menu dropdown-menu">
-														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/backStage/backStage.do">
-															<input type="hidden" name="action" value="ComUpdate1">
-															<input type="hidden" name="com_idnum"
-																value="${companyMebVO.com_idnum}">
-															<button class="dropdown-item" type="submit">
-																<i class="fa fa-smile-o fa-2x" aria-hidden="true"></i>
-																帳號啟用
-															</button>
-														</form>
+
 														<FORM METHOD="post"
 															ACTION="<%=request.getContextPath()%>/backStage/backStage.do">
 															<input type="hidden" name="action" value="ComUpdate4">
