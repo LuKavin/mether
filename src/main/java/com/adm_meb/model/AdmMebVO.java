@@ -5,7 +5,6 @@ public class AdmMebVO implements java.io.Serializable {
 	private String adm_account;
 	private String adm_password;
 	private String adm_name;
-	private byte[] adm_photo;
 	
 	public Integer getAdm_idnum() {
 		return adm_idnum;
@@ -30,12 +29,6 @@ public class AdmMebVO implements java.io.Serializable {
 	}
 	public void setAdm_name(String adm_name) {
 		this.adm_name = adm_name;
-	}
-	public byte[] getAdm_photo() {
-		return adm_photo;
-	}
-	public void setAdm_photo(byte[] adm_photo) {
-		this.adm_photo = adm_photo;
 	}
 
 }

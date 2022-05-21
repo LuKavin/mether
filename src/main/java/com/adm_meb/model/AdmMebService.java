@@ -10,21 +10,19 @@ public class AdmMebService {
 		dao = new AdmMebDAO();
 	}
 
-	public AdmMebVO addAdmMeb(String adm_account, String adm_password, String adm_name, byte[] adm_photo) {
+	public AdmMebVO addAdmMeb(String adm_account, String adm_password, String adm_name) {
 
 		AdmMebVO admMebVO = new AdmMebVO();
 
 		admMebVO.setAdm_account(adm_account);
 		admMebVO.setAdm_password(adm_password);
 		admMebVO.setAdm_name(adm_name);
-		admMebVO.setAdm_photo(adm_photo);
 		dao.insert(admMebVO);
 
 		return admMebVO;
 	}
 
-	public AdmMebVO updateAdmMeb(Integer adm_idnum, String adm_account, String adm_password, String adm_name,
-			byte[] adm_photo) {
+	public AdmMebVO updateAdmMeb(Integer adm_idnum, String adm_account, String adm_password, String adm_name) {
 
 		AdmMebVO admMebVO = new AdmMebVO();
 
@@ -32,7 +30,6 @@ public class AdmMebService {
 		admMebVO.setAdm_account(adm_account);
 		admMebVO.setAdm_password(adm_password);
 		admMebVO.setAdm_name(adm_name);
-		admMebVO.setAdm_photo(adm_photo);
 		dao.update(admMebVO);
 
 		return admMebVO;
@@ -48,5 +45,9 @@ public class AdmMebService {
 
 	public List<AdmMebVO> getAll() {
 		return dao.getAll();
+	}
+
+	public AdmMebVO login(String adm_account, String adm_password) {
+		return dao.login(adm_account, adm_password);
 	}
 }
