@@ -244,6 +244,22 @@ $(function () {
 	   });
           // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑新增商品預覽圖======================================================================================================
 
+          $(".orderFile").on("change", function(e){         
+            // 寫在這
+           // 跑每個使用者選的檔案，留意 i 的部份
+           for (let i = 0; i < this.files.length; i++) {
+              $(".orderImg").attr("src","");
+              let reader = new FileReader(); // 用來讀取檔案
+              reader.readAsDataURL(this.files[i]); // 讀取檔案
+              reader.addEventListener("load", function () {
+                $(".orderImg").attr("src",reader.result);
+              });
+            } 
+   
+   
+          });
+             // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑訂單預覽圖======================================================================================================
+   
 
        $(".editBg").css("cursor", "pointer");
        $(".editBg").on("mousemove",function(){

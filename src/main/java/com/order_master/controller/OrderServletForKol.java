@@ -21,6 +21,7 @@ import com.order_master.model.OrderMasterVO;
 import com.product.model.*;
 import com.productType.model.ProductTypeService;
 
+@MultipartConfig()
 @WebServlet("/order/orderKol.do")
 public class OrderServletForKol extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,33 +34,7 @@ public class OrderServletForKol extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		HttpSession session = req.getSession();
-		if("checkOK".equals(action)) {
-			
-//			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
-			try {
-				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-				Integer order_num =  new Integer(req.getParameter("order_num"));
-		
-				/*************************** 2.開始新增資料 ***************************************/
-				OrderMasterService orderMasterService =new OrderMasterService();
-				//找出該筆VO
-				OrderMasterVO orderMasterVO =  orderMasterService.getOneOrderMaster(order_num);
-				//更改狀態
-				orderMasterVO.setOrder_status("評價中");
-				//更新
-				orderMasterService.updateOrderMaster(orderMasterVO);
-				
-				/*************************** 3.新增完成,準備轉交***********/
-				req.setAttribute("order_num", order_num);
-				req.getRequestDispatcher("/comBackStage/order/orderComTurnThree.jsp").forward(req, res);
-				/*************************** 其他可能的錯誤處理 **********************************/
-			} catch (Exception e) {
-				RequestDispatcher failureView = req.getRequestDispatcher("登入失敗");
-				failureView.forward(req, res);
-			}
-		}
+		System.out.println("action="+action);
 		
 		if("rateOK".equals(action)) {
 			
@@ -93,7 +68,50 @@ public class OrderServletForKol extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-
+		
+		if("orderContentOK".equals(action)) {
+			System.out.println("到");
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			try {
+				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+				Integer order_num =  new Integer(req.getParameter("order_num"));
+				String orderLink =  req.getParameter("orderLink");
+				if(orderLink==null || orderLink.trim().isEmpty()) {
+					errorMsgs.add("網址列請勿空白");
+				}
+				if (!orderLink.trim().matches(orderLink)) {
+					errorMsgs.add("網址格式錯誤");
+	            }
+				String orderContent =  req.getParameter("orderContent");
+				
+				Part orderFile =  req.getPart("orderFile");
+				InputStream is = orderFile.getInputStream();
+				byte[] fileByte = new byte[is.available()];
+				is.read(fileByte);
+				System.out.println("89");
+				
+				/*************************** 2.開始新增資料 ***************************************/
+				OrderMasterService orderMasterService =new OrderMasterService();
+				//找出該筆VO
+				OrderMasterVO orderMasterVO =  orderMasterService.getOneOrderMaster(order_num);
+				//更改狀態
+				orderMasterVO.setOrder_status("審核中");
+				orderMasterVO.setOrder_content(orderContent);
+				orderMasterVO.setOrder_link(orderLink);
+				orderMasterVO.setOrder_pic(fileByte);
+				//更新
+				orderMasterService.updateOrderMaster(orderMasterVO);
+				System.out.println("102");
+				/*************************** 3.新增完成,準備轉交***********/
+				req.setAttribute("order_num", order_num);
+				req.getRequestDispatcher("/kolBackStage/order/orderKolTurnTwo.jsp").forward(req, res);
+				/*************************** 其他可能的錯誤處理 **********************************/
+			} catch (Exception e) {
+				RequestDispatcher failureView = req.getRequestDispatcher("登入失敗");
+				failureView.forward(req, res);
+			}
+		}
 	}
 
 }
