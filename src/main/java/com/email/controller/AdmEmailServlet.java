@@ -223,25 +223,15 @@ public class AdmEmailServlet extends HttpServlet {
 			try {
 				/***********************1.接收請求參數 - 只是加入草稿因此沒有太多資料驗證*************************/
 				/***********************如果使用者存入全部空白的草稿會在前端進行錯誤處理**************************/
-				String mem_account = kolMebVO.getKol_account();//收件人,草稿信收件人為自己
-				Integer mem_access = emailDetailService.findMemAccess(mem_account);//判斷收件者的類型1=廠商,2=網紅
-				String email_content = req.getParameter("draftContent");
+				String email_content = req.getParameter("email_daftContent");
 				Integer email_typenum = 2;//信件類別,加入草稿為草稿信件=2
 				String email_title = req.getParameter("draftTitle");
 				if(email_title.equals("")) {
 					email_title ="未命名草稿";
 				}
 				EmailDetailVO emailDetailVO =new EmailDetailVO();
-				if(mem_access==1) {//根據收件者類型新增1=廠商,2=網紅
-				emailDetailVO.setCom_account(mem_account);
-				}else if(mem_access==2) {
-				emailDetailVO.setKol_account(mem_account);
-				}
-				if("ADM".equals(mem_account)) {
-					emailDetailVO.setAdm_account("ADM");
-				}
 				
-				
+				emailDetailVO.setAdm_account("ADM");
 				emailDetailVO.setEmail_typenum(email_typenum);
 				emailDetailVO.setEmail_title(email_title);
 				emailDetailVO.setEmail_content(email_content);

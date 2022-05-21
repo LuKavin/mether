@@ -228,7 +228,7 @@ public class EmailServlet extends HttpServlet {
 				/***********************如果使用者存入全部空白的草稿會在前端進行錯誤處理**************************/
 				String mem_account = companyMebVO.getCom_account();//收件人,草稿信收件人為自己
 				Integer mem_access = emailDetailService.findMemAccess(mem_account);//判斷收件者的類型1=廠商,2=網紅
-				String email_content = req.getParameter("draftContent");
+				String email_content = req.getParameter("email_daftContent");
 				Integer email_typenum = 2;//信件類別,加入草稿為草稿信件=2
 				String email_title = req.getParameter("draftTitle");
 				if(email_title.equals("")) {
