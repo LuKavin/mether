@@ -76,6 +76,7 @@
 				</div>
 			</div>
 			<form action="<%=request.getContextPath()%>/email/admemail.do" class="draftForm" METHOD="post">
+			<input type="hidden" name="email_daftContent" class="email_draftContent" value="">
 			</form>
 
 			<%@ include file="footer.jsp"%>

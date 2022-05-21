@@ -195,8 +195,8 @@ $(function () {
     $(".draftBtn").on('click',function(){
         let sendTo= $(".send-to").val();
         let sendSubject= $(".send-subject").val();
-        let sendContent= $('#summernote').summernote('code');
-        if(sendContent =="<p><br></p>"){
+        let drafContent= $('#summernote').summernote('code');
+        if(drafContent =="<p><br></p>"){
             Swal.fire({
                 icon: 'error',
                 title: '錯誤!',
@@ -212,9 +212,8 @@ $(function () {
             })
             $(".draftForm").append(`<input type="hidden" name="draftTO" value="${sendTo}"></input>`);
             $(".draftForm").append(`<input type="hidden" name="draftTitle" value="${sendSubject}"></input>`);
-            $(".draftForm").append(`<input type="hidden" name="draftContent" value="${sendContent}"></input>`);
+            $(".email_draftContent").val(drafContent);
             $(".draftForm").append(`<input type="hidden" name="action" value="draft"></input>`);
-    
             setTimeout(function () {
                 $(".draftForm").submit();
             }, 800);

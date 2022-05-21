@@ -76,6 +76,7 @@ EmailDetailVO emailDetailVO = (EmailDetailVO) request.getAttribute("emailDetailV
 				</div>
 			</div>
 			<form METHOD="post" action="<%=request.getContextPath()%>/email/kolEmail.do" class="draftForm">
+			<input type="hidden" name="email_daftContent" class="email_draftContent" value="">
 			</form>
 
 			<%@ include file="footer.jsp"%>

@@ -30,7 +30,7 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 		}
 	}
 	//加入草稿
-	private static final String add = "INSERT INTO `EMAIL_DETAIL` (`COM_ACCOUNT`, `KOL_ACCOUNT`, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `SENDER`) VALUES (?,?,?,?,?,?);";
+	private static final String add = "INSERT INTO `EMAIL_DETAIL` (`COM_ACCOUNT`, `KOL_ACCOUNT`, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `SENDER`, `ADM_ACCOUNT`) VALUES (?,?,?,?,?,?,?);";
 	//寄普通信
 	private static final String INSERT = "INSERT INTO `EMAIL_DETAIL` (`COM_ACCOUNT`, `KOL_ACCOUNT`, `EMAIL_TYPENUM`, `EMAIL_TITLE`, `EMAIL_CONTENT`, `SENDER`, `ADM_ACCOUNT`) VALUES (?,?,?,?,?,?,?);";
 	// 帳號找垃圾桶 或 草稿夾
@@ -404,6 +404,7 @@ public class EmailDetailDAO implements EmailDetailDAO_interface {
 			pstmt.setString(4, emailDetailVO.getEmail_title());
 			pstmt.setString(5, emailDetailVO.getEmail_content());
 			pstmt.setString(6, emailDetailVO.getSender());
+			pstmt.setString(7, emailDetailVO.getAdm_account());
 			pstmt.executeUpdate();
 
 		} catch (SQLException se) {
