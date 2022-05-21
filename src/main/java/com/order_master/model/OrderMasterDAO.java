@@ -36,7 +36,7 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 	
 	private static final String GET_ONE_STMT = "SELECT ORDER_NUM, PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_DATE, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR FROM ORDER_MASTER where ORDER_NUM = ?";
 	private static final String DELETE = "DELETE FROM ORDER_MASTER where ORDER_NUM = ?";
-	private static final String UPDATE = "UPDATE ORDER_MASTER set ORDER_STATUS=?, COM_RATE=?, KOL_RATE=?, COM_STAR=?, KOL_STAR=? where ORDER_NUM = ?";
+	private static final String UPDATE = "UPDATE ORDER_MASTER set ORDER_STATUS=?, COM_RATE=?, KOL_RATE=?, COM_STAR=?, KOL_STAR=?, ORDER_LINK=?, ORDER_CONTENT=?, ORDER_PIC=? where ORDER_NUM = ?";
 
 	@Override
 	public void insert(OrderMasterVO orderMasterVO) {
@@ -100,7 +100,12 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 			pstmt.setString(3, orderMasterVO.getKol_rate());
 			pstmt.setInt(4, orderMasterVO.getCom_star());
 			pstmt.setInt(5, orderMasterVO.getKol_star());
-			pstmt.setInt(6, orderMasterVO.getOrder_num());
+			pstmt.setString(6, orderMasterVO.getOrder_link());
+			System.out.println("link="+orderMasterVO.getOrder_link());
+			pstmt.setString(7, orderMasterVO.getOrder_content());
+			System.out.println("content="+orderMasterVO.getOrder_content());
+			pstmt.setBytes(8, orderMasterVO.getOrder_pic());
+			pstmt.setInt(9, orderMasterVO.getOrder_num());
 
 			pstmt.executeUpdate();
 

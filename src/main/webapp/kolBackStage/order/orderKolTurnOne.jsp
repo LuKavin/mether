@@ -5,6 +5,7 @@
 
 <%@ include file="header.jsp"%>
 <%
+
 %>
 
 <!-- Content Wrapper. Contains page content -->
@@ -17,7 +18,9 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0 aaa"><a href="/mether/kolBackStage/order/orderList.jsp">訂單列表</a>>交易流程>網紅編輯</h1>
+						<h1 class="m-0 aaa">
+							<a href="/mether/kolBackStage/order/orderList.jsp">訂單列表</a>>交易流程>網紅編輯
+						</h1>
 					</div>
 					<!-- /.col -->
 					<div class="col-sm-3">
@@ -79,8 +82,8 @@
 
 					<!-- 主內容標頭 -->
 					<div class="container">
-					
-                    <!-- 標頭 -->
+
+						<!-- 標頭 -->
 						<div class="row trade-head m-3">
 							<p>交易對象：</p>
 							<a href="#">
@@ -126,33 +129,43 @@
 												<div class="card-header">
 													<div class="container h4"
 														style="text-align: center; background-color: rgb(222, 239, 222);">
-														待網紅編輯</div>
+														編輯內容</div>
 												</div>
 												<div class="card-body">
-
-
-
-
-
-
-
-
-
-													<div class="row trade-step1 ">
-														<div class="container wtforkol-box">
-															<h1 class="wtforkol" style="margin: 120px 0">待網紅編輯</h1>
+													<FORM method="POST" enctype="multipart/form-data" ACTION="<%=request.getContextPath()%>/order/orderKol.do">
+													<div class="form-group">
+														<label>連結:</label>
+														<div class="input-group">
+															<div class="input-group-prepend">
+																<span class="input-group-text"> <i
+																	class="fa fa-file-powerpoint-o" aria-hidden="true"></i></span>
+															</div>
+															<input type="text" class="form-control" name="orderLink"
+																inputmode="numeric">
 														</div>
 													</div>
-
-
-
-
-
-
-
-
-
-
+													<div class="form-group">
+														<label>留言:</label>
+														<div class="input-group">
+															<div class="input-group-prepend">
+																<span class="input-group-text"> <i
+																	class="fa fa-pencil-square-o" aria-hidden="true"></i>
+																</span>
+															</div>
+															<input type="text" class="form-control" name="orderContent"
+																inputmode="numeric">
+														</div>
+													</div>
+													<input type="file" name="orderFile" class="orderFile">
+													<img src="" alt="" class="orderImg" style="max-width: 200px;">
+													<div class="row trade-head m-3">
+														<button type="submit"
+															class="btn  btn-outline-success ml-auto">
+															完成送出</button>
+													</div>
+													<input type="hidden" name="action" value="orderContentOK">
+													<input type="hidden" name="order_num" value="${order_num}">
+													</FORM>
 												</div>
 											</div>
 										</div>
@@ -178,27 +191,6 @@
 												</div>
 												<div class="card-body">！！！動態抓出→內容←區塊！！！</div>
 											</div>
-
-
-											<!--                         <div class="card card-danger card-outline"> -->
-											<!--                           <div class="card-header"> -->
-											<!--                             <div class="row"> -->
-											<!--                               <div class="container h4" -->
-											<!--                                 style="text-align: center;background-color: rgb(250, 235, 234);"> -->
-											<!--                                 網紅 -->
-											<!--                               </div> -->
-											<!--                             </div> -->
-											<!--                             <div class="row"> -->
-											<!--                               <div class="col-sm-2 p-1"> -->
-											<!--                                 <h5>標題：</h5> -->
-											<!--                               </div> -->
-											<!--                               <p>沒問題!</p> -->
-											<!--                             </div> -->
-											<!--                           </div> -->
-											<!--                           <div class="card-body"> -->
-											<!--                             OK -->
-											<!--                           </div> -->
-											<!--                         </div> -->
 
 											<div class="card card-warning card-outline msg-input">
 												<div class="card-header">
@@ -234,15 +226,14 @@
 
 
 									</div>
-								</div>
 
+								</div>
 							</div>
 						</div>
+						</di>
 					</div>
-				</di>
-			</div>
-			<!-- 無意義的切版區塊 -->
-			<div class="col-sm-2"></div>
+					<!-- 無意義的切版區塊 -->
+					<div class="col-sm-2"></div>
 		</section>
 	</section>
 </div>

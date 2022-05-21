@@ -14,13 +14,34 @@ public class OrderMasterVO implements java.io.Serializable {
 	private String kol_rate;
 	private Integer com_star;
 	private Integer kol_star;
+	private byte[] order_pic;
+	private String order_content;
+	private String order_link;
+	
+	
 
-	@Override
-	public String toString() {
-		return "OrderMasterVO [order_num=" + order_num + ", product_num=" + product_num + ", kol_idnum=" + kol_idnum
-				+ ", com_idnum=" + com_idnum + ", order_status=" + order_status + ", order_date=" + order_date
-				+ ", order_amount=" + order_amount + ", com_rate=" + com_rate + ", kol_rate=" + kol_rate + ", com_star="
-				+ com_star + ", kol_star=" + kol_star + "]";
+	public byte[] getOrder_pic() {
+		return order_pic;
+	}
+
+	public void setOrder_pic(byte[] order_pic) {
+		this.order_pic = order_pic;
+	}
+
+	public String getOrder_content() {
+		return order_content;
+	}
+
+	public void setOrder_content(String order_content) {
+		this.order_content = order_content;
+	}
+
+	public String getOrder_link() {
+		return order_link;
+	}
+
+	public void setOrder_link(String order_link) {
+		this.order_link = order_link;
 	}
 
 	public Integer getOrder_num() {
