@@ -1,3 +1,4 @@
+<%@page import="com.order_master.model.OrderMasterVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.product.model.*"%>
@@ -6,7 +7,8 @@
 <%@ include file="header.jsp"%>
 <%
 ProductService productService = new ProductService(); // CompanyMebVO companyMebVO=(CompanyMebVO)
-session.getAttribute("companyMebVO");//讀取登入者的資料 List<ProductVO> list =
+session.getAttribute("companyMebVO");//讀取登入者的資料
+OrderMasterVO orderMasterVO = (OrderMasterVO)request.getAttribute("orderMasterVO");
 %>
 
 <!-- Content Wrapper. Contains page content -->
@@ -134,35 +136,39 @@ session.getAttribute("companyMebVO");//讀取登入者的資料 List<ProductVO> 
 
 													<div class="card-body">
 														<div class="form-group">
-															<label>細項:</label>
+															<label>連結:</label>
 															<div class="input-group">
 																<div class="input-group-prepend">
-																	<span class="input-group-text"> <i
-																		class="fa fa-file-powerpoint-o" aria-hidden="true"></i></span>
+																<a href="${orderMasterVO.order_link}">${orderMasterVO.order_link}</a>
 																</div>
-																<input type="text" class="form-control"
-																	inputmode="numeric">
+																
 															</div>
 
 														</div>
 														<div class="form-group">
+															<label>內容：</label>
 															<div class="input-group">
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i
 																		class="far fa-calendar-alt"></i></span>
 																</div>
-																<input type="text" class="form-control"
-																	inputmode="numeric">
+																<input type="text" class="form-control" readonly="readonly"
+																	inputmode="numeric" value="${orderMasterVO.order_content}">
 															</div>
 														</div>
-														<form action="<%=request.getContextPath()%>/order/orderCom.do" class="checkOKForm">
+														<img src="<%=request.getContextPath()%>/orderViewpic?order_num=${orderMasterVO.order_num}" alt="" style=" max-width: 200px;
+														">
+														<form
+															action="<%=request.getContextPath()%>/order/orderCom.do"
+															class="checkOKForm">
 															<div class="row trade-head m-3">
-																<button type="button" class="btn  btn-outline-success ml-auto checkOK">
-																		審核完成
-																</button>
+																<button type="button"
+																	class="btn  btn-outline-success ml-auto checkOK">
+																	審核完成</button>
 															</div>
 															<input type="hidden" name="action" value="checkOK">
-															<input type="hidden" name="order_num" value="${order_num}">
+															<input type="hidden" name="order_num"
+																value="${order_num}">
 														</form>
 													</div>
 												</div>
