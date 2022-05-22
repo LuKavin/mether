@@ -10,25 +10,19 @@ public class MessageDetailService {
 		dao = new MessageDetailDAO();
 	}
 
-	public MessageDetailVO addMessageDetail(Integer order_num, String com_message, String kol_message, String mes_topic) {
-
-		MessageDetailVO messageDetailVO = new MessageDetailVO();
-
-		messageDetailVO.setOrder_num(order_num);
-		messageDetailVO.setCom_message(com_message);
-		messageDetailVO.setKol_message(kol_message);
-		messageDetailVO.setMes_topic(mes_topic);
-		dao.insert(messageDetailVO);
-
-		return messageDetailVO;
+	public void comAddMessage(MessageDetailVO messageDetailVO) {
+		dao.comInsert(messageDetailVO);
+	}
+	public void kolAddMessage(MessageDetailVO messageDetailVO) {
+		dao.kolInsert(messageDetailVO);
 	}
 
 	public void deleteMessageDetail(Integer mes_num) {
 		dao.delete(mes_num);
 	}
 
-	public MessageDetailVO getOneMessageDetail(Integer mes_num) {
-		return dao.findByPrimaryKey(mes_num);
+	public List<MessageDetailVO> getMessageDetailList(Integer mes_num) {
+		return dao.findByOrderPK(mes_num);
 	}
 
 	public List<MessageDetailVO> getAll() {

@@ -34,7 +34,9 @@ public class OrderServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
+		System.out.println("123");
 		if("checkOK".equals(action)) {
+		System.out.println("123");
 			
 //			List<String> errorMsgs = new LinkedList<String>();
 //			req.setAttribute("errorMsgs", errorMsgs);
