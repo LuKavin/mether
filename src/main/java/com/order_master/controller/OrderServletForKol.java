@@ -82,7 +82,6 @@ public class OrderServletForKol extends HttpServlet {
 					errorMsgs.add("網址格式錯誤");
 	            }
 				String orderContent =  req.getParameter("orderContent");
-				
 				Part orderFile =  req.getPart("orderFile");
 				InputStream is = orderFile.getInputStream();
 				byte[] fileByte = new byte[is.available()];
@@ -101,6 +100,7 @@ public class OrderServletForKol extends HttpServlet {
 				orderMasterService.updateOrderMaster(orderMasterVO);
 				/*************************** 3.新增完成,準備轉交***********/
 				req.setAttribute("order_num", order_num);
+				req.setAttribute("orderMasterVO", orderMasterVO);
 				req.getRequestDispatcher("/kolBackStage/order/orderKolTurnTwo.jsp").forward(req, res);
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {

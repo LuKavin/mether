@@ -8,7 +8,15 @@ public class MessageDetailVO implements java.io.Serializable {
 	private String com_message;
 	private String kol_message;
 	private String mes_topic;
+	private byte[] mes_pic;
 	private Timestamp mes_date_time;
+	
+	public byte[] getMes_pic() {
+		return mes_pic;
+	}
+	public void setMes_pic(byte[] mes_pic) {
+		this.mes_pic = mes_pic;
+	}
 	public Integer getMes_num() {
 		return mes_num;
 	}

@@ -1,12 +1,21 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@page import="com.message_detail.model.MessageDetailVO"%>
+<%@page import="com.message_detail.model.MessageDetailService"%>
+<%@page import="com.order_master.model.OrderMasterVO"%>
 <%@ page import="com.product.model.*"%>
 <%@ page import="java.util.*"%>
 
 <%@ include file="header.jsp"%>
 <%
-ProductService productService = new ProductService(); // CompanyMebVO companyMebVO=(CompanyMebVO)
-session.getAttribute("companyMebVO");//讀取登入者的資料 List<ProductVO> list =
+session.getAttribute("kolMebVO");//讀取登入者的資料
+%>
+<%
+OrderMasterVO orderMasterVO = (OrderMasterVO) request.getAttribute("orderMasterVO");
+MessageDetailService messageDetailService = new MessageDetailService();
+List<MessageDetailVO> list = messageDetailService.getMessageDetailList(orderMasterVO.getOrder_num());
+pageContext.setAttribute("list", list);
 %>
 
 <!-- Content Wrapper. Contains page content -->
@@ -167,53 +176,86 @@ session.getAttribute("companyMebVO");//讀取登入者的資料 List<ProductVO> 
 											</div>
 										</div>
 										<!-- 留言板頁籤 -->
-										<div class="tab-pane fade" id="custom-tabs-one-profile"
+							<div class="tab-pane fade" id="custom-tabs-one-profile"
 											role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-											<div class="card card-warning card-outline">
-												<div class="card-header">
-													<div class="row">
-														<div class="container h4"
-															style="text-align: center; background-color: rgb(234, 240, 250);">
-															留言者對象：顯示廠商/網紅</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-2 p-1">
-															<h5>標題：</h5>
+											
+											<c:forEach var="messageDetailVO" items="${list}">
+
+												<div
+													class="card ${(messageDetailVO.com_message)!=null?'card-primary':'card-danger'} card-outline">
+													<div class="card-header">
+														<div class="row">
+															<div class="container h4"
+																style="text-align: center; background-color: ${(messageDetailVO.com_message)!=null?'rgb(234, 240, 250)':'rgb(250, 235, 234)'}">
+																${(messageDetailVO.com_message)!=null?'廠商':'網紅'}</div>
 														</div>
-														<p>！！！動態抓出→標題←區塊！！！</p>
+														<div class="row">
+															<div class="col-sm-2 p-1">
+																<h5>標題：</h5>
+															</div>
+															<div class="col-sm-2 p-1 h5">
+																<p>${messageDetailVO.mes_topic}</p>
+															</div>
+															<div class="col-sm-8 p-1">
+																<p class=" float-right">
+																	<fmt:formatDate
+																		value="${messageDetailVO.mes_date_time}"
+																		pattern="yyyy-MM-dd HH:mm" />
+																</p>
+															</div>
+														</div>
+													</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-sm-6 h5">
+				${(messageDetailVO.com_message)!=null?messageDetailVO.com_message:messageDetailVO.kol_message}
+			</div>
+			<div class="col-sm-6">
+			<a href="<%=request.getContextPath()%>/messageViewpic?mes_num=${messageDetailVO.mes_num}"><img src="<%=request.getContextPath()%>/messageViewpic?mes_num=${messageDetailVO.mes_num}"
+				alt="" style="max-width: 50px;"></a>
+			</div>
+		</div>
+	</div>
+												</div>
+											</c:forEach>
+											<FORM method="POST" enctype="multipart/form-data"
+												ACTION="<%=request.getContextPath()%>/message/kolMessage.do">
+												<div class="card card-warning card-outline msg-input">
+													<div class="card-header">
+														<div class="row ">
+															<div class="col-sm-6"></div>
+															<div class="col-sm-6">
+																<div class="btn btn-outline-warning pull-right cln-send">
+																	清空重寫</div>
+															</div>
+														</div>
+													</div>
+													<div class="card-body">
+														<div class="row m-2">
+															<label class="col-sm-2 col-form-label text-center">標題：</label>
+															<div class="col-sm-10">
+																<input type="text" name="mes_topic"
+																	class="form-control send-subject mes_topic"
+																	placeholder="Subject:">
+															</div>
+														</div>
+														<textarea class="form-control" inputmode="numeric"
+															placeholder="請填入文字..." name="message"
+															style="height: 80px"></textarea>
+														<div class="card-footer">
+															<div class="float-left">
+																上傳圖片：<input type="file" class="mes_pic" name="mes_pic">
+															</div>
+															<div class="float-right">
+																<input type="hidden" name="order_num"
+																	value="${orderMasterVO.order_num}"> <input
+																	type="hidden" name="order_status" value="製作中">
+																<button class="btn btn-warning msgOKbtn" type="submit">留言</button>
+															</div>
+														</div>
 													</div>
 												</div>
-												<div class="card-body">！！！動態抓出→內容←區塊！！！</div>
-											</div>
-											<div class="card card-warning card-outline msg-input">
-												<div class="card-header">
-													<div class="row ">
-														<div class="col-sm-6"></div>
-														<div class="col-sm-6">
-															<div class="btn btn-outline-warning pull-right cln-send">
-																清空重寫</div>
-														</div>
-													</div>
-												</div>
-												<div class="card-body">
-													<div class="row m-2">
-														<label class="col-sm-2 col-form-label text-center">標題：</label>
-														<div class="col-sm-10">
-															<input type="email"
-																class="form-control send-subject msg_title"
-																placeholder="Subject:">
-														</div>
-													</div>
-													<div class="form-group">
-														<div id="summernote"></div>
-													</div>
-													<div class="card-footer">
-														<div class="float-right">
-															<button class="btn btn-warning msg-ok" type="submit">留言</button>
-														</div>
-													</div>
-												</div>
-											</div>
+											</FORM>
 										</div>
 
 

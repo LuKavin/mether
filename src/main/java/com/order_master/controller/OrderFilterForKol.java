@@ -45,9 +45,10 @@ public class OrderFilterForKol implements Filter {
 		OrderMasterVO orderMasterVO = orderMasterService.getOneOrderMaster(order_num);//取得該訂單資訊
 		String com_account = orderMasterService.getComAccount(order_num);//取得該訂單廠商帳號
 		String kol_account = orderMasterService.getKolAccount(order_num);//取得該訂單網紅帳號
-		req.setAttribute("order_num", order_num);
 		req.setAttribute("com_account", com_account);
 		req.setAttribute("kol_account", kol_account);
+		req.setAttribute("order_num", order_num);
+		req.setAttribute("orderMasterVO", orderMasterVO);
 		
 		
 		List<String> filterErrorMsgs = new LinkedList<String>();
