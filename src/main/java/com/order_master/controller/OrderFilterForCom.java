@@ -48,6 +48,7 @@ public class OrderFilterForCom implements Filter {
 		req.setAttribute("order_num", order_num);
 		req.setAttribute("com_account", com_account);
 		req.setAttribute("kol_account", kol_account);
+		req.setAttribute("orderMasterVO", orderMasterVO);
 		
 		
 		List<String> filterErrorMsgs = new LinkedList<String>();

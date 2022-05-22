@@ -34,7 +34,6 @@ public class OrderServletForKol extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		System.out.println("action="+action);
 		
 		if("rateOK".equals(action)) {
 			
@@ -70,7 +69,6 @@ public class OrderServletForKol extends HttpServlet {
 		}
 		
 		if("orderContentOK".equals(action)) {
-			System.out.println("到");
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
@@ -89,7 +87,6 @@ public class OrderServletForKol extends HttpServlet {
 				InputStream is = orderFile.getInputStream();
 				byte[] fileByte = new byte[is.available()];
 				is.read(fileByte);
-				System.out.println("89");
 				
 				/*************************** 2.開始新增資料 ***************************************/
 				OrderMasterService orderMasterService =new OrderMasterService();
@@ -102,7 +99,6 @@ public class OrderServletForKol extends HttpServlet {
 				orderMasterVO.setOrder_pic(fileByte);
 				//更新
 				orderMasterService.updateOrderMaster(orderMasterVO);
-				System.out.println("102");
 				/*************************** 3.新增完成,準備轉交***********/
 				req.setAttribute("order_num", order_num);
 				req.getRequestDispatcher("/kolBackStage/order/orderKolTurnTwo.jsp").forward(req, res);

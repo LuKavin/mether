@@ -34,7 +34,7 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 	private static final String GET_KOL_ACCOUNT = "SELECT k.KOL_ACCOUNT FROM KOL_MEB k join ORDER_MASTER o on (k.KOL_IDNUM = o.KOL_IDNUM) and o.ORDER_NUM = ?";
 	private static final String GET_COM_ACCOUNT = "SELECT c.COM_ACCOUNT FROM COMPANY_MEB c join ORDER_MASTER o on (c.COM_IDNUM = o.COM_IDNUM) and o.ORDER_NUM = ?";
 	
-	private static final String GET_ONE_STMT = "SELECT ORDER_NUM, PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_DATE, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR FROM ORDER_MASTER where ORDER_NUM = ?";
+	private static final String GET_ONE_STMT = "SELECT ORDER_NUM, PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_DATE, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR, ORDER_LINK, ORDER_CONTENT, ORDER_PIC FROM ORDER_MASTER where ORDER_NUM = ?";
 	private static final String DELETE = "DELETE FROM ORDER_MASTER where ORDER_NUM = ?";
 	private static final String UPDATE = "UPDATE ORDER_MASTER set ORDER_STATUS=?, COM_RATE=?, KOL_RATE=?, COM_STAR=?, KOL_STAR=?, ORDER_LINK=?, ORDER_CONTENT=?, ORDER_PIC=? where ORDER_NUM = ?";
 
@@ -101,9 +101,7 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 			pstmt.setInt(4, orderMasterVO.getCom_star());
 			pstmt.setInt(5, orderMasterVO.getKol_star());
 			pstmt.setString(6, orderMasterVO.getOrder_link());
-			System.out.println("link="+orderMasterVO.getOrder_link());
 			pstmt.setString(7, orderMasterVO.getOrder_content());
-			System.out.println("content="+orderMasterVO.getOrder_content());
 			pstmt.setBytes(8, orderMasterVO.getOrder_pic());
 			pstmt.setInt(9, orderMasterVO.getOrder_num());
 
@@ -202,6 +200,9 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 				orderMasterVO.setKol_rate(rs.getString("kol_rate"));
 				orderMasterVO.setCom_star(rs.getInt("com_star"));
 				orderMasterVO.setKol_star(rs.getInt("kol_star"));
+				orderMasterVO.setOrder_link(rs.getString("order_link"));
+				orderMasterVO.setOrder_content(rs.getString("order_content"));
+				orderMasterVO.setOrder_pic(rs.getBytes("order_pic"));
 
 			}
 
