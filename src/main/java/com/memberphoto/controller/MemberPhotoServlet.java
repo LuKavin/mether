@@ -57,7 +57,7 @@ public class MemberPhotoServlet extends HttpServlet{
 							 		
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memberPhotoVO", memberPhotoVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyPhotoAddJsp2.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyPhotoIndexJspTwo.jsp");
 					failureView.forward(req, res);
 					return;
 				}				
@@ -69,15 +69,15 @@ public class MemberPhotoServlet extends HttpServlet{
 				req.setAttribute("memberPhotoVO", memberPhotoVO);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/comBackStage/companymeb/companyPhotoIndexJsp2.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交companyPhotoIndexJsp2.jsp
+				String url = "/comBackStage/companymeb/companyPhotoIndexJspTwo.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交companyPhotoIndexJspTwo.jsp
 				successView.forward(req, res);				
 				
 				/***************************其他可能的錯誤處理**********************************/
 	            } catch (Exception e) {
 	            req.setAttribute("memberPhotoVO", memberPhotoVO);
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyPhotoAddJsp2.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyPhotoIndexJspTwo.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -97,14 +97,14 @@ public class MemberPhotoServlet extends HttpServlet{
 					memberPhotoService.deleteMemberPhoto(meb_photonum);
 	
 					/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-					String url = "/comBackStage/companymeb/companyPhotoIndexJsp2.jsp";
+					String url = "/comBackStage/companymeb/companyPhotoIndexJspTwo.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 					successView.forward(req, res);
 	
 					/*************************** 其他可能的錯誤處理 **********************************/
 				} catch (Exception e) {
 					errorMsgs.add("刪除資料失敗:" + e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyPhotoIndexJsp2.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyPhotoIndexJspTwo.jsp");
 					failureView.forward(req, res);
 			}
 		}
@@ -149,7 +149,7 @@ public class MemberPhotoServlet extends HttpServlet{
 	
 					/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 					req.setAttribute("memberPhotoVO", memberPhotoVO); // 資料庫update成功後,正確的的empVO物件,存入req
-					String url = "/comBackStage/companymeb/companyPhotoIndexJsp2.jsp";
+					String url = "/comBackStage/companymeb/companyPhotoIndexJspTwo.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 					successView.forward(req, res);
 	
@@ -157,7 +157,7 @@ public class MemberPhotoServlet extends HttpServlet{
 				 } 	catch (Exception e) {
 					 e.printStackTrace();
 					errorMsgs.add("修改資料失敗:" + e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyPhotoIndexJsp2.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyPhotoIndexJspTwo.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -174,14 +174,14 @@ public class MemberPhotoServlet extends HttpServlet{
 				Integer meb_photonum = new Integer(req.getParameter("meb_photonum"));
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("meb_photonum", meb_photonum); // 資料庫update成功後,正確的的empVO物件,存入req
-				String url = "/comBackStage/companymeb/companyPhotoUpdateJsp2.jsp";
+				String url = "/comBackStage/companymeb/companyPhotoUpdateJspTwo.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			 } 	catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyPhotoIndexJsp2.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/companymeb/companyPhotoIndexJspTwo.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -210,7 +210,7 @@ public class MemberPhotoServlet extends HttpServlet{
 							 		
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memberPhotoVO", memberPhotoVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoAddJsp2.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoAddJspTwo.jsp");
 					failureView.forward(req, res);
 					return;
 				}				
@@ -222,7 +222,7 @@ public class MemberPhotoServlet extends HttpServlet{
 				req.setAttribute("memberPhotoVO", memberPhotoVO);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/kolBackStage/kolmeb/kolPhotoIndexJsp2.jsp";
+				String url = "/kolBackStage/kolmeb/kolPhotoIndexJspTwo.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交kolPhotoIndexJsp2.jsp
 				successView.forward(req, res);				
 				
@@ -230,7 +230,7 @@ public class MemberPhotoServlet extends HttpServlet{
 	            } catch (Exception e) {
 	            req.setAttribute("memberPhotoVO", memberPhotoVO);
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoAddJsp2.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoAddJspTwo.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -250,14 +250,14 @@ public class MemberPhotoServlet extends HttpServlet{
 					memberPhotoService.deleteMemberPhoto(meb_photonum);
 	
 					/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-					String url = "/kolBackStage/kolmeb/kolPhotoIndexJsp2.jsp";
+					String url = "/kolBackStage/kolmeb/kolPhotoIndexJspTwo.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 					successView.forward(req, res);
 	
 					/*************************** 其他可能的錯誤處理 **********************************/
 				} catch (Exception e) {
 					errorMsgs.add("刪除資料失敗:" + e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoIndexJsp2.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoIndexJspTwo.jsp");
 					failureView.forward(req, res);
 			}
 		}
@@ -291,7 +291,7 @@ public class MemberPhotoServlet extends HttpServlet{
 	
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("memberPhotoVO", memberPhotoVO); // 含有輸入格式錯誤的empVO物件,也存入req
-						RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoUpdateJsp2.jsp");
+						RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoUpdateJspTwo.jsp");
 						failureView.forward(req, res);
 						return; // 程式中斷
 					}
@@ -302,14 +302,14 @@ public class MemberPhotoServlet extends HttpServlet{
 	
 					/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 					req.setAttribute("memberPhotoVO", memberPhotoVO); // 資料庫update成功後,正確的的empVO物件,存入req
-					String url = "/kolBackStage/kolmeb/kolPhotoIndexJsp2.jsp";
+					String url = "/kolBackStage/kolmeb/kolPhotoIndexJspTwo.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 					successView.forward(req, res);
 	
 					/*************************** 其他可能的錯誤處理 *************************************/
 				 } 	catch (Exception e) {
 					errorMsgs.add("修改資料失敗:" + e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoIndexJsp2.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoIndexJspTwo.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -326,14 +326,14 @@ public class MemberPhotoServlet extends HttpServlet{
 				Integer meb_photonum = new Integer(req.getParameter("meb_photonum"));
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("meb_photonum", meb_photonum); // 資料庫update成功後,正確的的empVO物件,存入req
-				String url = "/kolBackStage/kolmeb/kolPhotoUpdateJsp2.jsp";
+				String url = "/kolBackStage/kolmeb/kolPhotoUpdateJspTwo.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 	
 				/*************************** 其他可能的錯誤處理 *************************************/
 			 } 	catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoIndexJsp2.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolPhotoIndexJspTwo.jsp");
 				failureView.forward(req, res);
 			}
 		}

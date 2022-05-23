@@ -195,6 +195,7 @@ public class KolMebServlet extends HttpServlet{
 					kolMebSvc.updateKolMeb(kolMebVO);
 				
 					/***************************3.修改完成,準備轉交(Send the Success view)*************/
+					req.getSession().setAttribute("kolMebVO", kolMebVO);
 					String url = "/metherIndex.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交首頁
 					successView.forward(req, res);	
@@ -358,7 +359,8 @@ public class KolMebServlet extends HttpServlet{
 					req.setAttribute("kolMebVO", kolMebVO);
 					
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
-					String url = "/kolBackStage/kolmeb/kolMebJsp3.jsp";
+					req.getSession().setAttribute("kolMebVO", kolMebVO);
+					String url = "/kolBackStage/kolmeb/kolMebJspThree.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(req, res);				
 					
