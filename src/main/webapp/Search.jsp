@@ -5,9 +5,12 @@
 <%@ page import="com.backStage.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
-BackStageService backStageSvc = new BackStageService();
-List list = backStageSvc.getKolPhoto();
+List list = (List) request.getAttribute("list");
 pageContext.setAttribute("list", list);
+List list1 = (List) request.getAttribute("list1");
+pageContext.setAttribute("list1", list1);
+List list2 = (List) request.getAttribute("list2");
+pageContext.setAttribute("list2", list2);
 %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -109,14 +112,13 @@ pageContext.setAttribute("list", list);
 								<FORM METHOD="post"
 									ACTION="<%=request.getContextPath()%>/serch.do">
 									<input type="text" name="search"> <input type="hidden"
-										name="action" value="getSearch"> <input
-										type="submit" value="送出">
+										name="action" value="getSearch"> <input type="submit"
+										value="送出">
 								</FORM>
 							</li>
 
 						</ul>
 					</div>
-
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
 							<li class="active"><a
@@ -160,104 +162,7 @@ pageContext.setAttribute("list", list);
 			</div>
 		</header>
 
-		<div id="fh5co-couple">
-			<div class="container">
-				<div class="row">
-					<div
-						class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-						<h2>Hello!</h2>
-						<h3>歡迎使用MetHer</h3>
-					</div>
-				</div>
-				<div class="couple-wrap animate-box">
-					<div class="couple-half">
-						<div class="groom">
-							<img
-								src="<%=request.getContextPath()%>/resources/images/Test_COM_Pic_2.png"
-								alt="groom" class="img-responsive">
-						</div>
-						<div class="desc-groom">
-							<h3>網站緣起</h3>
-							<p>隨著網路的普及化，越來越多年輕人在網路上經營個人的事業或副業，許多初來乍到的網紅才剛踏入這個產業，需要更多的工作機會和曝光率，我們提供一個平台，讓不知道如何尋找代言人的廠商，和需要工作的網紅，有一個互相選擇合作的機會。
-							</p>
-						</div>
-					</div>
-					<p class="heart text-center">
-						<i class="icon-heart2"></i>
-					</p>
-					<div class="couple-half">
-						<div class="bride">
-							<img
-								src="<%=request.getContextPath()%>/resources/images/Test_KOL_Pic_1.png"
-								alt="groom" class="img-responsive">
-						</div>
-						<div class="desc-bride">
-							<h3>平台簡介</h3>
-							<p>這是一個廠商網紅互相媒合的平台，我們提供完整的廠商資訊，讓網紅在尋找工作時，能看到廠商透明化的資訊背景，透過本平台放心交易，同時廠商也能根據網紅提供的資訊，選擇適合自己產品的代言人，讓雙方使用者各取所需。
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<div id="fh5co-couple-story">
-			<div class="container">
-				<div class="row">
-					<div
-						class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-						<h2>網站特色</h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 col-md-offset-0">
-						<ul class="timeline animate-box">
-							<li class="animate-box">
-								<div class="timeline-badge"
-									style="background-image: url(<%=request.getContextPath()%>/resources/images/hb1.png);"></div>
-								<div class="timeline-panel">
-									<div class="timeline-heading">
-										<h3 class="timeline-title">精準配對工作</h3>
-										<span class="date">搜尋及推薦專屬工作與網美</span>
-									</div>
-
-								</div>
-							</li>
-							<li class="timeline-inverted animate-box">
-								<div class="timeline-badge"
-									style="background-image: url(<%=request.getContextPath()%>/resources/images/hb2.png);"></div>
-								<div class="timeline-panel">
-									<div class="timeline-heading">
-										<h3 class="timeline-title">秒速邀約聯絡</h3>
-										<span class="date">內建溝通系統掌握合作進度</span>
-									</div>
-								</div>
-							</li>
-							<li class="animate-box">
-								<div class="timeline-badge"
-									style="background-image: url(<%=request.getContextPath()%>/resources/images/hb3.png);"></div>
-								<div class="timeline-panel">
-									<div class="timeline-heading">
-										<h3 class="timeline-title">詳盡商家網美資訊</h3>
-										<span class="date">不同專長網美及多元品牌商家</span>
-									</div>
-								</div>
-							</li>
-							<li class="timeline-inverted animate-box">
-								<div class="timeline-badge"
-									style="background-image: url(<%=request.getContextPath()%>/resources/images/hb4.png);"></div>
-								<div class="timeline-panel">
-									<div class="timeline-heading">
-										<h3 class="timeline-title">安全服務</h3>
-										<span class="date">商家及網美皆通過審核官方</span>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
 
 		<div id="fh5co-gallery" class="fh5co-section-gray">
 			<div class="container">
@@ -283,6 +188,32 @@ pageContext.setAttribute("list", list);
 									class="color-2">
 										<div class="case-studies-summary">
 											<h2>${KolPhotoVO.kol_name}</h2>
+										</div>
+								</a></li>
+
+							</c:forEach>
+							<c:forEach var="ComPhotoVO" items="${list1}"
+								begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+
+								<li class="one-third animate-box" data-animate-effect="fadeIn"
+									style="background-image: url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${ComPhotoVO.meb_photonum});"><a
+									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
+									class="color-2">
+										<div class="case-studies-summary">
+											<h2>${ComPhotoVO.com_name}</h2>
+										</div>
+								</a></li>
+
+							</c:forEach>
+							<c:forEach var="ProductPhotoVO" items="${list2}"
+								begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+
+								<li class="one-third animate-box" data-animate-effect="fadeIn"
+									style="background-image: url(<%=request.getContextPath()%>/viewpic?product_num=${ProductPhotoVO.product_num});"><a
+									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
+									class="color-2">
+										<div class="case-studies-summary">
+											<h2>${ProductPhotoVO.com_name}</h2>
 										</div>
 								</a></li>
 
