@@ -249,7 +249,7 @@ pageContext.setAttribute("list", list);
 					<div
 						class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
 
-						<h2>精選網紅</h2>
+						<h2>精選網紅!</h2>
 
 					</div>
 				</div>
