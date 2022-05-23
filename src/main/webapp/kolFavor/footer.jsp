@@ -33,61 +33,7 @@
 	<script src="<%=request.getContextPath()%>/comBackStage/resources/js/awsome.js"></script>
 	<!-- Table sort -->
 	<script src="<%=request.getContextPath()%>/comBackStage/resources/js/sort.js"></script>
-		<script>
-		document
-				.addEventListener(
-						"DOMContentLoaded",
-						function() {
-
-							document
-									.querySelector("#p_file")
-									.addEventListener(
-											"change",
-											function(e) {
-												if (this.files.length > 0) {
-													preview_img(this.files[0]);
-												} else {
-													document
-															.querySelector("#preview .text").innerText = "預覽圖";
-												}
-
-											})
-
-							//函式：接收一個file(圖片)參數，將接收的(圖片)顯示在預覽圖上
-							function preview_img(file) {
-								var reader = new FileReader();
-								reader.readAsDataURL(file)
-								reader
-										.addEventListener(
-												"load",
-												function() {
-													let db64 = 'data:image/jpg;base64';
-													let rr = reader.result;
-													var post = `<img src="\${rr}" alt="載入錯誤" class = "preview_img">`;
-													document
-															.querySelector("#preview .text").innerText = "";//先清空
-													if (document
-															.querySelector("#preview img") != null) {
-														document.querySelector(
-																"#preview>img")
-																.remove();
-													}
-													document
-															.querySelector(
-																	"#preview")
-															.insertAdjacentHTML(
-																	"beforeend",
-																	post);
-													console
-															.log(document
-																	.querySelector("#preview img"));
-												})
-
-							}
-
-						})
-	</script>
-	
+			
 	<script>
 
 	// Favorite Button - Heart
@@ -96,16 +42,44 @@
 	});
 
 	/* when a user clicks, toggle the 'is-animating' class */
-	$(".favme").on('click touchstart', function(){
+	/* $(".favme").on('click touchstart', function(){
 	  $(this).toggleClass('is_animating');
-	});
+	}); */
 
 	/*when the animation is over, remove the class*/
-	$(".favme").on('animationend', function(){
+	/* $(".favme").on('animationend', function(){
 	  $(this).toggleClass('is_animating');
-	});
-	
+	}); */
 	</script>
+	
+	 <!-- <script>
+             //在網頁加載後，對id=doAjaxBtn的Button設定click的function
+            $(document).ready(function(){
+               $(".fav-btn").click(function(){
+            	   console.log('123');
+ 	
+                    $.ajax({
+                        type:"POST",                    //指定http參數傳輸格式為POST
+                        url: "${pageContext.request.contextPath}/getComMebInfo.do",        //請求目標的url，可在url內加上GET參數，如 www.xxxx.com?xx=yy&xxx=yyy
+                        data:{status: "1" },
+                        dataType: "json",               //目標url處理完後回傳的值之type，此列為一個JSON Object
+                        contentType: 'application/json; charset=UTF-8',
+                        // success : function(response){
+                        //     //在id=ajaxResponse的fieldset中顯示Ajax的回傳值
+                        // 	$("#ajaxResponse1").html("廠商名稱:"+response.com_name+"</br>");
+                        //     $("#ajaxResponse2").html("廠商編號:"+response.com_idnum+"</br>");
+                        //     $("#ajaxResponse3").html("廠商信箱:"+response.com_email+"</br>");
+                        //     $("#ajaxResponse4").html("廠商網站:"+response.com_website+"</br>");
+                        //     $("#ajaxResponse5").html("廠商電話:"+response.com_phone+"</br>");
+ 
+                        // },
+                        error:function(xhr, ajaxOptions, thrownError){
+                            alert(xhr.status+"\n"+thrownError);
+                        }
+                    }); 
+               });
+            });  
+        </script> -->
 
 </body>
 </html>

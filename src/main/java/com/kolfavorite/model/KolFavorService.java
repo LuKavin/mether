@@ -20,7 +20,7 @@ public class KolFavorService {
 	
 	public List FindKolFavorite(Integer kol_idnum) {
 		
-		return dao.findByPrimarKey(kol_idnum);
+		return dao.findKolFavorite(kol_idnum);
 	}
 	
 	public void deleteKolFavorite(Integer kol_idnum,Integer com_idnum) {
