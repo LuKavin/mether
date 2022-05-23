@@ -19,13 +19,7 @@ pageContext.setAttribute("list", list);
 				<div class="col-sm-6">
 					<h3 class="m-0" style="font-size: 44px; font-weight: 700;">基本資料</h3>
 				</div>
-				<div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="#"><i
-								class="fa fa-home" aria-hidden="true" style="font-size: large"></i></a></li>
-						<li class="breadcrumb-item active">(顯示管理員帳號)</li>
-					</ol>
-				</div>
+
 			</div>
 		</div>
 		<!-- /.container-fluid -->
