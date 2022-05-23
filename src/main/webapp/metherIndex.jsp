@@ -158,7 +158,7 @@ pageContext.setAttribute("list", list);
 				<div class="couple-wrap animate-box">
 					<div class="couple-half">
 						<div class="groom">
-							<img src="<%=request.getContextPath()%>/resources/images/cy1.jpg"
+							<img src="<%=request.getContextPath()%>/resources/images/Test_COM_Pic_2.png"
 								alt="groom" class="img-responsive">
 						</div>
 						<div class="desc-groom">
@@ -172,7 +172,7 @@ pageContext.setAttribute("list", list);
 					</p>
 					<div class="couple-half">
 						<div class="bride">
-							<img src="<%=request.getContextPath()%>/resources/images/fl1.jpg"
+							<img src="<%=request.getContextPath()%>/resources/images/Test_KOL_Pic_1.png"
 								alt="groom" class="img-responsive">
 						</div>
 						<div class="desc-bride">
