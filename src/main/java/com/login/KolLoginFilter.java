@@ -19,7 +19,9 @@ import javax.servlet.http.HttpSession;
 import com.companymeb.model.CompanyMebVO;
 import com.kolmeb.model.KolMebVO;
 @WebFilter(
-urlPatterns = {"/kolBackStage/email/*"})
+urlPatterns = {"/kolBackStage/email/*",
+               "/kolBackStage/order/*"		
+})
 public class KolLoginFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
