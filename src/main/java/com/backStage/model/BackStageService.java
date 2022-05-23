@@ -57,4 +57,7 @@ public class BackStageService {
 		return dao.getKolAccess2();
 	}
 
+	public List getKolPhoto() {
+		return dao.getKolPhoto();
+	}
 }

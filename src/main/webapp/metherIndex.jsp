@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.backStage.model.*"%>
+<%-- 此頁練習採用 EL 的寫法取值 --%>
+<%
+BackStageService backStageSvc = new BackStageService();
+List list = backStageSvc.getKolPhoto();
+pageContext.setAttribute("list", list);
+%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -248,86 +257,20 @@
 					<div class="col-md-12">
 						<ul id="fh5co-gallery-list">
 
-							<li class="one-third animate-box" data-animate-effect="fadeIn"
-								style="background-image: url(<%=request.getContextPath()%>/resources/images/vk1.jpg);"><a
-								href="<%=request.getContextPath()%>/resources/images/vk1.jpg">
-
-							</a></li>
-							<li class="one-third animate-box" data-animate-effect="fadeIn"
-								style="background-image: url(<%=request.getContextPath()%>/resources/images/et1.jpg);"><a
-								href="<%=request.getContextPath()%>/resources/images/et1.jpg" class="color-2">
-									<div class="case-studies-summary">
-										<span>30 Photos</span>
-										<h2>Timer starts now!</h2>
-									</div>
-							</a></li>
-
-
-							<li class="one-third animate-box" data-animate-effect="fadeIn"
-								style="background-image: url(<%=request.getContextPath()%>/resources/images/vk2.jpg);"><a
-								href="<%=request.getContextPath()%>/resources/images/vk2.jpg" class="color-3">
-									<div class="case-studies-summary">
-										<span>90 Photos</span>
-										<h2>Beautiful sunset</h2>
-									</div>
-							</a></li>
-							<li class="one-third animate-box" data-animate-effect="fadeIn"
-								style="background-image: url(<%=request.getContextPath()%>/resources/images/et2.jpg);"><a
-								href="<%=request.getContextPath()%>/resources/images/et2.jpg" class="color-4">
-									<div class="case-studies-summary">
-										<span>12 Photos</span>
-										<h2>Company's Conference Room</h2>
-									</div>
-							</a></li>
-
-							<li class="one-third animate-box" data-animate-effect="fadeIn"
-								style="background-image: url(<%=request.getContextPath()%>/resources/images/vk3.jpg);">
-								<a href="<%=request.getContextPath()%>/resources/images/vk3.jpg"
-								class="color-3">
-									<div class="case-studies-summary">
-										<span>50 Photos</span>
-										<h2>Useful baskets</h2>
-									</div>
-							</a>
-							</li>
-							<li class="one-third animate-box" data-animate-effect="fadeIn"
-								style="background-image: url(<%=request.getContextPath()%>/resources/images/et3.jpg);">
-								<a href="<%=request.getContextPath()%>/resources/images/et3.jpg"
-								class="color-4">
-									<div class="case-studies-summary">
-										<span>45 Photos</span>
-										<h2>Skater man in the road</h2>
-									</div>
-							</a>
-							</li>
-
-							<li class="one-third animate-box" data-animate-effect="fadeIn"
-								style="background-image: url(<%=request.getContextPath()%>/resources/images/yr1.jpg);">
-								<a href="<%=request.getContextPath()%>/resources/images/yr1.jpg"
-								class="color-4">
-									<div class="case-studies-summary">
-										<span>35 Photos</span>
-										<h2>Two Glas of Juice</h2>
-									</div>
-							</a>
-							</li>
-
-							<li class="one-third animate-box" data-animate-effect="fadeIn"
-								style="background-image: url(<%=request.getContextPath()%>/resources/images/cy1.jpg);"><a
-								href="<%=request.getContextPath()%>/resources/images/cy1.jpg" class="color-5">
-									<div class="case-studies-summary">
-										<span>90 Photos</span>
-										<h2>Timer starts now!</h2>
-									</div>
-							</a></li>
-							<li class="one-third animate-box" data-animate-effect="fadeIn"
-								style="background-image: url(<%=request.getContextPath()%>/resources/images/fl1.jpg);"><a
-								href="<%=request.getContextPath()%>/resources/images/fl1.jpg" class="color-6">
-									<div class="case-studies-summary">
-										<span>56 Photos</span>
-										<h2>Beautiful sunset</h2>
-									</div>
-							</a></li>
+							<%@ include file="page1.file"%>
+							<c:forEach var="KolPhotoVO" items="${list}"
+								begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+								<c:if test="${KolPhotoVO.kol_idnum == KolPhotoVO.kol_idnum}">
+								<li class="one-third animate-box" data-animate-effect="fadeIn"
+									style="background-image: url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${KolPhotoVO.meb_photonum});"><a
+									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
+									class="color-2">
+										<div class="case-studies-summary">
+											<h2>${KolPhotoVO.kol_name}</h2>
+										</div>
+								</a></li>
+								</c:if>
+							</c:forEach>							
 						</ul>
 					</div>
 				</div>

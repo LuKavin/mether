@@ -24,5 +24,7 @@ public interface BackStageDAO_interface {
 	public void updateKolAccess(Integer meb_accessnum, Integer kol_idnum);
 
 	public void updateOrderMasterStatus(String order_status, Integer order_num);
+	
+	public List getKolPhoto();
 
 }
