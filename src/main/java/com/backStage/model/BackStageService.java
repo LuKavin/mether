@@ -61,4 +61,16 @@ public class BackStageService {
 		return dao.getKolPhoto();
 	}
 
+	public List getKolSearch(String search) {
+		return dao.getKolSearch(search);
+	}
+	
+	public List getComSearch(String search) {
+		return dao.getComSearch(search);
+	}
+	
+	public List getProductSearch(String search) {
+		return dao.getProductSearch(search);
+	}
+	
 }

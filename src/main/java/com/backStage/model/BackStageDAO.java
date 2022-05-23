@@ -43,7 +43,10 @@ public class BackStageDAO implements BackStageDAO_interface {
 	private static final String GET_ALLKOL_STMT4 = "SELECT KOL_IDNUM, KOL_ACCOUNT, KOL_PASSWORD, KOL_EMAIL, KOL_PHONE, KOL_CELLPHONE, KOL_ADDRESS, KOL_WEBSITE, KOL_BIRTHDAY, KOL_GENDER, KOL_REGDATE, KOL_ID, KOL_BANKCODE, KOL_BANKACCOUNT, KOL_NAME, KOL_LOCATION, KOL_HEIGHT, KOL_WEIGHT, KOL_STYLE, KOL_EXPERIENCE, MEB_ACCESSNUM, AVG_STAR, TOTAL_RATE, TOTAL_STAR FROM KOL_MEB where MEB_ACCESSNUM = 4";
 	private static final String GET_ALLKOL_STMT2 = "SELECT KOL_IDNUM, KOL_ACCOUNT, KOL_PASSWORD, KOL_EMAIL, KOL_PHONE, KOL_CELLPHONE, KOL_ADDRESS, KOL_WEBSITE, KOL_BIRTHDAY, KOL_GENDER, KOL_REGDATE, KOL_ID, KOL_BANKCODE, KOL_BANKACCOUNT, KOL_NAME, KOL_LOCATION, KOL_HEIGHT, KOL_WEIGHT, KOL_STYLE, KOL_EXPERIENCE, MEB_ACCESSNUM, AVG_STAR, TOTAL_RATE, TOTAL_STAR FROM KOL_MEB where MEB_ACCESSNUM = 2";
 	private static final String GET_KOL_PHOTO = "SELECT k.KOL_IDNUM, k.KOL_ACCOUNT, k.KOL_NAME, k.KOL_REGDATE, min(m.MEB_PHOTONUM) FROM MEMBER_PHOTO m join KOL_MEB k on m.KOL_IDNUM = k.KOL_IDNUM group by k.KOL_IDNUM, m.KOL_IDNUM";
-
+	private static final String GET_KOL_SEARCH = "SELECT k.KOL_IDNUM, k.KOL_NAME, min(m.MEB_PHOTONUM) FROM MEMBER_PHOTO m join KOL_MEB k on m.KOL_IDNUM = k.KOL_IDNUM where KOL_NAME like concat('%',?,'%' ) group by k.KOL_IDNUM, m.KOL_IDNUM";
+	private static final String GET_COM_SEARCH = "SELECT c.COM_IDNUM, c.COM_NAME, min(m.MEB_PHOTONUM) from MEMBER_PHOTO m join COMPANY_MEB c on m.COM_IDNUM = c.COM_IDNUM where COM_NAME like concat('%',?,'%' ) group by c.COM_IDNUM, m.KOL_IDNUM";
+	private static final String GET_PRODUCT_SEARCH = "SELECT p.PRODUCT_NUM, p.PRODUCT_NAME, min(i.PRODUCT_PHOTONUM) from PRODUCT p join PRODUCT_PHOTO i on p.PRODUCT_NUM = i.PRODUCT_NUM where PRODUCT_NAME like concat('%',?,'%' ) group by p.PRODUCT_NUM, i.PRODUCT_NUM";
+	
 	// 廠商數量
 	public Integer companyMebcount() {
 		Integer count = null;
@@ -649,7 +652,7 @@ public class BackStageDAO implements BackStageDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_KOL_PHOTO);
 			rs = pstmt.executeQuery();
-			int i = 0;
+
 			while (rs.next()) {
 				Integer kol_idnum = rs.getInt("kol_idnum");
 				String kol_account = rs.getString("kol_account");
@@ -663,6 +666,182 @@ public class BackStageDAO implements BackStageDAO_interface {
 				map.put("kol_name", kol_name);
 				map.put("kol_regdate", kol_regdate);
 				map.put("meb_photonum", meb_photonum);
+
+				list.add(map);// 在將map集合對象存入list集合
+			}
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	// 網紅搜尋
+	public List getKolSearch(String search) {
+		List list = new ArrayList();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_KOL_SEARCH);
+			
+			pstmt.setString(1, search);
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Integer kol_idnum = rs.getInt("kol_idnum");
+				String kol_name = rs.getString("kol_name");
+				Integer meb_photonum = rs.getInt("min(m.MEB_PHOTONUM)");
+
+				Map map = new HashMap();
+				map.put("kol_idnum", kol_idnum);
+				map.put("kol_name", kol_name);
+				map.put("meb_photonum", meb_photonum);
+
+				list.add(map);// 在將map集合對象存入list集合
+			}
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
+	// 廠商搜尋
+	public List getComSearch(String search) {
+		List list = new ArrayList();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_COM_SEARCH);
+			
+			pstmt.setString(1, search);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Integer com_idnum = rs.getInt("com_idnum");
+				String com_name = rs.getString("com_name");
+				Integer meb_photonum = rs.getInt("min(m.MEB_PHOTONUM)");
+
+				Map map = new HashMap();
+				map.put("com_idnum", com_idnum);
+				map.put("com_name", com_name);
+				map.put("meb_photonum", meb_photonum);
+
+				list.add(map);// 在將map集合對象存入list集合
+			}
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	// 商品搜尋
+	public List getProductSearch(String search) {
+		List list = new ArrayList();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_PRODUCT_SEARCH);
+			
+			pstmt.setString(1, search);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Integer product_num = rs.getInt("product_num");
+				String product_name = rs.getString("product_name");
+				Integer product_photonum = rs.getInt("min(m.MEB_PHOTONUM)");
+
+				Map map = new HashMap();
+				map.put("product_num", product_num);
+				map.put("product_name", product_name);
+				map.put("product_photonum", product_photonum);
 
 				list.add(map);// 在將map集合對象存入list集合
 			}
