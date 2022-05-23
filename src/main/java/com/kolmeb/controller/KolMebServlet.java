@@ -185,7 +185,7 @@ public class KolMebServlet extends HttpServlet{
 					
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("kolMebVO", kolMebVO);
-						RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolMebJsp3.jsp");
+						RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolMebJspTwo.jsp");
 						failureView.forward(req, res);
 						return;
 					}				
@@ -196,14 +196,14 @@ public class KolMebServlet extends HttpServlet{
 				
 					/***************************3.修改完成,準備轉交(Send the Success view)*************/
 					req.getSession().setAttribute("kolMebVO", kolMebVO);
-					String url = "/metherIndex.jsp";
+					String url = "/kolBackStage/kolmeb/kolMebJspThree.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交首頁
 					successView.forward(req, res);	
 
 					/***************************其他可能的錯誤處理*************************************/
 				} catch (Exception e) {
 					errorMsgs.add("修改資料失敗:"+e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolMebJsp3.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/kolmeb/kolMebJspTwo.jsp");
 					failureView.forward(req, res);
 				}
 			}	
