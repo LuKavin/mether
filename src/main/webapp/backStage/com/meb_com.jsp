@@ -33,9 +33,13 @@ pageContext.setAttribute("list", list);
 				</a>
 				<div class="dropdown-menu dropdown-menu">
 					<a href="/mether/backStage/com/meb_com.jsp" class="dropdown-item bg-danger text-white"
-						type="button"> 廠商 </a> <a href="/mether/backStage/kol/meb_kol.jsp" class="dropdown-item"
-						type="button"> 網紅 </a> <a href="/mether/backStage/block/meb_blocklist.jsp"
-						class="dropdown-item" type="button"> 黑名單 </a>
+						type="button"> 廠商 </a> 
+						<a href="/mether/backStage/kol/meb_kol.jsp" class="dropdown-item"
+						type="button"> 網紅 </a> 
+						<a href="/mether/backStage/block/com_blocklist.jsp"
+						class="dropdown-item" type="button"> 廠商黑名單 </a>
+						<a href="/mether/backStage/block/kol_blocklist.jsp"
+						class="dropdown-item" type="button"> 網紅黑名單 </a>
 				</div>
 			</div>
 			<br>
