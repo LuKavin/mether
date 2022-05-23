@@ -42,7 +42,7 @@ public class BackStageDAO implements BackStageDAO_interface {
 	private static final String GET_ALLCOM_STMT1 = "SELECT COM_IDNUM, COM_ACCOUNT, COM_PASSWORD, COM_EMAIL, COM_PHONE, COM_CELLPHONE, COM_ADDRESS, COM_WEBSITE, COM_BIRTHDAY, COM_GENDER, COM_REGDATE, COM_ID, COM_BANKCODE, COM_BANKACCOUNT, COM_NAME, COM_INTRODUCE, COM_FOUNDDATE, COM_TAXIDNUM, MEB_ACCESSNUM, AVG_STAR, TOTAL_RATE, TOTAL_STAR FROM COMPANY_MEB where MEB_ACCESSNUM = 1";
 	private static final String GET_ALLKOL_STMT4 = "SELECT KOL_IDNUM, KOL_ACCOUNT, KOL_PASSWORD, KOL_EMAIL, KOL_PHONE, KOL_CELLPHONE, KOL_ADDRESS, KOL_WEBSITE, KOL_BIRTHDAY, KOL_GENDER, KOL_REGDATE, KOL_ID, KOL_BANKCODE, KOL_BANKACCOUNT, KOL_NAME, KOL_LOCATION, KOL_HEIGHT, KOL_WEIGHT, KOL_STYLE, KOL_EXPERIENCE, MEB_ACCESSNUM, AVG_STAR, TOTAL_RATE, TOTAL_STAR FROM KOL_MEB where MEB_ACCESSNUM = 4";
 	private static final String GET_ALLKOL_STMT2 = "SELECT KOL_IDNUM, KOL_ACCOUNT, KOL_PASSWORD, KOL_EMAIL, KOL_PHONE, KOL_CELLPHONE, KOL_ADDRESS, KOL_WEBSITE, KOL_BIRTHDAY, KOL_GENDER, KOL_REGDATE, KOL_ID, KOL_BANKCODE, KOL_BANKACCOUNT, KOL_NAME, KOL_LOCATION, KOL_HEIGHT, KOL_WEIGHT, KOL_STYLE, KOL_EXPERIENCE, MEB_ACCESSNUM, AVG_STAR, TOTAL_RATE, TOTAL_STAR FROM KOL_MEB where MEB_ACCESSNUM = 2";
-
+	private static final String GET_KOL_PHOTO = "SELECT k.KOL_IDNUM, k.KOL_NAME, min(m.MEB_PHOTONUM) FROM MEMBER_PHOTO m join KOL_MEB k on m.KOL_IDNUM = k.KOL_IDNUM group by k.KOL_IDNUM, m.KOL_IDNUM";
 	// 廠商數量
 	public Integer companyMebcount() {
 		Integer count = null;
@@ -635,4 +635,59 @@ public class BackStageDAO implements BackStageDAO_interface {
 		return list;
 	}
 
+	// 網紅照片
+	public List getKolPhoto() {
+		List list = new ArrayList();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_KOL_PHOTO);
+			rs = pstmt.executeQuery();
+			int i = 0;
+			while (rs.next()) {
+				Integer kol_idnum = rs.getInt("kol_idnum");
+				String kol_name = rs.getString("kol_name");
+				Integer meb_photonum = rs.getInt("min(m.MEB_PHOTONUM)");
+
+				Map map = new HashMap();
+				map.put("kol_idnum", kol_idnum);
+				map.put("kol_name", kol_name);
+				map.put("meb_photonum", meb_photonum);
+				
+				list.add(map);// 在將map集合對象存入list集合
+			}
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 }
