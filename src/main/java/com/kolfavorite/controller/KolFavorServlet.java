@@ -53,6 +53,7 @@ public class KolFavorServlet extends HttpServlet{
 				/*************************** 2.開始新增資料 ***************************************/
 				KolFavorService kolFavorService = new KolFavorService();
 				kolFavorService.addKolFavorite(kolMebVO.getKol_idnum(), com_idnum);
+				System.out.println(kolMebVO.getKol_idnum());
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String url = "/kolFavor/listcom.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp

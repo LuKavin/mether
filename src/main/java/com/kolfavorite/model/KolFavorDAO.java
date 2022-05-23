@@ -31,7 +31,7 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO `KOL_FAVORITE` (`COM_IDNUM`, `KOL_IDNUM`)" + "VALUES (?,?)";
 	private static final String GET_ALL_STMT = "SELECT COM_IDNUM, COM_NAME, COM_EMAIL, COM_PHONE,  COM_WEBSITE "
 			+ "FROM COMPANY_MEB ;";
-	private static final String GET_ONE_STMT = "SELECT k.COM_IDNUM, c.COM_NAME, c.COM_EMAIL, c.COM_PHONE,  c.COM_WEBSITE \n"
+	private static final String GET_ONE_STMT = "SELECT k.KOL_IDNUM, k.COM_IDNUM, c.COM_NAME, c.COM_EMAIL, c.COM_PHONE,  c.COM_WEBSITE \n"
 			+ "FROM COMPANY_MEB c JOIN KOL_FAVORITE k ON c.COM_IDNUM  = k.COM_IDNUM where \n" + "k.KOL_IDNUM = ? ;";
 	private static final String DELETE = "DELETE FROM KOL_FAVORITE where kol_idnum = ? and com_idnum  = ? ";
 
@@ -157,7 +157,7 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 	}
 
 	@Override
-	public List findByPrimarKey(Integer kol_idnum) {
+	public List findKolFavorite(Integer kol_idnum) {
 		// TODO Auto-generated method stub
 		List list = new ArrayList();
 		Connection con = null;
@@ -172,14 +172,17 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 
 			while (rs.next()) {
 //				CompanyMebVO companyMebVO = new CompanyMebVO();
-				Integer com_idnum = rs.getInt(1);
-				String com_name = rs.getString(2);
-				String com_email = rs.getString(3);
-				String com_phone = rs.getString(4);
-				String com_website = rs.getString(5);
+				System.out.println("175");
+				Integer kol_idnum1 = rs.getInt("kol_idnum");
+				Integer com_idnum = rs.getInt("com_idnum");
+				String com_name = rs.getString("com_name");
+				String com_email = rs.getString("com_email");
+				String com_phone = rs.getString("com_phone");
+				String com_website = rs.getString("com_website");
 //				COM_IDNUM, COM_NAME, COM_EMAIL, COM_PHONE,  COM_WEBSITE
 				
 				Map map = new HashMap();
+				map.put("kol_idnum", kol_idnum1);
 				map.put("com_idnum", com_idnum);
 				map.put("com_name", com_name);
 				map.put("com_email", com_email);
