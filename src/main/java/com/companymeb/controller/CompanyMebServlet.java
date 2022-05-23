@@ -77,8 +77,8 @@ public class CompanyMebServlet extends HttpServlet{
 				 
 				if(companyMebVO != null) {
 					req.getSession().setAttribute("companyMebVO", companyMebVO);
-String url = "/comBackStage/companymeb/companyMebJsp.jsp";
-RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+				String url = "/metherIndex.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交首頁
 					successView.forward(req, res);
 					return;
 				}
@@ -88,8 +88,8 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 				
 				if(kolMebVO != null) {
 					req.getSession().setAttribute("kolMebVO", kolMebVO);
-String url = "/comBackStage/companymeb/companyMebJsp.jsp";
-RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+				String url = "/metherIndex.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交首頁
 					successView.forward(req, res);
 					return;
 				}
@@ -299,8 +299,8 @@ RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功�
 				companyMebSvc.updateCompanyMeb(companyMebVO);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-String url = "/comBackStage/companymeb/companyMebJsp.jsp";
-RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+				String url = "/metherIndex.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交首頁
 				successView.forward(req, res);	
 
 				/***************************其他可能的錯誤處理*************************************/

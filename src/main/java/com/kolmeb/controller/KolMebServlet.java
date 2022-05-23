@@ -195,8 +195,8 @@ public class KolMebServlet extends HttpServlet{
 					kolMebSvc.updateKolMeb(kolMebVO);
 				
 					/***************************3.修改完成,準備轉交(Send the Success view)*************/
-String url = "/listAllEmp.jsp";
-RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+					String url = "/metherIndex.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交首頁
 					successView.forward(req, res);	
 
 					/***************************其他可能的錯誤處理*************************************/
