@@ -5,7 +5,11 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.*;
 
-@WebFilter(urlPatterns = {"/kolBackStage/kolmeb/kolPhotoIndexJsp2.jsp", "/kolBackStage/kolmeb/kolPhotoAddJsp2.jsp", "/kolBackStage/kolmeb/kolPhotoUpdateJsp2.jsp", "/kolBackStage/kolmeb/kolMebJsp3.jsp", "/kolBackStage/kolmeb/kolAboutJsp.jsp"})
+@WebFilter(urlPatterns = {"/kolBackStage/kolmeb/kolPhotoIndexJspTwo.jsp",
+		                  "/kolBackStage/kolmeb/kolPhotoAddJspTwo.jsp",
+		                  "/kolBackStage/kolmeb/kolPhotoUpdateJspTwo.jsp",
+		                  "/kolBackStage/kolmeb/kolMebJspThree.jsp",
+		                  "/kolBackStage/kolmeb/kolAboutJsp.jsp"})
 public class KolLoginFilter implements Filter {
 
 		private FilterConfig config;

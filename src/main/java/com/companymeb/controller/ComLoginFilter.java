@@ -5,7 +5,11 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.*;
 
-@WebFilter(urlPatterns = {"/comBackStage/companymeb/companyPhotoIndexJsp2.jsp", "/comBackStage/companymeb/companyPhotoAddJsp2.jsp", "/comBackStage/companymeb/companyPhotoUpdateJsp2.jsp", "/comBackStage/companymeb/companyMebJsp3.jsp", "/comBackStage/companymeb/comAboutJsp.jsp"})
+@WebFilter(urlPatterns = {"/comBackStage/companymeb/companyPhotoIndexJspTwo.jsp",
+						  "/comBackStage/companymeb/companyPhotoAddJspTwo.jsp",
+						  "/comBackStage/companymeb/companyPhotoUpdateJspTwo.jsp",
+						  "/comBackStage/companymeb/companyMebJspThree.jsp",
+						  "/comBackStage/companymeb/comAboutJsp.jsp"})
 public class ComLoginFilter implements Filter {
 
 		private FilterConfig config;
