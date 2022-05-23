@@ -18,18 +18,6 @@ pageContext.setAttribute("list", list);
 
 
 <%@ include file="header.jsp"%>
-<!-- <script>
-	function changeText(){
-	var text = document.getElementById("btn").value
-	if("加入最愛" == text){
-		document.getElementById("btn").value="移除最愛";
-	}
-	else{
-		document.getElementById("btn").value="加入最愛";
-	}
-}
-</script> -->
-
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

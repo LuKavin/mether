@@ -6,18 +6,19 @@
 <%@ page import="com.companymeb.model.*"%>
 <%@page import="com.kolfavorite.model.KolFavorService"%>
 
-<%
+ <%
 KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO"); 
 CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 
 KolFavorService kolFavorService = new KolFavorService();
 List list = kolFavorService.getAll();
-/* kolMebVO.getKol_idnum() */
 pageContext.setAttribute("list", list);
 %>
 
 
 <%@ include file="header.jsp"%>
+
+ 
 
 
 
@@ -49,17 +50,16 @@ pageContext.setAttribute("list", list);
 							<div class="card bg-light d-flex flex-fill">
 								<div class="card-header text-muted border-bottom-0"></div>
 								<div class="card-body pt-0">
-
+							
 									<div class="row">
 										<div class="col-12 text-center">
 											<img  style="max-width: 150px; min-height: 150px" alt="user-avatar"
 												class="img-circle img-fluid"
 												src="<%=request.getContextPath()%>/ReadComMemberPhoto?com_idnum=${companyMebVO.com_idnum}">
-												<%-- ${memberPhotoVO.meb_photo} --%>
 
 										</div>
 										<div>
-											<div class="col-12">
+										<div class="col-12">
 												<h2 class="lead">
 													<b>${companyMebVO.com_name}</b>
 												</h2>
@@ -86,33 +86,25 @@ pageContext.setAttribute("list", list);
 								</div>
 								<div class="card-footer">
 									<div class="text-right">
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/kolfavor/kolfavor.do"
-											style="margin-bottom: 0px;">
-											<a href="#" class="btn btn-sm bg-teal"> <i
-												class="fas fa-comments"></i>
-											</a> <a href="#" class="btn btn-sm btn-primary"> <i
+										<a href="#" class="btn btn-sm btn-primary"> <i
 												class="fas fa-user"></i> View Profile
-											</a> <input type="submit" value="新增最愛"
-												class="btn btn-outline-secondary" data-bs-toggle="button">
-											<input type="hidden" name="com_idnum"
-												value="${companyMebVO.com_idnum}"> <input type="hidden"
-												name="action" value="like">
-
+											</a>
+											 <button class="btn btn-outline-secondary" id="doAjaxBtn">新增最愛</button>
+											
+											<!-- 愛心按鈕 -->
 											<div class="flexbox">
-
+												
 												<div class="fav-btn">
 													<span href="" class="favme dashicons dashicons-heart"></span>
 												</div>
 
 											</div>
-										</FORM>
 
 									</div>
 								</div>
 							</div>
 						</div>
-					</c:forEach>
+				</c:forEach> 
 				</div>
 			</div>
 
