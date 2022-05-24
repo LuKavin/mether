@@ -12,6 +12,7 @@ public interface MatchFormDAO_interface {
 	public void delete(Integer kol_idnum, Integer product_num);
 
 	public List<ProductVO> findByPrimaryKey(Integer kol_idnum);
+	
 
 	public List<MatchFormVO> getAll();
 	// 萬用複合查詢(傳入參數型態Map)(回傳 List)

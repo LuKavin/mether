@@ -92,6 +92,7 @@ public class MatchFormServlet extends HttpServlet {
 
 				/*************************** 2.開始新增資料 ***************************************/
 				MatchService matchService = new MatchService();
+
 				matchService.addMatchForm(kolMebVO.getKol_idnum(), product_num);
 				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/

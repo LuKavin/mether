@@ -27,6 +27,7 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 		}
 	}
 
+
 	private static final String INSERT_STMT = "INSERT INTO MATCH_FORM (KOL_IDNUM, PRODUCT_NUM) VALUES (?, ?);";
 	private static final String GET_ALL_STMT = "SELECT KOL_IDNUM, PRODUCT_NUM, MATCH_DATE_TIME, MATCH_RESULT FROM MATCH_FORM order by KOL_IDNUM, PRODUCT_NUM";
 	private static final String GET_ONE_STMT = "select p.PRODUCT_NUM, p.PRODUCT_INTRODUCE, p.PRODUCT_NAME, p.PRODUCT_LINK  from MATCH_FORM m"
@@ -36,6 +37,7 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 	private static final String UPDATE = "UPDATE MATCH_FORM set MATCH_RESULT=? where KOL_IDNUM = ? and PRODUCT_NUM = ?";
 
 	@Override
+
 	public void insert(Integer kol_idnum, Integer product_num) {
 
 		Connection con = null;
