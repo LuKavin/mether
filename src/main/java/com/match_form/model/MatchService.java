@@ -27,7 +27,6 @@ public class MatchService {
 		matchFormVO.setMatch_result(match_result);
 		dao.update(matchFormVO);
 
-		
 		return matchFormVO;
 	}
 

@@ -14,6 +14,4 @@ public interface HireFormDAO_interface {
 	public List<HireFormVO> getAll();
 	// 萬用複合查詢(傳入參數型態Map)(回傳 List)
 //        public List<AdmMebVO> getAll(Map<String, String[]> map); 
-	
 }
-

@@ -25,6 +25,16 @@ public class HireFormDAO implements HireFormDAO_interface {
 		}
 	}
 
+<<<<<<< HEAD:src/main/java/com/hire_form/model/HireFormDAO.java
+	private static final String INSERT_STMT = "INSERT INTO HIRE_FORM (KOL_IDNUM, PRODUCT_NUM, HIRE_RESULT) VALUES (?, ?, ?)";
+	private static final String GET_ALL_STMT = "SELECT KOL_IDNUM, PRODUCT_NUM, HIRE_DATE_TIME, HIRE_RESULT FROM HIRE_FORM order by KOL_IDNUM, PRODUCT_NUM";
+	private static final String GET_ONE_STMT = "SELECT KOL_IDNUM, PRODUCT_NUM, HIRE_DATE_TIME, HIRE_RESULT FROM HIRE_FORM where KOL_IDNUM = ? and PRODUCT_NUM = ?";
+	private static final String DELETE = "DELETE FROM HIRE_FORM where KOL_IDNUM = ? and PRODUCT_NUM = ?";
+	private static final String UPDATE = "UPDATE HIRE_FORM set HIRE_RESULT=? where KOL_IDNUM = ? and PRODUCT_NUM = ?";
+
+	@Override
+	public void insert(HireFormVO hireFormVO) {
+=======
 
 	private static final String INSERT_STMT = "INSERT INTO MATCH_FORM (KOL_IDNUM, PRODUCT_NUM) VALUES (?, ?);";
 	private static final String GET_ALL_STMT = "SELECT KOL_IDNUM, PRODUCT_NUM, MATCH_DATE_TIME, MATCH_RESULT FROM MATCH_FORM order by KOL_IDNUM, PRODUCT_NUM";
@@ -34,45 +44,47 @@ public class HireFormDAO implements HireFormDAO_interface {
 	private static final String DELETE = "Delete from MATCH_FORM where KOL_IDNUM = ? and PRODUCT_NUM = ?;";
 	private static final String UPDATE = "UPDATE MATCH_FORM set MATCH_RESULT=? where KOL_IDNUM = ? and PRODUCT_NUM = ?";
 
-//	@Override
+	@Override
 
-//	public void insert(Integer kol_idnum, Integer product_num) {
-//
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//
-//		try {
-//
-//			con = ds.getConnection();
-//			pstmt = con.prepareStatement(INSERT_STMT);
-//
-//			pstmt.setInt(1, hireFormVO.getKol_idnum());
-//			pstmt.setInt(2, hireFormVO.getProduct_num());
-//
-//			pstmt.executeUpdate();
-//
-//			// Handle any SQL errors
-//		} catch (SQLException se) {
-//			throw new RuntimeException("A database error occured. " + se.getMessage());
-//			// Clean up JDBC resources
-//		} finally {
-//			if (pstmt != null) {
-//				try {
-//					pstmt.close();
-//				} catch (SQLException se) {
-//					se.printStackTrace(System.err);
-//				}
-//			}
-//			if (con != null) {
-//				try {
-//					con.close();
-//				} catch (Exception e) {
-//					e.printStackTrace(System.err);
-//				}
-//			}
-//		}
-//
-//	}
+	public void insert(Integer kol_idnum, Integer product_num) {
+>>>>>>> alanyu:src/main/java/com/match_form/model/MatchFormDAO.java
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(INSERT_STMT);
+
+			pstmt.setInt(1, hireFormVO.getKol_idnum());
+			pstmt.setInt(2, hireFormVO.getProduct_num());
+			pstmt.setString(3, hireFormVO.getHire_result());
+
+			pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
 
 	@Override
 	public void update(HireFormVO hireFormVO) {
