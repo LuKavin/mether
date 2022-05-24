@@ -99,7 +99,6 @@ pageContext.setAttribute("list", list);
 							<a href="#">
 								<p>${com_account}</p>
 							</a>
-							<div class="btn btn-danger ml-auto">取消交易</div>
 						</div>
 					</div>
 					<!--  -->
@@ -139,32 +138,6 @@ pageContext.setAttribute("list", list);
 														檢視作品</div>
 												</div>
 												<div class="card-body">
-
-
-<!-- 													<div class="card-body"> -->
-<!-- 														<div class="form-group"> -->
-<!-- 															<label>細項:</label> -->
-<!-- 															<div class="input-group"> -->
-<!-- 																<div class="input-group-prepend"> -->
-<!-- 																	<span class="input-group-text"> <i -->
-<!-- 																		class="fa fa-file-powerpoint-o" aria-hidden="true"></i></span> -->
-<!-- 																</div> -->
-<!-- 																<input type="text" class="form-control" -->
-<!-- 																	inputmode="numeric"> -->
-<!-- 															</div> -->
-
-<!-- 														</div> -->
-<!-- 														<div class="form-group"> -->
-<!-- 															<div class="input-group"> -->
-<!-- 																<div class="input-group-prepend"> -->
-<!-- 																	<span class="input-group-text"><i -->
-<!-- 																		class="far fa-calendar-alt"></i></span> -->
-<!-- 																</div> -->
-<!-- 																<input type="text" class="form-control" -->
-<!-- 																	inputmode="numeric"> -->
-<!-- 															</div> -->
-<!-- 														</div> -->
-<!-- 													</div> -->
 
 													<div class="row trade-step1 ">
 														<div class="container wtforkol-box">
@@ -249,7 +222,7 @@ pageContext.setAttribute("list", list);
 															<div class="float-right">
 																<input type="hidden" name="order_num"
 																	value="${orderMasterVO.order_num}"> <input
-																	type="hidden" name="order_status" value="製作中">
+																	type="hidden" name="order_status" value="審核中">
 																<button class="btn btn-warning msgOKbtn" type="submit">留言</button>
 															</div>
 														</div>

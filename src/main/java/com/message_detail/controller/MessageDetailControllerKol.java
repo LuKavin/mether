@@ -90,6 +90,7 @@ public class MessageDetailControllerKol extends HttpServlet {
 			messageDetailService.kolAddMessage(messageDetailVO);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+			System.out.println("order_status="+order_status);
 
 			if("製作中".equals(order_status)) {
 				req.getRequestDispatcher("/kolBackStage/order/orderKolTurnOne.jsp").forward(req, res); // 新增成功後轉交companyPhotoIndexJsp2.jsp

@@ -75,17 +75,35 @@ public class OrderServletForKol extends HttpServlet {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				Integer order_num =  new Integer(req.getParameter("order_num"));
 				String orderLink =  req.getParameter("orderLink");
-				if(orderLink==null || orderLink.trim().isEmpty()) {
+				System.out.println(orderLink);
+				
+				if("".equals(orderLink)) {
+					System.out.println("error");
 					errorMsgs.add("網址列請勿空白");
 				}
-				if (!orderLink.trim().matches(orderLink)) {
-					errorMsgs.add("網址格式錯誤");
-	            }
+//				if (!orderLink.matches(orderLink)) {
+//					errorMsgs.add("網址格式錯誤");
+//	            }
 				String orderContent =  req.getParameter("orderContent");
 				Part orderFile =  req.getPart("orderFile");
 				InputStream is = orderFile.getInputStream();
 				byte[] fileByte = new byte[is.available()];
 				is.read(fileByte);
+				
+				if (!errorMsgs.isEmpty()) {
+					OrderMasterService orderMasterService = new OrderMasterService();
+					OrderMasterVO orderMasterVO = orderMasterService.getOneOrderMaster(order_num);//取得該訂單資訊
+					String com_account = orderMasterService.getComAccount(order_num);//取得該訂單廠商帳號
+					String kol_account = orderMasterService.getKolAccount(order_num);//取得該訂單網紅帳號
+					req.setAttribute("order_num", order_num);
+					req.setAttribute("com_account", com_account);
+					req.setAttribute("kol_account", kol_account);
+					req.setAttribute("order_num", order_num);
+					req.setAttribute("orderMasterVO", orderMasterVO);
+					
+					req.getRequestDispatcher("/kolBackStage/order/orderKolTurnOne.jsp").forward(req, res);
+					return;
+				}
 				
 				/*************************** 2.開始新增資料 ***************************************/
 				OrderMasterService orderMasterService =new OrderMasterService();
