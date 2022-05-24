@@ -1,4 +1,4 @@
-package com.match_form.model;
+package com.hire_form.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,9 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.product.model.ProductVO;
-
-public class MatchFormDAO implements MatchFormDAO_interface {
+public class HireFormDAO implements HireFormDAO_interface {
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
@@ -27,6 +25,17 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 		}
 	}
 
+<<<<<<< HEAD:src/main/java/com/hire_form/model/HireFormDAO.java
+	private static final String INSERT_STMT = "INSERT INTO HIRE_FORM (KOL_IDNUM, PRODUCT_NUM, HIRE_RESULT) VALUES (?, ?, ?)";
+	private static final String GET_ALL_STMT = "SELECT KOL_IDNUM, PRODUCT_NUM, HIRE_DATE_TIME, HIRE_RESULT FROM HIRE_FORM order by KOL_IDNUM, PRODUCT_NUM";
+	private static final String GET_ONE_STMT = "SELECT KOL_IDNUM, PRODUCT_NUM, HIRE_DATE_TIME, HIRE_RESULT FROM HIRE_FORM where KOL_IDNUM = ? and PRODUCT_NUM = ?";
+	private static final String DELETE = "DELETE FROM HIRE_FORM where KOL_IDNUM = ? and PRODUCT_NUM = ?";
+	private static final String UPDATE = "UPDATE HIRE_FORM set HIRE_RESULT=? where KOL_IDNUM = ? and PRODUCT_NUM = ?";
+
+	@Override
+	public void insert(HireFormVO hireFormVO) {
+=======
+
 	private static final String INSERT_STMT = "INSERT INTO MATCH_FORM (KOL_IDNUM, PRODUCT_NUM) VALUES (?, ?);";
 	private static final String GET_ALL_STMT = "SELECT KOL_IDNUM, PRODUCT_NUM, MATCH_DATE_TIME, MATCH_RESULT FROM MATCH_FORM order by KOL_IDNUM, PRODUCT_NUM";
 	private static final String GET_ONE_STMT = "select p.PRODUCT_NUM, p.PRODUCT_INTRODUCE, p.PRODUCT_NAME, p.PRODUCT_LINK  from MATCH_FORM m"
@@ -38,18 +47,20 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 	@Override
 
 	public void insert(Integer kol_idnum, Integer product_num) {
+>>>>>>> alanyu:src/main/java/com/match_form/model/MatchFormDAO.java
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
+
 		try {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, kol_idnum);
-			pstmt.setInt(2, product_num);
-			
-			
+			pstmt.setInt(1, hireFormVO.getKol_idnum());
+			pstmt.setInt(2, hireFormVO.getProduct_num());
+			pstmt.setString(3, hireFormVO.getHire_result());
+
 			pstmt.executeUpdate();
 
 			// Handle any SQL errors
@@ -72,10 +83,11 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 				}
 			}
 		}
+
 	}
 
 	@Override
-	public void update(MatchFormVO matchFormVO) {
+	public void update(HireFormVO hireFormVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -85,9 +97,9 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setString(1, matchFormVO.getMatch_result());
-			pstmt.setInt(2, matchFormVO.getKol_idnum());
-			pstmt.setInt(3, matchFormVO.getProduct_num());
+			pstmt.setString(1, hireFormVO.getHire_result());
+			pstmt.setInt(2, hireFormVO.getKol_idnum());
+			pstmt.setInt(3, hireFormVO.getProduct_num());
 
 			pstmt.executeUpdate();
 
@@ -154,10 +166,9 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 	}
 
 	@Override
-	public List<ProductVO> findByPrimaryKey(Integer kol_idnum) {
+	public HireFormVO findByPrimaryKey(Integer kol_idnum, Integer product_num) {
 
-		List<ProductVO> list = new ArrayList<>();
-		
+		HireFormVO hireFormVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -168,20 +179,18 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, kol_idnum);
+			pstmt.setInt(2, product_num);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
-				
-				ProductVO productVO = new ProductVO();
-				
-				productVO.setProduct_num(rs.getInt("product_num"));
-				productVO.setProduct_introduce(rs.getString("product_introduce"));
-				productVO.setProduct_name(rs.getString("product_name"));
-				productVO.setProduct_link(rs.getString("product_link"));
-				
-				list.add(productVO);
+
+				hireFormVO = new HireFormVO();
+				hireFormVO.setKol_idnum(rs.getInt("kol_idnum"));
+				hireFormVO.setProduct_num(rs.getInt("product_num"));
+				hireFormVO.setHire_date_time(rs.getTimestamp("hire_date_time"));
+				hireFormVO.setHire_result(rs.getString("hire_result"));
 
 			}
 
@@ -212,13 +221,13 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 				}
 			}
 		}
-		return list;
+		return hireFormVO;
 	}
 
 	@Override
-	public List<MatchFormVO> getAll() {
-		List<MatchFormVO> list = new ArrayList<MatchFormVO>();
-		MatchFormVO matchFormVO = null;
+	public List<HireFormVO> getAll() {
+		List<HireFormVO> list = new ArrayList<HireFormVO>();
+		HireFormVO hireFormVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -232,12 +241,12 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				matchFormVO = new MatchFormVO();
-				matchFormVO.setKol_idnum(rs.getInt("kol_idnum"));
-				matchFormVO.setProduct_num(rs.getInt("product_num"));
-				matchFormVO.setMatch_date_time(rs.getTimestamp("match_date_time"));
-				matchFormVO.setMatch_result(rs.getString("match_result"));
-				list.add(matchFormVO); // Store the row in the list
+				hireFormVO = new HireFormVO();
+				hireFormVO.setKol_idnum(rs.getInt("kol_idnum"));
+				hireFormVO.setProduct_num(rs.getInt("product_num"));
+				hireFormVO.setHire_date_time(rs.getTimestamp("hire_date_time"));
+				hireFormVO.setHire_result(rs.getString("hire_result"));
+				list.add(hireFormVO); // Store the row in the list
 			}
 
 			// Handle any driver errors
