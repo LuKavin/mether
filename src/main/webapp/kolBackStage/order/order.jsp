@@ -84,7 +84,6 @@
 						<div class="row trade-head m-3">
 							<p>交易對象：</p>
 								<p>xxx</p>
-							<div class="btn btn-danger ml-auto">取消交易</div>
 						</div>
 					</div>
 					<!--  -->
