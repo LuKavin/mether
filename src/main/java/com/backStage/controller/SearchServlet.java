@@ -50,16 +50,19 @@ public class SearchServlet extends HttpServlet {
 				req.setAttribute("list", list);
 				req.setAttribute("list1", list1);
 				req.setAttribute("list2", list2);
-				String url = "/Search.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-				successView.forward(req, res);
+				if (!list.isEmpty() || !list1.isEmpty() || !list2.isEmpty()) {
+					String url = "/Search.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url);
+					successView.forward(req, res);
+				} else if (list.isEmpty() && list1.isEmpty() && list2.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/SearchFail.jsp");
+					failureView.forward(req, res);
+				}
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
-				System.out.println("noooooooooooooooooooooo");
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/metherIndex.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/SearchFail.jsp");
 				failureView.forward(req, res);
 			}
 		}
