@@ -81,28 +81,28 @@ public class MatchFormServlet extends HttpServlet {
 
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-				Integer kol_idnum = new Integer(req.getParameter("kol_idnum"));
-				System.out.println(kol_idnum);
-
+				Integer product_num = new Integer(req.getParameter("product_num"));
+			
+				
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/productType/AllproductType.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/matchform/jobview.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 
 				/*************************** 2.開始新增資料 ***************************************/
 				MatchService matchService = new MatchService();
-				matchService.addMatchForm(kol_idnum);
-
+				matchService.addMatchForm(kolMebVO.getKol_idnum(), product_num);
+				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/productType/AllproductType.jsp";
+				String url = "/kolBackStage/matchform/jobview.jsp"; 
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/product/addProduct.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/matchform/jobview.jsp");
 				failureView.forward(req, res);
 			}
 		}

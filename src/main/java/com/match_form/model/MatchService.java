@@ -12,9 +12,9 @@ public class MatchService {
 		dao = new MatchFormDAO();
 	}
 
-	public List <MatchFormVO> addMatchForm(Integer kol_idnum) {
+	public void addMatchForm(Integer kol_idnum, Integer product_num) {
 
-		return dao.insert(kol_idnum);
+		dao.insert(kol_idnum,product_num);
 
 	}
 

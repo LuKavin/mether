@@ -27,10 +27,7 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 		}
 	}
 
-	private static final String INSERT_STMT = "select m.KOL_IDNUM, cp.PRODUCT_NUM, m.MATCH_DATE_TIME from "
-			+ "(select PRODUCT_NUM from COMPANY_MEB "
-			+ "join PRODUCT p on c.COM_IDNUM = p.COM_IDNUM) cp join MATCH_FORM m on "
-			+ "cp.PRODUCT_NUM = m.PRODUCT_NUM where KOL_IDNUM = ?";
+	private static final String INSERT_STMT = "INSERT INTO MATCH_FORM (KOL_IDNUM, PRODUCT_NUM) VALUES (?, ?);";
 	private static final String GET_ALL_STMT = "SELECT KOL_IDNUM, PRODUCT_NUM, MATCH_DATE_TIME, MATCH_RESULT FROM MATCH_FORM order by KOL_IDNUM, PRODUCT_NUM";
 	private static final String GET_ONE_STMT = "select p.PRODUCT_NUM, p.PRODUCT_INTRODUCE, p.PRODUCT_NAME, p.PRODUCT_LINK  from MATCH_FORM m"
 			+ " join PRODUCT p on m.PRODUCT_NUM  = p.PRODUCT_NUM "
@@ -39,27 +36,20 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 	private static final String UPDATE = "UPDATE MATCH_FORM set MATCH_RESULT=? where KOL_IDNUM = ? and PRODUCT_NUM = ?";
 
 	@Override
-	public List <MatchFormVO> insert(Integer kol_idnum) {
+	public void insert(Integer kol_idnum, Integer product_num) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List <MatchFormVO> list = new ArrayList<>();
 		try {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, kol_idnum);
-
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				MatchFormVO matchFormVO = new MatchFormVO();
-				matchFormVO.setKol_idnum(rs.getInt("KOL_IDNUM"));
-				list.add(matchFormVO);
-				
-				
-			}
+			pstmt.setInt(2, product_num);
+			
+			
+			pstmt.executeUpdate();
 
 			// Handle any SQL errors
 		} catch (SQLException se) {
@@ -81,7 +71,6 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 				}
 			}
 		}
-		return list;
 	}
 
 	@Override

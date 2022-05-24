@@ -5,7 +5,7 @@ import java.util.List;
 import com.product.model.ProductVO;
 
 public interface MatchFormDAO_interface {
-	public List<MatchFormVO> insert(Integer kol_idnum);
+	public void insert(Integer kol_idnum, Integer product_num);
 
 	public void update(MatchFormVO matchFormVO);
 
