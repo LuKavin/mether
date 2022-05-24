@@ -3,15 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.backStage.model.*"%>
-<%-- 此頁練習採用 EL 的寫法取值 --%>
-<%
-List list = (List) request.getAttribute("list");
-pageContext.setAttribute("list", list);
-List list1 = (List) request.getAttribute("list1");
-pageContext.setAttribute("list1", list1);
-List list2 = (List) request.getAttribute("list2");
-pageContext.setAttribute("list2", list2);
-%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -153,76 +144,14 @@ pageContext.setAttribute("list2", list2);
 					<div class="col-md-8 col-md-offset-2 text-center">
 						<div class="display-t">
 							<div class="display-tc animate-box" data-animate-effect="fadeIn">
-								<h1>Welcome</h1>
-								<h2>MetHer網紅廠商媒合平台</h2>
+								<h1>搜尋失敗</h1>
+								<h2>抱歉查無此結果</h2>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</header>
-
-
-
-		<div id="fh5co-gallery" class="fh5co-section-gray">
-			<div class="container">
-				<div class="row">
-					<div
-						class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-
-						<h2>搜尋結果</h2>
-
-					</div>
-				</div>
-				<div class="row row-bottom-padded-md">
-					<div class="col-md-12">
-						<ul id="fh5co-gallery-list">
-
-							<%@ include file="page1.file"%>
-							<c:forEach var="KolPhotoVO" items="${list}"
-								begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-
-								<li class="one-third animate-box" data-animate-effect="fadeIn"
-									style="background-image: url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${KolPhotoVO.meb_photonum});"><a
-									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
-									class="color-2">
-										<div class="case-studies-summary">
-											<h2>${KolPhotoVO.kol_name}</h2>
-										</div>
-								</a></li>
-
-							</c:forEach>
-							<c:forEach var="ComPhotoVO" items="${list1}"
-								begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-
-								<li class="one-third animate-box" data-animate-effect="fadeIn"
-									style="background-image: url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${ComPhotoVO.meb_photonum});"><a
-									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
-									class="color-2">
-										<div class="case-studies-summary">
-											<h2>${ComPhotoVO.com_name}</h2>
-										</div>
-								</a></li>
-
-							</c:forEach>
-							<c:forEach var="ProductPhotoVO" items="${list2}"
-								begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-
-								<li class="one-third animate-box" data-animate-effect="fadeIn"
-									style="background-image: url(<%=request.getContextPath()%>/ReadProductPhoto?product_photonum=${ProductPhotoVO.product_photonum});"><a
-									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
-									class="color-2">
-										<div class="case-studies-summary">
-											<h2>${ProductPhotoVO.product_name}</h2>
-										</div>
-								</a></li>
-
-							</c:forEach>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
 
 		<footer id="fh5co-footer" role="contentinfo">
 			<div class="container">
