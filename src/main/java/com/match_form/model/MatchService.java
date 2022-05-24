@@ -27,10 +27,10 @@ public class MatchService {
 		matchFormVO.setMatch_result(match_result);
 		dao.update(matchFormVO);
 
+		
 		return matchFormVO;
 	}
 
-	
 	public void deleteMatchForm(Integer kol_idnum, Integer product_num) {
 		dao.delete(kol_idnum, product_num);
 	}

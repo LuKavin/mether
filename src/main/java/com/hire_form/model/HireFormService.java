@@ -20,7 +20,6 @@ public class HireFormService {
 		dao.insert(hireFormVO);
 
 		return hireFormVO;
-		
 	}
 
 	public HireFormVO updateHireForm(Integer kol_idnum, Integer product_num, String hire_result) {
