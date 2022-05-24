@@ -17,4 +17,5 @@ public interface MatchFormDAO_interface {
 	// 萬用複合查詢(傳入參數型態Map)(回傳 List)
 //        public List<AdmMebVO> getAll(Map<String, String[]> map); 
 
+	
 }

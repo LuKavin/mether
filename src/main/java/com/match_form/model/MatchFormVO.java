@@ -19,6 +19,7 @@ public class MatchFormVO implements java.io.Serializable {
 	public Integer getProduct_num() {
 		return product_num;
 	}
+	
 
 	public void setProduct_num(Integer product_num) {
 		this.product_num = product_num;

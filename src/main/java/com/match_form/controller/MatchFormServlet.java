@@ -29,6 +29,7 @@ public class MatchFormServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		
+		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		KolMebVO kolMebVO = (KolMebVO) req.getSession().getAttribute("kolMebVO");

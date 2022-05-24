@@ -16,6 +16,7 @@ public class HireFormVO implements java.io.Serializable {
 		this.kol_idnum = kol_idnum;
 	}
 
+	
 	public Integer getProduct_num() {
 		return product_num;
 	}

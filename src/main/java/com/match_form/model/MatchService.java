@@ -30,6 +30,7 @@ public class MatchService {
 		return matchFormVO;
 	}
 
+	
 	public void deleteMatchForm(Integer kol_idnum, Integer product_num) {
 		dao.delete(kol_idnum, product_num);
 	}
