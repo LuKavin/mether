@@ -1,0 +1,250 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
+div.row {
+  display: flex;
+}
+
+/*關於我*/
+
+div.profile-card {
+    display: flex;
+    padding-top: 150px;
+    justify-content: center;
+}
+
+div.kol_about {
+  padding-left: 80px;
+}
+
+div.kol_aboutme {
+  text-align:center;
+  height: 10px;
+}
+
+div.about.content {
+  text-align: left;
+}
+
+p.aboutMe {
+  color:rgb(172, 172, 172);
+}
+
+div.matchMe {
+  display: flex;
+  justify-content: left;
+  padding-left: 9%;  
+}
+
+button.matchMe {
+  color: white;
+}
+
+h2.kol_name {
+  text-align: left;
+  padding-left: 13%;
+  padding-top: 8%;
+  color: #ffffff;
+}
+
+div.kol_aboutme {
+    text-align: left;
+    padding-bottom: 50px;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+div.kol_worktype {
+    text-align: left;
+    color: #ffffff;
+}
+
+div.kol_skilltype {
+    padding-top: 10px;
+    text-align: left;
+    color: #ffffff;
+}
+
+div.kol_ratelv {
+    padding-top: 10px;
+    text-align: left;
+    color: #ffffff;
+}
+
+.badge-pill.normal.facebook {
+    padding-top: 5px;
+    margin-top: 5px;
+    background: skyblue;
+    font-size: 12.6px;
+    font-weight: normal;
+    padding: 0.3rem 0.6rem;
+    margin: 0rem 0.1rem;
+    color: blue;
+    border-radius: 10rem;
+  }
+      
+  .badge-pill.normal.instagram {
+    padding-top: 5px;
+    margin-top: 5px;
+    background: #269abc;
+    font-size: 12.6px;
+    font-weight: normal;
+    padding: 0.3rem 0.6rem;
+    margin: 0rem 0.1rem;
+    color: lightskyblue;
+    border-radius: 10rem;
+  }
+      
+  .badge-pill.normal.youtube {
+    padding-top: 5px;
+    margin-top: 5px;
+    background: lightsalmon;
+    font-size: 12.6px;
+    font-weight: normal;
+    padding: 0.3rem 0.6rem;
+    margin: 0rem 0.1rem;
+    color: red;
+    border-radius: 10rem;
+  }
+      
+  .badge-pill.normal.tiktok {
+    padding-top: 5px;
+    margin-top: 5px;
+    background: yellow;
+    font-size: 12.6px;
+    font-weight: normal;
+    padding: 0.3rem 0.6rem;
+    margin: 0rem 0.1rem;
+    color: #d58512;
+    border-radius: 10rem;
+  }
+      
+  .badge-pill.normal.twitter {
+    padding-top: 5px;
+    margin-top: 5px;
+    background: skyblue;
+    font-size: 12.6px;
+    font-weight: normal;
+    padding: 0.3rem 0.6rem;
+    margin: 0rem 0.1rem;
+    color: blue;
+    border-radius: 10rem;
+  }
+      
+  .badge-pill.normal.else {
+    padding-top: 5px;
+    margin-top: 5px;
+    background: lightgray;
+    font-size: 12.6px;
+    font-weight: normal;
+    padding: 0.3rem 0.6rem;
+    margin: 0rem 0.1rem;
+    color: gray;
+    border-radius: 10rem;
+  }
+      
+  .badge-pill.normal.plat {
+    padding-top: 5px;
+    margin-top: 5px;
+    background: rgb(104, 104, 104);
+    font-size: 12.6px;
+    font-weight: normal;
+    padding: 0.3rem 0.6rem;
+    margin: 0rem 0.1rem;
+    color: rgb(214, 214, 214);
+    border-radius: 10rem;
+  }
+
+img.kol_img {
+    border-radius: 50%!important;
+    max-width: 200px;
+    max-height: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+div.user_profile_image {
+    display: flex;
+}
+
+.user-profile-box {
+    border-radius: 10px;
+}
+
+/*基本資料*/
+
+div.row.kol_info {
+  padding-left: 15%;
+}
+
+div.info {
+  padding-left: 6%;
+  padding-top: 20px;
+}
+
+span.infoTitle {
+  font-size: xx-large;
+  color: white;
+  background-color: #727272;
+  padding: 0.3rem 0.6rem;
+  margin: 0rem 0.1rem;
+  border-radius: 1rem;
+}
+
+p.info {
+  font-weight: 500;
+  font-size: large;
+  color: black;
+}
+
+.total-rating {
+  padding-left: 8px;
+}
+
+.favorbtn {
+  padding-left: 10px;
+}
+
+.backdrop {
+  z-index: 1;
+  opacity: .0;
+  filter: alpha(opacity=0);
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.lightbox {
+  z-index: 2;
+  position: fixed;
+  opacity: 1;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  width: 600px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 5px #444444;
+  -webkit-box-shadow: 0px 0px 5px #444444;
+  box-shadow: 0px 0px 5px #444444;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  text-align: center;
+}

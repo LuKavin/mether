@@ -1,0 +1,140 @@
+div.map-container {
+ display: flex;
+ justify-content: center;
+ padding-top: 10px;
+ padding-bottom: 30px;
+}
+    
+div.col-md-6 {
+  display: flex;
+  justify-content: center;
+}
+
+/*手風琴*/
+button.accordion-button {
+  height: 50px;
+  font-size: large;
+}
+
+/*map*/
+#map {
+  height: 180px; 
+}
+
+
+/*人物卡*/
+div.card {
+  display: block;
+  padding: 0;
+  margin: auto;
+  list-style: none;
+  min-height: 400px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: left;
+  clear: left;
+  position: relative;
+  border-radius: 7px;
+}
+
+div.card-header {
+  background: #cfcfcf;
+}
+    
+div.card-title {
+  font-size:;
+}
+    
+div.card-text.plat {
+  padding-left: 10px;
+}
+    
+img.card-img-top {
+  margin-top: 10px!important;
+  border-radius: 50%!important;
+  max-width: 200px;
+  max-height: 200px;
+  display: block;
+  margin: auto;
+  /* border: solid 3px red; */
+}
+  
+/*屬性標籤*/
+.badge-pill.normal.facebook {
+  margin-top: 5px;
+  background: skyblue;
+  font-size: 12.6px;
+  font-weight: normal;
+  padding: 0.3rem 0.6rem;
+  margin: 0rem 0.1rem;
+  color: blue;
+  border-radius: 10rem;
+}
+    
+.badge-pill.normal.instagram {
+  margin-top: 5px;
+  background: #269abc;
+  font-size: 12.6px;
+  font-weight: normal;
+  padding: 0.3rem 0.6rem;
+  margin: 0rem 0.1rem;
+  color: lightskyblue;
+  border-radius: 10rem;
+}
+    
+.badge-pill.normal.youtube {
+  margin-top: 5px;
+  background: lightsalmon;
+  font-size: 12.6px;
+  font-weight: normal;
+  padding: 0.3rem 0.6rem;
+  margin: 0rem 0.1rem;
+  color: red;
+  border-radius: 10rem;
+}
+    
+.badge-pill.normal.tiktok {
+  margin-top: 5px;
+  background: yellow;
+  font-size: 12.6px;
+  font-weight: normal;
+  padding: 0.3rem 0.6rem;
+  margin: 0rem 0.1rem;
+  color: #d58512;
+  border-radius: 10rem;
+}
+    
+.badge-pill.normal.twitter {
+  margin-top: 5px;
+  background: skyblue;
+  font-size: 12.6px;
+  font-weight: normal;
+  padding: 0.3rem 0.6rem;
+  margin: 0rem 0.1rem;
+  color: blue;
+  border-radius: 10rem;
+}
+    
+.badge-pill.normal.else {
+  margin-top: 5px;
+  background: lightgray;
+  font-size: 12.6px;
+  font-weight: normal;
+  padding: 0.3rem 0.6rem;
+  margin: 0rem 0.1rem;
+  color: gray;
+  border-radius: 10rem;
+}
+    
+.badge-pill.normal.plat {
+  margin-top: 5px;
+  background: lightgray;
+  font-size: 12.6px;
+  font-weight: normal;
+  padding: 0.3rem 0.6rem;
+  margin: 0rem 0.1rem;
+  color: gray;
+  border-radius: 10rem;
+}
+    
