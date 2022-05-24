@@ -26,7 +26,6 @@ public class MatchFormServlet extends HttpServlet {
 		doPost(req, res);
 	}
 
-	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");

@@ -12,6 +12,7 @@ public class HireFormVO implements java.io.Serializable {
 		return kol_idnum;
 	}
 
+	
 	public void setKol_idnum(Integer kol_idnum) {
 		this.kol_idnum = kol_idnum;
 	}

@@ -10,6 +10,7 @@ public class HireFormService {
 		dao = new HireFormDAO();
 	}
 
+	
 	public HireFormVO addHireForm(Integer kol_idnum, Integer product_num, String hire_result) {
 
 		HireFormVO hireFormVO = new HireFormVO();

@@ -18,7 +18,6 @@ public class MatchService {
 
 	}
 
-	
 	public MatchFormVO updateMatchForm(Integer kol_idnum, Integer product_num, String match_result) {
 
 		MatchFormVO matchFormVO = new MatchFormVO();
