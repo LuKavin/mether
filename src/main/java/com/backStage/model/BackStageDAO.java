@@ -836,7 +836,7 @@ public class BackStageDAO implements BackStageDAO_interface {
 			while (rs.next()) {
 				Integer product_num = rs.getInt("product_num");
 				String product_name = rs.getString("product_name");
-				Integer product_photonum = rs.getInt("min(m.MEB_PHOTONUM)");
+				Integer product_photonum = rs.getInt("min(i.PRODUCT_PHOTONUM)");
 
 				Map map = new HashMap();
 				map.put("product_num", product_num);

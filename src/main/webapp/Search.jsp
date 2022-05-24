@@ -209,11 +209,11 @@ pageContext.setAttribute("list2", list2);
 								begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 
 								<li class="one-third animate-box" data-animate-effect="fadeIn"
-									style="background-image: url(<%=request.getContextPath()%>/viewpic?product_num=${ProductPhotoVO.product_num});"><a
+									style="background-image: url(<%=request.getContextPath()%>/ReadProductPhoto?product_photonum=${ProductPhotoVO.product_photonum});"><a
 									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
 									class="color-2">
 										<div class="case-studies-summary">
-											<h2>${ProductPhotoVO.com_name}</h2>
+											<h2>${ProductPhotoVO.product_name}</h2>
 										</div>
 								</a></li>
 
