@@ -109,8 +109,8 @@ pageContext.setAttribute("list", list);
 								<FORM METHOD="post"
 									ACTION="<%=request.getContextPath()%>/serch.do">
 									<input type="text" name="search"> <input type="hidden"
-										name="action" value="getSearch"> <input
-										type="submit" value="送出">
+										name="action" value="getSearch"> <input type="submit"
+										value="送出">
 								</FORM>
 							</li>
 
@@ -134,7 +134,12 @@ pageContext.setAttribute("list", list);
 									<li><a
 										href="<%=request.getContextPath()%>/logout/companyMebJspLogout.jsp">會員登出</a></li>
 								</ul></li>
-							<li><a href="contact.html">關於我們</a></li>
+							<li class="has-dropdown active"><a
+								href="<%=request.getContextPath()%>/index.html">聊天室</a>
+								<ul class="dropdown">
+									<li><a href="<%=request.getContextPath()%>/index.html">公共聊天室</a></li>
+									<li><a href="<%=request.getContextPath()%>/index.jsp">私人聊天室</a></li>
+								</ul></li>
 						</ul>
 					</div>
 				</div>
