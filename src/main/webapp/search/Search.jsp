@@ -224,6 +224,7 @@ pageContext.setAttribute("list2", list2);
 								</a></li>
 
 							</c:forEach>
+							<%@ include file="page2.file"%>
 						</ul>
 					</div>
 				</div>

@@ -121,7 +121,6 @@ pageContext.setAttribute("kolMebcount", kolMebcount);
 								</c:forEach>
 							</tbody>
 						</table>
-						<%@ include file="page2.file"%>
 					</div>
 				</div>
 			</div>
