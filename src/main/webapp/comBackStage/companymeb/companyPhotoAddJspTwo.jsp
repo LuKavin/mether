@@ -45,7 +45,7 @@ pageContext.setAttribute("list", list);
 								</tr>
 								
 								<tr>
-									<td><img id="image" style="max-width: 120px; min-height: 120px; margin-top: 20px" src=""></td>
+									<td><img id="image" style="max-width: 120px; min-height: 120px; margin-top: 20px;" src=""></td>
 								</tr>
 					
 																					
