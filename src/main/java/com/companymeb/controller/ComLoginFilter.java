@@ -30,8 +30,14 @@ public class ComLoginFilter implements Filter {
 			// 【取得 session】
 			HttpSession session = req.getSession();
 			// 【從 session 判斷此user是否登入過】
-			Object account = session.getAttribute("companyMebVO");
-			if (account == null) {
+			Object companyMebVO = session.getAttribute("companyMebVO");
+			Object kolMebVO = session.getAttribute("kolMebVO");
+			if (companyMebVO == null) {
+				if(kolMebVO != null) {
+					System.out.println("in");					
+					req.getRequestDispatcher("/kolBackStage/kolmeb/kolMebJspThree.jsp").forward(req, res);
+					return;					
+				}
 				session.setAttribute("location", req.getRequestURI());
 				res.sendRedirect(req.getContextPath() + "/login/companyMebJspLogin.jsp");
 				return;
