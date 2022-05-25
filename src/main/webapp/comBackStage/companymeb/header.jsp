@@ -279,7 +279,7 @@ th, td {
 
 
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
+							href="<%=request.getContextPath()%>/findcom/hireform/applyjob.jsp" class="nav-link">
 								<p>
 									<i class="fa fa-address-book" aria-hidden="true"></i> 應徵列表
 								</p>
@@ -300,7 +300,7 @@ th, td {
 						</a></li>
 
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
+							href="<%=request.getContextPath()%>/comFavor/comfavor.jsp" class="nav-link">
 								<p>
 									<i class="fa fa-heart" aria-hidden="true"></i> 我的最愛
 								</p>
