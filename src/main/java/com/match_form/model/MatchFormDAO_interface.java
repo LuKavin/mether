@@ -14,7 +14,7 @@ public interface MatchFormDAO_interface {
 	public List<ProductVO> findByPrimaryKey(Integer kol_idnum);
 	
 
-	public List<MatchFormVO> getAll();
+	public List<ProductVO> getAll();
 	// 萬用複合查詢(傳入參數型態Map)(回傳 List)
 //        public List<AdmMebVO> getAll(Map<String, String[]> map); 
 

@@ -29,7 +29,8 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 
 
 	private static final String INSERT_STMT = "INSERT INTO MATCH_FORM (KOL_IDNUM, PRODUCT_NUM) VALUES (?, ?);";
-	private static final String GET_ALL_STMT = "SELECT KOL_IDNUM, PRODUCT_NUM, MATCH_DATE_TIME, MATCH_RESULT FROM MATCH_FORM order by KOL_IDNUM, PRODUCT_NUM";
+	private static final String GET_ALL_STMT = "select p.PRODUCT_NUM, p.PRODUCT_INTRODUCE, p.PRODUCT_NAME, p.PRODUCT_LINK  from MATCH_FORM m\n"
+			+ "			join PRODUCT p on m.PRODUCT_NUM  = p.PRODUCT_NUM ;";
 	private static final String GET_ONE_STMT = "select p.PRODUCT_NUM, p.PRODUCT_INTRODUCE, p.PRODUCT_NAME, p.PRODUCT_LINK  from MATCH_FORM m"
 			+ " join PRODUCT p on m.PRODUCT_NUM  = p.PRODUCT_NUM "
 			+ " where KOL_IDNUM = ? ;";
@@ -217,8 +218,9 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 	}
 
 	@Override
-	public List<MatchFormVO> getAll() {
-		List<MatchFormVO> list = new ArrayList<MatchFormVO>();
+	public List<ProductVO> getAll() {
+		
+		List<ProductVO> list = new ArrayList<>();
 		MatchFormVO matchFormVO = null;
 
 		Connection con = null;
@@ -232,13 +234,16 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO 也稱為 Domain objects
-				matchFormVO = new MatchFormVO();
-				matchFormVO.setKol_idnum(rs.getInt("kol_idnum"));
-				matchFormVO.setProduct_num(rs.getInt("product_num"));
-				matchFormVO.setMatch_date_time(rs.getTimestamp("match_date_time"));
-				matchFormVO.setMatch_result(rs.getString("match_result"));
-				list.add(matchFormVO); // Store the row in the list
+				
+				ProductVO productVO = new ProductVO();
+				
+				productVO.setProduct_num(rs.getInt("product_num"));
+				productVO.setProduct_introduce(rs.getString("product_introduce"));
+				productVO.setProduct_name(rs.getString("product_name"));
+				productVO.setProduct_link(rs.getString("product_link"));
+				
+				list.add(productVO);
+
 			}
 
 			// Handle any driver errors

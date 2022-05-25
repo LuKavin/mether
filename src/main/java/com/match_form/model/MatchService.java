@@ -39,7 +39,7 @@ public class MatchService {
 		return dao.findByPrimaryKey(kol_idnum);
 	}
 
-	public List<MatchFormVO> getAll() {
+	public List<ProductVO> getAll() {
 		return dao.getAll();
 	}
 }

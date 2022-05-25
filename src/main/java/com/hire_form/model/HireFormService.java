@@ -12,14 +12,14 @@ public class HireFormService {
 
 	public HireFormVO addHireForm(Integer kol_idnum, Integer product_num, String hire_result) {
 
-		HireFormVO hireFormVO = new HireFormVO();
-
-		hireFormVO.setKol_idnum(kol_idnum);
-		hireFormVO.setProduct_num(product_num);
-		hireFormVO.setHire_result(hire_result);
-		dao.insert(hireFormVO);
-
-		return hireFormVO;
+//		HireFormVO hireFormVO = new HireFormVO();
+//
+//		hireFormVO.setKol_idnum(kol_idnum);
+//		hireFormVO.setProduct_num(product_num);
+//		hireFormVO.setHire_result(hire_result);
+//		dao.insert(Integer kol_idnum, Integer product_num);
+//
+		return null;
 	}
 
 	public HireFormVO updateHireForm(Integer kol_idnum, Integer product_num, String hire_result) {
@@ -40,6 +40,10 @@ public class HireFormService {
 
 	public HireFormVO getOneHireForm(Integer kol_idnum, Integer product_num) {
 		return dao.findByPrimaryKey(kol_idnum, product_num);
+	}
+	
+	public String getOne(Integer product_num) {
+		return dao.findComName(product_num);
 	}
 
 	public List<HireFormVO> getAll() {
