@@ -15,7 +15,7 @@ CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
 %>
 <%
 MatchService matchService = new MatchService();
-List<ProductVO> list = matchService.getAll();
+List list = matchService.getOneMatchForm(companyMebVO.getCom_idnum());
 pageContext.setAttribute("list", list);
 %>
 <!DOCTYPE html>
@@ -31,11 +31,11 @@ pageContext.setAttribute("list", list);
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th></th>
-							<th style="font-size: 30px">No.&emsp;&emsp;</th>
-							<th style="font-size: 30px">標題&emsp;&emsp;</th>
-							<th style="font-size: 30px">產品網址</th>
+							<th style="font-size: 30px">No.</th>
+							<th style="font-size: 30px">標題</th>
+							<th style="font-size: 30px">商品價格</th>
 							<th style="font-size: 30px">工作簡介</th>
+							<th></th>
 							<th style="font-size: 30px">接受應徵</th>
 							<th style="font-size: 30px">拒絕應徵</th>
 						</tr>
@@ -45,16 +45,19 @@ pageContext.setAttribute("list", list);
 							<tr>
 								<td>${s.index+1}</td>
 								<td>${productVO.product_name}</td>
-								<td>${productVO.product_link}</td>
+								<td>${productVO.product_budget}</td>
 								<td>${productVO.product_introduce}</td>
 								<td>${productVO.product_deadline}</td>
 								
 								<FORM METHOD="post"
-									ACTION="<%=request.getContextPath()%>/matchform/match.do"
+									ACTION="<%=request.getContextPath()%>/hireform/hire.do"
 									style="margin-bottom: 0px;">
 									<td><input type="submit" value="接受應徵"
 										class="btn btn-block btn-success"> <input type="hidden"
-										name="product_num" value="${productVO.product_num}"> <input
+										name="product_num" value="${productVO.product_num}"> 
+										<input type="hidden"
+										name="kol_idnum" value="${productVO.kol_idnum}"> 
+										<input
 										type="hidden" name="action" value="insert"></td>
 								</FORM>
 								

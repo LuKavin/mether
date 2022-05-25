@@ -35,8 +35,8 @@ public class MatchService {
 		dao.delete(kol_idnum, product_num);
 	}
 
-	public List<ProductVO> getOneMatchForm(Integer kol_idnum) {
-		return dao.findByPrimaryKey(kol_idnum);
+	public List<ProductVO> getOneMatchForm(Integer com_idnum) {
+		return dao.findByPrimaryKey(com_idnum);
 	}
 
 	public List<ProductVO> getAll() {

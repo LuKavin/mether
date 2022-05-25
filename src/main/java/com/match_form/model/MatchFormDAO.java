@@ -1,11 +1,15 @@
 package com.match_form.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -31,9 +35,9 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO MATCH_FORM (KOL_IDNUM, PRODUCT_NUM) VALUES (?, ?);";
 	private static final String GET_ALL_STMT = "select p.PRODUCT_NUM, p.PRODUCT_INTRODUCE, p.PRODUCT_NAME, p.PRODUCT_LINK  from MATCH_FORM m\n"
 			+ "			join PRODUCT p on m.PRODUCT_NUM  = p.PRODUCT_NUM ;";
-	private static final String GET_ONE_STMT = "select p.PRODUCT_NUM, p.PRODUCT_INTRODUCE, p.PRODUCT_NAME, p.PRODUCT_LINK  from MATCH_FORM m"
+	private static final String GET_ONE_STMT = "select p.PRODUCT_NUM, p.PRODUCT_INTRODUCE, p.PRODUCT_NAME, p.PRODUCT_BUDGET, m.KOL_IDNUM  from MATCH_FORM m"
 			+ " join PRODUCT p on m.PRODUCT_NUM  = p.PRODUCT_NUM "
-			+ " where KOL_IDNUM = ? ;";
+			+ " where COM_IDNUM = ? ;";
 	private static final String DELETE = "Delete from MATCH_FORM where KOL_IDNUM = ? and PRODUCT_NUM = ?;";
 	private static final String UPDATE = "UPDATE MATCH_FORM set MATCH_RESULT=? where KOL_IDNUM = ? and PRODUCT_NUM = ?";
 
@@ -154,11 +158,58 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 		}
 
 	}
+	
+	
+//		while (rs.next()) {
+//			Integer order_num = rs.getInt("order_num");
+//			String product_name = rs.getString("product_name");
+//			Date product_deadline = rs.getDate("product_deadline");
+//			String order_status = rs.getString("order_status");
+//			Timestamp order_date = rs.getTimestamp("order_date");
+//
+//			Map map = new HashMap();
+//			map.put("order_num", order_num);
+//			map.put("product_name", product_name);
+//			map.put("product_deadline", product_deadline);
+//			map.put("order_status", order_status);
+//			map.put("order_date", order_date);
+//
+//			list.add(map);// 在將map集合對象存入list集合
+//		}
+//		// Handle any driver errors
+//	} catch (SQLException se) {
+//		throw new RuntimeException("A database error occured. " + se.getMessage());
+//		// Clean up JDBC resources
+//	} finally {
+//		if (rs != null) {
+//			try {
+//				rs.close();
+//			} catch (SQLException se) {
+//				se.printStackTrace(System.err);
+//			}
+//		}
+//		if (pstmt != null) {
+//			try {
+//				pstmt.close();
+//			} catch (SQLException se) {
+//				se.printStackTrace(System.err);
+//			}
+//		}
+//		if (con != null) {
+//			try {
+//				con.close();
+//			} catch (Exception e) {
+//				e.printStackTrace(System.err);
+//			}
+//		}
+//	}
+//	return list;
+//}
 
 	@Override
-	public List<ProductVO> findByPrimaryKey(Integer kol_idnum) {
+	public List findByPrimaryKey(Integer com_idnum) {
 
-		List<ProductVO> list = new ArrayList<>();
+		List list = new ArrayList();
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -168,22 +219,25 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-
-			pstmt.setInt(1, kol_idnum);
-
+			pstmt.setInt(1, com_idnum);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
+				Integer product_num	= rs.getInt("product_num");
+				String product_introduce = rs.getString("product_introduce");
+				String product_name = rs.getString("product_name");
+				Integer product_budget	= rs.getInt("product_budget");
+				Integer kol_idnum = rs.getInt("kol_idnum");
 				
-				ProductVO productVO = new ProductVO();
+				Map map = new HashMap();
+				map.put("product_num", product_num);
+				map.put("product_introduce", product_introduce);
+				map.put("product_name", product_name);
+				map.put("product_budget", product_budget);
+				map.put("kol_idnum", kol_idnum);
 				
-				productVO.setProduct_num(rs.getInt("product_num"));
-				productVO.setProduct_introduce(rs.getString("product_introduce"));
-				productVO.setProduct_name(rs.getString("product_name"));
-				productVO.setProduct_link(rs.getString("product_link"));
-				
-				list.add(productVO);
+				list.add(map);
 
 			}
 
@@ -276,3 +330,6 @@ public class MatchFormDAO implements MatchFormDAO_interface {
 		return list;
 	}
 }
+
+
+

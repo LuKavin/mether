@@ -11,7 +11,7 @@ public interface MatchFormDAO_interface {
 
 	public void delete(Integer kol_idnum, Integer product_num);
 
-	public List<ProductVO> findByPrimaryKey(Integer kol_idnum);
+	public List<ProductVO> findByPrimaryKey(Integer com_idnum);
 	
 
 	public List<ProductVO> getAll();
