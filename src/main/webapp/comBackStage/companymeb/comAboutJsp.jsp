@@ -220,12 +220,12 @@ pageContext.setAttribute("list", list);
 													<button class="btn btn-secondary dropdown-toggle matchMe"
 														type="button" id="dropdownMenuButton"
 														data-bs-toggle="dropdown" aria-expanded="false">我要媒合</button>
-													<ul class="dropdown-menu matchMe"
-														aria-labelledby="dropdownMenuButton1">
-														<li class="matchMe"><a class="dropdown-item" href="#">廠商的商品1</a></li>
-														<li class="matchMe"><a class="dropdown-item" href="#">廠商的商品2</a></li>
-														<li class="matchMe"><a class="dropdown-item" href="#">廠商的商品3</a></li>
-													</ul>
+<!-- 													<ul class="dropdown-menu matchMe" -->
+<!-- 														aria-labelledby="dropdownMenuButton1"> -->
+<!-- 														<li class="matchMe"><a class="dropdown-item" href="#">廠商的商品1</a></li> -->
+<!-- 														<li class="matchMe"><a class="dropdown-item" href="#">廠商的商品2</a></li> -->
+<!-- 														<li class="matchMe"><a class="dropdown-item" href="#">廠商的商品3</a></li> -->
+<!-- 													</ul> -->
 												</div>
 												<!-- <div class="kol_shortinfodiv"><h2 class="kol_shortinfo">關於我</h2></div>																				 -->
 												<!-- <div class="kol_worktype">
