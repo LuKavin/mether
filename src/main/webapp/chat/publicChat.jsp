@@ -1,3 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.kolmeb.model.*"%>
+<%@ page import="com.companymeb.model.*"%>
+<%
+KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");
+CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,15 +18,17 @@
 </head>
 
 <body onload="connect();" onunload="disconnect();">
-	<h1>Chat Room</h1>
+	<h1></h1>
 	<h3 id="statusOutput" class="statusOutput"></h3>
 	<textarea id="messagesArea" class="panel message-area" readonly></textarea>
 	<div class="panel input-area">
-		<input id="userName" class="text-field" type="text" placeholder="User name" /> 
+		<input id="userName" class="text-field" type="text" placeholder="尚未註冊的會員請先註冊再使用" readonly="readonly"
+				<c:if test="${not empty kolMebVO.kol_name}">value='${kolMebVO.kol_name}'</c:if>
+				<c:if test="${not empty companyMebVO.com_name}">value='${companyMebVO.com_name}'</c:if> /> 
 		<input id="message" class="text-field" type="text" placeholder="Message" onkeydown="if (event.keyCode == 13) sendMessage();" /> 
 		<input type="submit" id="sendMessage" class="button" value="Send" onclick="sendMessage();" /> 
-		<input type="button" id="connect" class="button" value="Connect" onclick="connect();" /> 
-		<input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" />
+<!-- 		<input type="button" id="connect" class="button" value="Connect" onclick="connect();" />  -->
+<!-- 		<input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" /> -->
 	</div>
 </body>
 
@@ -35,7 +47,7 @@
 		webSocket = new WebSocket(endPointURL);
 
 		webSocket.onopen = function(event) {
-			updateStatus("WebSocket Connected");
+			updateStatus("歡迎來到MetHer公共聊天室");
 			document.getElementById('sendMessage').disabled = false;
 			document.getElementById('connect').disabled = true;
 			document.getElementById('disconnect').disabled = false;
@@ -50,7 +62,7 @@
 		};
 
 		webSocket.onclose = function(event) {
-			updateStatus("WebSocket Disconnected");
+			updateStatus("目前離線中");
 		};
 	}
 

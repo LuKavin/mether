@@ -20,7 +20,7 @@ html, body {
 		Microsoft JhengHei;
 	width: 90%;
 	height: 90%;
-	background: #e5a1e0;
+	background: #ffb7dd;
 }
 
 #userName {
@@ -43,7 +43,7 @@ html, body {
 }
 
 .button {
-	background-color: #e11dc3;
+	background-color: #ff44aa;
 	color: #ffffff;
 	border-radius: 5px;
 	position: absolute;

@@ -7,8 +7,8 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-OrderMasterService orderMasterSvc = new OrderMasterService();
-List<OrderMasterVO> list = orderMasterSvc.getAll();
+BackStageService backStageSvc = new BackStageService();
+List list = backStageSvc.getOrderMasterNew();
 pageContext.setAttribute("list", list);
 %>
 
@@ -47,7 +47,7 @@ pageContext.setAttribute("list", list);
 								<tr>
 									<th>訂單編號 <i class="fas fa-sort-amount-up"></i>
 									</th>
-									<th>商品編號 <i class="fas fa-sort-amount-up"></i>
+									<th>商品名稱 <i class="fas fa-sort-amount-up"></i>
 									</th>
 									<th>交易狀態 <i class="fas fa-sort-amount-up"></i>
 									</th>
@@ -62,7 +62,7 @@ pageContext.setAttribute("list", list);
 									begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 									<tr>
 										<td>${orderMasterVO.order_num}</td>
-										<td>${orderMasterVO.product_num}</td>
+										<td>${orderMasterVO.product_name}</td>
 										<td>${orderMasterVO.order_status}</td>
 										<td>${orderMasterVO.order_date}</td>
 
@@ -73,9 +73,9 @@ pageContext.setAttribute("list", list);
 													<FORM METHOD="post"
 														ACTION="<%=request.getContextPath()%>/backStage/backStage.do"
 														style="width: 150px; display: inline">
-														<input type="hidden" name="action" value="getOneCom">
-														<input type="hidden" name="com_idnum"
-															value="${companyMebVO.com_idnum}">
+														<input type="hidden" name="action"
+															value="getOneOrderMaster"> <input type="hidden"
+															name="order_number" value="${orderMasterVO.order_num}">
 														<button class="btn btn-info" type="submit">
 															<i class="fas fa-eye">_詳細資料</i>
 														</button>
@@ -85,7 +85,7 @@ pageContext.setAttribute("list", list);
 													<i class="fas fa-cog">_更改狀態</i>
 												</div>
 												<div class="dropdown-menu dropdown-menu">
-												<FORM METHOD="post"
+													<FORM METHOD="post"
 														ACTION="<%=request.getContextPath()%>/backStage/backStage.do">
 														<input type="hidden" name="action" value="OrderUpdateDown">
 														<input type="hidden" name="order_num"

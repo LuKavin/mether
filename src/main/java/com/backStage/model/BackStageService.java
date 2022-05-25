@@ -56,7 +56,7 @@ public class BackStageService {
 	public List getKolAccess2() {
 		return dao.getKolAccess2();
 	}
-	
+
 	public List getKolPhoto() {
 		return dao.getKolPhoto();
 	}
@@ -64,13 +64,16 @@ public class BackStageService {
 	public List getKolSearch(String search) {
 		return dao.getKolSearch(search);
 	}
-	
+
 	public List getComSearch(String search) {
 		return dao.getComSearch(search);
 	}
-	
+
 	public List getProductSearch(String search) {
 		return dao.getProductSearch(search);
 	}
-	
+
+	public List getAllOrderMaster(Integer order_number) {
+		return dao.getAllOrderMaster(order_number);
+	}
 }

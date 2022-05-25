@@ -135,10 +135,10 @@ pageContext.setAttribute("list", list);
 										href="<%=request.getContextPath()%>/logout/companyMebJspLogout.jsp">會員登出</a></li>
 								</ul></li>
 							<li class="has-dropdown active"><a
-								href="<%=request.getContextPath()%>/index.html">聊天室</a>
+								href="#">聊天室</a>
 								<ul class="dropdown">
-									<li><a href="<%=request.getContextPath()%>/index.html">公共聊天室</a></li>
-									<li><a href="<%=request.getContextPath()%>/index.jsp">私人聊天室</a></li>
+									<li><a href="<%=request.getContextPath()%>/chat/publicChat.jsp" target="_blank">公共聊天室</a></li>
+									<li><a href="<%=request.getContextPath()%>/chat/index.jsp" target="_blank">私人聊天室</a></li>
 								</ul></li>
 						</ul>
 					</div>

@@ -265,5 +265,32 @@ public class BackStageServlet extends HttpServlet {
 			}
 		}
 
+		// 訂單詳細資料
+		if ("getOneOrderMaster".equals(action)) {
+
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 ****************************************/
+				Integer order_num = new Integer(req.getParameter("order_number"));
+
+				/*************************** 2.開始查詢資料 ****************************************/
+				BackStageService backStageService = new BackStageService();
+				List list = backStageService.getAllOrderMaster(order_num);
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
+				req.setAttribute("list", list);
+				String url = "/backStage/order/order_profile.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 **********************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/backStage/order/meb_orderlist.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
 	}
 }

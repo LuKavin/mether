@@ -119,6 +119,7 @@ pageContext.setAttribute("list2", list2);
 
 						</ul>
 					</div>
+
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
 							<li class="active"><a
@@ -136,7 +137,12 @@ pageContext.setAttribute("list2", list2);
 									<li><a
 										href="<%=request.getContextPath()%>/logout/companyMebJspLogout.jsp">會員登出</a></li>
 								</ul></li>
-							<li><a href="contact.html">關於我們</a></li>
+							<li class="has-dropdown active"><a
+								href="#">聊天室</a>
+								<ul class="dropdown">
+									<li><a href="<%=request.getContextPath()%>/chat/publicChat.jsp" target="_blank">公共聊天室</a></li>
+									<li><a href="<%=request.getContextPath()%>/chat/index.jsp" target="_blank">私人聊天室</a></li>
+								</ul></li>
 						</ul>
 					</div>
 				</div>
@@ -147,14 +153,14 @@ pageContext.setAttribute("list2", list2);
 		<header id="fh5co-header" class="fh5co-cover" role="banner"
 			style="background-image: url(<%=request.getContextPath()%>/resources/images/img_bg_1.jpg);"
 			data-stellar-background-ratio="0.5">
-			<div class="overlay"></div>
+			<div class="overlay" style="margin-bottom: 1000px"></div>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">
 						<div class="display-t">
 							<div class="display-tc animate-box" data-animate-effect="fadeIn">
-								<h1>Welcome</h1>
-								<h2>MetHer網紅廠商媒合平台</h2>
+								<h1>Hello</h1>
+								<h2>想找的結果都在下面喔</h2>
 							</div>
 						</div>
 					</div>

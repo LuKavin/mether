@@ -51,18 +51,18 @@ public class SearchServlet extends HttpServlet {
 				req.setAttribute("list1", list1);
 				req.setAttribute("list2", list2);
 				if (!list.isEmpty() || !list1.isEmpty() || !list2.isEmpty()) {
-					String url = "/Search.jsp";
+					String url = "/search/Search.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);
 					successView.forward(req, res);
 				} else if (list.isEmpty() && list1.isEmpty() && list2.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/SearchFail.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/search/SearchFail.jsp");
 					failureView.forward(req, res);
 				}
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/SearchFail.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/search/SearchFail.jsp");
 				failureView.forward(req, res);
 			}
 		}

@@ -88,54 +88,6 @@ pageContext.setAttribute("kolMebcount", kolMebcount);
 				</div>
 				<!-- ./col -->
 			</div>
-			<div class="row">
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-warning">
-						<div class="inner">
-							<h3>媒合成功率</h3>
-							<p>87 %</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-pie-graph"></i>
-						</div>
-						<a href="#" class="small-box-footer">More info <i
-							class="fas fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-orange">
-						<div class="inner">
-							<h3>總瀏覽量</h3>
-							<p>187 瀏覽</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-ios-eye"></i>
-						</div>
-						<a href="#" class="small-box-footer">More info <i
-							class="fas fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-cyan">
-						<div class="inner">
-							<h3>我的信箱</h3>
-							<p>817 封信</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-ios-email-outline"></i>
-						</div>
-						<a href="meb_mailinbox.jsp" class="small-box-footer">More info
-							<i class="fas fa-arrow-circle-right"></i>
-						</a>
-					</div>
-				</div>
-				<!-- ./col -->
-			</div>
 			<!-- 最新訂單 -->
 
 			<div class="row">
