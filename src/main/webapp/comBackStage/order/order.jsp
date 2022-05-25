@@ -88,7 +88,6 @@ pageContext.setAttribute("list", list);
 						<div class="row trade-head m-3">
 							<p>交易對象：</p>
 								<p>${kol_account}</p>
-							<div class="btn btn-danger ml-auto">取消交易</div>
 						</div>
 					</div>
 					<!--  -->

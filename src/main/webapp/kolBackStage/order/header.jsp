@@ -109,12 +109,12 @@ KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");//讀取登入�
 								</p>
 						</a></li>
 
-						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
-								<p>
-									<i class="fa fa-address-book" aria-hidden="true"></i> 應徵列表
-								</p>
-						</a></li>
+<!-- 						<li class="nav-header" style="font-size: 25px;"><a -->
+<!-- 							href="meb_kol.html" class="nav-link"> -->
+<!-- 								<p> -->
+<!-- 									<i class="fa fa-address-book" aria-hidden="true"></i> 應徵列表 -->
+<!-- 								</p> -->
+<!-- 						</a></li> -->
 
 						<li class="nav-header" style="font-size: 25px;"><a
 							href="meb_kol.html" class="nav-link">
@@ -124,9 +124,9 @@ KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");//讀取登入�
 						</a></li>
 
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
+							href="<%=request.getContextPath()%>/kolBackStage/kolmeb/kolMebJspThree.jsp" class="nav-link">
 								<p>
-									<i class="fas fa-address-card"></i> 基本資料
+									<i class="fas fa-address-card"></i> 資料修改
 								</p>
 						</a></li>
 
@@ -143,6 +143,14 @@ KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");//讀取登入�
 							class="nav-link">
 								<p>
 									<i class="fa fa-envelope" aria-hidden="true"></i> 信箱
+								</p>
+						</a></li>
+						
+						<li class="nav-header" style="font-size: 25px; margin-top:40px"><a
+							href="<%=request.getContextPath()%>/metherIndex.jsp"
+							class="nav-link">
+								<p>
+									<i class="fa fa-home" aria-hidden="true" style="font-size: 31px;"></i> 回首頁
 								</p>
 						</a></li>
 

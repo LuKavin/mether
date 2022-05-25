@@ -98,7 +98,6 @@ pageContext.setAttribute("list", list);
 							<a href="#">
 								<p>${kol_account}</p>
 							</a>
-							<div class="btn btn-danger ml-auto">取消交易</div>
 						</div>
 					</div>
 					<div class="row trade-step2 ">

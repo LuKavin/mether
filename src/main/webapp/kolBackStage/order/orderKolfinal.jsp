@@ -86,7 +86,6 @@
 							<a href="#">
 								<p>${com_account}</p>
 							</a>
-							<div class="btn btn-danger ml-auto">取消交易</div>
 						</div>
 					</div>
 					<!--  -->
@@ -154,54 +153,6 @@
 											</div>
 										</div>
 										<!-- 留言板頁籤 -->
-										<div class="tab-pane fade" id="custom-tabs-one-profile"
-											role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-											<div class="card card-warning card-outline">
-												<div class="card-header">
-													<div class="row">
-														<div class="container h4"
-															style="text-align: center; background-color: rgb(234, 240, 250);">
-															留言者對象：顯示廠商/網紅</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-2 p-1">
-															<h5>標題：</h5>
-														</div>
-														<p>！！！動態抓出→標題←區塊！！！</p>
-													</div>
-												</div>
-												<div class="card-body">！！！動態抓出→內容←區塊！！！</div>
-											</div>
-											<div class="card card-warning card-outline msg-input">
-												<div class="card-header">
-													<div class="row ">
-														<div class="col-sm-6"></div>
-														<div class="col-sm-6">
-															<div class="btn btn-outline-warning pull-right cln-send">清空重寫</div>
-														</div>
-													</div>
-												</div>
-												<div class="card-body">
-													<div class="row m-2">
-														<label class="col-sm-2 col-form-label text-center">標題：</label>
-														<div class="col-sm-10">
-															<input type="email"
-																class="form-control send-subject msg_title"
-																placeholder="Subject:">
-														</div>
-													</div>
-													<div class="form-group">
-														<div id="summernote"></div>
-													</div>
-													<div class="card-footer">
-														<div class="float-right">
-															<button class="btn btn-warning msg-ok" type="submit">留言</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
 
 
 
