@@ -43,9 +43,6 @@ public class SearchServlet extends HttpServlet {
 				List list = backStageMebService.getKolSearch(search);
 				List list1 = backStageMebService.getComSearch(search);
 				List list2 = backStageMebService.getProductSearch(search);
-				System.out.println(list);
-				System.out.println(list1);
-				System.out.println(list2);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("list", list);
 				req.setAttribute("list1", list1);
