@@ -117,7 +117,7 @@ KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");//讀取登入�
 <!-- 						</a></li> -->
 
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
+							href="<%=request.getContextPath()%>/findcom/hireform/matchform.jsp" class="nav-link">
 								<p>
 									<i class="fa fa-handshake-o" aria-hidden="true"></i> 媒合列表
 								</p>
@@ -131,7 +131,7 @@ KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");//讀取登入�
 						</a></li>
 
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
+							href="<%=request.getContextPath()%>/kolFavor/kolfavor.jsp" class="nav-link">
 								<p>
 									<i class="fa fa-heart" aria-hidden="true"></i> 我的最愛
 								</p>
