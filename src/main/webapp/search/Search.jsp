@@ -124,8 +124,10 @@ pageContext.setAttribute("list2", list2);
 						<ul>
 							<li class="active"><a
 								href="<%=request.getContextPath()%>/metherIndex.jsp">首頁</a></li>
-							<li><a href="about.html">找廠商</a></li>
-							<li><a href="services.html">找網紅</a></li>
+							<li><a
+								href="<%=request.getContextPath()%>/findcom/hireform/listallcom.jsp">找廠商</a></li>
+							<li><a
+								href="<%=request.getContextPath()%>/findkol/matchform/listallkol.jsp">找網紅</a></li>
 							<li class="has-dropdown active"><a
 								href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJsp.jsp">會員中心</a>
 								<ul class="dropdown">
@@ -133,15 +135,18 @@ pageContext.setAttribute("list2", list2);
 										href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJsp.jsp">會員註冊</a></li>
 									<li><a
 										href="<%=request.getContextPath()%>/login/companyMebJspLogin.jsp">會員登入</a></li>
-									<li><a href="#">會員中心</a></li>
+									<li><a
+										href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJspThree.jsp">會員中心</a></li>
 									<li><a
 										href="<%=request.getContextPath()%>/logout/companyMebJspLogout.jsp">會員登出</a></li>
 								</ul></li>
-							<li class="has-dropdown active"><a
-								href="#">聊天室</a>
+							<li class="has-dropdown active"><a href="#">聊天室</a>
 								<ul class="dropdown">
-									<li><a href="<%=request.getContextPath()%>/chat/publicChat.jsp" target="_blank">公共聊天室</a></li>
-									<li><a href="<%=request.getContextPath()%>/chat/index.jsp" target="_blank">私人聊天室</a></li>
+									<li><a
+										href="<%=request.getContextPath()%>/chat/publicChat.jsp"
+										target="_blank">公共聊天室</a></li>
+									<li><a href="<%=request.getContextPath()%>/chat/index.jsp"
+										target="_blank">私人聊天室</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -190,10 +195,15 @@ pageContext.setAttribute("list2", list2);
 
 								<li class="one-third animate-box" data-animate-effect="fadeIn"
 									style="background-image: url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${KolPhotoVO.meb_photonum});"><a
-									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
-									class="color-2">
+									href="#" class="color-2 checksession">
 										<div class="case-studies-summary">
 											<h2>${KolPhotoVO.kol_name}</h2>
+											<FORM id="submitcheck" METHOD="post"
+												ACTION="<%=request.getContextPath()%>/serch.do" >
+												<input type="hidden" name="kol_idnum"
+													value="${KolPhotoVO.kol_idnum}"> <input
+													type="hidden" name="action" value="getOneKolSearch">
+											</FORM>
 										</div>
 								</a></li>
 
@@ -203,10 +213,15 @@ pageContext.setAttribute("list2", list2);
 
 								<li class="one-third animate-box" data-animate-effect="fadeIn"
 									style="background-image: url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${ComPhotoVO.meb_photonum});"><a
-									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
-									class="color-2">
+									href="#" class="color-2 checksession">
 										<div class="case-studies-summary">
 											<h2>${ComPhotoVO.com_name}</h2>
+											<FORM id="submitcheck" METHOD="post"
+												ACTION="<%=request.getContextPath()%>/serch.do" >
+												<input type="hidden" name="com_idnum"
+													value="${ComPhotoVO.com_idnum}"> <input
+													type="hidden" name="action" value="getOneComSearch">
+											</FORM>
 										</div>
 								</a></li>
 
@@ -216,10 +231,16 @@ pageContext.setAttribute("list2", list2);
 
 								<li class="one-third animate-box" data-animate-effect="fadeIn"
 									style="background-image: url(<%=request.getContextPath()%>/ReadProductPhoto?product_photonum=${ProductPhotoVO.product_photonum});"><a
-									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
-									class="color-2">
+									href="#"
+									class="color-2 checksession">
 										<div class="case-studies-summary">
 											<h2>${ProductPhotoVO.product_name}</h2>
+											<FORM id="submitcheck" METHOD="post"
+												ACTION="<%=request.getContextPath()%>/serch.do" >
+												<input type="hidden" name="product_num"
+													value="${ProductPhotoVO.product_num}"> <input
+													type="hidden" name="action" value="getOneProductSearch">
+											</FORM>
 										</div>
 								</a></li>
 
@@ -290,6 +311,15 @@ pageContext.setAttribute("list2", list2);
 		src="<%=request.getContextPath()%>/resources/js/simplyCountdown.js"></script>
 	<!-- Main -->
 	<script src="<%=request.getContextPath()%>/resources/js/main.js"></script>
+	
+	 <script>
+     window.onload=function(){
+         $(".checksession").on("click", function(e) {
+        	 e.preventDefault();
+             $(this).find("#submitcheck").submit();
+         });
+     }
+    </script>
 
 </body>
 </html>
