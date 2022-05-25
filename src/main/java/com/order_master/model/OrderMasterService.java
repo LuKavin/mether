@@ -11,7 +11,7 @@ public class OrderMasterService {
 	}
 
 	public OrderMasterVO addOrderMaster(Integer product_num, Integer kol_idnum, Integer com_idnum, String order_status,
-			Integer order_amount, String com_rate, String kol_rate, Integer com_star, Integer kol_star) {
+			Integer order_amount) {
 
 		OrderMasterVO orderMasterVO = new OrderMasterVO();
 
@@ -20,10 +20,6 @@ public class OrderMasterService {
 		orderMasterVO.setCom_idnum(com_idnum);
 		orderMasterVO.setOrder_status(order_status);
 		orderMasterVO.setOrder_amount(order_amount);
-		orderMasterVO.setCom_rate(com_rate);
-		orderMasterVO.setKol_rate(kol_rate);
-		orderMasterVO.setCom_star(com_star);
-		orderMasterVO.setKol_star(kol_star);
 		dao.insert(orderMasterVO);
 
 		return orderMasterVO;

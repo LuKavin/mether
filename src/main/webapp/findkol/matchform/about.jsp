@@ -117,7 +117,7 @@ pageContext.setAttribute("com_name", com_name);
 											<div class="col-2">
 												<br> <br> <br> <br> <br> <br>
 												<br> <br> <img
-													src="<%=request.getContextPath()%>/viewpic?id=${productVO.product_num}"
+													<%-- src="<%=request.getContextPath()%>/viewpic?id=${productVO.product_num}" --%>
 													class="kol_img">
 											</div>
 

@@ -38,15 +38,10 @@ public class HireFormServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-				System.out.println("41");
 				Integer product_num = new Integer(req.getParameter("product_num"));
 				Integer kol_idnum = new Integer(req.getParameter("kol_idnum"));
 				String order_status = "製作中";
 				Integer order_amount = 500; 
-				String com_rate = "5";
-				String kol_rate = "4";
-				Integer com_star = 5;
-				Integer kol_star = 4;
 
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("comBackStage/hireform/applyjob.jsp");
@@ -56,7 +51,7 @@ public class HireFormServlet extends HttpServlet {
 
 				/*************************** 2.開始新增資料 ***************************************/
 				OrderMasterService orderMasterService = new OrderMasterService();
-				orderMasterService.addOrderMaster(product_num, kol_idnum, companyMebVO.getCom_idnum(), order_status,order_amount, com_rate, kol_rate, com_star, kol_star );
+				orderMasterService.addOrderMaster(product_num, kol_idnum, companyMebVO.getCom_idnum(), order_status,order_amount );
 				MatchService matchService = new MatchService();
 				matchService.deleteMatchForm(kol_idnum, product_num);
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/

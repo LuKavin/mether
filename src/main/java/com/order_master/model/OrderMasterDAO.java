@@ -25,7 +25,7 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO ORDER_MASTER (PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO ORDER_MASTER (PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_AMOUNT) VALUES (?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT ORDER_NUM, PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_DATE, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR FROM ORDER_MASTER order by ORDER_NUM";
 	
 	private static final String GET_COM_ORDER_LIST = "SELECT ORDER_NUM, PRODUCT_NUM, KOL_IDNUM, COM_IDNUM, ORDER_STATUS, ORDER_DATE, ORDER_AMOUNT, COM_RATE, KOL_RATE, COM_STAR, KOL_STAR FROM ORDER_MASTER where COM_IDNUM = ?";
@@ -54,10 +54,6 @@ public class OrderMasterDAO implements OrderMasterDAO_interface {
 			pstmt.setInt(3, orderMasterVO.getCom_idnum());
 			pstmt.setString(4, orderMasterVO.getOrder_status());
 			pstmt.setInt(5, orderMasterVO.getOrder_amount());
-			pstmt.setString(6, orderMasterVO.getCom_rate());
-			pstmt.setString(7, orderMasterVO.getKol_rate());
-			pstmt.setInt(8, orderMasterVO.getCom_star());
-			pstmt.setInt(9, orderMasterVO.getKol_star());
 
 			pstmt.executeUpdate();
 
