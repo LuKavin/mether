@@ -157,14 +157,19 @@
 
 								<div class="row">
 								
-									<div class="col-md-6">
+									<div class="col-md-4">
 									<div class="float-right">
 										<a class="btn btn-primary" id="V_member_save" href="/mether/kolBackStage/kolmeb/kolPhotoIndexJspTwo.jsp">編輯照片</a>
 									</div>
 									</div>
-									<div class="col-md-6">
-									<div class="float-left">
+									<div class="col-md-4">
+									<div class="float-middle">
 										<button type="submit" class="btn btn-primary" id="K_member_save">儲存資料</button>
+									</div>
+									</div>
+									<div class="col-md-4">
+									<div class="float-left">
+										<a class="btn btn-primary" id="V_member_save" href="/mether/kolBackStage/kolmeb/kolAboutJsp.jsp">會員預覽</a>
 									</div>
 									</div>
 								</div>

@@ -285,12 +285,12 @@ th, td {
 								</p>
 						</a></li>
 
-						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
-								<p>
-									<i class="fa fa-handshake-o" aria-hidden="true"></i> 媒合列表
-								</p>
-						</a></li>
+<!-- 						<li class="nav-header" style="font-size: 25px;"><a -->
+<!-- 							href="meb_kol.html" class="nav-link"> -->
+<!-- 								<p> -->
+<!-- 									<i class="fa fa-handshake-o" aria-hidden="true"></i> 媒合列表 -->
+<!-- 								</p> -->
+<!-- 						</a></li> -->
 
 						<li class="nav-header" style="font-size: 25px;"><a
 							href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJspThree.jsp" class="nav-link">
@@ -314,6 +314,15 @@ th, td {
 									<i class="fa fa-envelope" aria-hidden="true"></i> 信箱
 								</p>
 						</a></li>
+						
+						<li class="nav-header" style="font-size: 25px; margin-top:40px"><a
+							href="<%=request.getContextPath()%>/metherIndex.jsp"
+							class="nav-link">
+								<p>
+									<i class="fa fa-home" aria-hidden="true" style="font-size: 31px;"></i> 回首頁
+								</p>
+						</a></li>
+						
 
 					</ul>
 				</nav>
