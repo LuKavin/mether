@@ -46,7 +46,8 @@ public class BackStageDAO implements BackStageDAO_interface {
 	private static final String GET_KOL_SEARCH = "SELECT k.KOL_IDNUM, k.KOL_NAME, min(m.MEB_PHOTONUM) FROM MEMBER_PHOTO m join KOL_MEB k on m.KOL_IDNUM = k.KOL_IDNUM where KOL_NAME like concat('%',?,'%' ) group by k.KOL_IDNUM, m.KOL_IDNUM";
 	private static final String GET_COM_SEARCH = "SELECT c.COM_IDNUM, c.COM_NAME, min(m.MEB_PHOTONUM) from MEMBER_PHOTO m join COMPANY_MEB c on m.COM_IDNUM = c.COM_IDNUM where COM_NAME like concat('%',?,'%' ) group by c.COM_IDNUM, m.KOL_IDNUM";
 	private static final String GET_PRODUCT_SEARCH = "SELECT p.PRODUCT_NUM, p.PRODUCT_NAME, min(i.PRODUCT_PHOTONUM) from PRODUCT p join PRODUCT_PHOTO i on p.PRODUCT_NUM = i.PRODUCT_NUM where PRODUCT_NAME like concat('%',?,'%' ) group by p.PRODUCT_NUM, i.PRODUCT_NUM";
-	
+	private static final String GET_ALL_ORDERMASTER = "SELECT opk.ORDER_NUM, ORDER_STATUS, ORDER_DATE, PRODUCT_NAME, PRODUCT_DEADLINE, opk.KOL_NAME, c.COM_NAME FROM (SELECT op.ORDER_NUM, ORDER_STATUS, ORDER_DATE, PRODUCT_NAME, PRODUCT_DEADLINE, k.KOL_NAME, op.COM_IDNUM FROM (SELECT ORDER_NUM, KOL_IDNUM, o.COM_IDNUM, ORDER_STATUS, ORDER_DATE, PRODUCT_NAME, PRODUCT_DEADLINE FROM ORDER_MASTER o join PRODUCT p on o.PRODUCT_NUM = p.PRODUCT_NUM) op join KOL_MEB k on op.KOL_IDNUM = k.KOL_IDNUM) opk join COMPANY_MEB c on opk.COM_IDNUM = c.COM_IDNUM where ORDER_NUM = ?";
+
 	// 廠商數量
 	public Integer companyMebcount() {
 		Integer count = null;
@@ -711,9 +712,9 @@ public class BackStageDAO implements BackStageDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_KOL_SEARCH);
-			
+
 			pstmt.setString(1, search);
-			
+
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Integer kol_idnum = rs.getInt("kol_idnum");
@@ -756,7 +757,7 @@ public class BackStageDAO implements BackStageDAO_interface {
 		}
 		return list;
 	}
-	
+
 	// 廠商搜尋
 	public List getComSearch(String search) {
 		List list = new ArrayList();
@@ -769,9 +770,9 @@ public class BackStageDAO implements BackStageDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_COM_SEARCH);
-			
+
 			pstmt.setString(1, search);
-			
+
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -828,9 +829,9 @@ public class BackStageDAO implements BackStageDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_PRODUCT_SEARCH);
-			
+
 			pstmt.setString(1, search);
-			
+
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -842,6 +843,73 @@ public class BackStageDAO implements BackStageDAO_interface {
 				map.put("product_num", product_num);
 				map.put("product_name", product_name);
 				map.put("product_photonum", product_photonum);
+
+				list.add(map);// 在將map集合對象存入list集合
+			}
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	// 訂單詳細資料
+	public List getAllOrderMaster(Integer order_number) {
+		List list = new ArrayList();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_ORDERMASTER);
+
+			pstmt.setInt(1, order_number);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Integer order_num = rs.getInt("order_num");
+				String order_status = rs.getString("order_status");
+				Timestamp order_date = rs.getTimestamp("order_date");
+				String product_name = rs.getString("product_name");
+				Date product_deadline = rs.getDate("product_deadline");
+				String kol_name = rs.getString("kol_name");
+				String com_name = rs.getString("com_name");
+
+				Map map = new HashMap();
+				map.put("order_num", order_num);
+				map.put("order_status", order_status);
+				map.put("order_date", order_date);
+				map.put("product_name", product_name);
+				map.put("product_deadline", product_deadline);
+				map.put("kol_name", kol_name);
+				map.put("com_name", com_name);
 
 				list.add(map);// 在將map集合對象存入list集合
 			}

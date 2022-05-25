@@ -18,7 +18,7 @@ import com.adm_meb.model.AdmMebVO;
 
 @MultipartConfig
 @WebServlet("/admLogin")
-public class BackstageServlet extends HttpServlet {
+public class AdmLoginServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);

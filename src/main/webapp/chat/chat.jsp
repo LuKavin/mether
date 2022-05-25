@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="css/friendchat.css" type="text/css" />
+<link rel="stylesheet" href="/chat/css/friendchat.css" type="text/css" />
 <style type="text/css">
 * {
 	margin: auto;
@@ -16,12 +16,12 @@ html, body {
 		Microsoft JhengHei;
 	width: 90%;
 	height: 90%;
-	background: #e5a1e0;
+	background: #ffb7dd;
 }
 
 .panel {
 	float: right;
-	border: 2px solid #e11dc3;
+	border: 2px solid #ff44aa;
 	border-radius: 5px;
 	width: 50%;
 }
@@ -35,8 +35,8 @@ html, body {
 }
 
 .input-area {
-	background: #e11dc3;
-	box-shadow: inset 0 0 10px #e11dc3;
+	background: #ff88c2;
+	box-shadow: inset 0 0 10px #ff44aa;
 }
 
 .input-area input {
@@ -44,9 +44,9 @@ html, body {
 }
 
 .text-field {
-	border: 1px solid #e11dc3;
+	border: 1px solid #ff88c2;
 	padding: 0.2em;
-	box-shadow: 0 0 5px #e11dc3;
+	box-shadow: 0 0 5px #ff44aa;
 }
 
 h1 {
@@ -61,12 +61,12 @@ h1 {
 }
 
 .statusOutput {
-	background: #e11dc3;
+	background: #ff88c2;
 	text-align: center;
 	color: #ffffff;
-	border: 1px solid #e11dc3;
+	border: 1px solid #ff44aa;
 	padding: 0.2em;
-	box-shadow: 0 0 5px #e11dc3;
+	box-shadow: 0 0 5px #ff88c2;
 	width: 30%;
 	margin-top: 10%;
 	margin-left: 60%;
@@ -107,7 +107,7 @@ ul li{
 
 .me{
   float: right;
-  background: #e11dc3;
+  background: #ff88c2;
   color: #fff;
 }
 
@@ -133,8 +133,8 @@ ul li{
 	<div class="panel input-area">
 		<input id="message" class="text-field" type="text" placeholder="Message" onkeydown="if (event.keyCode == 13) sendMessage();" /> 
 		<input type="submit" id="sendMessage" class="button" value="Send" onclick="sendMessage();" /> 
-		<input type="button" id="connect" class="button" value="Connect" onclick="connect();" /> 
-		<input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" />
+<!-- 		<input type="button" id="connect" class="button" value="Connect" onclick="connect();" />  -->
+<!-- 		<input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" /> -->
 	</div>
 </body>
 <script>

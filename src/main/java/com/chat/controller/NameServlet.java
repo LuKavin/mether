@@ -18,7 +18,7 @@ public class NameServlet extends HttpServlet {
 		
 		req.setAttribute("userName", userName);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/chat.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/chat/chat.jsp");
 		dispatcher.forward(req, res);
 	}
 }
