@@ -298,6 +298,15 @@ th, td {
 									<i class="fa fa-envelope" aria-hidden="true"></i> 信箱
 								</p>
 						</a></li>
+						
+						<li class="nav-header" style="font-size: 25px; margin-top:40px"><a
+							href="<%=request.getContextPath()%>/metherIndex.jsp"
+							class="nav-link">
+								<p>
+									<i class="fa fa-home" aria-hidden="true" style="font-size: 31px;"></i> 回首頁
+								</p>
+						</a></li>
+						
 
 					</ul>
 				</nav>
