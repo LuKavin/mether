@@ -147,7 +147,7 @@ pageContext.setAttribute("com_name", com_name);
 															<FORM METHOD="post"
 																ACTION="<%=request.getContextPath()%>/matchform/match.do">
 																<button class="btn btn-outline-secondary matchMe"
-																	type="submit" aria-expanded="false">
+																	type="submit" aria-expanded="false" onclick="return(confirm('確認申請'))">
 																	<p style="color: white; font-size: 20px; margin: 0">我要媒合</p>
 																</button>
 																<input type="hidden" name="product_num"

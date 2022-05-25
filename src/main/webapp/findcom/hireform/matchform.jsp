@@ -33,7 +33,7 @@ pageContext.setAttribute("list", list);
 						<tr>
 							<th>No.</th>
 							<th>標題</th>
-							<th>產品網址</th>
+							<th>商品金額</th>
 							<th>工作內容</th>
 							<th>工作申請</th>
 						</tr>
@@ -43,7 +43,7 @@ pageContext.setAttribute("list", list);
 							<tr>
 								<td>${s.index+1}</td>
 								<td>${productVO.product_name}</td>
-								<td>${productVO.product_link}</td>
+								<td>${productVO.product_budget}</td>
 								<td>${productVO.product_introduce}</td>
 								
 								
@@ -51,7 +51,7 @@ pageContext.setAttribute("list", list);
 										ACTION="<%=request.getContextPath()%>/matchform/match.do"
 										style="margin-bottom: 0px;">
 								<td>
-								<input type="submit" value="移除邀約" class="btn btn-block btn-danger">
+								<input type="submit" value="移除申請" class="btn btn-block btn-danger">
 								<input type="hidden" name="product_num"	value="${productVO.product_num}">
 								<input type="hidden" name="action" value="delete">
 								</td>

@@ -72,7 +72,7 @@ pageContext.setAttribute("list", list);
 											<br>
 											<br>
 											<span> <a
-											href="<%=request.getContextPath()%>/kolBackStage/matchform/about.jsp?product_num=${productVO.product_num}"><b>VIEW
+											href="<%=request.getContextPath()%>/findkol/matchform/about.jsp?product_num=${productVO.product_num}"><b>VIEW
 													JOB</b></a></span> 
 										</div>
 									</div>
