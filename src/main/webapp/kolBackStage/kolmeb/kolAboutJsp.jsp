@@ -74,12 +74,16 @@ pageContext.setAttribute("list", list);
 							<a href="<%=request.getContextPath()%>/metherIndex.jsp">MetHer<strong>.</strong></a>
 						</div>
 					</div>
+
+
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
 							<li class="active"><a
 								href="<%=request.getContextPath()%>/metherIndex.jsp">首頁</a></li>
-							<li><a href="about.html">找廠商</a></li>
-							<li><a href="services.html">找網紅</a></li>
+							<li><a
+								href="<%=request.getContextPath()%>/findcom/hireform/listallcom.jsp">找廠商</a></li>
+							<li><a
+								href="<%=request.getContextPath()%>/findkol/matchform/listallkol.jsp">找網紅</a></li>
 							<li class="has-dropdown active"><a
 								href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJsp.jsp">會員中心</a>
 								<ul class="dropdown">
@@ -87,11 +91,19 @@ pageContext.setAttribute("list", list);
 										href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJsp.jsp">會員註冊</a></li>
 									<li><a
 										href="<%=request.getContextPath()%>/login/companyMebJspLogin.jsp">會員登入</a></li>
-									<li><a href="#">會員中心</a></li>
+									<li><a
+										href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJspThree.jsp">會員中心</a></li>
 									<li><a
 										href="<%=request.getContextPath()%>/logout/companyMebJspLogout.jsp">會員登出</a></li>
 								</ul></li>
-							<li><a href="contact.html">關於我們</a></li>
+							<li class="has-dropdown active"><a href="#">聊天室</a>
+								<ul class="dropdown">
+									<li><a
+										href="<%=request.getContextPath()%>/chat/publicChat.jsp"
+										target="_blank">公共聊天室</a></li>
+									<li><a href="<%=request.getContextPath()%>/chat/index.jsp"
+										target="_blank">私人聊天室</a></li>
+								</ul></li>
 						</ul>
 					</div>
 				</div>
@@ -99,7 +111,7 @@ pageContext.setAttribute("list", list);
 			</div>
 		</nav>
 
-	<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(<%=request.getContextPath()%>/comBackStage/resourceslee/images/img_bg_1.jpg);">
+		<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(<%=request.getContextPath()%>/comBackStage/resourceslee/images/img_bg_1.jpg);">
 		<div class="overlay"></div>
 		<div class="fh5co-container">
 			<div class="row py-3 kol_about">
