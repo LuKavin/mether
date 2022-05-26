@@ -42,6 +42,7 @@ pageContext.setAttribute("list", list);
 	</header>
 
 	<div id="fh5co-gallery">
+
 		<div class="container">
 			<div class="row">
 				<div
@@ -51,47 +52,63 @@ pageContext.setAttribute("list", list);
 			</div>
 			<div class="row g-2 row-bottom-padded-md">
 				<div class="col-md-0 mx-auto">
-					<ul id="fh5co-gallery-list">
+					<ul id="fh5co-gallery-list" style="width: 1200px">
 						<c:forEach var="kolMebVO" items="${list}">
-							<div class="card" style="width: 300px; height: 350px;"
-								data-animate-effect="fadeIn">
-								 <a href="./com_about.html"> <img src="<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${KolPhotoVO.meb_photonum}"
-									class="card-img-top mx-auto" alt="..."> 
-								</a>
-								<div class="card-body">
-									<h5 class="card-title">網紅名稱:${kolMebVO.kol_name}</h5>
-									<h3 class="right">網紅電話:${kolMebVO.kol_phone}</h3>
-									<p class="card-text">網紅簡介:${kolMebVO.kol_experience}</p>
-									<span href="#" class="badge badge-pill normal facebook">Facebook</span>
-									<span href="#" class="badge badge-pill normal instagram">Instagram</span>
-									<span href="#" class="badge badge-pill normal youtube">Youtube</span>
-								</div>
-								<div class="content-info pt-2 pb-2">
-									<div class="rating-wrapper">
-										<div class="tasknum">
-											<span class="task-num">網紅網站:${kolMebVO.kol_website}</span>
-											<br>
-											<br>
-											<FORM METHOD="post"
-												ACTION="<%=request.getContextPath()%>/serch.do">
-												<input type="hidden" name="kol_idnum"
-													value="${kolMebVO.kol_idnum}"> <input type="hidden"
-													name="action" value="getOneKolSearch"> <input
-													type="submit" value="VIEW PROFILE">
-											</FORM>
+							<div class="wrapper" style="margin-bottom: 100px">
+
+								<div class="card" style="width: 300px; height: 350px;"
+									data-animate-effect="fadeIn">
+									<div class="float-middle">
+										<img style="margin-left: 30px; margin-top: 30px" width="150"
+											height="150" alt=""
+											src="<%=request.getContextPath()%>/ReadProductPhoto?product_photonum=${ProductPhotoVO.product_photonum}">
+									</div>
+
+									<div class="card-body">
+										<br>
+										<h4 class="card-title">網紅名稱:${kolMebVO.kol_name}</h4>
+										<h4 class="right">網紅電話:${kolMebVO.kol_phone}</h4>
+										<p class="card-text">網紅簡介:${kolMebVO.kol_experience}</p>
+										<p class="card-text">網紅網站:${kolMebVO.kol_website}</p>
+										<span href="#" class="badge badge-pill normal facebook">Facebook</span>
+										<span href="#" class="badge badge-pill normal instagram">Instagram</span>
+										<span href="#" class="badge badge-pill normal youtube">Youtube</span>
+									</div>
+									<div class="content-info pt-2 pb-2">
+										<div class="rating-wrapper">
+											<div class="tasknum">
+												<br> <br>
+												<FORM METHOD="post"
+													ACTION="<%=request.getContextPath()%>/serch.do">
+													<input type="hidden" name="kol_idnum"
+														value="${kolMebVO.kol_idnum}"> <input
+														type="hidden" name="action" value="getOneKolSearch">
+													<input type="submit" value="VIEW PROFILE">
+												</FORM>
+
+											</div>
 										</div>
 									</div>
 								</div>
+
+
 							</div>
+
 
 						</c:forEach>
 					</ul>
 				</div>
 			</div>
 		</div>
+
+
+
+
+
+
 	</div>
 
-	
+
 	</div>
 
 	<div class="gototop js-top">

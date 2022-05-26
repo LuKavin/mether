@@ -93,7 +93,19 @@ pageContext.setAttribute("list", list);
 							<a href="<%=request.getContextPath()%>/metherIndex.jsp">MetHer<strong>.</strong></a>
 						</div>
 					</div>
+					<div style="margin-left: 450px">
+						<ul>
+							<li>
+								<FORM METHOD="post"
+									ACTION="<%=request.getContextPath()%>/serch.do">
+									<input type="text" name="search"> <input type="hidden"
+										name="action" value="getSearch"> <input type="submit"
+										value="送出">
+								</FORM>
+							</li>
 
+						</ul>
+					</div>
 
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
@@ -220,6 +232,18 @@ pageContext.setAttribute("list", list);
 												</div>
 
 											</div>
+
+
+											<FORM METHOD="post"
+												ACTION="<%=request.getContextPath()%>/comfavor/comfavor.do"
+												style="margin-bottom: 0px;">
+												<input type="hidden" name="kol_idnum"
+													value="${companyMebVO.com_idnum}"> <input type="hidden"
+													name="action" value="like"> <input type="submit"
+													value="新增最愛" class="btn btn-outline-secondary" onclick="return(confirm('確認加入最愛'))">
+
+											</FORM>
+
 											<!-- <div class="kol_shortinfodiv"><h2 class="kol_shortinfo">關於我</h2></div>																				 -->
 											<!-- <div class="kol_worktype">
 												<span>工作類型</span>
@@ -281,15 +305,6 @@ pageContext.setAttribute("list", list);
 			<div class="info">
 				<p class="info">個人風格：${kolMebVO.kol_style}</p>
 				<p class="info">過網經歷：${kolMebVO.kol_experience}</p>
-
-				<FORM METHOD="post"
-					ACTION="<%=request.getContextPath()%>/comfavor/comfavor.do"
-					style="margin-bottom: 0px;">
-					<input type="hidden" name="kol_idnum" value="${kolMebVO.kol_idnum}">
-					<input type="hidden" name="action" value="like"> <input
-						type="submit" value="新增最愛" class="btn btn-outline-secondary">
-
-				</FORM>
 
 			</div>
 		</div>

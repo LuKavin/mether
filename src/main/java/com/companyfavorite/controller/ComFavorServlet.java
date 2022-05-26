@@ -50,14 +50,14 @@ public class ComFavorServlet extends HttpServlet {
 				ComFavorService comFavorService = new ComFavorService();
 				comFavorService.addCompanyFavorite(companyMebVO.getCom_idnum(), kol_idnum);
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/comFavor/listkol.jsp";
+				String url = "/findkol/matchform/listallkol.jsp"; 
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/comFavor/listkol.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/findkol/matchform/listallkol.jsp");
 				failureView.forward(req, res);
 			}
 		}

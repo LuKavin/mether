@@ -91,53 +91,58 @@
 
  <div id="page">
   <nav class="fh5co-nav" role="navigation">
-   <div class="container">
-    <div class="row">
-     <div class="col-xs-2">
-      <div id="fh5co-logo">
-       <a href="<%=request.getContextPath()%>/metherIndex.jsp">MetHer<strong>.</strong></a>
-      </div>
-     </div>
-     <div style="margin-left: 450px">
-      <ul>
-       <li>
-        <FORM METHOD="post"
-         ACTION="<%=request.getContextPath()%>/serch.do">
-         <input type="text" name="search"> <input type="hidden"
-          name="action" value="getSearch"> <input type="submit"
-          value="送出">
-        </FORM>
-       </li>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo">
+							<a href="<%=request.getContextPath()%>/metherIndex.jsp">MetHer<strong>.</strong></a>
+						</div>
+					</div>
+					<div style="margin-left: 450px">
+						<ul>
+							<li>
+								<FORM METHOD="post"
+									ACTION="<%=request.getContextPath()%>/serch.do">
+									<input type="text" name="search"> <input type="hidden"
+										name="action" value="getSearch"> <input type="submit"
+										value="送出">
+								</FORM>
+							</li>
 
-      </ul>
-     </div>
+						</ul>
+					</div>
 
-     <div class="col-xs-10 text-right menu-1">
-      <ul>
-       <li class="active"><a
-        href="<%=request.getContextPath()%>/metherIndex.jsp">首頁</a></li>
-       <li><a href="about.html">找廠商</a></li>
-       <li><a href="services.html">找網紅</a></li>
-       <li class="has-dropdown active"><a
-        href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJsp.jsp">會員中心</a>
-        <ul class="dropdown">
-         <li><a
-          href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJsp.jsp">會員註冊</a></li>
-         <li><a
-          href="<%=request.getContextPath()%>/login/companyMebJspLogin.jsp">會員登入</a></li>
-         <li><a href="#">會員中心</a></li>
-         <li><a
-          href="<%=request.getContextPath()%>/logout/companyMebJspLogout.jsp">會員登出</a></li>
-        </ul></li>
-       <li class="has-dropdown active"><a
-        href="<%=request.getContextPath()%>/index.html">聊天室</a>
-        <ul class="dropdown">
-         <li><a href="<%=request.getContextPath()%>/index.html">公共聊天室</a></li>
-         <li><a href="<%=request.getContextPath()%>/index.jsp">私人聊天室</a></li>
-        </ul></li>
-      </ul>
-     </div>
-    </div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li class="active"><a
+								href="<%=request.getContextPath()%>/metherIndex.jsp">首頁</a></li>
+							<li><a
+								href="<%=request.getContextPath()%>/findcom/hireform/listallcom.jsp">找廠商</a></li>
+							<li><a
+								href="<%=request.getContextPath()%>/findkol/matchform/listallkol.jsp">找網紅</a></li>
+							<li class="has-dropdown active"><a
+								href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJsp.jsp">會員中心</a>
+								<ul class="dropdown">
+									<li><a
+										href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJsp.jsp">會員註冊</a></li>
+									<li><a
+										href="<%=request.getContextPath()%>/login/companyMebJspLogin.jsp">會員登入</a></li>
+									<li><a
+										href="<%=request.getContextPath()%>/comBackStage/companymeb/companyMebJspThree.jsp">會員中心</a></li>
+									<li><a
+										href="<%=request.getContextPath()%>/logout/companyMebJspLogout.jsp">會員登出</a></li>
+								</ul></li>
+							<li class="has-dropdown active"><a href="#">聊天室</a>
+								<ul class="dropdown">
+									<li><a
+										href="<%=request.getContextPath()%>/chat/publicChat.jsp"
+										target="_blank">公共聊天室</a></li>
+									<li><a href="<%=request.getContextPath()%>/chat/index.jsp"
+										target="_blank">私人聊天室</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
 
-   </div>
-  </nav>
+			</div>
+		</nav>

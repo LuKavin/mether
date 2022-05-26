@@ -94,6 +94,19 @@ pageContext.setAttribute("list", list);
 							<a href="<%=request.getContextPath()%>/metherIndex.jsp">MetHer<strong>.</strong></a>
 						</div>
 					</div>
+					<div style="margin-left: 450px">
+						<ul>
+							<li>
+								<FORM METHOD="post"
+									ACTION="<%=request.getContextPath()%>/serch.do">
+									<input type="text" name="search"> <input type="hidden"
+										name="action" value="getSearch"> <input type="submit"
+										value="送出">
+								</FORM>
+							</li>
+
+						</ul>
+					</div>
 
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
@@ -161,19 +174,20 @@ pageContext.setAttribute("list", list);
 														data-bs-ride="carousel">
 														<div class="carousel-inner">
 
-															<c:forEach var="memberPhotoVO" items="${list}" varStatus="s">
+															<c:forEach var="memberPhotoVO" items="${list}"
+																varStatus="s">
 																<c:if test="${s.index == 0}">
 																	<div class="carousel-item active">
 																		<div class="rwdimg"
 																			style="background-position: center;background-size:200px; background-image:url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${memberPhotoVO.meb_photonum})">
-																		</div>																		
+																		</div>
 																	</div>
 																</c:if>
 																<c:if test="${s.index > 0 }">
 																	<div class="carousel-item">
 																		<div class="rwdimg"
 																			style="background-position: center;background-size:200px; background-image:url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${memberPhotoVO.meb_photonum})">
-																		</div>																		
+																		</div>
 																	</div>
 																</c:if>
 															</c:forEach>
@@ -220,23 +234,17 @@ pageContext.setAttribute("list", list);
 													</div>
 													<!-- </p> -->
 												</div>
-												<div class="addfav">
-													<button type="button" class="btn btn-dark"
-														onclick="followUser('1766');">
-														<i class="fa fa-plus"></i>加最愛
-													</button>
-												</div>
-												<div class="dropdown matchMe">
-													<button class="btn btn-secondary dropdown-toggle matchMe"
-														type="button" id="dropdownMenuButton"
-														data-bs-toggle="dropdown" aria-expanded="false">我要媒合</button>
-<!-- 													<ul class="dropdown-menu matchMe" -->
-<!-- 														aria-labelledby="dropdownMenuButton1"> -->
-<!-- 														<li class="matchMe"><a class="dropdown-item" href="#">廠商的商品1</a></li> -->
-<!-- 														<li class="matchMe"><a class="dropdown-item" href="#">廠商的商品2</a></li> -->
-<!-- 														<li class="matchMe"><a class="dropdown-item" href="#">廠商的商品3</a></li> -->
-<!-- 													</ul> -->
-												</div>
+												<FORM METHOD="post"
+													ACTION="<%=request.getContextPath()%>/kolfavor/kolfavor.do"
+													style="margin-bottom: 0px;">
+													<input type="hidden" name="kol_idnum"
+														value="${kolMebVO.kol_idnum}"> <input
+														type="hidden" name="action" value="like"> <input
+														type="submit" value="新增最愛"
+														class="btn btn-outline-secondary" onclick="return(confirm('確認加入最愛'))">
+
+												</FORM>
+
 												<!-- <div class="kol_shortinfodiv"><h2 class="kol_shortinfo">關於我</h2></div>																				 -->
 												<!-- <div class="kol_worktype">
 												<span>工作類型</span>
