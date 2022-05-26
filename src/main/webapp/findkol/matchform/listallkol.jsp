@@ -61,7 +61,7 @@ pageContext.setAttribute("list", list);
 									<div class="float-middle">
 										<img style="margin-left: 30px; margin-top: 30px" width="150"
 											height="150" alt=""
-											src="<%=request.getContextPath()%>/ReadProductPhoto?product_photonum=${ProductPhotoVO.product_photonum}">
+											src="<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${KolPhotoVO.meb_photonum}">
 									</div>
 
 									<div class="card-body">
