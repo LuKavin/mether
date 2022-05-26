@@ -289,10 +289,15 @@ pageContext.setAttribute("list", list);
 
 								<li class="one-third animate-box" data-animate-effect="fadeIn"
 									style="background-image: url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${KolPhotoVO.meb_photonum});"><a
-									href="<%=request.getContextPath()%>/resources/images/et1.jpg"
-									class="color-2">
+									href="#" class="color-2 checksession">
 										<div class="case-studies-summary">
 											<h2>${KolPhotoVO.kol_name}</h2>
+											<FORM id="submitcheck" METHOD="post"
+												ACTION="<%=request.getContextPath()%>/serch.do" >
+												<input type="hidden" name="kol_idnum"
+													value="${KolPhotoVO.kol_idnum}"> <input
+													type="hidden" name="action" value="getOneKolSearch">
+											</FORM>
 										</div>
 								</a></li>
 
@@ -362,6 +367,15 @@ pageContext.setAttribute("list", list);
 		src="<%=request.getContextPath()%>/resources/js/simplyCountdown.js"></script>
 	<!-- Main -->
 	<script src="<%=request.getContextPath()%>/resources/js/main.js"></script>
+	
+	 <script>
+     window.onload=function(){
+         $(".checksession").on("click", function(e) {
+        	 e.preventDefault();
+             $(this).find("#submitcheck").submit();
+         });
+     }
+    </script>
 
 </body>
 </html>
