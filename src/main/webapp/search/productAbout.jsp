@@ -144,7 +144,7 @@ pageContext.setAttribute("list", list);
 																				  
 										</div>
 										<div class="col-8 col-md-7 kol_about">
-											<h2 class="kol_name">${companyMebVO.com_name}</h2>										
+											<h2 class="kol_name">${productVO.product_name}</h2>										
 											<div class="kol_ratelv content-md">
 												<!-- <p>商家評分</p> -->
 												<!-- <p class="user-info-rating d-flex align-items-center"> -->
