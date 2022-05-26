@@ -92,14 +92,6 @@ pageContext.setAttribute("list", list);
 											 <button class="btn btn-outline-secondary" id="doAjaxBtn">新增最愛</button>
 											
 											<!-- 愛心按鈕 -->
-											<div class="flexbox">
-												
-												<div class="fav-btn">
-													<span href="" class="favme dashicons dashicons-heart"></span>
-												</div>
-
-											</div>
-
 									</div>
 								</div>
 							</div>

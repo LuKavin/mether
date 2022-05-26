@@ -289,44 +289,56 @@
 						data-widget="treeview" role="menu" data-accordion="false">
 						<!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="<%=request.getContextPath() %>/comBackStage/product/product.jsp" class="nav-link">
+							href="<%=request.getContextPath()%>/kolBackStage/order/orderList.jsp"
+							class="nav-link">
+
 								<p>
-									<i class="fas fa-box"></i> 商品列表
-								</p>
-						</a></li>
-						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
-								<p>
-									<i class="fa fa-address-book" aria-hidden="true"></i> 應徵列表
+									<i class="ion ion-android-list" style="font-size: 31px;"></i>
+									訂單列表
 								</p>
 						</a></li>
 
+<!-- 						<li class="nav-header" style="font-size: 25px;"><a -->
+<!-- 							href="meb_kol.html" class="nav-link"> -->
+<!-- 								<p> -->
+<!-- 									<i class="fa fa-address-book" aria-hidden="true"></i> 應徵列表 -->
+<!-- 								</p> -->
+<!-- 						</a></li> -->
+
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
+							href="<%=request.getContextPath()%>/findcom/hireform/matchform.jsp" class="nav-link">
 								<p>
 									<i class="fa fa-handshake-o" aria-hidden="true"></i> 媒合列表
 								</p>
 						</a></li>
 
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
+							href="<%=request.getContextPath()%>/kolBackStage/kolmeb/kolMebJspThree.jsp" class="nav-link">
 								<p>
-									<i class="fas fa-address-card"></i> 基本資料
+									<i class="fas fa-address-card"></i> 資料修改
 								</p>
 						</a></li>
 
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="meb_kol.html" class="nav-link">
+							href="<%=request.getContextPath()%>/kolFavor/kolfavor.jsp" class="nav-link">
 								<p>
 									<i class="fa fa-heart" aria-hidden="true"></i> 我的最愛
 								</p>
 						</a></li>
 
-
 						<li class="nav-header" style="font-size: 25px;"><a
-							href="<%=request.getContextPath() %>/comBackStage/email/Email.jsp" class="nav-link">
+							href="<%=request.getContextPath()%>/kolBackStage/email/Email.jsp"
+							class="nav-link">
 								<p>
 									<i class="fa fa-envelope" aria-hidden="true"></i> 信箱
+								</p>
+						</a></li>
+						
+						<li class="nav-header" style="font-size: 25px; margin-top:40px"><a
+							href="<%=request.getContextPath()%>/metherIndex.jsp"
+							class="nav-link">
+								<p>
+									<i class="fa fa-home" aria-hidden="true" style="font-size: 31px;"></i> 回首頁
 								</p>
 						</a></li>
 

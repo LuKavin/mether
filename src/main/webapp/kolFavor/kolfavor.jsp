@@ -100,13 +100,7 @@ pageContext.setAttribute("list", list);
 											value="${companyMebVO.com_idnum}">
 											 <input
 											type="hidden" name="action" value="dislike">
-											<div class="flexbox">
-
-												<div class="fav-btn">
-													<span href="" class="favme dashicons dashicons-heart"></span>
-												</div>
-
-											</div>
+											
 									</FORM>
 								
 									</div>

@@ -6,6 +6,7 @@
 <%@ page import="com.product.model.*"%>
 <%@ page import="com.kolmeb.model.KolMebVO"%>
 <%@ page import="java.util.*"%>
+
 <%
 Integer product_num = new Integer(request.getParameter("product_num"));
 KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");
@@ -94,6 +95,9 @@ pageContext.setAttribute("com_name", com_name);
 	<![endif]-->
 <link rel="stylesheet" href="css/kol_page.css">
 <script src="./js/addfavorite.js"></script>
+<!-- Owl Carousel  -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/owl.carousel.min.css">
 
 </head>
 <body>
@@ -116,9 +120,65 @@ pageContext.setAttribute("com_name", com_name);
 										<div class="row py-lg-5 px-lg-5">
 											<div class="col-2">
 												<br> <br> <br> <br> <br> <br>
-												<br> <br> <img
-													<%-- src="<%=request.getContextPath()%>/viewpic?id=${productVO.product_num}" --%>
-													class="kol_img">
+												<br> <br>
+
+
+												<div class="picturescontrol">
+													<div id="carouselExampleControls" class="carousel slide"
+														data-bs-ride="carousel">
+														<div class="carousel-inner">
+
+															<div class="carousel-item active">
+																<div class="rwdimg"
+																	style="background-image:url('<%=request.getContextPath()%>/viewpic?product_num=${productVO.product_num}&photoNum=1')">
+																</div>
+															</div>
+															<div class="carousel-item ">
+																<div class="rwdimg"
+																	style="background-image:url('<%=request.getContextPath()%>/viewpic?product_num=${productVO.product_num}&photoNum=2')">
+																</div>
+															</div>
+															<div class="carousel-item ">
+																<div class="rwdimg"
+																	style="background-image:url('<%=request.getContextPath()%>/viewpic?product_num=${productVO.product_num}&photoNum=3')">
+																</div>
+															</div>
+															<div class="carousel-item ">
+																<div class="rwdimg"
+																	style="background-image:url('<%=request.getContextPath()%>/viewpic?product_num=${productVO.product_num}&photoNum=4')">
+																</div>
+															</div>
+															<div class="carousel-item ">
+																<div class="rwdimg"
+																	style="background-image:url('<%=request.getContextPath()%>/viewpic?product_num=${productVO.product_num}&photoNum=5')">
+																</div>
+															</div>
+
+														</div>
+														<button class="carousel-control-prev" type="button"
+															data-bs-target="#carouselExampleControls"
+															data-bs-slide="prev">
+															<span class="carousel-control-prev-icon"
+																aria-hidden="true"></span> <span class="visually-hidden">Previous</span>
+														</button>
+
+														<button class="carousel-control-next" type="button"
+															data-bs-target="#carouselExampleControls"
+															data-bs-slide="next">
+															<span class="carousel-control-next-icon"
+																aria-hidden="true"></span> <span class="visually-hidden">Next</span>
+														</button>
+													</div>
+												</div>
+
+
+
+
+
+
+
+
+
 											</div>
 
 											<div class="col-3 ">
@@ -147,7 +207,8 @@ pageContext.setAttribute("com_name", com_name);
 															<FORM METHOD="post"
 																ACTION="<%=request.getContextPath()%>/matchform/match.do">
 																<button class="btn btn-outline-secondary matchMe"
-																	type="submit" aria-expanded="false" onclick="return(confirm('確認申請'))">
+																	type="submit" aria-expanded="false"
+																	onclick="return(confirm('確認申請'))">
 																	<p style="color: white; font-size: 20px; margin: 0">我要媒合</p>
 																</button>
 																<input type="hidden" name="product_num"

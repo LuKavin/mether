@@ -98,13 +98,6 @@ pageContext.setAttribute("list", list);
 												value="${kolMebVO.kol_idnum}"> <input type="hidden"
 												name="action" value="like">
 
-											<div class="flexbox">
-
-												<div class="fav-btn">
-													<span href="" class="favme dashicons dashicons-heart"></span>
-												</div>
-
-											</div>
 										</FORM>
 
 									</div>
