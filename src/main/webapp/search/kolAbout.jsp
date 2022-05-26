@@ -20,50 +20,68 @@ pageContext.setAttribute("list", list);
 <head>
 <title>網紅個人頁面</title>
 
-<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
-<link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link
+	href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700'
+	rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Sacramento"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	
-	
-	
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
 <!-- Animate.css -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/animate.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/animate.css">
 
 <!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/icomoon.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/icomoon.css">
 
 <!-- Bootstrap  -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/bootstrap.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/bootstrap.css">
 
 <!-- Magnific Popup -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/magnific-popup.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/magnific-popup.css">
 
 <!-- Owl Carousel  -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/owl.carousel.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/owl.theme.default.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/owl.theme.default.min.css">
 
 <!-- Theme style  -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/style.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/style.css">
 
 <!-- Modernizr JS -->
-<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/modernizr-2.6.2.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/modernizr-2.6.2.min.js"></script>
 
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
 <script src="<%=request.getContextPath()%>/js/respond.min.js"></script>
 <![endif]-->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/comkol_page.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/comBackStage/resourceslee/css/comkol_page.css">
 
-	
+
 
 </head>
 <body>
 
-<!--========================================header part========================================-->
-		
+	<!--========================================header part========================================-->
+
 	<div class="fh5co-loader"></div>
 
 	<div id="page">
@@ -112,20 +130,22 @@ pageContext.setAttribute("list", list);
 			</div>
 		</nav>
 
-	<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(<%=request.getContextPath()%>/comBackStage/resourceslee/images/img_bg_1.jpg);">
-		<div class="overlay"></div>
-		<div class="fh5co-container">
-			<div class="row py-3 kol_about">
-				<main class="col col-xl-12 col-md-12 col-sm-12 col-12">
-					<div class="box shadow-sm p-2 user-profile-box mb-2">
-						<div class="profile-card">
-							<div class="user-profile-image d-flex text-center">
-								<div class="container user-profile-page">
-									<div class="row py-lg-5 px-lg-5">
-										<div class="col-4 col-md-5">
-											<!-- <img src="./images/crycat.png" alt="" class="kol_img"> -->
-											<!-- <h2 class="kol_name">屁孩貓</h2>  -->
-											<!-- <div class="dropdown matchMe">
+		<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm"
+			role="banner"
+			style="background-image:url(<%=request.getContextPath()%>/comBackStage/resourceslee/images/img_bg_1.jpg);">
+			<div class="overlay"></div>
+			<div class="fh5co-container">
+				<div class="row py-3 kol_about">
+					<main class="col col-xl-12 col-md-12 col-sm-12 col-12">
+						<div class="box shadow-sm p-2 user-profile-box mb-2">
+							<div class="profile-card">
+								<div class="user-profile-image d-flex text-center">
+									<div class="container user-profile-page">
+										<div class="row py-lg-5 px-lg-5">
+											<div class="col-4 col-md-5">
+												<!-- <img src="./images/crycat.png" alt="" class="kol_img"> -->
+												<!-- <h2 class="kol_name">屁孩貓</h2>  -->
+												<!-- <div class="dropdown matchMe">
 												<button class="btn btn-secondary dropdown-toggle matchMe" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">我要媒合</button>
 												<ul class="dropdown-menu matchMe" aria-labelledby="dropdownMenuButton1">
 												  <li class="matchMe"><a class="dropdown-item" href="#">廠商的商品1</a></li>
@@ -134,46 +154,52 @@ pageContext.setAttribute("list", list);
 												</ul>
 											  </div> -->
 
-											  <div class="picturescontrol">
-											  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-												<div class="carousel-inner">
-												
-													<c:forEach var="memberPhotoVO" items="${list}" varStatus="s">
+												<div class="picturescontrol">
+													<div id="carouselExampleControls" class="carousel slide"
+														data-bs-ride="carousel">
+														<div class="carousel-inner">
+
+															<c:forEach var="memberPhotoVO" items="${list}"
+																varStatus="s">
 																<c:if test="${s.index == 0}">
 																	<div class="carousel-item active">
 																		<div class="rwdimg"
 																			style="background-position: center;background-size:200px; background-image:url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${memberPhotoVO.meb_photonum})">
-																		</div>																	
+																		</div>
 																	</div>
 																</c:if>
 																<c:if test="${s.index > 0 }">
 																	<div class="carousel-item">
 																		<div class="rwdimg"
 																			style="background-position: center;background-size:200px; background-image:url(<%=request.getContextPath()%>/ReadMemberPhoto?meb_photonum=${memberPhotoVO.meb_photonum})">
-																		</div>																	
+																		</div>
 																	</div>
 																</c:if>
-													</c:forEach>
-												  
+															</c:forEach>
+
+														</div>
+														<button class="carousel-control-prev" type="button"
+															data-bs-target="#carouselExampleControls"
+															data-bs-slide="prev">
+															<span class="carousel-control-prev-icon"
+																aria-hidden="true"></span> <span class="visually-hidden">Previous</span>
+														</button>
+
+														<button class="carousel-control-next" type="button"
+															data-bs-target="#carouselExampleControls"
+															data-bs-slide="next">
+															<span class="carousel-control-next-icon"
+																aria-hidden="true"></span> <span class="visually-hidden">Next</span>
+														</button>
+													</div>
 												</div>
-												<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-												  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-												  <span class="visually-hidden">Previous</span>
-												</button>
-												
-												<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-												  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-												  <span class="visually-hidden">Next</span>
-												</button>
-											  </div>
-											  </div>
-																				  
-										</div>
-										<div class="col-8 col-md-7 kol_about">
-											<h2 class="kol_name">${kolMebVO.kol_name}</h2>										
-											<div class="kol_ratelv content-md">
-												<!-- <p>商家評分</p> -->
-												<!-- <p class="user-info-rating d-flex align-items-center"> -->
+
+											</div>
+											<div class="col-8 col-md-7 kol_about">
+												<h2 class="kol_name">${kolMebVO.kol_name}</h2>
+												<div class="kol_ratelv content-md">
+													<!-- <p>商家評分</p> -->
+													<!-- <p class="user-info-rating d-flex align-items-center"> -->
 													<!-- <div class="star-rating-s15-wrapper">
 													<p class="star-rating-s15 rate-10">
 													<i class="fa fa-star" aria-hidden="true"></i>
@@ -183,21 +209,17 @@ pageContext.setAttribute("list", list);
 													<i class="fa fa-star" aria-hidden="true"></i>
 													</p>
 													</div> -->
-													<div class="starcomments"><p class="total-rating-out-five">總平均星數: ${kolMebVO.avg_star}顆星</p></div>
-													<div class="comments"><p class="total-rating">總評價數: ${kolMebVO.total_rate}則</p></div>
-												<!-- </p> -->
+													<div class="starcomments">
+														<p class="total-rating-out-five">總平均星數:
+															${kolMebVO.avg_star}顆星</p>
+													</div>
+													<div class="comments">
+														<p class="total-rating">總評價數: ${kolMebVO.total_rate}則</p>
+													</div>
+													<!-- </p> -->
+												</div>
+
 											</div>
-											<div class="addfav">
-												<button type="button" class="btn btn-dark" onclick="followUser('1766');"><i class="fa fa-plus"></i>加最愛</button>
-											</div>
-											<div class="dropdown matchMe">
-												<button class="btn btn-secondary dropdown-toggle matchMe" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">我要媒合</button>
-<!-- 												<ul class="dropdown-menu matchMe" aria-labelledby="dropdownMenuButton1"> -->
-<!-- 												  <li class="matchMe"><a class="dropdown-item" href="#">廠商的商品1</a></li> -->
-<!-- 												  <li class="matchMe"><a class="dropdown-item" href="#">廠商的商品2</a></li> -->
-<!-- 												  <li class="matchMe"><a class="dropdown-item" href="#">廠商的商品3</a></li> -->
-<!-- 												</ul> -->
-											  </div>
 											<!-- <div class="kol_shortinfodiv"><h2 class="kol_shortinfo">關於我</h2></div>																				 -->
 											<!-- <div class="kol_worktype">
 												<span>工作類型</span>
@@ -225,13 +247,14 @@ pageContext.setAttribute("list", list);
 								</div>
 							</div>
 						</div>
-					</div>
+				</div>
 				</main>
 			</div>
-		</div>
+	</div>
 	</header>
 
-<!--========================================body part========================================-->
+
+	<!--========================================body part========================================-->
 
 	<div class="container kol_info">
 		<div class="row kol_info">
@@ -246,7 +269,7 @@ pageContext.setAttribute("list", list);
 				<p class="info">地區：${kolMebVO.kol_location}</p>
 				<p class="info">信箱：${kolMebVO.kol_email}</p>
 				<p class="info">網址：${kolMebVO.kol_website}</p>
-			</div>			
+			</div>
 		</div>
 	</div>
 
@@ -258,6 +281,16 @@ pageContext.setAttribute("list", list);
 			<div class="info">
 				<p class="info">個人風格：${kolMebVO.kol_style}</p>
 				<p class="info">過網經歷：${kolMebVO.kol_experience}</p>
+
+				<FORM METHOD="post"
+					ACTION="<%=request.getContextPath()%>/comfavor/comfavor.do"
+					style="margin-bottom: 0px;">
+					<input type="hidden" name="kol_idnum" value="${kolMebVO.kol_idnum}">
+					<input type="hidden" name="action" value="like"> <input
+						type="submit" value="新增最愛" class="btn btn-outline-secondary">
+
+				</FORM>
+
 			</div>
 		</div>
 	</div>
@@ -269,70 +302,82 @@ pageContext.setAttribute("list", list);
 			</div>
 		</div>
 	</div> -->
-	
-<!--========================================footer part========================================-->
+
+	<!--========================================footer part========================================-->
 
 	<footer id="fh5co-footer" role="contentinfo">
-			<div class="container">
+		<div class="container">
 
-				<div class="row copyright">
-					<div class="col-md-12 text-center">
-						<p>
-							<small class="block">&copy; TGA_101_1 </small>
-						</p>
-						<p>
-						<ul class="fh5co-social-icons">
-							<li><a href="#"><i class="icon-twitter"></i></a></li>
-							<li><a href="#"><i class="icon-facebook"></i></a></li>
-							<li><a href="#"><i class="icon-linkedin"></i></a></li>
-							<li><a href="#"><i class="icon-dribbble"></i></a></li>
-						</ul>
-						</p>
-					</div>
+			<div class="row copyright">
+				<div class="col-md-12 text-center">
+					<p>
+						<small class="block">&copy; TGA_101_1 </small>
+					</p>
+					<p>
+					<ul class="fh5co-social-icons">
+						<li><a href="#"><i class="icon-twitter"></i></a></li>
+						<li><a href="#"><i class="icon-facebook"></i></a></li>
+						<li><a href="#"><i class="icon-linkedin"></i></a></li>
+						<li><a href="#"><i class="icon-dribbble"></i></a></li>
+					</ul>
+					</p>
 				</div>
-
 			</div>
-		</footer>
+
+		</div>
+	</footer>
 	</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
-	
-<!--========================================else part========================================-->
-	
+
+	<!--========================================else part========================================-->
+
 	<!-- jQuery -->
-	<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.min.js"></script>
-	
+	<script
+		src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.min.js"></script>
+
 	<!-- jQuery Easing -->
-	<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.easing.1.3.js"></script>
-	
+	<script
+		src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.easing.1.3.js"></script>
+
 	<!-- Bootstrap -->
-	
+
 	<!-- Waypoints -->
-	<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.waypoints.min.js"></script>
-	
+	<script
+		src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.waypoints.min.js"></script>
+
 	<!-- Carousel -->
-	<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/owl.carousel.min.js"></script>
-	
+	<script
+		src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/owl.carousel.min.js"></script>
+
 	<!-- countTo -->
-	<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.countTo.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.countTo.js"></script>
 
 	<!-- Stellar -->
-	<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.stellar.min.js"></script>
-	
+	<script
+		src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.stellar.min.js"></script>
+
 	<!-- Magnific Popup -->
-	<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.magnific-popup.min.js"></script>
-	<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/magnific-popup-options.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/jquery.magnific-popup.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/magnific-popup-options.js"></script>
 
 	<!-- Main -->
-	<script src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/main.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/comBackStage/resourceslee/js/main.js"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+		crossorigin="anonymous"></script>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script> -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script> -->
 
-	
+
 
 </body>
 </html>

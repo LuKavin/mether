@@ -45,11 +45,6 @@ public class ComFavorServlet extends HttpServlet {
 				Integer kol_idnum = new Integer(req.getParameter("kol_idnum")) ;
 //				Integer kol_idnum = 1 ;
 				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/comFavor/listkol.jsp");
-					failureView.forward(req, res); 
-					return; // 程式中斷
-				}
 
 				/*************************** 2.開始新增資料 ***************************************/
 				ComFavorService comFavorService = new ComFavorService();
@@ -82,7 +77,7 @@ public class ComFavorServlet extends HttpServlet {
 				comFavorService.deleteCompanyFavorite(companyMebVO.getCom_idnum(),kol_idnum);
 //				System.out.println(kolMebVO.getKol_idnum());
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/comFavor/listcom.jsp";
+				String url = "/comFavor/comfavor.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
@@ -90,7 +85,7 @@ public class ComFavorServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/comFavor/listcom.jsp");
+						.getRequestDispatcher("/comFavor/comfavor.jsp");
 				failureView.forward(req, res);
 			}
 		}

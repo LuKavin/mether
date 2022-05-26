@@ -13,6 +13,10 @@
 ProductService productService = new ProductService();
 List<ProductVO> list = productService.getAll();
 pageContext.setAttribute("list", list);
+
+CompanyMebService companyMebService = new CompanyMebService();
+List<CompanyMebVO> list2 = companyMebService.getAll();
+pageContext.setAttribute("list2", list2);
 %>
 
 <!DOCTYPE html>
@@ -45,7 +49,7 @@ pageContext.setAttribute("list", list);
 			<div class="row">
 				<div
 					class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<h2>廠商</h2>
+					<h2>商品</h2>
 				</div>
 			</div>
 			<div class="row g-2 row-bottom-padded-md">
@@ -71,10 +75,15 @@ pageContext.setAttribute("list", list);
 											<span class="task-num">招募:${productVO.product_count}</span>
 											<br>
 											<br>
-											<span> <a
-											href="<%=request.getContextPath()%>/findkol/matchform/about.jsp?product_num=${productVO.product_num}"><b>VIEW
-													JOB</b></a></span> 
-										</div>
+											<FORM METHOD="post"
+												ACTION="<%=request.getContextPath()%>/serch.do">
+												<input type="hidden" name="product_num"
+													value="${productVO.product_num}"> <input type="hidden"
+													name="action" value="getOneProductSearch"> <input
+													type="submit" value="VIEW JOB">
+											</FORM>
+											
+										</div> 
 									</div>
 								</div>
 							</div>
@@ -84,6 +93,62 @@ pageContext.setAttribute("list", list);
 				</div>
 			</div>
 		</div>
+		
+		
+		
+		
+				<div class="container">
+			<div class="row">
+				<div
+					class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
+					<h2>廠商</h2>
+				</div>
+			</div>
+			<div class="row g-2 row-bottom-padded-md">
+				<div class="col-md-0 mx-auto">
+					<ul id="fh5co-gallery-list">
+						<c:forEach var="companyMebVO" items="${list2}">
+							<div class="card" style="width: 300px; height: 350px;"
+								data-animate-effect="fadeIn">
+								<a href="./com_about.html"> <img src="<%=request.getContextPath()%>/viewpic?id=${companyMebVO.com_idnum}"
+									class="card-img-top mx-auto" alt="...">
+								</a>
+								<div class="card-body"> 
+									<h5 class="card-title">廠商姓名:${companyMebVO.com_name}</h5>
+									<p class="right">廠商信箱:${companyMebVO.com_email}</p>
+									<p class="card-text">廠商電話:${companyMebVO.com_cellphone}</p>
+									<span href="#" class="badge badge-pill normal facebook">Facebook</span>
+									<span href="#" class="badge badge-pill normal instagram">Instagram</span>
+									<span href="#" class="badge badge-pill normal youtube">Youtube</span>
+								</div>
+								<div class="content-info pt-2 pb-2">
+									<div class="rating-wrapper">
+										<div class="tasknum">
+											<span class="task-num">廠商地址:${companyMebVO.com_address}</span>
+											<br>
+											<br>
+											<FORM METHOD="post"
+												ACTION="<%=request.getContextPath()%>/serch.do">
+												<input type="hidden" name="com_idnum"
+													value="${companyMebVO.com_idnum}"> <input type="hidden"
+													name="action" value="getOneComSearch"> <input
+													type="submit" value="VIEW COM">
+											</FORM>
+											
+										</div> 
+									</div>
+								</div>
+							</div>
+
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
 	</div>
 
 	<%-- <div id="fh5co-gallery">

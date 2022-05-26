@@ -1,8 +1,10 @@
 <%@page import="com.kolmeb.model.KolMebVO"%>
+<%@page import="com.companymeb.model.CompanyMebVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
 
 <% KolMebVO kolMebVO = (KolMebVO)session.getAttribute("kolMebVO"); %>
+<% CompanyMebVO companyMebVO = (CompanyMebVO)session.getAttribute("companyMebVO"); %>
 
 
 <head>
