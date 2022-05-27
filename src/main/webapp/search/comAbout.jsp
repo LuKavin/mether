@@ -94,19 +94,6 @@ pageContext.setAttribute("list", list);
 							<a href="<%=request.getContextPath()%>/metherIndex.jsp">MetHer<strong>.</strong></a>
 						</div>
 					</div>
-					<div style="margin-left: 450px">
-						<ul>
-							<li>
-								<FORM METHOD="post"
-									ACTION="<%=request.getContextPath()%>/serch.do">
-									<input type="text" name="search"> <input type="hidden"
-										name="action" value="getSearch"> <input type="submit"
-										value="送出">
-								</FORM>
-							</li>
-
-						</ul>
-					</div>
 
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
