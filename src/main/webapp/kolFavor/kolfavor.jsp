@@ -1,4 +1,3 @@
-<%@page import="org.hibernate.query.criteria.internal.expression.function.AggregationFunction.COUNT"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.kolmeb.model.KolMebVO"%>
 <%@page import="java.util.List"%>
@@ -9,17 +8,16 @@
 
 <%
 KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO"); 
-CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO"); 
+/* CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO"); */ 
 
 KolFavorService kolFavorService = new KolFavorService();
-List<CompanyMebVO> list = kolFavorService.FindKolFavorite(kolMebVO.getKol_idnum());
+List<CompanyMebVO> list = kolFavorService.FindKolFavorite(1);
 /* kolMebVO.getKol_idnum(); */
 pageContext.setAttribute("list", list);
 %>
 
 
 <%@ include file="header.jsp"%>
-
 <div class="content-wrapper">
 	<section class="content-header">
 		<div class="container-fluid">

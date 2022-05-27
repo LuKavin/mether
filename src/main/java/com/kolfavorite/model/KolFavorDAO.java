@@ -27,12 +27,12 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 			e.printStackTrace();
 		}
 	}
-
-	private static final String INSERT_STMT = "INSERT INTO `KOL_FAVORITE` (`COM_IDNUM`, `KOL_IDNUM`)" + "VALUES (?,?)";
+	
+	private static final String INSERT_STMT = "INSERT INTO `KOL_FAVORITE` (`KOL_IDNUM`, `COM_IDNUM`)" + "VALUES (?,?)";
 	private static final String GET_ALL_STMT = "SELECT COM_IDNUM, COM_NAME, COM_EMAIL, COM_PHONE,  COM_WEBSITE "
 			+ "FROM COMPANY_MEB ;";
-	private static final String GET_ONE_STMT = "SELECT k.KOL_IDNUM, k.COM_IDNUM, c.COM_NAME, c.COM_EMAIL, c.COM_PHONE,  c.COM_WEBSITE \n"
-			+ "FROM COMPANY_MEB c JOIN KOL_FAVORITE k ON c.COM_IDNUM  = k.COM_IDNUM where \n" + "k.KOL_IDNUM = ? ;";
+	private static final String GET_ONE_STMT = "SELECT k.KOL_IDNUM, k.COM_IDNUM, c.COM_NAME, c.COM_EMAIL, c.COM_PHONE,  c.COM_WEBSITE "
+			+ "FROM COMPANY_MEB c JOIN KOL_FAVORITE k ON c.COM_IDNUM  = k.COM_IDNUM where k.KOL_IDNUM = ? ;";
 	private static final String DELETE = "DELETE FROM KOL_FAVORITE where kol_idnum = ? and com_idnum  = ? ";
 
 //	public static void main(String[] args) {
@@ -47,12 +47,12 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		int favorite_idnum = -1;
+		System.out.println("12345");
 
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
-
+			
 			pstmt.setInt(1, kol_idnum);
 			pstmt.setInt(2, com_idnum);
 
@@ -177,6 +177,7 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 				companyMebVO.setCom_email(rs.getString("com_email"));
 				companyMebVO.setCom_phone(rs.getString("com_phone"));
 				companyMebVO.setCom_website(rs.getString("com_website"));
+				System.out.println(companyMebVO);
 				
 				list.add(companyMebVO);
 			}

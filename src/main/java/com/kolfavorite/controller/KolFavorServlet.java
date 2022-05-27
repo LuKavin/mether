@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.companyfavorite.model.ComFavorService;
+import com.companymeb.model.CompanyMebService;
+import com.companymeb.model.CompanyMebVO;
 import com.kolfavorite.model.KolFavorService;
 import com.kolmeb.model.KolMebVO;
 
@@ -32,7 +34,7 @@ public class KolFavorServlet extends HttpServlet{
 		KolMebVO kolMebVO = (KolMebVO) req.getSession().getAttribute("kolMebVO");
 //		System.out.println(kolMebVO);
 		if ("like".equals(action)) { // 來自addEmp.jsp的請求
-
+			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -44,24 +46,20 @@ public class KolFavorServlet extends HttpServlet{
 //				Integer kol_idnum = new Integer(req.getParameter("kol_idnum")) ;
 //				Integer kol_idnum = 1 ;
 				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/kolFavor/listcom.jsp");
-					failureView.forward(req, res); 
-					return; // 程式中斷
-				}
-
 				/*************************** 2.開始新增資料 ***************************************/
 				KolFavorService kolFavorService = new KolFavorService();
 				kolFavorService.addKolFavorite(kolMebVO.getKol_idnum(), com_idnum);
-				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/findcom/hireform/listallcom.jsp";
+				CompanyMebService companyMebService = new CompanyMebService();
+				CompanyMebVO companyMebVO = companyMebService.getOneCompanyMeb(com_idnum);
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
+				req.setAttribute("companyMebVO", companyMebVO);
+				String url = "/search/comAbout.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
-
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/findcom/hireform/listallcom.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/search/comAbout.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -80,7 +78,7 @@ public class KolFavorServlet extends HttpServlet{
 				KolFavorService kolFavorService = new KolFavorService();
 				kolFavorService.addKolFavorite(kolMebVO.getKol_idnum(), com_idnum);
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/kolFavor/listcom.jsp";
+				String url = "/kolFavor/kolfavor.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
@@ -88,7 +86,7 @@ public class KolFavorServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/kolFavor/listcom.jsp");
+						.getRequestDispatcher("/kolFavor/kolfavor.jsp");
 				failureView.forward(req, res);
 			}
 		}

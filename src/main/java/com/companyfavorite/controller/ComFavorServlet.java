@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.companyfavorite.model.ComFavorService;
 import com.companymeb.model.CompanyMebVO;
+import com.kolmeb.model.KolMebService;
 import com.kolmeb.model.KolMebVO;
 
 @MultipartConfig()
@@ -49,15 +50,18 @@ public class ComFavorServlet extends HttpServlet {
 				/*************************** 2.開始新增資料 ***************************************/
 				ComFavorService comFavorService = new ComFavorService();
 				comFavorService.addCompanyFavorite(companyMebVO.getCom_idnum(), kol_idnum);
-				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/findkol/matchform/listallkol.jsp"; 
+				KolMebService kolMebService = new KolMebService();
+				KolMebVO kolMebVO = kolMebService.getOneKolMeb(kol_idnum);
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
+				req.setAttribute("kolMebVO", kolMebVO);
+				String url = "/search/kolAbout.jsp"; 
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
-				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/findkol/matchform/listallkol.jsp");
+				errorMsgs.add(e.getMessage()); 
+				RequestDispatcher failureView = req.getRequestDispatcher("/search/kolAbout.jsp");
 				failureView.forward(req, res);
 			}
 		}

@@ -158,5 +158,11 @@ public class CompanyMebVO implements java.io.Serializable{
 	public void setTotal_star(Integer total_star) {
 		this.total_star = total_star;
 	}
+	@Override
+	public String toString() {
+		return "CompanyMebVO [com_idnum=" + com_idnum + ", com_account=" + com_account + ", com_password="
+				+ com_password + ", com_email=" + com_email + "]";
+	}
+	
 	
 }

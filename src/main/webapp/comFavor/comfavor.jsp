@@ -6,7 +6,7 @@
 <%@ page import="com.companymeb.model.*"%>
 
 <%
-KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");
+/* KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO"); */
 CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO"); 
 
 ComFavorService comFavorService = new ComFavorService();
