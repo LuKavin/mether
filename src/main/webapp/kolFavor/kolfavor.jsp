@@ -11,7 +11,7 @@ KolMebVO kolMebVO = (KolMebVO) session.getAttribute("kolMebVO");
 /* CompanyMebVO companyMebVO = (CompanyMebVO) session.getAttribute("companyMebVO"); */ 
 
 KolFavorService kolFavorService = new KolFavorService();
-List<CompanyMebVO> list = kolFavorService.FindKolFavorite(1);
+List<CompanyMebVO> list = kolFavorService.FindKolFavorite(kolMebVO.getKol_idnum());
 /* kolMebVO.getKol_idnum(); */
 pageContext.setAttribute("list", list);
 %>

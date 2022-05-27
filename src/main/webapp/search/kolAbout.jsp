@@ -226,7 +226,7 @@ pageContext.setAttribute("list", list);
 												ACTION="<%=request.getContextPath()%>/comfavor/comfavor.do"
 												style="margin-bottom: 0px;">
 												<input type="hidden" name="kol_idnum"
-													value="${companyMebVO.com_idnum}"> <input type="hidden"
+													value="${kolMebVO.kol_idnum}"> <input type="hidden"
 													name="action" value="like"> <input type="submit"
 													value="新增最愛" class="btn btn-outline-secondary" onclick="return(confirm('確認加入最愛'))">
 
