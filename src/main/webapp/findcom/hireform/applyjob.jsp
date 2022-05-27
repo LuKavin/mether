@@ -63,7 +63,7 @@ pageContext.setAttribute("list", list);
 								
 
 								<FORM METHOD="post"
-									ACTION="<%=request.getContextPath()%>/matchform/match.do"
+									ACTION="<%=request.getContextPath()%>/hireform/hire.do"
 									style="margin-bottom: 0px;">
 									<td><input type="submit" value="拒絕應徵"
 										class="btn btn-block btn-danger"> <input type="hidden"

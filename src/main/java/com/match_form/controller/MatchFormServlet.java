@@ -116,12 +116,11 @@ public class MatchFormServlet extends HttpServlet {
 			try {
 				/*************************** 1.接收請求參數 ***************************************/
 				Integer product_num = new Integer(req.getParameter("product_num"));
-
 				/*************************** 2.開始刪除資料 ***************************************/
 				MatchService matchService = new MatchService();
 				matchService.deleteMatchForm(kolMebVO.getKol_idnum(), product_num);
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url = "/kolBackStage/matchform/matchform.jsp";
+				String url = "/findcom/hireform/matchform.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 
@@ -129,7 +128,7 @@ public class MatchFormServlet extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("nooooooooo");
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/kolBackStage/matchform/matchform.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/findcom/hireform/matchform.jsp");
 				failureView.forward(req, res); 
 			}
 		}

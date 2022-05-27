@@ -12,7 +12,7 @@ public interface KolFavorDAO_interface {
 
 	public void delete(Integer kol_idnum, Integer com_idnum);
 
-	public List findKolFavorite(Integer kol_idnum);
+	public List<CompanyMebVO> findKolFavorite(Integer kol_idnum);
 
 	public List<CompanyMebVO> getAll();
 

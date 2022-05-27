@@ -53,16 +53,15 @@ public class KolFavorServlet extends HttpServlet{
 				/*************************** 2.開始新增資料 ***************************************/
 				KolFavorService kolFavorService = new KolFavorService();
 				kolFavorService.addKolFavorite(kolMebVO.getKol_idnum(), com_idnum);
-				System.out.println(kolMebVO.getKol_idnum());
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/kolFavor/listcom.jsp";
+				String url = "/findcom/hireform/listallcom.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/kolFavor/listcom.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/findcom/hireform/listallcom.jsp");
 				failureView.forward(req, res);
 			}
 		}

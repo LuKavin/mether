@@ -44,7 +44,7 @@ public class HireFormServlet extends HttpServlet {
 				Integer order_amount = 500; 
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("comBackStage/hireform/applyjob.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/hireform/applyjob.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -55,7 +55,7 @@ public class HireFormServlet extends HttpServlet {
 				MatchService matchService = new MatchService();
 				matchService.deleteMatchForm(kol_idnum, product_num);
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "comBackStage/hireform/applyjob.jsp";
+				String url = "/comBackStage/hireform/applyjob.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
@@ -63,7 +63,7 @@ public class HireFormServlet extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("noooooooooooo");
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("comBackStage/hireform/applyjob.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/hireform/applyjob.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -81,7 +81,7 @@ public class HireFormServlet extends HttpServlet {
 				MatchService matchService = new MatchService();
 //				matchService.deleteMatchForm(kolMebVO.getKol_idnum(), product_num);
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url = "/comBackStage/matchform/matchform.jsp";
+				String url = "/comBackStage/hireform/applyjob.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 
@@ -89,7 +89,7 @@ public class HireFormServlet extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("nooooooooo");
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/matchform/matchform.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/comBackStage/hireform/applyjob.jsp");
 				failureView.forward(req, res);
 			}
 		}

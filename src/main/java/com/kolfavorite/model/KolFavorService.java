@@ -18,7 +18,7 @@ public class KolFavorService {
 	}
 
 	
-	public List FindKolFavorite(Integer kol_idnum) {
+	public List<CompanyMebVO> FindKolFavorite(Integer kol_idnum) {
 		
 		return dao.findKolFavorite(kol_idnum);
 	}

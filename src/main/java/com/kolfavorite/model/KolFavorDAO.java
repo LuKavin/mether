@@ -157,9 +157,9 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 	}
 
 	@Override
-	public List findKolFavorite(Integer kol_idnum) {
+	public List <CompanyMebVO> findKolFavorite(Integer kol_idnum) {
 		// TODO Auto-generated method stub
-		List list = new ArrayList();
+		List<CompanyMebVO> list = new ArrayList<CompanyMebVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -171,32 +171,14 @@ public class KolFavorDAO implements KolFavorDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-//				CompanyMebVO companyMebVO = new CompanyMebVO();
-				System.out.println("175");
-				Integer kol_idnum1 = rs.getInt("kol_idnum");
-				Integer com_idnum = rs.getInt("com_idnum");
-				String com_name = rs.getString("com_name");
-				String com_email = rs.getString("com_email");
-				String com_phone = rs.getString("com_phone");
-				String com_website = rs.getString("com_website");
-//				COM_IDNUM, COM_NAME, COM_EMAIL, COM_PHONE,  COM_WEBSITE
+				CompanyMebVO companyMebVO = new CompanyMebVO();
+				companyMebVO.setCom_idnum(rs.getInt("com_idnum"));
+				companyMebVO.setCom_name(rs.getString("com_name"));
+				companyMebVO.setCom_email(rs.getString("com_email"));
+				companyMebVO.setCom_phone(rs.getString("com_phone"));
+				companyMebVO.setCom_website(rs.getString("com_website"));
 				
-				Map map = new HashMap();
-				map.put("kol_idnum", kol_idnum1);
-				map.put("com_idnum", com_idnum);
-				map.put("com_name", com_name);
-				map.put("com_email", com_email);
-				map.put("com_phone", com_phone);
-				map.put("com_website", com_website);
-				
-				
-//				companyMebVO.setCom_idnum(rs.getInt("COM_IDNUM"));
-//				companyMebVO.setCom_name(rs.getString(2));
-//				companyMebVO.setCom_email(rs.getString(3));
-//				companyMebVO.setCom_phone(rs.getString(4));
-//				companyMebVO.setCom_website(rs.getString(5));
-				
-				list.add(map);
+				list.add(companyMebVO);
 			}
 
 			// Handle any driver errors
